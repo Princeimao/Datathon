@@ -1,0 +1,317 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum CrimeType {
+  HOMICIDE
+  ROBBERY
+  ASSAULT
+  THEFT
+  BURGLARY
+  KIDNAPPING
+  FRAUD
+  CYBERCRIME
+  DRUG_OFFENSE
+  RAPE
+  MURDER
+  OTHER
+}
+
+enum CaseStatus {
+  OPEN
+  CLOSED
+  COLD
+}
+
+model Case {
+  id              String   @id @default(cuid())
+
+  caseNumber      String   @unique
+  title           String
+  description     String?
+
+  crimeType       CrimeType
+  status          CaseStatus  @default(OPEN)
+
+  incidentDate    DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  stationId       String
+  station         PoliceStation @relation(fields: [stationId], references: [id])
+
+  evidences       Evidence[]
+
+  persons         CasePerson[]
+  vehicles        CaseVehicle[]
+  phones          CasePhone[]
+  locations       CaseLocation[]
+  organizations   CaseOrganization[]
+
+  modusOperandiId String?
+  modusOperandi   ModusOperandi? @relation(fields: [modusOperandiId], references: [id])
+}
+
+model Evidence {
+  id            String @id @default(cuid())
+
+  caseId        String
+  case          Case @relation(fields: [caseId], references: [id])
+
+  type          EvidenceType
+
+  description   String?
+
+  fileUrl       String
+
+  uploadedById  String
+  uploadedBy    Officer @relation(fields: [uploadedById], references: [id])
+
+  extractedData Json?
+
+  createdAt     DateTime @default(now())
+}
+
+enum EvidenceType {
+  DOCUMENT
+  IMAGE
+  VIDEO
+  AUDIO
+  DIGITAL
+  PHYSICAL
+  OTHER
+}
+
+model Person {
+  id               String @id @default(cuid())
+
+  name             String?
+  age              Int?
+  gender           Gender   @default(UNKNOWN)
+  riskScore        Float?
+
+  outgoingRelationships PersonRelationship[] @relation("SourcePerson")
+  incomingRelationships PersonRelationship[] @relation("TargetPerson")
+
+  createdAt        DateTime @default(now())
+
+  aliases          String[]
+  cases            CasePerson[]
+  phones           Phone[]
+  vehicles         Vehicle[]
+  addresses        Location[]
+  organization     OrganizationMember[]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  UNKNOWN
+}
+
+model Vehicle {
+  id              String @id @default(cuid())
+
+  registrationNo  String? @unique
+  make            String?
+  model           String?
+  color           String?
+
+  cases           CaseVehicle[]
+  owners          Person[]
+}
+
+model Phone {
+  id            String @id @default(cuid())
+
+  number        String @unique
+  cases         CasePhone[]
+  owners        Person[]
+}
+
+model Location {
+  id          String @id @default(cuid())
+
+  address     String?
+  
+  latitude    Float
+  longitude   Float
+
+  district    String?
+  station     String?
+  locationType LocationType?
+
+  cases       CaseLocation[]
+  residents   Person[]
+
+  @@unique([latitude, longitude])
+}
+
+enum LocationType {
+  CRIME_SCENE
+  RELATED_PLACE
+  REPORTING_STATION
+  UNKNOWN
+}
+
+model ModusOperandi {
+  id             String @id @default(cuid())
+
+  name           String @unique
+  description    String
+  targetType     String?
+  weaponType     String?
+  timePattern    String?
+  vehiclePattern String?
+  cases          Case[]
+}
+
+model Organization {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+
+  members     OrganizationMember[]
+  cases       CaseOrganization[]
+}
+
+model Officer {
+  id          String @id @default(cuid())
+
+  badgeNumber String @unique
+  name        String
+  rank        String
+  evidences   Evidence[]
+}
+
+model PoliceStation {
+  id          String @id @default(cuid())
+  name        String 
+  state       String
+  district    String
+
+  lat         Float
+  lng         Float
+  
+  cases       Case[]
+}
+
+// RELATIONSHIPS
+model CasePerson {
+  caseId      String
+  personId    String
+
+  role        PersonRole
+
+  case        Case @relation(fields: [caseId], references: [id])
+  person      Person @relation(fields: [personId], references: [id])
+
+  @@id([caseId, personId])
+}
+
+enum PersonRole {
+  SUSPECT
+  VICTIM
+  WITNESS
+  INFORMANT
+  UNKNOWN
+}
+
+model CaseVehicle {
+  caseId      String
+  vehicleId   String
+
+  case        Case @relation(fields: [caseId], references: [id])
+  vehicle     Vehicle @relation(fields: [vehicleId], references: [id])
+
+  @@id([caseId, vehicleId])
+}
+
+model CasePhone {
+  caseId      String
+  phoneId     String
+
+  case        Case @relation(fields: [caseId], references: [id])
+  phone       Phone @relation(fields: [phoneId], references: [id])
+
+  @@id([caseId, phoneId])
+}
+
+model CaseLocation {
+  caseId       String
+  locationId   String
+
+  case         Case @relation(fields: [caseId], references: [id])
+  location     Location @relation(fields: [locationId], references: [id])
+
+  @@id([caseId, locationId])
+}
+
+model CaseOrganization {
+  caseId         String
+  organizationId String
+
+  case          Case @relation(fields: [caseId], references: [id])
+  organization  Organization @relation(fields: [organizationId], references: [id])
+
+  @@id([caseId, organizationId])
+}
+
+model PersonRelationship {
+  id              String @id @default(cuid())
+
+  sourcePersonId  String
+  targetPersonId  String
+
+  sourcePerson    Person @relation("SourcePerson", fields: [sourcePersonId], references: [id])
+  targetPerson    Person @relation("TargetPerson", fields: [targetPersonId], references: [id])
+
+  relationType    RelationshipType
+
+  confidence      Float?
+
+  createdAt       DateTime @default(now())
+}
+
+model OrganizationMember {
+  personId       String
+  organizationId String
+
+  role           String?
+  confidence     Float?
+
+  person         Person @relation(fields: [personId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  @@id([personId, organizationId])
+}
+
+enum RelationshipType {
+  ASSOCIATED_WITH
+  FAMILY
+  GANG_MEMBER
+  CONTACTED
+  ACCOMPLICE
+  FINANCIAL_LINK
+}
+
+model Embedding {
+  id          String @id @default(cuid())
+
+  entityType  String
+  entityId    String
+  vectorId    String
+
+  createdAt   DateTime @default(now())
+}
