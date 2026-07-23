@@ -332,7 +332,7 @@ export default function IntelligenceGraph({ filters = {} }: any) {
     setLoading(true);
     setStatus("Loading scoped graph");
     try {
-      const graph = await api.graph({
+      const graph: any = await api.graph({
         ...(caseId ? { incidentId: caseId } : {}),
         ...(personId ? { personId } : {}),
         ...(filters.district ? { district: filters.district } : {}),
