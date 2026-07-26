@@ -1,19 +1,19 @@
 import { Router } from "express";
 import {
-    getGeospatialPoints,
-    getDistrictStats,
-    getTrendAlerts,
-    getNetworkGraph,
-    getRepeatOffenders,
-    getAssociationNetworks,
-    getPredictiveStats,
-    getAnomalies,
-    getTimelineStats,
-    getSimilarPersons,
-    getCaseBoard,
-    getDashboardSummary,
-    getMapData
-} from "../controllers/visualization.controller";
+  getGeospatialPoints,
+  getDistrictStats,
+  getTrendAlerts,
+  getNetworkGraph,
+  getRepeatOffenders,
+  getAssociationNetworks,
+  getPredictiveStats,
+  getAnomalies,
+  getTimelineStats,
+  getSimilarPersons,
+  getCaseBoard,
+  getDashboardSummary,
+  getMapData,
+} from "../controllers/visualization.controller.js";
 
 const router = Router();
 

@@ -51,6 +51,8 @@ export interface EvidenceExtraction {
     type: string | null;
     description: string | null;
     confidence: Confidence;
+    fileUrl?: string | null;
+    extractedData?: Record<string, unknown>
 }
 
 export interface OrganizationExtraction {

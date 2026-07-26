@@ -162,4 +162,14 @@ export const api = {
       `/visualization/map-data${p.toString() ? `?${p.toString()}` : ""}`,
     );
   },
+
+  getSignedUrl: async (data: { fileName: string; contentType: string }) => {
+    const res = await apiClient.post("/storage/signed-url", data);
+    return res;
+  },
+
+  searchSimilarity: async (data: any) => {
+    const res = await apiClient.post("/similarity/search", data);
+    return res;
+  },
 };

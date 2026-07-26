@@ -41,6 +41,8 @@ import {
   Textarea,
 } from "../components/customUi";
 import { cn } from "../lib/utils";
+import { getLayoutedElements } from "../lib/graphLib";
+import { getForceLayout } from "../lib/forceLayout";
 
 const redString = {
   type: "straight",
@@ -311,8 +313,8 @@ const nodeTypes = {
 };
 
 export default function IntelligenceGraph({ filters = {} }: any) {
-  const [nodes, setNodes] = useState<any[]>(demoGraph.nodes);
-  const [edges, setEdges] = useState<any[]>(normalizeEdges(demoGraph.edges));
+  const [nodes, setNodes] = useState<any[]>([]);
+  const [edges, setEdges] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
   const [draft, setDraft] = useState<Record<string, any>>({});
   const [caseId, setCaseId] = useState("");
@@ -323,8 +325,8 @@ export default function IntelligenceGraph({ filters = {} }: any) {
 
   const loadGraph = useCallback(async () => {
     if (!caseId && !personId && !freeQuery) {
-      setNodes(demoGraph.nodes);
-      setEdges(normalizeEdges(demoGraph.edges));
+      setNodes([]);
+      setEdges([]);
       setStatus("Demo investigation loaded");
       return;
     }
@@ -340,9 +342,23 @@ export default function IntelligenceGraph({ filters = {} }: any) {
         depth: 2,
         limit: 140,
       });
-      setNodes(graph.nodes || []);
-      setEdges(normalizeEdges(graph.edges || []));
-      setStatus(`${graph.nodes?.length || 0} nodes loaded`);
+
+      const sourceNodes =
+        graph.data.nodes && graph.data.nodes.length > 0
+          ? graph.data.nodes
+          : demoGraph.nodes;
+
+      const sourceEdges =
+        graph.data.edges && graph.data.edges.length > 0
+          ? normalizeEdges(graph.data.edges)
+          : normalizeEdges(demoGraph.edges);
+
+      const layoutedGraph = getForceLayout(sourceNodes, sourceEdges);
+
+      setNodes(layoutedGraph.nodes);
+      setEdges(layoutedGraph.edges);
+
+      setStatus(`${layoutedGraph.nodes.length} nodes loaded`);
     } catch (err: any) {
       setStatus(err.message);
     } finally {
@@ -389,7 +405,7 @@ export default function IntelligenceGraph({ filters = {} }: any) {
   }
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       <Card className="p-5">
         <div className="flex flex-wrap items-center gap-3">
           <Input
@@ -420,8 +436,8 @@ export default function IntelligenceGraph({ filters = {} }: any) {
           </Button>
           <GhostButton
             onClick={() => {
-              setNodes(demoGraph.nodes);
-              setEdges(normalizeEdges(demoGraph.edges));
+              setNodes([]);
+              setEdges(normalizeEdges([]));
               setStatus("Demo investigation loaded");
             }}
           >
@@ -431,7 +447,7 @@ export default function IntelligenceGraph({ filters = {} }: any) {
         </div>
       </Card>
 
-      <Card className="h-[720px] overflow-hidden border-amber-200 bg-[#f3dfbb] case-board">
+      <Card className="h-[600px] overflow-hidden border-amber-200 bg-[#f3dfbb] case-board">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -448,7 +464,11 @@ export default function IntelligenceGraph({ filters = {} }: any) {
             setDraft(edge.data || {});
           }}
           fitView
-          minZoom={0.15}
+          fitViewOptions={{
+            padding: 0.25,
+            maxZoom: 1.2,
+          }}
+          minZoom={0.05}
         >
           <Background color="#d4a373" gap={28} />
           <Controls />

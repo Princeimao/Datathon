@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../config/prisma.config";
+import { prisma } from "../config/prisma.config.js";
 
 export const getPoliceStationsByCity = async (req: Request, res: Response) => {
     try {

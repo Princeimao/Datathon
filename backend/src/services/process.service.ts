@@ -1,5 +1,5 @@
 import { CrimeExtractionResult } from "../types";
-import { processAgent } from "./agent.service";
+import { processAgent } from "./agent.service.js";
 
 export const processService = async (data: string): Promise<CrimeExtractionResult | null> => {
     try {

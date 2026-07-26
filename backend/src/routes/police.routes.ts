@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getPoliceStationsByCity, getPoliceStationsByState } from "../controllers/police.controller";
+import { getPoliceStationsByCity, getPoliceStationsByState } from "../controllers/police.controller.js";
 
 const router = Router();
 

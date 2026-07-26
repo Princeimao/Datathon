@@ -1,5 +1,5 @@
 import { Pinecone } from '@pinecone-database/pinecone';
-import { env } from './env';
+import { env } from './env.js';
 
 if (!env.pineconeUrl) {
     throw new Error("PINECONE_URL is not defined");

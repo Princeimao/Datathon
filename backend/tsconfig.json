@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "node",
     "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
@@ -11,5 +11,12 @@
     "outDir": "./dist",
     "rootDir": "./"
   },
-  "include": ["src/**/*", "index.ts", "app.ts", "prisma.config.ts", "systemPrompt.ts", "data.ts"]
+  "include": [
+    "src/**/*",
+    "index.ts",
+    "app.ts",
+    "prisma.config.ts",
+    "systemPrompt.ts",
+    "data.ts"
+  ]
 }
