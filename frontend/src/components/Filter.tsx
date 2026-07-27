@@ -2,6 +2,8 @@ import { Filter, Loader2 } from "lucide-react";
 import { Select } from "../components/customUi";
 import { useEffect, useState, useCallback } from "react";
 
+const MAP_URL = "https://countriesnow.space/api/v0.1/countries";
+
 export interface MapFilters {
   state: string;
   city: string;
@@ -63,42 +65,35 @@ export default function CrimeMapFilters({
   const [loadingCities, setLoadingCities] = useState(false);
   const [loadingStations, setLoadingStations] = useState(false);
 
-  const updateFilter = useCallback(
-    (key: keyof MapFilters, value: any) => {
-      setFilters((prev) => {
-        const next = { ...prev, [key]: value };
+  const updateFilter = useCallback((key: keyof MapFilters, value: any) => {
+    setFilters((prev) => {
+      const next = { ...prev, [key]: value };
 
-        // Reset downstream filters when parent changes
-        if (key === "state") {
-          next.city = "All Cities";
-          next.policeStation = "All Stations";
-        }
-        if (key === "city") {
-          next.policeStation = "All Stations";
-        }
+      // Reset downstream filters when parent changes
+      if (key === "state") {
+        next.city = "All Cities";
+        next.policeStation = "All Stations";
+      }
+      if (key === "city") {
+        next.policeStation = "All Stations";
+      }
 
-        return next;
-      });
-    },
-    [],
-  );
+      return next;
+    });
+  }, []);
 
   /* Fetch Indian states */
   useEffect(() => {
     const fetchStates = async () => {
       setLoadingStates(true);
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_MAP_API}/states/q?country=India`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          },
-        );
+        const res = await fetch(`${MAP_URL}/states/q?country=India`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
         const data = await res.json();
         if (!data.error) {
-          const stateNames =
-            data?.data?.states?.map((s: any) => s.name) ?? [];
+          const stateNames = data?.data?.states?.map((s: any) => s.name) ?? [];
           setStates(["All States", ...stateNames]);
         }
       } catch (err) {
@@ -119,17 +114,14 @@ export default function CrimeMapFilters({
     const fetchCities = async () => {
       setLoadingCities(true);
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_MAP_API}/state/cities`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              country: "India",
-              state: filters.state,
-            }),
-          },
-        );
+        const res = await fetch(`${MAP_URL}/state/cities`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            country: "India",
+            state: filters.state,
+          }),
+        });
         const data = await res.json();
         if (!data.error) {
           const cityNames = data?.data ?? [];
@@ -524,7 +516,9 @@ function FilterSelect({
     <div>
       <label className="mb-2 flex items-center gap-2 text-sm font-medium text-green-800">
         {label}
-        {loading && <Loader2 size={12} className="animate-spin text-green-500" />}
+        {loading && (
+          <Loader2 size={12} className="animate-spin text-green-500" />
+        )}
       </label>
 
       <Select className="w-full" {...props}>

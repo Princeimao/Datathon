@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const API_BASE = import.meta.env.VITE_BACKEND_API;
+const API_BASE =
+  "https://tasc-backend-50044262434.development.catalystappsail.in";
 
 const apiClient = axios.create({
   baseURL: API_BASE,
