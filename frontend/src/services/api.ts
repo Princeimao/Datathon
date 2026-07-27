@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const API_BASE = "https://tasc.development.catalystappsail.in";
+const API_BASE = "https://tasc.development.catalystappsail.in/api/v1";
 
 const apiClient = axios.create({
   baseURL: API_BASE,
