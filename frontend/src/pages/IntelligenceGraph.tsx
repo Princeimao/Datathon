@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Background,
   Controls,
@@ -12,6 +13,7 @@ import {
   applyNodeChanges,
 } from "@xyflow/react";
 import {
+  Building2,
   Car,
   CircleHelp,
   FileText,
@@ -22,6 +24,7 @@ import {
   Link2,
   Loader2,
   MapPinned,
+  Phone,
   RefreshCw,
   Save,
   Search,
@@ -52,6 +55,17 @@ const redString = {
   labelBgStyle: { fill: "#fff7ed", fillOpacity: 0.92 },
   markerEnd: { type: MarkerType.ArrowClosed, color: "#be123c" },
 };
+
+const SEARCH_TYPES = [
+  { id: "case", label: "Cases", icon: FileText },
+  { id: "person", label: "People", icon: UserRound },
+  { id: "evidence", label: "Evidence", icon: Link2 },
+  { id: "statement", label: "Statements", icon: FileText },
+  { id: "phone", label: "Phones", icon: Phone },
+  { id: "vehicle", label: "Vehicles", icon: Car },
+  { id: "location", label: "Locations", icon: MapPinned },
+  { id: "organization", label: "Organizations", icon: Building2 },
+];
 
 function normalizeEdges(items: any[]) {
   return items.map((edge) => ({
@@ -312,7 +326,21 @@ const nodeTypes = {
   evidenceNode: SimpleNode,
 };
 
+function caseCrimeType(caseItem: any) {
+  return (
+    caseItem.crimeMinorHead?.crimeHeadName ||
+    caseItem.crimeMajorHead?.crimeGroupName ||
+    "Unknown"
+  );
+}
+
+function caseStatus(caseItem: any) {
+  return caseItem.caseStatus?.caseStatusName || "Unknown";
+}
+
 export default function IntelligenceGraph({ filters = {} }: any) {
+  const [searchParams] = useSearchParams();
+
   const [nodes, setNodes] = useState<any[]>([]);
   const [edges, setEdges] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
@@ -323,48 +351,71 @@ export default function IntelligenceGraph({ filters = {} }: any) {
   const [status, setStatus] = useState("Demo investigation loaded");
   const [loading, setLoading] = useState(false);
 
-  const loadGraph = useCallback(async () => {
-    if (!caseId && !personId && !freeQuery) {
-      setNodes([]);
-      setEdges([]);
-      setStatus("Demo investigation loaded");
-      return;
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchTypes, setSearchTypes] = useState<string[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [searchResults, setSearchResults] = useState<any>(null);
+  const [searchError, setSearchError] = useState<string | null>(null);
+
+  const loadGraph = useCallback(
+    async (opts?: { caseId?: string; personId?: string }) => {
+      const targetCaseId = opts?.caseId ?? caseId;
+      const targetPersonId = opts?.personId ?? personId;
+
+      if (!targetCaseId && !targetPersonId && !freeQuery) {
+        setNodes([]);
+        setEdges([]);
+        setStatus("Demo investigation loaded");
+        return;
+      }
+
+      setLoading(true);
+      setStatus("Loading scoped graph");
+      try {
+        const graph: any = await api.graph({
+          ...(targetCaseId ? { incidentId: targetCaseId } : {}),
+          ...(targetPersonId ? { personId: targetPersonId } : {}),
+          ...(freeQuery ? { q: freeQuery } : {}),
+          ...(filters.district ? { district: filters.district } : {}),
+          ...(filters.category ? { category: filters.category } : {}),
+          depth: 2,
+          limit: 140,
+        });
+
+        const sourceNodes =
+          graph.data.nodes && graph.data.nodes.length > 0
+            ? graph.data.nodes
+            : demoGraph.nodes;
+
+        const sourceEdges =
+          graph.data.edges && graph.data.edges.length > 0
+            ? normalizeEdges(graph.data.edges)
+            : normalizeEdges(demoGraph.edges);
+
+        const layoutedGraph = getForceLayout(sourceNodes, sourceEdges);
+
+        setNodes(layoutedGraph.nodes);
+        setEdges(layoutedGraph.edges);
+
+        setStatus(`${layoutedGraph.nodes.length} nodes loaded`);
+      } catch (err: any) {
+        setStatus(err.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [caseId, personId, freeQuery, filters],
+  );
+
+  useEffect(() => {
+    const initialCaseId = searchParams.get("caseId");
+
+    if (initialCaseId) {
+      setCaseId(initialCaseId);
+      loadGraph({ caseId: initialCaseId });
     }
-
-    setLoading(true);
-    setStatus("Loading scoped graph");
-    try {
-      const graph: any = await api.graph({
-        ...(caseId ? { incidentId: caseId } : {}),
-        ...(personId ? { personId } : {}),
-        ...(filters.district ? { district: filters.district } : {}),
-        ...(filters.category ? { category: filters.category } : {}),
-        depth: 2,
-        limit: 140,
-      });
-
-      const sourceNodes =
-        graph.data.nodes && graph.data.nodes.length > 0
-          ? graph.data.nodes
-          : demoGraph.nodes;
-
-      const sourceEdges =
-        graph.data.edges && graph.data.edges.length > 0
-          ? normalizeEdges(graph.data.edges)
-          : normalizeEdges(demoGraph.edges);
-
-      const layoutedGraph = getForceLayout(sourceNodes, sourceEdges);
-
-      setNodes(layoutedGraph.nodes);
-      setEdges(layoutedGraph.edges);
-
-      setStatus(`${layoutedGraph.nodes.length} nodes loaded`);
-    } catch (err: any) {
-      setStatus(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [caseId, personId, freeQuery, filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onNodesChange = useCallback(
     (changes: any) => setNodes((items) => applyNodeChanges(changes, items)),
@@ -404,35 +455,70 @@ export default function IntelligenceGraph({ filters = {} }: any) {
     setStatus("Saved");
   }
 
+  function toggleSearchType(type: string) {
+    setSearchTypes((current) =>
+      current.includes(type)
+        ? current.filter((item) => item !== type)
+        : [...current, type],
+    );
+  }
+
+  async function runSearch() {
+    const q = searchQuery.trim();
+
+    if (!q) return;
+
+    setSearching(true);
+    setSearchError(null);
+    setSearchResults(null);
+
+    try {
+      const res: any = await api.caseBoardSearch({
+        q,
+        types: searchTypes.length ? searchTypes : undefined,
+        limit: 20,
+      });
+
+      setSearchResults(res);
+    } catch (err: any) {
+      setSearchError(err.message || "Search failed");
+    } finally {
+      setSearching(false);
+    }
+  }
+
+  function openCase(id: string) {
+    setCaseId(id);
+    setPersonId("");
+    loadGraph({ caseId: id });
+  }
+
+  function openPerson(id: string) {
+    setPersonId(id);
+    setCaseId("");
+    loadGraph({ personId: id });
+  }
+
+  const resultGroups = searchResults?.results || {};
+
   return (
     <div className="space-y-4">
       <Card className="p-5">
         <div className="flex flex-wrap items-center gap-3">
           <Input
-            className="w-52"
-            value={caseId}
-            onChange={(event) => setCaseId(event.target.value)}
-            placeholder="Case / incident ID"
-          />
-          <Input
-            className="w-52"
-            value={personId}
-            onChange={(event) => setPersonId(event.target.value)}
-            placeholder="Person ID"
-          />
-          <Input
             className="min-w-[280px] flex-1"
-            value={freeQuery}
-            onChange={(event) => setFreeQuery(event.target.value)}
-            placeholder="What does police want to find?"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            onKeyDown={(event) => event.key === "Enter" && runSearch()}
+            placeholder="Search cases, people, evidence, statements, phones…"
           />
-          <Button onClick={loadGraph} disabled={loading}>
-            {loading ? (
+          <Button onClick={runSearch} disabled={searching || !searchQuery.trim()}>
+            {searching ? (
               <Loader2 className="animate-spin" size={16} />
             ) : (
               <Search size={16} />
             )}{" "}
-            Open universe
+            Search board
           </Button>
           <GhostButton
             onClick={() => {
@@ -445,7 +531,257 @@ export default function IntelligenceGraph({ filters = {} }: any) {
           </GhostButton>
           <Badge>{status}</Badge>
         </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-medium text-slate-500">Fields:</span>
+          {SEARCH_TYPES.map((item) => {
+            const Icon = item.icon;
+            const active = searchTypes.includes(item.id);
+            return (
+              <button
+                key={item.id}
+                onClick={() => toggleSearchType(item.id)}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition",
+                  active
+                    ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-400",
+                )}
+              >
+                <Icon size={12} />
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
       </Card>
+
+      {searchResults && (
+        <Card className="border-amber-200 bg-amber-50/40 p-5">
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-slate-900">
+              Search results for “{searchResults.query}”
+            </h3>
+            <div className="flex items-center gap-2">
+              <Badge>{searchResults.total} matches</Badge>
+              <GhostButton onClick={() => setSearchResults(null)}>
+                <X size={14} /> Clear
+              </GhostButton>
+            </div>
+          </div>
+
+          {searchResults.total === 0 && (
+            <p className="mt-4 text-sm text-slate-500">
+              No matches across the selected fields.
+            </p>
+          )}
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            {resultGroups.cases?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Cases ({resultGroups.cases.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.cases.map((caseItem: any) => (
+                    <button
+                      key={caseItem.id}
+                      onClick={() => openCase(caseItem.id)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {caseItem.title || caseItem.caseNumber}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {caseItem.caseNumber} • {caseCrimeType(caseItem)} •{" "}
+                        {caseStatus(caseItem)} •{" "}
+                        {caseItem.persons?.length || 0} people •{" "}
+                        {caseItem.evidences?.length || 0} evidence
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.persons?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  People ({resultGroups.persons.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.persons.map((person: any) => (
+                    <button
+                      key={person.id}
+                      onClick={() => openPerson(person.id)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {person.name || "Unknown Person"}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {[person.aliases?.length ? `Aliases: ${person.aliases.join(", ")}` : null, `${person.caseRoles?.length || 0} case links`]
+                          .filter(Boolean)
+                          .join(" • ")}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.evidence?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Evidence / media ({resultGroups.evidence.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.evidence.map((evidence: any) => (
+                    <button
+                      key={evidence.id}
+                      onClick={() => openCase(evidence.caseId)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {evidence.title || evidence.fileName || evidence.type}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {evidence.type} • {evidence.case?.caseNumber}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.statements?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Statements ({resultGroups.statements.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.statements.map((statement: any, index: number) => (
+                    <button
+                      key={index}
+                      onClick={() => openCase(statement.caseId)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <p className="line-clamp-2 text-sm text-slate-800">
+                        {statement.statement}
+                      </p>
+                      <span className="mt-1 block text-xs text-slate-500">
+                        {statement.person?.name || statement.case?.caseNumber || "Statement"}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.phones?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Phone numbers ({resultGroups.phones.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.phones.map((phone: any) => (
+                    <button
+                      key={phone.id}
+                      onClick={() => openCase(phone.cases?.[0]?.caseId)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {phone.number}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {phone.owners?.map((owner: any) => owner.person.name).filter(Boolean).join(", ") || "No registered owner"}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.vehicles?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Vehicles ({resultGroups.vehicles.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.vehicles.map((vehicle: any) => (
+                    <button
+                      key={vehicle.id}
+                      onClick={() => openCase(vehicle.cases?.[0]?.caseId)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {vehicle.registrationNo || "Vehicle"}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {[vehicle.make, vehicle.model, vehicle.color].filter(Boolean).join(" ")}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.locations?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Locations ({resultGroups.locations.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.locations.map((location: any) => (
+                    <button
+                      key={location.id}
+                      onClick={() => openCase(location.cases?.[0]?.caseId)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {location.address || "Location"}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {[location.district?.districtName, location.policeUnit?.unitName].filter(Boolean).join(" • ")}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {resultGroups.organizations?.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Organizations ({resultGroups.organizations.length})
+                </h4>
+                <div className="grid gap-2">
+                  {resultGroups.organizations.map((organization: any) => (
+                    <button
+                      key={organization.id}
+                      onClick={() => openCase(organization.cases?.[0]?.caseId)}
+                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                    >
+                      <strong className="block text-sm text-slate-900">
+                        {organization.name}
+                      </strong>
+                      <span className="text-xs text-slate-500">
+                        {organization.organizationType || `${organization.members?.length || 0} members`}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Card>
+      )}
+
+      {searchError && (
+        <Card className="border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          {searchError}
+        </Card>
+      )}
 
       <Card className="h-[600px] overflow-hidden border-amber-200 bg-[#f3dfbb] case-board">
         <ReactFlow

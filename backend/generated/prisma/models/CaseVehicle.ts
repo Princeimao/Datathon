@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model CaseVehicle
@@ -20,40 +20,70 @@ export type CaseVehicleModel = runtime.Types.Result.DefaultSelection<Prisma.$Cas
 
 export type AggregateCaseVehicle = {
   _count: CaseVehicleCountAggregateOutputType | null
+  _avg: CaseVehicleAvgAggregateOutputType | null
+  _sum: CaseVehicleSumAggregateOutputType | null
   _min: CaseVehicleMinAggregateOutputType | null
   _max: CaseVehicleMaxAggregateOutputType | null
+}
+
+export type CaseVehicleAvgAggregateOutputType = {
+  confidence: number | null
+}
+
+export type CaseVehicleSumAggregateOutputType = {
+  confidence: number | null
 }
 
 export type CaseVehicleMinAggregateOutputType = {
   caseId: string | null
   vehicleId: string | null
+  context: string | null
+  confidence: number | null
 }
 
 export type CaseVehicleMaxAggregateOutputType = {
   caseId: string | null
   vehicleId: string | null
+  context: string | null
+  confidence: number | null
 }
 
 export type CaseVehicleCountAggregateOutputType = {
   caseId: number
   vehicleId: number
+  context: number
+  confidence: number
   _all: number
 }
 
 
+export type CaseVehicleAvgAggregateInputType = {
+  confidence?: true
+}
+
+export type CaseVehicleSumAggregateInputType = {
+  confidence?: true
+}
+
 export type CaseVehicleMinAggregateInputType = {
   caseId?: true
   vehicleId?: true
+  context?: true
+  confidence?: true
 }
 
 export type CaseVehicleMaxAggregateInputType = {
   caseId?: true
   vehicleId?: true
+  context?: true
+  confidence?: true
 }
 
 export type CaseVehicleCountAggregateInputType = {
   caseId?: true
   vehicleId?: true
+  context?: true
+  confidence?: true
   _all?: true
 }
 
@@ -95,6 +125,18 @@ export type CaseVehicleAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CaseVehicleAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CaseVehicleSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CaseVehicleMinAggregateInputType
@@ -125,6 +167,8 @@ export type CaseVehicleGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: CaseVehicleCountAggregateInputType | true
+  _avg?: CaseVehicleAvgAggregateInputType
+  _sum?: CaseVehicleSumAggregateInputType
   _min?: CaseVehicleMinAggregateInputType
   _max?: CaseVehicleMaxAggregateInputType
 }
@@ -132,7 +176,11 @@ export type CaseVehicleGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type CaseVehicleGroupByOutputType = {
   caseId: string
   vehicleId: string
+  context: string | null
+  confidence: number | null
   _count: CaseVehicleCountAggregateOutputType | null
+  _avg: CaseVehicleAvgAggregateOutputType | null
+  _sum: CaseVehicleSumAggregateOutputType | null
   _min: CaseVehicleMinAggregateOutputType | null
   _max: CaseVehicleMaxAggregateOutputType | null
 }
@@ -158,6 +206,8 @@ export type CaseVehicleWhereInput = {
   NOT?: Prisma.CaseVehicleWhereInput | Prisma.CaseVehicleWhereInput[]
   caseId?: Prisma.StringFilter<"CaseVehicle"> | string
   vehicleId?: Prisma.StringFilter<"CaseVehicle"> | string
+  context?: Prisma.StringNullableFilter<"CaseVehicle"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CaseVehicle"> | number | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
 }
@@ -165,6 +215,8 @@ export type CaseVehicleWhereInput = {
 export type CaseVehicleOrderByWithRelationInput = {
   caseId?: Prisma.SortOrder
   vehicleId?: Prisma.SortOrder
+  context?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   case?: Prisma.CaseOrderByWithRelationInput
   vehicle?: Prisma.VehicleOrderByWithRelationInput
 }
@@ -176,6 +228,8 @@ export type CaseVehicleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CaseVehicleWhereInput | Prisma.CaseVehicleWhereInput[]
   caseId?: Prisma.StringFilter<"CaseVehicle"> | string
   vehicleId?: Prisma.StringFilter<"CaseVehicle"> | string
+  context?: Prisma.StringNullableFilter<"CaseVehicle"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CaseVehicle"> | number | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
 }, "caseId_vehicleId">
@@ -183,9 +237,13 @@ export type CaseVehicleWhereUniqueInput = Prisma.AtLeast<{
 export type CaseVehicleOrderByWithAggregationInput = {
   caseId?: Prisma.SortOrder
   vehicleId?: Prisma.SortOrder
+  context?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CaseVehicleCountOrderByAggregateInput
+  _avg?: Prisma.CaseVehicleAvgOrderByAggregateInput
   _max?: Prisma.CaseVehicleMaxOrderByAggregateInput
   _min?: Prisma.CaseVehicleMinOrderByAggregateInput
+  _sum?: Prisma.CaseVehicleSumOrderByAggregateInput
 }
 
 export type CaseVehicleScalarWhereWithAggregatesInput = {
@@ -194,9 +252,13 @@ export type CaseVehicleScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CaseVehicleScalarWhereWithAggregatesInput | Prisma.CaseVehicleScalarWhereWithAggregatesInput[]
   caseId?: Prisma.StringWithAggregatesFilter<"CaseVehicle"> | string
   vehicleId?: Prisma.StringWithAggregatesFilter<"CaseVehicle"> | string
+  context?: Prisma.StringNullableWithAggregatesFilter<"CaseVehicle"> | string | null
+  confidence?: Prisma.FloatNullableWithAggregatesFilter<"CaseVehicle"> | number | null
 }
 
 export type CaseVehicleCreateInput = {
+  context?: string | null
+  confidence?: number | null
   case: Prisma.CaseCreateNestedOneWithoutVehiclesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutCasesInput
 }
@@ -204,9 +266,13 @@ export type CaseVehicleCreateInput = {
 export type CaseVehicleUncheckedCreateInput = {
   caseId: string
   vehicleId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseVehicleUpdateInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   case?: Prisma.CaseUpdateOneRequiredWithoutVehiclesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutCasesNestedInput
 }
@@ -214,20 +280,27 @@ export type CaseVehicleUpdateInput = {
 export type CaseVehicleUncheckedUpdateInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseVehicleCreateManyInput = {
   caseId: string
   vehicleId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseVehicleUpdateManyMutationInput = {
-
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseVehicleUncheckedUpdateManyInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseVehicleListRelationFilter = {
@@ -248,16 +321,30 @@ export type CaseVehicleCaseIdVehicleIdCompoundUniqueInput = {
 export type CaseVehicleCountOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   vehicleId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type CaseVehicleAvgOrderByAggregateInput = {
+  confidence?: Prisma.SortOrder
 }
 
 export type CaseVehicleMaxOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   vehicleId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
 }
 
 export type CaseVehicleMinOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   vehicleId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type CaseVehicleSumOrderByAggregateInput = {
+  confidence?: Prisma.SortOrder
 }
 
 export type CaseVehicleCreateNestedManyWithoutCaseInput = {
@@ -345,11 +432,15 @@ export type CaseVehicleUncheckedUpdateManyWithoutVehicleNestedInput = {
 }
 
 export type CaseVehicleCreateWithoutCaseInput = {
+  context?: string | null
+  confidence?: number | null
   vehicle: Prisma.VehicleCreateNestedOneWithoutCasesInput
 }
 
 export type CaseVehicleUncheckedCreateWithoutCaseInput = {
   vehicleId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseVehicleCreateOrConnectWithoutCaseInput = {
@@ -384,14 +475,20 @@ export type CaseVehicleScalarWhereInput = {
   NOT?: Prisma.CaseVehicleScalarWhereInput | Prisma.CaseVehicleScalarWhereInput[]
   caseId?: Prisma.StringFilter<"CaseVehicle"> | string
   vehicleId?: Prisma.StringFilter<"CaseVehicle"> | string
+  context?: Prisma.StringNullableFilter<"CaseVehicle"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CaseVehicle"> | number | null
 }
 
 export type CaseVehicleCreateWithoutVehicleInput = {
+  context?: string | null
+  confidence?: number | null
   case: Prisma.CaseCreateNestedOneWithoutVehiclesInput
 }
 
 export type CaseVehicleUncheckedCreateWithoutVehicleInput = {
   caseId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseVehicleCreateOrConnectWithoutVehicleInput = {
@@ -422,34 +519,50 @@ export type CaseVehicleUpdateManyWithWhereWithoutVehicleInput = {
 
 export type CaseVehicleCreateManyCaseInput = {
   vehicleId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseVehicleUpdateWithoutCaseInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutCasesNestedInput
 }
 
 export type CaseVehicleUncheckedUpdateWithoutCaseInput = {
   vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseVehicleUncheckedUpdateManyWithoutCaseInput = {
   vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseVehicleCreateManyVehicleInput = {
   caseId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseVehicleUpdateWithoutVehicleInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   case?: Prisma.CaseUpdateOneRequiredWithoutVehiclesNestedInput
 }
 
 export type CaseVehicleUncheckedUpdateWithoutVehicleInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseVehicleUncheckedUpdateManyWithoutVehicleInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 
@@ -457,6 +570,8 @@ export type CaseVehicleUncheckedUpdateManyWithoutVehicleInput = {
 export type CaseVehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   vehicleId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseVehicle"]>
@@ -464,6 +579,8 @@ export type CaseVehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type CaseVehicleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   vehicleId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseVehicle"]>
@@ -471,6 +588,8 @@ export type CaseVehicleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 export type CaseVehicleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   vehicleId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseVehicle"]>
@@ -478,9 +597,11 @@ export type CaseVehicleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type CaseVehicleSelectScalar = {
   caseId?: boolean
   vehicleId?: boolean
+  context?: boolean
+  confidence?: boolean
 }
 
-export type CaseVehicleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "vehicleId", ExtArgs["result"]["caseVehicle"]>
+export type CaseVehicleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "vehicleId" | "context" | "confidence", ExtArgs["result"]["caseVehicle"]>
 export type CaseVehicleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
@@ -503,6 +624,8 @@ export type $CaseVehiclePayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     caseId: string
     vehicleId: string
+    context: string | null
+    confidence: number | null
   }, ExtArgs["result"]["caseVehicle"]>
   composites: {}
 }
@@ -930,6 +1053,8 @@ export interface Prisma__CaseVehicleClient<T, Null = never, ExtArgs extends runt
 export interface CaseVehicleFieldRefs {
   readonly caseId: Prisma.FieldRef<"CaseVehicle", 'String'>
   readonly vehicleId: Prisma.FieldRef<"CaseVehicle", 'String'>
+  readonly context: Prisma.FieldRef<"CaseVehicle", 'String'>
+  readonly confidence: Prisma.FieldRef<"CaseVehicle", 'Float'>
 }
     
 

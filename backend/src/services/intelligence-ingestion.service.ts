@@ -2,16 +2,18 @@ import { prisma } from "../config/prisma.config.js";
 import type { CrimeExtractionResult } from "../types.js";
 import { processService } from "./process.service.js";
 import { relationshipService } from "./relationship.service.js";
-import { analyzeMediaFiles, type IntakeFile } from "./media-intelligence.service.js";
-import { submitCatalystJob } from "./catalyst.service.js";
-import { embedText, vectorId } from "./ollama.service.js";
+import {
+  analyzeMediaFiles,
+  type IntakeFile,
+} from "./media-intelligence.service.js";
+import { indexCaseForSearch } from "./pinecone.service.js";
+import { enrollFaceForPerson } from "./luxand.service.js";
 
 type IngestPayload = {
   firText?: string;
   firImage?: IntakeFile;
   media?: IntakeFile[];
   officerId?: string;
-  async?: boolean;
 };
 
 const emptyExtraction = (): CrimeExtractionResult => ({
@@ -34,7 +36,10 @@ const emptyExtraction = (): CrimeExtractionResult => ({
   relationships: [],
 });
 
-function mergeExtraction(base: CrimeExtractionResult, extra: Partial<CrimeExtractionResult>) {
+function mergeExtraction(
+  base: CrimeExtractionResult,
+  extra: Partial<CrimeExtractionResult>,
+) {
   return {
     ...base,
     ...extra,
@@ -44,26 +49,32 @@ function mergeExtraction(base: CrimeExtractionResult, extra: Partial<CrimeExtrac
     vehicles: [...(base.vehicles || []), ...(extra.vehicles || [])],
     locations: [...(base.locations || []), ...(extra.locations || [])],
     evidence: [...(base.evidence || []), ...(extra.evidence || [])],
-    organizations: [...(base.organizations || []), ...(extra.organizations || [])],
-    relationships: [...(base.relationships || []), ...(extra.relationships || [])],
+    organizations: [
+      ...(base.organizations || []),
+      ...(extra.organizations || []),
+    ],
+    relationships: [
+      ...(base.relationships || []),
+      ...(extra.relationships || []),
+    ],
     modusOperandi: extra.modusOperandi || base.modusOperandi,
   };
 }
 
 export async function ingestFirPayload(payload: IngestPayload, req?: unknown) {
-  if (payload.async) {
-    const job = await submitCatalystJob({ kind: "single-ingestion", payload: { ...payload, async: false } }, req);
-    return {
-      queued: true,
-      ...job,
-    };
-  }
+  const firText =
+    payload.firText ||
+    payload.firImage?.details ||
+    payload.firImage?.label ||
+    "";
+  const extracted =
+    (firText ? await processService(firText) : null) || emptyExtraction();
+  if (firText && !extracted.case.description)
+    extracted.case.description = firText;
 
-  const firText = payload.firText || payload.firImage?.details || payload.firImage?.label || "";
-  const extracted = (firText ? await processService(firText) : null) || emptyExtraction();
-  if (firText && !extracted.case.description) extracted.case.description = firText;
-
-  const mediaFiles = [payload.firImage, ...(payload.media || [])].filter(Boolean) as IntakeFile[];
+  const mediaFiles = [payload.firImage, ...(payload.media || [])].filter(
+    Boolean,
+  ) as IntakeFile[];
   const media = await analyzeMediaFiles(mediaFiles, req);
   const merged = mergeExtraction(extracted, {
     evidence: media.evidence,
@@ -76,23 +87,46 @@ export async function ingestFirPayload(payload: IngestPayload, req?: unknown) {
     throw new Error("Unable to create intelligence graph from FIR payload.");
   }
 
-  const summaryEmbedding = await embedText(JSON.stringify({
-    case: merged.case,
-    persons: merged.persons.map((person) => person.name),
-    phones: merged.phones.map((phone) => phone.number),
-    vehicles: merged.vehicles.map((vehicle) => vehicle.registrationNumber),
-  }));
+  // Best-effort: index the case summary for vector search.
+  try {
+    const summary = JSON.stringify({
+      case: merged.case,
+      persons: merged.persons.map((person) => person.name),
+      phones: merged.phones.map((phone) => phone.number),
+      vehicles: merged.vehicles.map((vehicle) => vehicle.registrationNumber),
+    });
 
-  await prisma.embedding.create({
-    data: {
-      entityType: "case",
-      entityId: createdCase.id,
-      vectorId: vectorId("case", `${createdCase.id}:${summaryEmbedding.slice(0, 12).join(",")}`),
-    },
-  }).catch(() => null);
+    await indexCaseForSearch({
+      caseId: createdCase.id,
+      text: summary,
+    });
+  } catch (error) {
+    console.warn("Vector indexing skipped for FIR intake.", error);
+  }
+
+  // Best-effort: enroll faces for people mentioned on uploaded media.
+  for (const file of mediaFiles) {
+    if (!file.personName || !file.base64) continue;
+
+    try {
+      const person = await prisma.person.findFirst({
+        where: { name: file.personName },
+        select: { id: true },
+      });
+
+      if (person) {
+        await enrollFaceForPerson({
+          personId: person.id,
+          caseId: createdCase.id,
+          base64: file.base64,
+        });
+      }
+    } catch (error) {
+      console.warn("Face enrollment skipped for FIR media.", error);
+    }
+  }
 
   return {
-    queued: false,
     caseId: createdCase.id,
     caseNumber: createdCase.caseNumber,
     extracted: merged,
@@ -104,26 +138,18 @@ export async function ingestBulkPayload(payload: any, req?: unknown) {
   const records = Array.isArray(payload.records)
     ? payload.records
     : payload.content
-      ? String(payload.content).split(/\n\s*\n/).filter(Boolean).map((firText) => ({ firText }))
+      ? String(payload.content)
+          .split(/\n\s*\n/)
+          .filter(Boolean)
+          .map((firText) => ({ firText }))
       : [];
-
-  const job = await submitCatalystJob({ kind: "bulk-ingestion", payload }, req);
-
-  if (payload.async !== false) {
-    return {
-      queued: true,
-      totalRecords: records.length,
-      ...job,
-    };
-  }
 
   const results = [];
   for (const record of records) {
-    results.push(await ingestFirPayload({ ...record, async: false }, req));
+    results.push(await ingestFirPayload({ ...record }, req));
   }
 
   return {
-    queued: false,
     totalRecords: records.length,
     processed: results.length,
     results,

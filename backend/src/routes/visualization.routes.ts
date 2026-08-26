@@ -11,6 +11,7 @@ import {
   getTimelineStats,
   getSimilarPersons,
   getCaseBoard,
+  searchCaseBoard,
   getDashboardSummary,
   getMapData,
 } from "../controllers/visualization.controller.js";
@@ -30,6 +31,9 @@ router.get("/anomalies", getAnomalies);
 router.get("/timeline", getTimelineStats);
 router.get("/similar-persons/:personId", getSimilarPersons);
 router.get("/case-board/:caseId", getCaseBoard);
+
+// Case Board cross-entity search
+router.get("/search", searchCaseBoard);
 
 // Dashboard & Map aggregation endpoints
 router.get("/dashboard-summary", getDashboardSummary);

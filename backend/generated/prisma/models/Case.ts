@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Case
@@ -20,93 +20,227 @@ export type CaseModel = runtime.Types.Result.DefaultSelection<Prisma.$CasePayloa
 
 export type AggregateCase = {
   _count: CaseCountAggregateOutputType | null
+  _avg: CaseAvgAggregateOutputType | null
+  _sum: CaseSumAggregateOutputType | null
   _min: CaseMinAggregateOutputType | null
   _max: CaseMaxAggregateOutputType | null
+}
+
+export type CaseAvgAggregateOutputType = {
+  caseCategoryId: number | null
+  gravityOffenceId: number | null
+  crimeMajorHeadId: number | null
+  crimeMinorHeadId: number | null
+  caseStatusId: number | null
+  registeringOfficerId: number | null
+  policeUnitId: number | null
+  courtId: number | null
+  riskScore: number | null
+  priorityScore: number | null
+}
+
+export type CaseSumAggregateOutputType = {
+  caseCategoryId: number | null
+  gravityOffenceId: number | null
+  crimeMajorHeadId: number | null
+  crimeMinorHeadId: number | null
+  caseStatusId: number | null
+  registeringOfficerId: number | null
+  policeUnitId: number | null
+  courtId: number | null
+  riskScore: number | null
+  priorityScore: number | null
 }
 
 export type CaseMinAggregateOutputType = {
   id: string | null
   caseNumber: string | null
+  crimeNo: string | null
+  caseNo: string | null
   title: string | null
   description: string | null
-  crimeType: $Enums.CrimeType | null
-  status: $Enums.CaseStatus | null
-  incidentDate: Date | null
+  crimeRegisteredDate: Date | null
+  incidentFromDate: Date | null
+  incidentToDate: Date | null
+  infoReceivedPSDate: Date | null
+  caseCategoryId: number | null
+  gravityOffenceId: number | null
+  crimeMajorHeadId: number | null
+  crimeMinorHeadId: number | null
+  caseStatusId: number | null
+  registeringOfficerId: number | null
+  policeUnitId: number | null
+  courtId: number | null
+  riskScore: number | null
+  priorityScore: number | null
+  aiSummary: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  stationId: string | null
   modusOperandiId: string | null
 }
 
 export type CaseMaxAggregateOutputType = {
   id: string | null
   caseNumber: string | null
+  crimeNo: string | null
+  caseNo: string | null
   title: string | null
   description: string | null
-  crimeType: $Enums.CrimeType | null
-  status: $Enums.CaseStatus | null
-  incidentDate: Date | null
+  crimeRegisteredDate: Date | null
+  incidentFromDate: Date | null
+  incidentToDate: Date | null
+  infoReceivedPSDate: Date | null
+  caseCategoryId: number | null
+  gravityOffenceId: number | null
+  crimeMajorHeadId: number | null
+  crimeMinorHeadId: number | null
+  caseStatusId: number | null
+  registeringOfficerId: number | null
+  policeUnitId: number | null
+  courtId: number | null
+  riskScore: number | null
+  priorityScore: number | null
+  aiSummary: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  stationId: string | null
   modusOperandiId: string | null
 }
 
 export type CaseCountAggregateOutputType = {
   id: number
   caseNumber: number
+  crimeNo: number
+  caseNo: number
   title: number
   description: number
-  crimeType: number
-  status: number
-  incidentDate: number
+  crimeRegisteredDate: number
+  incidentFromDate: number
+  incidentToDate: number
+  infoReceivedPSDate: number
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId: number
+  policeUnitId: number
+  courtId: number
+  riskScore: number
+  priorityScore: number
+  aiSummary: number
+  aiClassification: number
   createdAt: number
   updatedAt: number
-  stationId: number
   modusOperandiId: number
   _all: number
 }
 
 
+export type CaseAvgAggregateInputType = {
+  caseCategoryId?: true
+  gravityOffenceId?: true
+  crimeMajorHeadId?: true
+  crimeMinorHeadId?: true
+  caseStatusId?: true
+  registeringOfficerId?: true
+  policeUnitId?: true
+  courtId?: true
+  riskScore?: true
+  priorityScore?: true
+}
+
+export type CaseSumAggregateInputType = {
+  caseCategoryId?: true
+  gravityOffenceId?: true
+  crimeMajorHeadId?: true
+  crimeMinorHeadId?: true
+  caseStatusId?: true
+  registeringOfficerId?: true
+  policeUnitId?: true
+  courtId?: true
+  riskScore?: true
+  priorityScore?: true
+}
+
 export type CaseMinAggregateInputType = {
   id?: true
   caseNumber?: true
+  crimeNo?: true
+  caseNo?: true
   title?: true
   description?: true
-  crimeType?: true
-  status?: true
-  incidentDate?: true
+  crimeRegisteredDate?: true
+  incidentFromDate?: true
+  incidentToDate?: true
+  infoReceivedPSDate?: true
+  caseCategoryId?: true
+  gravityOffenceId?: true
+  crimeMajorHeadId?: true
+  crimeMinorHeadId?: true
+  caseStatusId?: true
+  registeringOfficerId?: true
+  policeUnitId?: true
+  courtId?: true
+  riskScore?: true
+  priorityScore?: true
+  aiSummary?: true
   createdAt?: true
   updatedAt?: true
-  stationId?: true
   modusOperandiId?: true
 }
 
 export type CaseMaxAggregateInputType = {
   id?: true
   caseNumber?: true
+  crimeNo?: true
+  caseNo?: true
   title?: true
   description?: true
-  crimeType?: true
-  status?: true
-  incidentDate?: true
+  crimeRegisteredDate?: true
+  incidentFromDate?: true
+  incidentToDate?: true
+  infoReceivedPSDate?: true
+  caseCategoryId?: true
+  gravityOffenceId?: true
+  crimeMajorHeadId?: true
+  crimeMinorHeadId?: true
+  caseStatusId?: true
+  registeringOfficerId?: true
+  policeUnitId?: true
+  courtId?: true
+  riskScore?: true
+  priorityScore?: true
+  aiSummary?: true
   createdAt?: true
   updatedAt?: true
-  stationId?: true
   modusOperandiId?: true
 }
 
 export type CaseCountAggregateInputType = {
   id?: true
   caseNumber?: true
+  crimeNo?: true
+  caseNo?: true
   title?: true
   description?: true
-  crimeType?: true
-  status?: true
-  incidentDate?: true
+  crimeRegisteredDate?: true
+  incidentFromDate?: true
+  incidentToDate?: true
+  infoReceivedPSDate?: true
+  caseCategoryId?: true
+  gravityOffenceId?: true
+  crimeMajorHeadId?: true
+  crimeMinorHeadId?: true
+  caseStatusId?: true
+  registeringOfficerId?: true
+  policeUnitId?: true
+  courtId?: true
+  riskScore?: true
+  priorityScore?: true
+  aiSummary?: true
+  aiClassification?: true
   createdAt?: true
   updatedAt?: true
-  stationId?: true
   modusOperandiId?: true
   _all?: true
 }
@@ -149,6 +283,18 @@ export type CaseAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CaseAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CaseSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CaseMinAggregateInputType
@@ -179,6 +325,8 @@ export type CaseGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: CaseCountAggregateInputType | true
+  _avg?: CaseAvgAggregateInputType
+  _sum?: CaseSumAggregateInputType
   _min?: CaseMinAggregateInputType
   _max?: CaseMaxAggregateInputType
 }
@@ -186,16 +334,32 @@ export type CaseGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type CaseGroupByOutputType = {
   id: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title: string | null
   description: string | null
-  crimeType: $Enums.CrimeType
-  status: $Enums.CaseStatus
-  incidentDate: Date
+  crimeRegisteredDate: Date
+  incidentFromDate: Date | null
+  incidentToDate: Date | null
+  infoReceivedPSDate: Date | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId: number | null
+  policeUnitId: number
+  courtId: number | null
+  riskScore: number | null
+  priorityScore: number | null
+  aiSummary: string | null
+  aiClassification: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
-  stationId: string
   modusOperandiId: string | null
   _count: CaseCountAggregateOutputType | null
+  _avg: CaseAvgAggregateOutputType | null
+  _sum: CaseSumAggregateOutputType | null
   _min: CaseMinAggregateOutputType | null
   _max: CaseMaxAggregateOutputType | null
 }
@@ -221,87 +385,193 @@ export type CaseWhereInput = {
   NOT?: Prisma.CaseWhereInput | Prisma.CaseWhereInput[]
   id?: Prisma.StringFilter<"Case"> | string
   caseNumber?: Prisma.StringFilter<"Case"> | string
-  title?: Prisma.StringFilter<"Case"> | string
+  crimeNo?: Prisma.StringFilter<"Case"> | string
+  caseNo?: Prisma.StringFilter<"Case"> | string
+  title?: Prisma.StringNullableFilter<"Case"> | string | null
   description?: Prisma.StringNullableFilter<"Case"> | string | null
-  crimeType?: Prisma.EnumCrimeTypeFilter<"Case"> | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFilter<"Case"> | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFilter<"Case"> | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFilter<"Case"> | Date | string
+  incidentFromDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  incidentToDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  infoReceivedPSDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  caseCategoryId?: Prisma.IntFilter<"Case"> | number
+  gravityOffenceId?: Prisma.IntFilter<"Case"> | number
+  crimeMajorHeadId?: Prisma.IntFilter<"Case"> | number
+  crimeMinorHeadId?: Prisma.IntFilter<"Case"> | number
+  caseStatusId?: Prisma.IntFilter<"Case"> | number
+  registeringOfficerId?: Prisma.IntNullableFilter<"Case"> | number | null
+  policeUnitId?: Prisma.IntFilter<"Case"> | number
+  courtId?: Prisma.IntNullableFilter<"Case"> | number | null
+  riskScore?: Prisma.FloatNullableFilter<"Case"> | number | null
+  priorityScore?: Prisma.FloatNullableFilter<"Case"> | number | null
+  aiSummary?: Prisma.StringNullableFilter<"Case"> | string | null
+  aiClassification?: Prisma.JsonNullableFilter<"Case">
   createdAt?: Prisma.DateTimeFilter<"Case"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Case"> | Date | string
-  stationId?: Prisma.StringFilter<"Case"> | string
   modusOperandiId?: Prisma.StringNullableFilter<"Case"> | string | null
-  station?: Prisma.XOR<Prisma.PoliceStationScalarRelationFilter, Prisma.PoliceStationWhereInput>
-  evidences?: Prisma.EvidenceListRelationFilter
+  caseCategory?: Prisma.XOR<Prisma.CaseCategoryScalarRelationFilter, Prisma.CaseCategoryWhereInput>
+  gravityOffence?: Prisma.XOR<Prisma.GravityOffenceScalarRelationFilter, Prisma.GravityOffenceWhereInput>
+  crimeMajorHead?: Prisma.XOR<Prisma.CrimeHeadScalarRelationFilter, Prisma.CrimeHeadWhereInput>
+  crimeMinorHead?: Prisma.XOR<Prisma.CrimeSubHeadScalarRelationFilter, Prisma.CrimeSubHeadWhereInput>
+  caseStatus?: Prisma.XOR<Prisma.CaseStatusMasterScalarRelationFilter, Prisma.CaseStatusMasterWhereInput>
+  registeringOfficer?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  policeUnit?: Prisma.XOR<Prisma.PoliceUnitScalarRelationFilter, Prisma.PoliceUnitWhereInput>
+  court?: Prisma.XOR<Prisma.CourtNullableScalarRelationFilter, Prisma.CourtWhereInput> | null
+  complainants?: Prisma.ComplainantListRelationFilter
   persons?: Prisma.CasePersonListRelationFilter
+  actSections?: Prisma.CaseActSectionListRelationFilter
+  arrestSurrenders?: Prisma.ArrestSurrenderListRelationFilter
+  chargesheets?: Prisma.ChargesheetListRelationFilter
+  evidences?: Prisma.EvidenceListRelationFilter
   vehicles?: Prisma.CaseVehicleListRelationFilter
   phones?: Prisma.CasePhoneListRelationFilter
   locations?: Prisma.CaseLocationListRelationFilter
   organizations?: Prisma.CaseOrganizationListRelationFilter
   modusOperandi?: Prisma.XOR<Prisma.ModusOperandiNullableScalarRelationFilter, Prisma.ModusOperandiWhereInput> | null
+  investigationEvents?: Prisma.InvestigationEventListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
+  faceRecords?: Prisma.FaceRecordListRelationFilter
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityListRelationFilter
+  caseSimilaritiesTo?: Prisma.CaseSimilarityListRelationFilter
 }
 
 export type CaseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   caseNumber?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  crimeNo?: Prisma.SortOrder
+  caseNo?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  crimeType?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  incidentDate?: Prisma.SortOrder
+  crimeRegisteredDate?: Prisma.SortOrder
+  incidentFromDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  incidentToDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  infoReceivedPSDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrderInput | Prisma.SortOrder
+  riskScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  priorityScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiClassification?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  stationId?: Prisma.SortOrder
   modusOperandiId?: Prisma.SortOrderInput | Prisma.SortOrder
-  station?: Prisma.PoliceStationOrderByWithRelationInput
-  evidences?: Prisma.EvidenceOrderByRelationAggregateInput
+  caseCategory?: Prisma.CaseCategoryOrderByWithRelationInput
+  gravityOffence?: Prisma.GravityOffenceOrderByWithRelationInput
+  crimeMajorHead?: Prisma.CrimeHeadOrderByWithRelationInput
+  crimeMinorHead?: Prisma.CrimeSubHeadOrderByWithRelationInput
+  caseStatus?: Prisma.CaseStatusMasterOrderByWithRelationInput
+  registeringOfficer?: Prisma.EmployeeOrderByWithRelationInput
+  policeUnit?: Prisma.PoliceUnitOrderByWithRelationInput
+  court?: Prisma.CourtOrderByWithRelationInput
+  complainants?: Prisma.ComplainantOrderByRelationAggregateInput
   persons?: Prisma.CasePersonOrderByRelationAggregateInput
+  actSections?: Prisma.CaseActSectionOrderByRelationAggregateInput
+  arrestSurrenders?: Prisma.ArrestSurrenderOrderByRelationAggregateInput
+  chargesheets?: Prisma.ChargesheetOrderByRelationAggregateInput
+  evidences?: Prisma.EvidenceOrderByRelationAggregateInput
   vehicles?: Prisma.CaseVehicleOrderByRelationAggregateInput
   phones?: Prisma.CasePhoneOrderByRelationAggregateInput
   locations?: Prisma.CaseLocationOrderByRelationAggregateInput
   organizations?: Prisma.CaseOrganizationOrderByRelationAggregateInput
   modusOperandi?: Prisma.ModusOperandiOrderByWithRelationInput
+  investigationEvents?: Prisma.InvestigationEventOrderByRelationAggregateInput
+  embeddings?: Prisma.EmbeddingOrderByRelationAggregateInput
+  faceRecords?: Prisma.FaceRecordOrderByRelationAggregateInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityOrderByRelationAggregateInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityOrderByRelationAggregateInput
 }
 
 export type CaseWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   caseNumber?: string
+  crimeNo?: string
   AND?: Prisma.CaseWhereInput | Prisma.CaseWhereInput[]
   OR?: Prisma.CaseWhereInput[]
   NOT?: Prisma.CaseWhereInput | Prisma.CaseWhereInput[]
-  title?: Prisma.StringFilter<"Case"> | string
+  caseNo?: Prisma.StringFilter<"Case"> | string
+  title?: Prisma.StringNullableFilter<"Case"> | string | null
   description?: Prisma.StringNullableFilter<"Case"> | string | null
-  crimeType?: Prisma.EnumCrimeTypeFilter<"Case"> | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFilter<"Case"> | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFilter<"Case"> | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFilter<"Case"> | Date | string
+  incidentFromDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  incidentToDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  infoReceivedPSDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  caseCategoryId?: Prisma.IntFilter<"Case"> | number
+  gravityOffenceId?: Prisma.IntFilter<"Case"> | number
+  crimeMajorHeadId?: Prisma.IntFilter<"Case"> | number
+  crimeMinorHeadId?: Prisma.IntFilter<"Case"> | number
+  caseStatusId?: Prisma.IntFilter<"Case"> | number
+  registeringOfficerId?: Prisma.IntNullableFilter<"Case"> | number | null
+  policeUnitId?: Prisma.IntFilter<"Case"> | number
+  courtId?: Prisma.IntNullableFilter<"Case"> | number | null
+  riskScore?: Prisma.FloatNullableFilter<"Case"> | number | null
+  priorityScore?: Prisma.FloatNullableFilter<"Case"> | number | null
+  aiSummary?: Prisma.StringNullableFilter<"Case"> | string | null
+  aiClassification?: Prisma.JsonNullableFilter<"Case">
   createdAt?: Prisma.DateTimeFilter<"Case"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Case"> | Date | string
-  stationId?: Prisma.StringFilter<"Case"> | string
   modusOperandiId?: Prisma.StringNullableFilter<"Case"> | string | null
-  station?: Prisma.XOR<Prisma.PoliceStationScalarRelationFilter, Prisma.PoliceStationWhereInput>
-  evidences?: Prisma.EvidenceListRelationFilter
+  caseCategory?: Prisma.XOR<Prisma.CaseCategoryScalarRelationFilter, Prisma.CaseCategoryWhereInput>
+  gravityOffence?: Prisma.XOR<Prisma.GravityOffenceScalarRelationFilter, Prisma.GravityOffenceWhereInput>
+  crimeMajorHead?: Prisma.XOR<Prisma.CrimeHeadScalarRelationFilter, Prisma.CrimeHeadWhereInput>
+  crimeMinorHead?: Prisma.XOR<Prisma.CrimeSubHeadScalarRelationFilter, Prisma.CrimeSubHeadWhereInput>
+  caseStatus?: Prisma.XOR<Prisma.CaseStatusMasterScalarRelationFilter, Prisma.CaseStatusMasterWhereInput>
+  registeringOfficer?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  policeUnit?: Prisma.XOR<Prisma.PoliceUnitScalarRelationFilter, Prisma.PoliceUnitWhereInput>
+  court?: Prisma.XOR<Prisma.CourtNullableScalarRelationFilter, Prisma.CourtWhereInput> | null
+  complainants?: Prisma.ComplainantListRelationFilter
   persons?: Prisma.CasePersonListRelationFilter
+  actSections?: Prisma.CaseActSectionListRelationFilter
+  arrestSurrenders?: Prisma.ArrestSurrenderListRelationFilter
+  chargesheets?: Prisma.ChargesheetListRelationFilter
+  evidences?: Prisma.EvidenceListRelationFilter
   vehicles?: Prisma.CaseVehicleListRelationFilter
   phones?: Prisma.CasePhoneListRelationFilter
   locations?: Prisma.CaseLocationListRelationFilter
   organizations?: Prisma.CaseOrganizationListRelationFilter
   modusOperandi?: Prisma.XOR<Prisma.ModusOperandiNullableScalarRelationFilter, Prisma.ModusOperandiWhereInput> | null
-}, "id" | "caseNumber">
+  investigationEvents?: Prisma.InvestigationEventListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
+  faceRecords?: Prisma.FaceRecordListRelationFilter
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityListRelationFilter
+  caseSimilaritiesTo?: Prisma.CaseSimilarityListRelationFilter
+}, "id" | "caseNumber" | "crimeNo">
 
 export type CaseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   caseNumber?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  crimeNo?: Prisma.SortOrder
+  caseNo?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  crimeType?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  incidentDate?: Prisma.SortOrder
+  crimeRegisteredDate?: Prisma.SortOrder
+  incidentFromDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  incidentToDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  infoReceivedPSDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrderInput | Prisma.SortOrder
+  riskScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  priorityScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiClassification?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  stationId?: Prisma.SortOrder
   modusOperandiId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CaseCountOrderByAggregateInput
+  _avg?: Prisma.CaseAvgOrderByAggregateInput
   _max?: Prisma.CaseMaxOrderByAggregateInput
   _min?: Prisma.CaseMinOrderByAggregateInput
+  _sum?: Prisma.CaseSumOrderByAggregateInput
 }
 
 export type CaseScalarWhereWithAggregatesInput = {
@@ -310,119 +580,246 @@ export type CaseScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CaseScalarWhereWithAggregatesInput | Prisma.CaseScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Case"> | string
   caseNumber?: Prisma.StringWithAggregatesFilter<"Case"> | string
-  title?: Prisma.StringWithAggregatesFilter<"Case"> | string
+  crimeNo?: Prisma.StringWithAggregatesFilter<"Case"> | string
+  caseNo?: Prisma.StringWithAggregatesFilter<"Case"> | string
+  title?: Prisma.StringNullableWithAggregatesFilter<"Case"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Case"> | string | null
-  crimeType?: Prisma.EnumCrimeTypeWithAggregatesFilter<"Case"> | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusWithAggregatesFilter<"Case"> | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeWithAggregatesFilter<"Case"> | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeWithAggregatesFilter<"Case"> | Date | string
+  incidentFromDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Case"> | Date | string | null
+  incidentToDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Case"> | Date | string | null
+  infoReceivedPSDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Case"> | Date | string | null
+  caseCategoryId?: Prisma.IntWithAggregatesFilter<"Case"> | number
+  gravityOffenceId?: Prisma.IntWithAggregatesFilter<"Case"> | number
+  crimeMajorHeadId?: Prisma.IntWithAggregatesFilter<"Case"> | number
+  crimeMinorHeadId?: Prisma.IntWithAggregatesFilter<"Case"> | number
+  caseStatusId?: Prisma.IntWithAggregatesFilter<"Case"> | number
+  registeringOfficerId?: Prisma.IntNullableWithAggregatesFilter<"Case"> | number | null
+  policeUnitId?: Prisma.IntWithAggregatesFilter<"Case"> | number
+  courtId?: Prisma.IntNullableWithAggregatesFilter<"Case"> | number | null
+  riskScore?: Prisma.FloatNullableWithAggregatesFilter<"Case"> | number | null
+  priorityScore?: Prisma.FloatNullableWithAggregatesFilter<"Case"> | number | null
+  aiSummary?: Prisma.StringNullableWithAggregatesFilter<"Case"> | string | null
+  aiClassification?: Prisma.JsonNullableWithAggregatesFilter<"Case">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Case"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Case"> | Date | string
-  stationId?: Prisma.StringWithAggregatesFilter<"Case"> | string
   modusOperandiId?: Prisma.StringNullableWithAggregatesFilter<"Case"> | string | null
 }
 
 export type CaseCreateInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
-  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
   modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
 }
 
 export type CaseUncheckedCreateInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
   modusOperandiId?: string | null
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
 }
 
 export type CaseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
   modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
 }
 
 export type CaseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
   modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
 }
 
 export type CaseCreateManyInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
   modusOperandiId?: string | null
 }
 
 export type CaseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -430,62 +827,137 @@ export type CaseUpdateManyMutationInput = {
 export type CaseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
   modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CaseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   caseNumber?: Prisma.SortOrder
+  crimeNo?: Prisma.SortOrder
+  caseNo?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  crimeType?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  incidentDate?: Prisma.SortOrder
+  crimeRegisteredDate?: Prisma.SortOrder
+  incidentFromDate?: Prisma.SortOrder
+  incidentToDate?: Prisma.SortOrder
+  infoReceivedPSDate?: Prisma.SortOrder
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrder
+  priorityScore?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
+  aiClassification?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  stationId?: Prisma.SortOrder
   modusOperandiId?: Prisma.SortOrder
+}
+
+export type CaseAvgOrderByAggregateInput = {
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrder
+  priorityScore?: Prisma.SortOrder
 }
 
 export type CaseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   caseNumber?: Prisma.SortOrder
+  crimeNo?: Prisma.SortOrder
+  caseNo?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  crimeType?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  incidentDate?: Prisma.SortOrder
+  crimeRegisteredDate?: Prisma.SortOrder
+  incidentFromDate?: Prisma.SortOrder
+  incidentToDate?: Prisma.SortOrder
+  infoReceivedPSDate?: Prisma.SortOrder
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrder
+  priorityScore?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  stationId?: Prisma.SortOrder
   modusOperandiId?: Prisma.SortOrder
 }
 
 export type CaseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   caseNumber?: Prisma.SortOrder
+  crimeNo?: Prisma.SortOrder
+  caseNo?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  crimeType?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  incidentDate?: Prisma.SortOrder
+  crimeRegisteredDate?: Prisma.SortOrder
+  incidentFromDate?: Prisma.SortOrder
+  incidentToDate?: Prisma.SortOrder
+  infoReceivedPSDate?: Prisma.SortOrder
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrder
+  priorityScore?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  stationId?: Prisma.SortOrder
   modusOperandiId?: Prisma.SortOrder
 }
 
-export type CaseScalarRelationFilter = {
-  is?: Prisma.CaseWhereInput
-  isNot?: Prisma.CaseWhereInput
+export type CaseSumOrderByAggregateInput = {
+  caseCategoryId?: Prisma.SortOrder
+  gravityOffenceId?: Prisma.SortOrder
+  crimeMajorHeadId?: Prisma.SortOrder
+  crimeMinorHeadId?: Prisma.SortOrder
+  caseStatusId?: Prisma.SortOrder
+  registeringOfficerId?: Prisma.SortOrder
+  policeUnitId?: Prisma.SortOrder
+  courtId?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrder
+  priorityScore?: Prisma.SortOrder
 }
 
 export type CaseListRelationFilter = {
@@ -498,6 +970,16 @@ export type CaseOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type CaseScalarRelationFilter = {
+  is?: Prisma.CaseWhereInput
+  isNot?: Prisma.CaseWhereInput
+}
+
+export type CaseNullableScalarRelationFilter = {
+  is?: Prisma.CaseWhereInput | null
+  isNot?: Prisma.CaseWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -506,16 +988,484 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type EnumCrimeTypeFieldUpdateOperationsInput = {
-  set?: $Enums.CrimeType
-}
-
-export type EnumCaseStatusFieldUpdateOperationsInput = {
-  set?: $Enums.CaseStatus
-}
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type CaseCreateNestedManyWithoutCaseCategoryInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseCategoryInput, Prisma.CaseUncheckedCreateWithoutCaseCategoryInput> | Prisma.CaseCreateWithoutCaseCategoryInput[] | Prisma.CaseUncheckedCreateWithoutCaseCategoryInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseCategoryInput | Prisma.CaseCreateOrConnectWithoutCaseCategoryInput[]
+  createMany?: Prisma.CaseCreateManyCaseCategoryInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutCaseCategoryInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseCategoryInput, Prisma.CaseUncheckedCreateWithoutCaseCategoryInput> | Prisma.CaseCreateWithoutCaseCategoryInput[] | Prisma.CaseUncheckedCreateWithoutCaseCategoryInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseCategoryInput | Prisma.CaseCreateOrConnectWithoutCaseCategoryInput[]
+  createMany?: Prisma.CaseCreateManyCaseCategoryInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutCaseCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseCategoryInput, Prisma.CaseUncheckedCreateWithoutCaseCategoryInput> | Prisma.CaseCreateWithoutCaseCategoryInput[] | Prisma.CaseUncheckedCreateWithoutCaseCategoryInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseCategoryInput | Prisma.CaseCreateOrConnectWithoutCaseCategoryInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCaseCategoryInput | Prisma.CaseUpsertWithWhereUniqueWithoutCaseCategoryInput[]
+  createMany?: Prisma.CaseCreateManyCaseCategoryInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCaseCategoryInput | Prisma.CaseUpdateWithWhereUniqueWithoutCaseCategoryInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCaseCategoryInput | Prisma.CaseUpdateManyWithWhereWithoutCaseCategoryInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutCaseCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseCategoryInput, Prisma.CaseUncheckedCreateWithoutCaseCategoryInput> | Prisma.CaseCreateWithoutCaseCategoryInput[] | Prisma.CaseUncheckedCreateWithoutCaseCategoryInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseCategoryInput | Prisma.CaseCreateOrConnectWithoutCaseCategoryInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCaseCategoryInput | Prisma.CaseUpsertWithWhereUniqueWithoutCaseCategoryInput[]
+  createMany?: Prisma.CaseCreateManyCaseCategoryInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCaseCategoryInput | Prisma.CaseUpdateWithWhereUniqueWithoutCaseCategoryInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCaseCategoryInput | Prisma.CaseUpdateManyWithWhereWithoutCaseCategoryInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedManyWithoutCaseStatusInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseStatusInput, Prisma.CaseUncheckedCreateWithoutCaseStatusInput> | Prisma.CaseCreateWithoutCaseStatusInput[] | Prisma.CaseUncheckedCreateWithoutCaseStatusInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseStatusInput | Prisma.CaseCreateOrConnectWithoutCaseStatusInput[]
+  createMany?: Prisma.CaseCreateManyCaseStatusInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutCaseStatusInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseStatusInput, Prisma.CaseUncheckedCreateWithoutCaseStatusInput> | Prisma.CaseCreateWithoutCaseStatusInput[] | Prisma.CaseUncheckedCreateWithoutCaseStatusInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseStatusInput | Prisma.CaseCreateOrConnectWithoutCaseStatusInput[]
+  createMany?: Prisma.CaseCreateManyCaseStatusInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutCaseStatusNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseStatusInput, Prisma.CaseUncheckedCreateWithoutCaseStatusInput> | Prisma.CaseCreateWithoutCaseStatusInput[] | Prisma.CaseUncheckedCreateWithoutCaseStatusInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseStatusInput | Prisma.CaseCreateOrConnectWithoutCaseStatusInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCaseStatusInput | Prisma.CaseUpsertWithWhereUniqueWithoutCaseStatusInput[]
+  createMany?: Prisma.CaseCreateManyCaseStatusInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCaseStatusInput | Prisma.CaseUpdateWithWhereUniqueWithoutCaseStatusInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCaseStatusInput | Prisma.CaseUpdateManyWithWhereWithoutCaseStatusInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutCaseStatusNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseStatusInput, Prisma.CaseUncheckedCreateWithoutCaseStatusInput> | Prisma.CaseCreateWithoutCaseStatusInput[] | Prisma.CaseUncheckedCreateWithoutCaseStatusInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseStatusInput | Prisma.CaseCreateOrConnectWithoutCaseStatusInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCaseStatusInput | Prisma.CaseUpsertWithWhereUniqueWithoutCaseStatusInput[]
+  createMany?: Prisma.CaseCreateManyCaseStatusInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCaseStatusInput | Prisma.CaseUpdateWithWhereUniqueWithoutCaseStatusInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCaseStatusInput | Prisma.CaseUpdateManyWithWhereWithoutCaseStatusInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedManyWithoutGravityOffenceInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutGravityOffenceInput, Prisma.CaseUncheckedCreateWithoutGravityOffenceInput> | Prisma.CaseCreateWithoutGravityOffenceInput[] | Prisma.CaseUncheckedCreateWithoutGravityOffenceInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutGravityOffenceInput | Prisma.CaseCreateOrConnectWithoutGravityOffenceInput[]
+  createMany?: Prisma.CaseCreateManyGravityOffenceInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutGravityOffenceInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutGravityOffenceInput, Prisma.CaseUncheckedCreateWithoutGravityOffenceInput> | Prisma.CaseCreateWithoutGravityOffenceInput[] | Prisma.CaseUncheckedCreateWithoutGravityOffenceInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutGravityOffenceInput | Prisma.CaseCreateOrConnectWithoutGravityOffenceInput[]
+  createMany?: Prisma.CaseCreateManyGravityOffenceInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutGravityOffenceNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutGravityOffenceInput, Prisma.CaseUncheckedCreateWithoutGravityOffenceInput> | Prisma.CaseCreateWithoutGravityOffenceInput[] | Prisma.CaseUncheckedCreateWithoutGravityOffenceInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutGravityOffenceInput | Prisma.CaseCreateOrConnectWithoutGravityOffenceInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutGravityOffenceInput | Prisma.CaseUpsertWithWhereUniqueWithoutGravityOffenceInput[]
+  createMany?: Prisma.CaseCreateManyGravityOffenceInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutGravityOffenceInput | Prisma.CaseUpdateWithWhereUniqueWithoutGravityOffenceInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutGravityOffenceInput | Prisma.CaseUpdateManyWithWhereWithoutGravityOffenceInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutGravityOffenceNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutGravityOffenceInput, Prisma.CaseUncheckedCreateWithoutGravityOffenceInput> | Prisma.CaseCreateWithoutGravityOffenceInput[] | Prisma.CaseUncheckedCreateWithoutGravityOffenceInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutGravityOffenceInput | Prisma.CaseCreateOrConnectWithoutGravityOffenceInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutGravityOffenceInput | Prisma.CaseUpsertWithWhereUniqueWithoutGravityOffenceInput[]
+  createMany?: Prisma.CaseCreateManyGravityOffenceInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutGravityOffenceInput | Prisma.CaseUpdateWithWhereUniqueWithoutGravityOffenceInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutGravityOffenceInput | Prisma.CaseUpdateManyWithWhereWithoutGravityOffenceInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedManyWithoutCrimeMajorHeadInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput> | Prisma.CaseCreateWithoutCrimeMajorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMajorHeadInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutCrimeMajorHeadInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput> | Prisma.CaseCreateWithoutCrimeMajorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMajorHeadInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutCrimeMajorHeadNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput> | Prisma.CaseCreateWithoutCrimeMajorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMajorHeadInput | Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMajorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMajorHeadInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMajorHeadInput | Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMajorHeadInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCrimeMajorHeadInput | Prisma.CaseUpdateManyWithWhereWithoutCrimeMajorHeadInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutCrimeMajorHeadNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput> | Prisma.CaseCreateWithoutCrimeMajorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMajorHeadInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMajorHeadInput | Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMajorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMajorHeadInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMajorHeadInput | Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMajorHeadInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCrimeMajorHeadInput | Prisma.CaseUpdateManyWithWhereWithoutCrimeMajorHeadInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedManyWithoutCrimeMinorHeadInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput> | Prisma.CaseCreateWithoutCrimeMinorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMinorHeadInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutCrimeMinorHeadInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput> | Prisma.CaseCreateWithoutCrimeMinorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMinorHeadInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutCrimeMinorHeadNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput> | Prisma.CaseCreateWithoutCrimeMinorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMinorHeadInput | Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMinorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMinorHeadInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMinorHeadInput | Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMinorHeadInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCrimeMinorHeadInput | Prisma.CaseUpdateManyWithWhereWithoutCrimeMinorHeadInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutCrimeMinorHeadNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput> | Prisma.CaseCreateWithoutCrimeMinorHeadInput[] | Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput | Prisma.CaseCreateOrConnectWithoutCrimeMinorHeadInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMinorHeadInput | Prisma.CaseUpsertWithWhereUniqueWithoutCrimeMinorHeadInput[]
+  createMany?: Prisma.CaseCreateManyCrimeMinorHeadInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMinorHeadInput | Prisma.CaseUpdateWithWhereUniqueWithoutCrimeMinorHeadInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCrimeMinorHeadInput | Prisma.CaseUpdateManyWithWhereWithoutCrimeMinorHeadInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedOneWithoutActSectionsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutActSectionsInput, Prisma.CaseUncheckedCreateWithoutActSectionsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutActSectionsInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutActSectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutActSectionsInput, Prisma.CaseUncheckedCreateWithoutActSectionsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutActSectionsInput
+  upsert?: Prisma.CaseUpsertWithoutActSectionsInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutActSectionsInput, Prisma.CaseUpdateWithoutActSectionsInput>, Prisma.CaseUncheckedUpdateWithoutActSectionsInput>
+}
+
+export type CaseCreateNestedOneWithoutComplainantsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutComplainantsInput, Prisma.CaseUncheckedCreateWithoutComplainantsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutComplainantsInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutComplainantsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutComplainantsInput, Prisma.CaseUncheckedCreateWithoutComplainantsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutComplainantsInput
+  upsert?: Prisma.CaseUpsertWithoutComplainantsInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutComplainantsInput, Prisma.CaseUpdateWithoutComplainantsInput>, Prisma.CaseUncheckedUpdateWithoutComplainantsInput>
+}
+
+export type CaseCreateNestedOneWithoutPersonsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPersonsInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutPersonsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPersonsInput
+  upsert?: Prisma.CaseUpsertWithoutPersonsInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutPersonsInput, Prisma.CaseUpdateWithoutPersonsInput>, Prisma.CaseUncheckedUpdateWithoutPersonsInput>
+}
+
+export type CaseCreateNestedOneWithoutPhonesInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPhonesInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutPhonesNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPhonesInput
+  upsert?: Prisma.CaseUpsertWithoutPhonesInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutPhonesInput, Prisma.CaseUpdateWithoutPhonesInput>, Prisma.CaseUncheckedUpdateWithoutPhonesInput>
+}
+
+export type CaseCreateNestedOneWithoutVehiclesInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutVehiclesInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutVehiclesNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutVehiclesInput
+  upsert?: Prisma.CaseUpsertWithoutVehiclesInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutVehiclesInput, Prisma.CaseUpdateWithoutVehiclesInput>, Prisma.CaseUncheckedUpdateWithoutVehiclesInput>
+}
+
+export type CaseCreateNestedManyWithoutPoliceUnitInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPoliceUnitInput, Prisma.CaseUncheckedCreateWithoutPoliceUnitInput> | Prisma.CaseCreateWithoutPoliceUnitInput[] | Prisma.CaseUncheckedCreateWithoutPoliceUnitInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPoliceUnitInput | Prisma.CaseCreateOrConnectWithoutPoliceUnitInput[]
+  createMany?: Prisma.CaseCreateManyPoliceUnitInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutPoliceUnitInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPoliceUnitInput, Prisma.CaseUncheckedCreateWithoutPoliceUnitInput> | Prisma.CaseCreateWithoutPoliceUnitInput[] | Prisma.CaseUncheckedCreateWithoutPoliceUnitInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPoliceUnitInput | Prisma.CaseCreateOrConnectWithoutPoliceUnitInput[]
+  createMany?: Prisma.CaseCreateManyPoliceUnitInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutPoliceUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPoliceUnitInput, Prisma.CaseUncheckedCreateWithoutPoliceUnitInput> | Prisma.CaseCreateWithoutPoliceUnitInput[] | Prisma.CaseUncheckedCreateWithoutPoliceUnitInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPoliceUnitInput | Prisma.CaseCreateOrConnectWithoutPoliceUnitInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutPoliceUnitInput | Prisma.CaseUpsertWithWhereUniqueWithoutPoliceUnitInput[]
+  createMany?: Prisma.CaseCreateManyPoliceUnitInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutPoliceUnitInput | Prisma.CaseUpdateWithWhereUniqueWithoutPoliceUnitInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutPoliceUnitInput | Prisma.CaseUpdateManyWithWhereWithoutPoliceUnitInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutPoliceUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutPoliceUnitInput, Prisma.CaseUncheckedCreateWithoutPoliceUnitInput> | Prisma.CaseCreateWithoutPoliceUnitInput[] | Prisma.CaseUncheckedCreateWithoutPoliceUnitInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPoliceUnitInput | Prisma.CaseCreateOrConnectWithoutPoliceUnitInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutPoliceUnitInput | Prisma.CaseUpsertWithWhereUniqueWithoutPoliceUnitInput[]
+  createMany?: Prisma.CaseCreateManyPoliceUnitInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutPoliceUnitInput | Prisma.CaseUpdateWithWhereUniqueWithoutPoliceUnitInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutPoliceUnitInput | Prisma.CaseUpdateManyWithWhereWithoutPoliceUnitInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedManyWithoutRegisteringOfficerInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput> | Prisma.CaseCreateWithoutRegisteringOfficerInput[] | Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput | Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput[]
+  createMany?: Prisma.CaseCreateManyRegisteringOfficerInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutRegisteringOfficerInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput> | Prisma.CaseCreateWithoutRegisteringOfficerInput[] | Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput | Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput[]
+  createMany?: Prisma.CaseCreateManyRegisteringOfficerInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutRegisteringOfficerNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput> | Prisma.CaseCreateWithoutRegisteringOfficerInput[] | Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput | Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutRegisteringOfficerInput | Prisma.CaseUpsertWithWhereUniqueWithoutRegisteringOfficerInput[]
+  createMany?: Prisma.CaseCreateManyRegisteringOfficerInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutRegisteringOfficerInput | Prisma.CaseUpdateWithWhereUniqueWithoutRegisteringOfficerInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutRegisteringOfficerInput | Prisma.CaseUpdateManyWithWhereWithoutRegisteringOfficerInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutRegisteringOfficerNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput> | Prisma.CaseCreateWithoutRegisteringOfficerInput[] | Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput | Prisma.CaseCreateOrConnectWithoutRegisteringOfficerInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutRegisteringOfficerInput | Prisma.CaseUpsertWithWhereUniqueWithoutRegisteringOfficerInput[]
+  createMany?: Prisma.CaseCreateManyRegisteringOfficerInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutRegisteringOfficerInput | Prisma.CaseUpdateWithWhereUniqueWithoutRegisteringOfficerInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutRegisteringOfficerInput | Prisma.CaseUpdateManyWithWhereWithoutRegisteringOfficerInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedManyWithoutCourtInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCourtInput, Prisma.CaseUncheckedCreateWithoutCourtInput> | Prisma.CaseCreateWithoutCourtInput[] | Prisma.CaseUncheckedCreateWithoutCourtInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCourtInput | Prisma.CaseCreateOrConnectWithoutCourtInput[]
+  createMany?: Prisma.CaseCreateManyCourtInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUncheckedCreateNestedManyWithoutCourtInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCourtInput, Prisma.CaseUncheckedCreateWithoutCourtInput> | Prisma.CaseCreateWithoutCourtInput[] | Prisma.CaseUncheckedCreateWithoutCourtInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCourtInput | Prisma.CaseCreateOrConnectWithoutCourtInput[]
+  createMany?: Prisma.CaseCreateManyCourtInputEnvelope
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+}
+
+export type CaseUpdateManyWithoutCourtNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCourtInput, Prisma.CaseUncheckedCreateWithoutCourtInput> | Prisma.CaseCreateWithoutCourtInput[] | Prisma.CaseUncheckedCreateWithoutCourtInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCourtInput | Prisma.CaseCreateOrConnectWithoutCourtInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCourtInput | Prisma.CaseUpsertWithWhereUniqueWithoutCourtInput[]
+  createMany?: Prisma.CaseCreateManyCourtInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCourtInput | Prisma.CaseUpdateWithWhereUniqueWithoutCourtInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCourtInput | Prisma.CaseUpdateManyWithWhereWithoutCourtInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseUncheckedUpdateManyWithoutCourtNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCourtInput, Prisma.CaseUncheckedCreateWithoutCourtInput> | Prisma.CaseCreateWithoutCourtInput[] | Prisma.CaseUncheckedCreateWithoutCourtInput[]
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCourtInput | Prisma.CaseCreateOrConnectWithoutCourtInput[]
+  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutCourtInput | Prisma.CaseUpsertWithWhereUniqueWithoutCourtInput[]
+  createMany?: Prisma.CaseCreateManyCourtInputEnvelope
+  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
+  update?: Prisma.CaseUpdateWithWhereUniqueWithoutCourtInput | Prisma.CaseUpdateWithWhereUniqueWithoutCourtInput[]
+  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutCourtInput | Prisma.CaseUpdateManyWithWhereWithoutCourtInput[]
+  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+}
+
+export type CaseCreateNestedOneWithoutArrestSurrendersInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutArrestSurrendersInput, Prisma.CaseUncheckedCreateWithoutArrestSurrendersInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutArrestSurrendersInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutArrestSurrendersNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutArrestSurrendersInput, Prisma.CaseUncheckedCreateWithoutArrestSurrendersInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutArrestSurrendersInput
+  upsert?: Prisma.CaseUpsertWithoutArrestSurrendersInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutArrestSurrendersInput, Prisma.CaseUpdateWithoutArrestSurrendersInput>, Prisma.CaseUncheckedUpdateWithoutArrestSurrendersInput>
+}
+
+export type CaseCreateNestedOneWithoutLocationsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutLocationsInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutLocationsInput
+  upsert?: Prisma.CaseUpsertWithoutLocationsInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutLocationsInput, Prisma.CaseUpdateWithoutLocationsInput>, Prisma.CaseUncheckedUpdateWithoutLocationsInput>
+}
+
+export type CaseCreateNestedOneWithoutOrganizationsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutOrganizationsInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutOrganizationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutOrganizationsInput
+  upsert?: Prisma.CaseUpsertWithoutOrganizationsInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutOrganizationsInput, Prisma.CaseUpdateWithoutOrganizationsInput>, Prisma.CaseUncheckedUpdateWithoutOrganizationsInput>
 }
 
 export type CaseCreateNestedOneWithoutEvidencesInput = {
@@ -574,154 +1524,2559 @@ export type CaseUncheckedUpdateManyWithoutModusOperandiNestedInput = {
   deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
 }
 
-export type CaseCreateNestedManyWithoutStationInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutStationInput, Prisma.CaseUncheckedCreateWithoutStationInput> | Prisma.CaseCreateWithoutStationInput[] | Prisma.CaseUncheckedCreateWithoutStationInput[]
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutStationInput | Prisma.CaseCreateOrConnectWithoutStationInput[]
-  createMany?: Prisma.CaseCreateManyStationInputEnvelope
-  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-}
-
-export type CaseUncheckedCreateNestedManyWithoutStationInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutStationInput, Prisma.CaseUncheckedCreateWithoutStationInput> | Prisma.CaseCreateWithoutStationInput[] | Prisma.CaseUncheckedCreateWithoutStationInput[]
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutStationInput | Prisma.CaseCreateOrConnectWithoutStationInput[]
-  createMany?: Prisma.CaseCreateManyStationInputEnvelope
-  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-}
-
-export type CaseUpdateManyWithoutStationNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutStationInput, Prisma.CaseUncheckedCreateWithoutStationInput> | Prisma.CaseCreateWithoutStationInput[] | Prisma.CaseUncheckedCreateWithoutStationInput[]
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutStationInput | Prisma.CaseCreateOrConnectWithoutStationInput[]
-  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutStationInput | Prisma.CaseUpsertWithWhereUniqueWithoutStationInput[]
-  createMany?: Prisma.CaseCreateManyStationInputEnvelope
-  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  update?: Prisma.CaseUpdateWithWhereUniqueWithoutStationInput | Prisma.CaseUpdateWithWhereUniqueWithoutStationInput[]
-  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutStationInput | Prisma.CaseUpdateManyWithWhereWithoutStationInput[]
-  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
-}
-
-export type CaseUncheckedUpdateManyWithoutStationNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutStationInput, Prisma.CaseUncheckedCreateWithoutStationInput> | Prisma.CaseCreateWithoutStationInput[] | Prisma.CaseUncheckedCreateWithoutStationInput[]
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutStationInput | Prisma.CaseCreateOrConnectWithoutStationInput[]
-  upsert?: Prisma.CaseUpsertWithWhereUniqueWithoutStationInput | Prisma.CaseUpsertWithWhereUniqueWithoutStationInput[]
-  createMany?: Prisma.CaseCreateManyStationInputEnvelope
-  set?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  disconnect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  delete?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  connect?: Prisma.CaseWhereUniqueInput | Prisma.CaseWhereUniqueInput[]
-  update?: Prisma.CaseUpdateWithWhereUniqueWithoutStationInput | Prisma.CaseUpdateWithWhereUniqueWithoutStationInput[]
-  updateMany?: Prisma.CaseUpdateManyWithWhereWithoutStationInput | Prisma.CaseUpdateManyWithWhereWithoutStationInput[]
-  deleteMany?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
-}
-
-export type CaseCreateNestedOneWithoutPersonsInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPersonsInput
+export type CaseCreateNestedOneWithoutInvestigationEventsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutInvestigationEventsInput, Prisma.CaseUncheckedCreateWithoutInvestigationEventsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutInvestigationEventsInput
   connect?: Prisma.CaseWhereUniqueInput
 }
 
-export type CaseUpdateOneRequiredWithoutPersonsNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPersonsInput
-  upsert?: Prisma.CaseUpsertWithoutPersonsInput
+export type CaseUpdateOneRequiredWithoutInvestigationEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutInvestigationEventsInput, Prisma.CaseUncheckedCreateWithoutInvestigationEventsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutInvestigationEventsInput
+  upsert?: Prisma.CaseUpsertWithoutInvestigationEventsInput
   connect?: Prisma.CaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutPersonsInput, Prisma.CaseUpdateWithoutPersonsInput>, Prisma.CaseUncheckedUpdateWithoutPersonsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutInvestigationEventsInput, Prisma.CaseUpdateWithoutInvestigationEventsInput>, Prisma.CaseUncheckedUpdateWithoutInvestigationEventsInput>
 }
 
-export type CaseCreateNestedOneWithoutVehiclesInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutVehiclesInput
-  connect?: Prisma.CaseWhereUniqueInput
-}
-
-export type CaseUpdateOneRequiredWithoutVehiclesNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutVehiclesInput
-  upsert?: Prisma.CaseUpsertWithoutVehiclesInput
-  connect?: Prisma.CaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutVehiclesInput, Prisma.CaseUpdateWithoutVehiclesInput>, Prisma.CaseUncheckedUpdateWithoutVehiclesInput>
-}
-
-export type CaseCreateNestedOneWithoutPhonesInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPhonesInput
+export type CaseCreateNestedOneWithoutChargesheetsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutChargesheetsInput, Prisma.CaseUncheckedCreateWithoutChargesheetsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutChargesheetsInput
   connect?: Prisma.CaseWhereUniqueInput
 }
 
-export type CaseUpdateOneRequiredWithoutPhonesNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutPhonesInput
-  upsert?: Prisma.CaseUpsertWithoutPhonesInput
+export type CaseUpdateOneRequiredWithoutChargesheetsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutChargesheetsInput, Prisma.CaseUncheckedCreateWithoutChargesheetsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutChargesheetsInput
+  upsert?: Prisma.CaseUpsertWithoutChargesheetsInput
   connect?: Prisma.CaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutPhonesInput, Prisma.CaseUpdateWithoutPhonesInput>, Prisma.CaseUncheckedUpdateWithoutPhonesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutChargesheetsInput, Prisma.CaseUpdateWithoutChargesheetsInput>, Prisma.CaseUncheckedUpdateWithoutChargesheetsInput>
 }
 
-export type CaseCreateNestedOneWithoutLocationsInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutLocationsInput
-  connect?: Prisma.CaseWhereUniqueInput
-}
-
-export type CaseUpdateOneRequiredWithoutLocationsNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutLocationsInput
-  upsert?: Prisma.CaseUpsertWithoutLocationsInput
-  connect?: Prisma.CaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutLocationsInput, Prisma.CaseUpdateWithoutLocationsInput>, Prisma.CaseUncheckedUpdateWithoutLocationsInput>
-}
-
-export type CaseCreateNestedOneWithoutOrganizationsInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutOrganizationsInput
+export type CaseCreateNestedOneWithoutEmbeddingsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutEmbeddingsInput, Prisma.CaseUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutEmbeddingsInput
   connect?: Prisma.CaseWhereUniqueInput
 }
 
-export type CaseUpdateOneRequiredWithoutOrganizationsNestedInput = {
-  create?: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
-  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutOrganizationsInput
-  upsert?: Prisma.CaseUpsertWithoutOrganizationsInput
+export type CaseUpdateOneWithoutEmbeddingsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutEmbeddingsInput, Prisma.CaseUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutEmbeddingsInput
+  upsert?: Prisma.CaseUpsertWithoutEmbeddingsInput
+  disconnect?: Prisma.CaseWhereInput | boolean
+  delete?: Prisma.CaseWhereInput | boolean
   connect?: Prisma.CaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutOrganizationsInput, Prisma.CaseUpdateWithoutOrganizationsInput>, Prisma.CaseUncheckedUpdateWithoutOrganizationsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutEmbeddingsInput, Prisma.CaseUpdateWithoutEmbeddingsInput>, Prisma.CaseUncheckedUpdateWithoutEmbeddingsInput>
 }
 
-export type CaseCreateWithoutEvidencesInput = {
+export type CaseCreateNestedOneWithoutCaseSimilaritiesFromInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesFromInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesFromInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseSimilaritiesFromInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseCreateNestedOneWithoutCaseSimilaritiesToInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesToInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesToInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseSimilaritiesToInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneRequiredWithoutCaseSimilaritiesFromNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesFromInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesFromInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseSimilaritiesFromInput
+  upsert?: Prisma.CaseUpsertWithoutCaseSimilaritiesFromInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutCaseSimilaritiesFromInput, Prisma.CaseUpdateWithoutCaseSimilaritiesFromInput>, Prisma.CaseUncheckedUpdateWithoutCaseSimilaritiesFromInput>
+}
+
+export type CaseUpdateOneRequiredWithoutCaseSimilaritiesToNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesToInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesToInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutCaseSimilaritiesToInput
+  upsert?: Prisma.CaseUpsertWithoutCaseSimilaritiesToInput
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutCaseSimilaritiesToInput, Prisma.CaseUpdateWithoutCaseSimilaritiesToInput>, Prisma.CaseUncheckedUpdateWithoutCaseSimilaritiesToInput>
+}
+
+export type CaseCreateNestedOneWithoutFaceRecordsInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutFaceRecordsInput, Prisma.CaseUncheckedCreateWithoutFaceRecordsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutFaceRecordsInput
+  connect?: Prisma.CaseWhereUniqueInput
+}
+
+export type CaseUpdateOneWithoutFaceRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.CaseCreateWithoutFaceRecordsInput, Prisma.CaseUncheckedCreateWithoutFaceRecordsInput>
+  connectOrCreate?: Prisma.CaseCreateOrConnectWithoutFaceRecordsInput
+  upsert?: Prisma.CaseUpsertWithoutFaceRecordsInput
+  disconnect?: Prisma.CaseWhereInput | boolean
+  delete?: Prisma.CaseWhereInput | boolean
+  connect?: Prisma.CaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CaseUpdateToOneWithWhereWithoutFaceRecordsInput, Prisma.CaseUpdateWithoutFaceRecordsInput>, Prisma.CaseUncheckedUpdateWithoutFaceRecordsInput>
+}
+
+export type CaseCreateWithoutCaseCategoryInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
   modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCaseCategoryInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCaseCategoryInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseCategoryInput, Prisma.CaseUncheckedCreateWithoutCaseCategoryInput>
+}
+
+export type CaseCreateManyCaseCategoryInputEnvelope = {
+  data: Prisma.CaseCreateManyCaseCategoryInput | Prisma.CaseCreateManyCaseCategoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutCaseCategoryInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCaseCategoryInput, Prisma.CaseUncheckedUpdateWithoutCaseCategoryInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseCategoryInput, Prisma.CaseUncheckedCreateWithoutCaseCategoryInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutCaseCategoryInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCaseCategoryInput, Prisma.CaseUncheckedUpdateWithoutCaseCategoryInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutCaseCategoryInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutCaseCategoryInput>
+}
+
+export type CaseScalarWhereInput = {
+  AND?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+  OR?: Prisma.CaseScalarWhereInput[]
+  NOT?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
+  id?: Prisma.StringFilter<"Case"> | string
+  caseNumber?: Prisma.StringFilter<"Case"> | string
+  crimeNo?: Prisma.StringFilter<"Case"> | string
+  caseNo?: Prisma.StringFilter<"Case"> | string
+  title?: Prisma.StringNullableFilter<"Case"> | string | null
+  description?: Prisma.StringNullableFilter<"Case"> | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFilter<"Case"> | Date | string
+  incidentFromDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  incidentToDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  infoReceivedPSDate?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
+  caseCategoryId?: Prisma.IntFilter<"Case"> | number
+  gravityOffenceId?: Prisma.IntFilter<"Case"> | number
+  crimeMajorHeadId?: Prisma.IntFilter<"Case"> | number
+  crimeMinorHeadId?: Prisma.IntFilter<"Case"> | number
+  caseStatusId?: Prisma.IntFilter<"Case"> | number
+  registeringOfficerId?: Prisma.IntNullableFilter<"Case"> | number | null
+  policeUnitId?: Prisma.IntFilter<"Case"> | number
+  courtId?: Prisma.IntNullableFilter<"Case"> | number | null
+  riskScore?: Prisma.FloatNullableFilter<"Case"> | number | null
+  priorityScore?: Prisma.FloatNullableFilter<"Case"> | number | null
+  aiSummary?: Prisma.StringNullableFilter<"Case"> | string | null
+  aiClassification?: Prisma.JsonNullableFilter<"Case">
+  createdAt?: Prisma.DateTimeFilter<"Case"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Case"> | Date | string
+  modusOperandiId?: Prisma.StringNullableFilter<"Case"> | string | null
+}
+
+export type CaseCreateWithoutCaseStatusInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCaseStatusInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCaseStatusInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseStatusInput, Prisma.CaseUncheckedCreateWithoutCaseStatusInput>
+}
+
+export type CaseCreateManyCaseStatusInputEnvelope = {
+  data: Prisma.CaseCreateManyCaseStatusInput | Prisma.CaseCreateManyCaseStatusInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutCaseStatusInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCaseStatusInput, Prisma.CaseUncheckedUpdateWithoutCaseStatusInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseStatusInput, Prisma.CaseUncheckedCreateWithoutCaseStatusInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutCaseStatusInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCaseStatusInput, Prisma.CaseUncheckedUpdateWithoutCaseStatusInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutCaseStatusInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutCaseStatusInput>
+}
+
+export type CaseCreateWithoutGravityOffenceInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutGravityOffenceInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutGravityOffenceInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutGravityOffenceInput, Prisma.CaseUncheckedCreateWithoutGravityOffenceInput>
+}
+
+export type CaseCreateManyGravityOffenceInputEnvelope = {
+  data: Prisma.CaseCreateManyGravityOffenceInput | Prisma.CaseCreateManyGravityOffenceInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutGravityOffenceInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutGravityOffenceInput, Prisma.CaseUncheckedUpdateWithoutGravityOffenceInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutGravityOffenceInput, Prisma.CaseUncheckedCreateWithoutGravityOffenceInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutGravityOffenceInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutGravityOffenceInput, Prisma.CaseUncheckedUpdateWithoutGravityOffenceInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutGravityOffenceInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutGravityOffenceInput>
+}
+
+export type CaseCreateWithoutCrimeMajorHeadInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCrimeMajorHeadInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCrimeMajorHeadInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput>
+}
+
+export type CaseCreateManyCrimeMajorHeadInputEnvelope = {
+  data: Prisma.CaseCreateManyCrimeMajorHeadInput | Prisma.CaseCreateManyCrimeMajorHeadInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutCrimeMajorHeadInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedUpdateWithoutCrimeMajorHeadInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMajorHeadInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutCrimeMajorHeadInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCrimeMajorHeadInput, Prisma.CaseUncheckedUpdateWithoutCrimeMajorHeadInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutCrimeMajorHeadInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutCrimeMajorHeadInput>
+}
+
+export type CaseCreateWithoutCrimeMinorHeadInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCrimeMinorHeadInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCrimeMinorHeadInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput>
+}
+
+export type CaseCreateManyCrimeMinorHeadInputEnvelope = {
+  data: Prisma.CaseCreateManyCrimeMinorHeadInput | Prisma.CaseCreateManyCrimeMinorHeadInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutCrimeMinorHeadInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedUpdateWithoutCrimeMinorHeadInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedCreateWithoutCrimeMinorHeadInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutCrimeMinorHeadInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCrimeMinorHeadInput, Prisma.CaseUncheckedUpdateWithoutCrimeMinorHeadInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutCrimeMinorHeadInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutCrimeMinorHeadInput>
+}
+
+export type CaseCreateWithoutActSectionsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutActSectionsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutActSectionsInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutActSectionsInput, Prisma.CaseUncheckedCreateWithoutActSectionsInput>
+}
+
+export type CaseUpsertWithoutActSectionsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutActSectionsInput, Prisma.CaseUncheckedUpdateWithoutActSectionsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutActSectionsInput, Prisma.CaseUncheckedCreateWithoutActSectionsInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutActSectionsInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutActSectionsInput, Prisma.CaseUncheckedUpdateWithoutActSectionsInput>
+}
+
+export type CaseUpdateWithoutActSectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutActSectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutComplainantsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutComplainantsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutComplainantsInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutComplainantsInput, Prisma.CaseUncheckedCreateWithoutComplainantsInput>
+}
+
+export type CaseUpsertWithoutComplainantsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutComplainantsInput, Prisma.CaseUncheckedUpdateWithoutComplainantsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutComplainantsInput, Prisma.CaseUncheckedCreateWithoutComplainantsInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutComplainantsInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutComplainantsInput, Prisma.CaseUncheckedUpdateWithoutComplainantsInput>
+}
+
+export type CaseUpdateWithoutComplainantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutComplainantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutPersonsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutPersonsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutPersonsInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
+}
+
+export type CaseUpsertWithoutPersonsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutPersonsInput, Prisma.CaseUncheckedUpdateWithoutPersonsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutPersonsInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutPersonsInput, Prisma.CaseUncheckedUpdateWithoutPersonsInput>
+}
+
+export type CaseUpdateWithoutPersonsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutPersonsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutPhonesInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutPhonesInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutPhonesInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
+}
+
+export type CaseUpsertWithoutPhonesInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutPhonesInput, Prisma.CaseUncheckedUpdateWithoutPhonesInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutPhonesInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutPhonesInput, Prisma.CaseUncheckedUpdateWithoutPhonesInput>
+}
+
+export type CaseUpdateWithoutPhonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutPhonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutVehiclesInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutVehiclesInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutVehiclesInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
+}
+
+export type CaseUpsertWithoutVehiclesInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutVehiclesInput, Prisma.CaseUncheckedUpdateWithoutVehiclesInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutVehiclesInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutVehiclesInput, Prisma.CaseUncheckedUpdateWithoutVehiclesInput>
+}
+
+export type CaseUpdateWithoutVehiclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutVehiclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutPoliceUnitInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutPoliceUnitInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutPoliceUnitInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutPoliceUnitInput, Prisma.CaseUncheckedCreateWithoutPoliceUnitInput>
+}
+
+export type CaseCreateManyPoliceUnitInputEnvelope = {
+  data: Prisma.CaseCreateManyPoliceUnitInput | Prisma.CaseCreateManyPoliceUnitInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutPoliceUnitInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutPoliceUnitInput, Prisma.CaseUncheckedUpdateWithoutPoliceUnitInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutPoliceUnitInput, Prisma.CaseUncheckedCreateWithoutPoliceUnitInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutPoliceUnitInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutPoliceUnitInput, Prisma.CaseUncheckedUpdateWithoutPoliceUnitInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutPoliceUnitInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutPoliceUnitInput>
+}
+
+export type CaseCreateWithoutRegisteringOfficerInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutRegisteringOfficerInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutRegisteringOfficerInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput>
+}
+
+export type CaseCreateManyRegisteringOfficerInputEnvelope = {
+  data: Prisma.CaseCreateManyRegisteringOfficerInput | Prisma.CaseCreateManyRegisteringOfficerInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutRegisteringOfficerInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedUpdateWithoutRegisteringOfficerInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedCreateWithoutRegisteringOfficerInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutRegisteringOfficerInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutRegisteringOfficerInput, Prisma.CaseUncheckedUpdateWithoutRegisteringOfficerInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutRegisteringOfficerInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutRegisteringOfficerInput>
+}
+
+export type CaseCreateWithoutCourtInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCourtInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCourtInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCourtInput, Prisma.CaseUncheckedCreateWithoutCourtInput>
+}
+
+export type CaseCreateManyCourtInputEnvelope = {
+  data: Prisma.CaseCreateManyCourtInput | Prisma.CaseCreateManyCourtInput[]
+  skipDuplicates?: boolean
+}
+
+export type CaseUpsertWithWhereUniqueWithoutCourtInput = {
+  where: Prisma.CaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCourtInput, Prisma.CaseUncheckedUpdateWithoutCourtInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCourtInput, Prisma.CaseUncheckedCreateWithoutCourtInput>
+}
+
+export type CaseUpdateWithWhereUniqueWithoutCourtInput = {
+  where: Prisma.CaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCourtInput, Prisma.CaseUncheckedUpdateWithoutCourtInput>
+}
+
+export type CaseUpdateManyWithWhereWithoutCourtInput = {
+  where: Prisma.CaseScalarWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutCourtInput>
+}
+
+export type CaseCreateWithoutArrestSurrendersInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutArrestSurrendersInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutArrestSurrendersInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutArrestSurrendersInput, Prisma.CaseUncheckedCreateWithoutArrestSurrendersInput>
+}
+
+export type CaseUpsertWithoutArrestSurrendersInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutArrestSurrendersInput, Prisma.CaseUncheckedUpdateWithoutArrestSurrendersInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutArrestSurrendersInput, Prisma.CaseUncheckedCreateWithoutArrestSurrendersInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutArrestSurrendersInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutArrestSurrendersInput, Prisma.CaseUncheckedUpdateWithoutArrestSurrendersInput>
+}
+
+export type CaseUpdateWithoutArrestSurrendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutArrestSurrendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutLocationsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutLocationsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutLocationsInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
+}
+
+export type CaseUpsertWithoutLocationsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutLocationsInput, Prisma.CaseUncheckedUpdateWithoutLocationsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutLocationsInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutLocationsInput, Prisma.CaseUncheckedUpdateWithoutLocationsInput>
+}
+
+export type CaseUpdateWithoutLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutOrganizationsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutOrganizationsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutOrganizationsInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
+}
+
+export type CaseUpsertWithoutOrganizationsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutOrganizationsInput, Prisma.CaseUncheckedUpdateWithoutOrganizationsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutOrganizationsInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutOrganizationsInput, Prisma.CaseUncheckedUpdateWithoutOrganizationsInput>
+}
+
+export type CaseUpdateWithoutOrganizationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutOrganizationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutEvidencesInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
 }
 
 export type CaseUncheckedCreateWithoutEvidencesInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
   modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
 }
 
 export type CaseCreateOrConnectWithoutEvidencesInput = {
@@ -743,77 +4098,169 @@ export type CaseUpdateToOneWithWhereWithoutEvidencesInput = {
 export type CaseUpdateWithoutEvidencesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
   modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
 }
 
 export type CaseUncheckedUpdateWithoutEvidencesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
   modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
 }
 
 export type CaseCreateWithoutModusOperandiInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
-  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
 }
 
 export type CaseUncheckedCreateWithoutModusOperandiInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
 }
 
 export type CaseCreateOrConnectWithoutModusOperandiInput = {
@@ -842,673 +4289,2350 @@ export type CaseUpdateManyWithWhereWithoutModusOperandiInput = {
   data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutModusOperandiInput>
 }
 
-export type CaseScalarWhereInput = {
-  AND?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
-  OR?: Prisma.CaseScalarWhereInput[]
-  NOT?: Prisma.CaseScalarWhereInput | Prisma.CaseScalarWhereInput[]
-  id?: Prisma.StringFilter<"Case"> | string
-  caseNumber?: Prisma.StringFilter<"Case"> | string
-  title?: Prisma.StringFilter<"Case"> | string
-  description?: Prisma.StringNullableFilter<"Case"> | string | null
-  crimeType?: Prisma.EnumCrimeTypeFilter<"Case"> | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFilter<"Case"> | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFilter<"Case"> | Date | string
-  createdAt?: Prisma.DateTimeFilter<"Case"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Case"> | Date | string
-  stationId?: Prisma.StringFilter<"Case"> | string
-  modusOperandiId?: Prisma.StringNullableFilter<"Case"> | string | null
-}
-
-export type CaseCreateWithoutStationInput = {
+export type CaseCreateWithoutInvestigationEventsInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
-  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
-  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
-  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
-  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
-  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
-}
-
-export type CaseUncheckedCreateWithoutStationInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  modusOperandiId?: string | null
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
-  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
-  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
-  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
-  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
-  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
-}
-
-export type CaseCreateOrConnectWithoutStationInput = {
-  where: Prisma.CaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CaseCreateWithoutStationInput, Prisma.CaseUncheckedCreateWithoutStationInput>
-}
-
-export type CaseCreateManyStationInputEnvelope = {
-  data: Prisma.CaseCreateManyStationInput | Prisma.CaseCreateManyStationInput[]
-  skipDuplicates?: boolean
-}
-
-export type CaseUpsertWithWhereUniqueWithoutStationInput = {
-  where: Prisma.CaseWhereUniqueInput
-  update: Prisma.XOR<Prisma.CaseUpdateWithoutStationInput, Prisma.CaseUncheckedUpdateWithoutStationInput>
-  create: Prisma.XOR<Prisma.CaseCreateWithoutStationInput, Prisma.CaseUncheckedCreateWithoutStationInput>
-}
-
-export type CaseUpdateWithWhereUniqueWithoutStationInput = {
-  where: Prisma.CaseWhereUniqueInput
-  data: Prisma.XOR<Prisma.CaseUpdateWithoutStationInput, Prisma.CaseUncheckedUpdateWithoutStationInput>
-}
-
-export type CaseUpdateManyWithWhereWithoutStationInput = {
-  where: Prisma.CaseScalarWhereInput
-  data: Prisma.XOR<Prisma.CaseUpdateManyMutationInput, Prisma.CaseUncheckedUpdateManyWithoutStationInput>
-}
-
-export type CaseCreateWithoutPersonsInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
   evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
   modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
 }
 
-export type CaseUncheckedCreateWithoutPersonsInput = {
+export type CaseUncheckedCreateWithoutInvestigationEventsInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
   modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
   evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
 }
 
-export type CaseCreateOrConnectWithoutPersonsInput = {
+export type CaseCreateOrConnectWithoutInvestigationEventsInput = {
   where: Prisma.CaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutInvestigationEventsInput, Prisma.CaseUncheckedCreateWithoutInvestigationEventsInput>
 }
 
-export type CaseUpsertWithoutPersonsInput = {
-  update: Prisma.XOR<Prisma.CaseUpdateWithoutPersonsInput, Prisma.CaseUncheckedUpdateWithoutPersonsInput>
-  create: Prisma.XOR<Prisma.CaseCreateWithoutPersonsInput, Prisma.CaseUncheckedCreateWithoutPersonsInput>
+export type CaseUpsertWithoutInvestigationEventsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutInvestigationEventsInput, Prisma.CaseUncheckedUpdateWithoutInvestigationEventsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutInvestigationEventsInput, Prisma.CaseUncheckedCreateWithoutInvestigationEventsInput>
   where?: Prisma.CaseWhereInput
 }
 
-export type CaseUpdateToOneWithWhereWithoutPersonsInput = {
+export type CaseUpdateToOneWithWhereWithoutInvestigationEventsInput = {
   where?: Prisma.CaseWhereInput
-  data: Prisma.XOR<Prisma.CaseUpdateWithoutPersonsInput, Prisma.CaseUncheckedUpdateWithoutPersonsInput>
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutInvestigationEventsInput, Prisma.CaseUncheckedUpdateWithoutInvestigationEventsInput>
 }
 
-export type CaseUpdateWithoutPersonsInput = {
+export type CaseUpdateWithoutInvestigationEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
   evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
   modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
 }
 
-export type CaseUncheckedUpdateWithoutPersonsInput = {
+export type CaseUncheckedUpdateWithoutInvestigationEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
   modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
   evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
 }
 
-export type CaseCreateWithoutVehiclesInput = {
+export type CaseCreateWithoutChargesheetsInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
-  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
   modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
 }
 
-export type CaseUncheckedCreateWithoutVehiclesInput = {
+export type CaseUncheckedCreateWithoutChargesheetsInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
   modusOperandiId?: string | null
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
   organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
 }
 
-export type CaseCreateOrConnectWithoutVehiclesInput = {
+export type CaseCreateOrConnectWithoutChargesheetsInput = {
   where: Prisma.CaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutChargesheetsInput, Prisma.CaseUncheckedCreateWithoutChargesheetsInput>
 }
 
-export type CaseUpsertWithoutVehiclesInput = {
-  update: Prisma.XOR<Prisma.CaseUpdateWithoutVehiclesInput, Prisma.CaseUncheckedUpdateWithoutVehiclesInput>
-  create: Prisma.XOR<Prisma.CaseCreateWithoutVehiclesInput, Prisma.CaseUncheckedCreateWithoutVehiclesInput>
+export type CaseUpsertWithoutChargesheetsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutChargesheetsInput, Prisma.CaseUncheckedUpdateWithoutChargesheetsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutChargesheetsInput, Prisma.CaseUncheckedCreateWithoutChargesheetsInput>
   where?: Prisma.CaseWhereInput
 }
 
-export type CaseUpdateToOneWithWhereWithoutVehiclesInput = {
+export type CaseUpdateToOneWithWhereWithoutChargesheetsInput = {
   where?: Prisma.CaseWhereInput
-  data: Prisma.XOR<Prisma.CaseUpdateWithoutVehiclesInput, Prisma.CaseUncheckedUpdateWithoutVehiclesInput>
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutChargesheetsInput, Prisma.CaseUncheckedUpdateWithoutChargesheetsInput>
 }
 
-export type CaseUpdateWithoutVehiclesInput = {
+export type CaseUpdateWithoutChargesheetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
   modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
 }
 
-export type CaseUncheckedUpdateWithoutVehiclesInput = {
+export type CaseUncheckedUpdateWithoutChargesheetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
   modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
 }
 
-export type CaseCreateWithoutPhonesInput = {
+export type CaseCreateWithoutEmbeddingsInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
-  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
-  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
-  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
-  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
-  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
-}
-
-export type CaseUncheckedCreateWithoutPhonesInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  stationId: string
-  modusOperandiId?: string | null
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
-  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
-  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
-  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
-  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
-}
-
-export type CaseCreateOrConnectWithoutPhonesInput = {
-  where: Prisma.CaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
-}
-
-export type CaseUpsertWithoutPhonesInput = {
-  update: Prisma.XOR<Prisma.CaseUpdateWithoutPhonesInput, Prisma.CaseUncheckedUpdateWithoutPhonesInput>
-  create: Prisma.XOR<Prisma.CaseCreateWithoutPhonesInput, Prisma.CaseUncheckedCreateWithoutPhonesInput>
-  where?: Prisma.CaseWhereInput
-}
-
-export type CaseUpdateToOneWithWhereWithoutPhonesInput = {
-  where?: Prisma.CaseWhereInput
-  data: Prisma.XOR<Prisma.CaseUpdateWithoutPhonesInput, Prisma.CaseUncheckedUpdateWithoutPhonesInput>
-}
-
-export type CaseUpdateWithoutPhonesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
-  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
-  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
-  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
-  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
-  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
-}
-
-export type CaseUncheckedUpdateWithoutPhonesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
-  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
-  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
-  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
-  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
-  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
-}
-
-export type CaseCreateWithoutLocationsInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
   evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
-  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
-  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
-  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
-  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
-  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
-}
-
-export type CaseUncheckedCreateWithoutLocationsInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  stationId: string
-  modusOperandiId?: string | null
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
-  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
-  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
-  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
-  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
-}
-
-export type CaseCreateOrConnectWithoutLocationsInput = {
-  where: Prisma.CaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
-}
-
-export type CaseUpsertWithoutLocationsInput = {
-  update: Prisma.XOR<Prisma.CaseUpdateWithoutLocationsInput, Prisma.CaseUncheckedUpdateWithoutLocationsInput>
-  create: Prisma.XOR<Prisma.CaseCreateWithoutLocationsInput, Prisma.CaseUncheckedCreateWithoutLocationsInput>
-  where?: Prisma.CaseWhereInput
-}
-
-export type CaseUpdateToOneWithWhereWithoutLocationsInput = {
-  where?: Prisma.CaseWhereInput
-  data: Prisma.XOR<Prisma.CaseUpdateWithoutLocationsInput, Prisma.CaseUncheckedUpdateWithoutLocationsInput>
-}
-
-export type CaseUpdateWithoutLocationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
-  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
-  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
-  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
-  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
-  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
-}
-
-export type CaseUncheckedUpdateWithoutLocationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
-  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
-  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
-  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
-  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
-  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
-}
-
-export type CaseCreateWithoutOrganizationsInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  station: Prisma.PoliceStationCreateNestedOneWithoutCasesInput
-  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
-  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
   modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
 }
 
-export type CaseUncheckedCreateWithoutOrganizationsInput = {
+export type CaseUncheckedCreateWithoutEmbeddingsInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
   modusOperandiId?: string | null
-  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
   persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
   vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
   phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
   locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
 }
 
-export type CaseCreateOrConnectWithoutOrganizationsInput = {
+export type CaseCreateOrConnectWithoutEmbeddingsInput = {
   where: Prisma.CaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutEmbeddingsInput, Prisma.CaseUncheckedCreateWithoutEmbeddingsInput>
 }
 
-export type CaseUpsertWithoutOrganizationsInput = {
-  update: Prisma.XOR<Prisma.CaseUpdateWithoutOrganizationsInput, Prisma.CaseUncheckedUpdateWithoutOrganizationsInput>
-  create: Prisma.XOR<Prisma.CaseCreateWithoutOrganizationsInput, Prisma.CaseUncheckedCreateWithoutOrganizationsInput>
+export type CaseUpsertWithoutEmbeddingsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutEmbeddingsInput, Prisma.CaseUncheckedUpdateWithoutEmbeddingsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutEmbeddingsInput, Prisma.CaseUncheckedCreateWithoutEmbeddingsInput>
   where?: Prisma.CaseWhereInput
 }
 
-export type CaseUpdateToOneWithWhereWithoutOrganizationsInput = {
+export type CaseUpdateToOneWithWhereWithoutEmbeddingsInput = {
   where?: Prisma.CaseWhereInput
-  data: Prisma.XOR<Prisma.CaseUpdateWithoutOrganizationsInput, Prisma.CaseUncheckedUpdateWithoutOrganizationsInput>
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutEmbeddingsInput, Prisma.CaseUncheckedUpdateWithoutEmbeddingsInput>
 }
 
-export type CaseUpdateWithoutOrganizationsInput = {
+export type CaseUpdateWithoutEmbeddingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
   modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
 }
 
-export type CaseUncheckedUpdateWithoutOrganizationsInput = {
+export type CaseUncheckedUpdateWithoutEmbeddingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
   modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateWithoutCaseSimilaritiesFromInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCaseSimilaritiesFromInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCaseSimilaritiesFromInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesFromInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesFromInput>
+}
+
+export type CaseCreateWithoutCaseSimilaritiesToInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+}
+
+export type CaseUncheckedCreateWithoutCaseSimilaritiesToInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+}
+
+export type CaseCreateOrConnectWithoutCaseSimilaritiesToInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesToInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesToInput>
+}
+
+export type CaseUpsertWithoutCaseSimilaritiesFromInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCaseSimilaritiesFromInput, Prisma.CaseUncheckedUpdateWithoutCaseSimilaritiesFromInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesFromInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesFromInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutCaseSimilaritiesFromInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCaseSimilaritiesFromInput, Prisma.CaseUncheckedUpdateWithoutCaseSimilaritiesFromInput>
+}
+
+export type CaseUpdateWithoutCaseSimilaritiesFromInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCaseSimilaritiesFromInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUpsertWithoutCaseSimilaritiesToInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutCaseSimilaritiesToInput, Prisma.CaseUncheckedUpdateWithoutCaseSimilaritiesToInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutCaseSimilaritiesToInput, Prisma.CaseUncheckedCreateWithoutCaseSimilaritiesToInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutCaseSimilaritiesToInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutCaseSimilaritiesToInput, Prisma.CaseUncheckedUpdateWithoutCaseSimilaritiesToInput>
+}
+
+export type CaseUpdateWithoutCaseSimilaritiesToInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCaseSimilaritiesToInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+}
+
+export type CaseCreateWithoutFaceRecordsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseCategory: Prisma.CaseCategoryCreateNestedOneWithoutCasesInput
+  gravityOffence: Prisma.GravityOffenceCreateNestedOneWithoutCasesInput
+  crimeMajorHead: Prisma.CrimeHeadCreateNestedOneWithoutCasesInput
+  crimeMinorHead: Prisma.CrimeSubHeadCreateNestedOneWithoutCasesInput
+  caseStatus: Prisma.CaseStatusMasterCreateNestedOneWithoutCasesInput
+  registeringOfficer?: Prisma.EmployeeCreateNestedOneWithoutRegisteredCasesInput
+  policeUnit: Prisma.PoliceUnitCreateNestedOneWithoutCasesInput
+  court?: Prisma.CourtCreateNestedOneWithoutCasesInput
+  complainants?: Prisma.ComplainantCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationCreateNestedManyWithoutCaseInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutCasesInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseUncheckedCreateWithoutFaceRecordsInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+  complainants?: Prisma.ComplainantUncheckedCreateNestedManyWithoutCaseInput
+  persons?: Prisma.CasePersonUncheckedCreateNestedManyWithoutCaseInput
+  actSections?: Prisma.CaseActSectionUncheckedCreateNestedManyWithoutCaseInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedCreateNestedManyWithoutCaseInput
+  chargesheets?: Prisma.ChargesheetUncheckedCreateNestedManyWithoutCaseInput
+  evidences?: Prisma.EvidenceUncheckedCreateNestedManyWithoutCaseInput
+  vehicles?: Prisma.CaseVehicleUncheckedCreateNestedManyWithoutCaseInput
+  phones?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutCaseInput
+  locations?: Prisma.CaseLocationUncheckedCreateNestedManyWithoutCaseInput
+  organizations?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutCaseInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutCaseInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutCaseInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutSourceCaseInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedCreateNestedManyWithoutTargetCaseInput
+}
+
+export type CaseCreateOrConnectWithoutFaceRecordsInput = {
+  where: Prisma.CaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CaseCreateWithoutFaceRecordsInput, Prisma.CaseUncheckedCreateWithoutFaceRecordsInput>
+}
+
+export type CaseUpsertWithoutFaceRecordsInput = {
+  update: Prisma.XOR<Prisma.CaseUpdateWithoutFaceRecordsInput, Prisma.CaseUncheckedUpdateWithoutFaceRecordsInput>
+  create: Prisma.XOR<Prisma.CaseCreateWithoutFaceRecordsInput, Prisma.CaseUncheckedCreateWithoutFaceRecordsInput>
+  where?: Prisma.CaseWhereInput
+}
+
+export type CaseUpdateToOneWithWhereWithoutFaceRecordsInput = {
+  where?: Prisma.CaseWhereInput
+  data: Prisma.XOR<Prisma.CaseUpdateWithoutFaceRecordsInput, Prisma.CaseUncheckedUpdateWithoutFaceRecordsInput>
+}
+
+export type CaseUpdateWithoutFaceRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutFaceRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseCreateManyCaseCategoryInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutCaseCategoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCaseCategoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutCaseCategoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyCaseStatusInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutCaseStatusInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCaseStatusInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutCaseStatusInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyGravityOffenceInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutGravityOffenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutGravityOffenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutGravityOffenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyCrimeMajorHeadInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutCrimeMajorHeadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCrimeMajorHeadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutCrimeMajorHeadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyCrimeMinorHeadInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutCrimeMinorHeadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCrimeMinorHeadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutCrimeMinorHeadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyPoliceUnitInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutPoliceUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutPoliceUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutPoliceUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyRegisteringOfficerInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutRegisteringOfficerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutRegisteringOfficerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutRegisteringOfficerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CaseCreateManyCourtInput = {
+  id?: string
+  caseNumber: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
+  description?: string | null
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modusOperandiId?: string | null
+}
+
+export type CaseUpdateWithoutCourtInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateWithoutCourtInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
+  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
+  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
+  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
+  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
+}
+
+export type CaseUncheckedUpdateManyWithoutCourtInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CaseCreateManyModusOperandiInput = {
   id?: string
   caseNumber: string
-  title: string
+  crimeNo: string
+  caseNo: string
+  title?: string | null
   description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
+  crimeRegisteredDate: Date | string
+  incidentFromDate?: Date | string | null
+  incidentToDate?: Date | string | null
+  infoReceivedPSDate?: Date | string | null
+  caseCategoryId: number
+  gravityOffenceId: number
+  crimeMajorHeadId: number
+  crimeMinorHeadId: number
+  caseStatusId: number
+  registeringOfficerId?: number | null
+  policeUnitId: number
+  courtId?: number | null
+  riskScore?: number | null
+  priorityScore?: number | null
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  stationId: string
 }
 
 export type CaseUpdateWithoutModusOperandiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  station?: Prisma.PoliceStationUpdateOneRequiredWithoutCasesNestedInput
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
+  caseCategory?: Prisma.CaseCategoryUpdateOneRequiredWithoutCasesNestedInput
+  gravityOffence?: Prisma.GravityOffenceUpdateOneRequiredWithoutCasesNestedInput
+  crimeMajorHead?: Prisma.CrimeHeadUpdateOneRequiredWithoutCasesNestedInput
+  crimeMinorHead?: Prisma.CrimeSubHeadUpdateOneRequiredWithoutCasesNestedInput
+  caseStatus?: Prisma.CaseStatusMasterUpdateOneRequiredWithoutCasesNestedInput
+  registeringOfficer?: Prisma.EmployeeUpdateOneWithoutRegisteredCasesNestedInput
+  policeUnit?: Prisma.PoliceUnitUpdateOneRequiredWithoutCasesNestedInput
+  court?: Prisma.CourtUpdateOneWithoutCasesNestedInput
+  complainants?: Prisma.ComplainantUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUpdateManyWithoutTargetCaseNestedInput
 }
 
 export type CaseUncheckedUpdateWithoutModusOperandiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
+  complainants?: Prisma.ComplainantUncheckedUpdateManyWithoutCaseNestedInput
   persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
+  actSections?: Prisma.CaseActSectionUncheckedUpdateManyWithoutCaseNestedInput
+  arrestSurrenders?: Prisma.ArrestSurrenderUncheckedUpdateManyWithoutCaseNestedInput
+  chargesheets?: Prisma.ChargesheetUncheckedUpdateManyWithoutCaseNestedInput
+  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
   vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
   phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
   locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
   organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutCaseNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutCaseNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutCaseNestedInput
+  caseSimilaritiesFrom?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutSourceCaseNestedInput
+  caseSimilaritiesTo?: Prisma.CaseSimilarityUncheckedUpdateManyWithoutTargetCaseNestedInput
 }
 
 export type CaseUncheckedUpdateManyWithoutModusOperandiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  crimeNo?: Prisma.StringFieldUpdateOperationsInput | string
+  caseNo?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crimeRegisteredDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidentFromDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  incidentToDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  infoReceivedPSDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  caseCategoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  gravityOffenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMajorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  crimeMinorHeadId?: Prisma.IntFieldUpdateOperationsInput | number
+  caseStatusId?: Prisma.IntFieldUpdateOperationsInput | number
+  registeringOfficerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  policeUnitId?: Prisma.IntFieldUpdateOperationsInput | number
+  courtId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priorityScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stationId?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type CaseCreateManyStationInput = {
-  id?: string
-  caseNumber: string
-  title: string
-  description?: string | null
-  crimeType: $Enums.CrimeType
-  status?: $Enums.CaseStatus
-  incidentDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  modusOperandiId?: string | null
-}
-
-export type CaseUpdateWithoutStationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  evidences?: Prisma.EvidenceUpdateManyWithoutCaseNestedInput
-  persons?: Prisma.CasePersonUpdateManyWithoutCaseNestedInput
-  vehicles?: Prisma.CaseVehicleUpdateManyWithoutCaseNestedInput
-  phones?: Prisma.CasePhoneUpdateManyWithoutCaseNestedInput
-  locations?: Prisma.CaseLocationUpdateManyWithoutCaseNestedInput
-  organizations?: Prisma.CaseOrganizationUpdateManyWithoutCaseNestedInput
-  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutCasesNestedInput
-}
-
-export type CaseUncheckedUpdateWithoutStationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  evidences?: Prisma.EvidenceUncheckedUpdateManyWithoutCaseNestedInput
-  persons?: Prisma.CasePersonUncheckedUpdateManyWithoutCaseNestedInput
-  vehicles?: Prisma.CaseVehicleUncheckedUpdateManyWithoutCaseNestedInput
-  phones?: Prisma.CasePhoneUncheckedUpdateManyWithoutCaseNestedInput
-  locations?: Prisma.CaseLocationUncheckedUpdateManyWithoutCaseNestedInput
-  organizations?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutCaseNestedInput
-}
-
-export type CaseUncheckedUpdateManyWithoutStationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  caseNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  crimeType?: Prisma.EnumCrimeTypeFieldUpdateOperationsInput | $Enums.CrimeType
-  status?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus
-  incidentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1517,21 +6641,39 @@ export type CaseUncheckedUpdateManyWithoutStationInput = {
  */
 
 export type CaseCountOutputType = {
-  evidences: number
+  complainants: number
   persons: number
+  actSections: number
+  arrestSurrenders: number
+  chargesheets: number
+  evidences: number
   vehicles: number
   phones: number
   locations: number
   organizations: number
+  investigationEvents: number
+  embeddings: number
+  faceRecords: number
+  caseSimilaritiesFrom: number
+  caseSimilaritiesTo: number
 }
 
 export type CaseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  evidences?: boolean | CaseCountOutputTypeCountEvidencesArgs
+  complainants?: boolean | CaseCountOutputTypeCountComplainantsArgs
   persons?: boolean | CaseCountOutputTypeCountPersonsArgs
+  actSections?: boolean | CaseCountOutputTypeCountActSectionsArgs
+  arrestSurrenders?: boolean | CaseCountOutputTypeCountArrestSurrendersArgs
+  chargesheets?: boolean | CaseCountOutputTypeCountChargesheetsArgs
+  evidences?: boolean | CaseCountOutputTypeCountEvidencesArgs
   vehicles?: boolean | CaseCountOutputTypeCountVehiclesArgs
   phones?: boolean | CaseCountOutputTypeCountPhonesArgs
   locations?: boolean | CaseCountOutputTypeCountLocationsArgs
   organizations?: boolean | CaseCountOutputTypeCountOrganizationsArgs
+  investigationEvents?: boolean | CaseCountOutputTypeCountInvestigationEventsArgs
+  embeddings?: boolean | CaseCountOutputTypeCountEmbeddingsArgs
+  faceRecords?: boolean | CaseCountOutputTypeCountFaceRecordsArgs
+  caseSimilaritiesFrom?: boolean | CaseCountOutputTypeCountCaseSimilaritiesFromArgs
+  caseSimilaritiesTo?: boolean | CaseCountOutputTypeCountCaseSimilaritiesToArgs
 }
 
 /**
@@ -1547,8 +6689,8 @@ export type CaseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * CaseCountOutputType without action
  */
-export type CaseCountOutputTypeCountEvidencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EvidenceWhereInput
+export type CaseCountOutputTypeCountComplainantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ComplainantWhereInput
 }
 
 /**
@@ -1556,6 +6698,34 @@ export type CaseCountOutputTypeCountEvidencesArgs<ExtArgs extends runtime.Types.
  */
 export type CaseCountOutputTypeCountPersonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CasePersonWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountActSectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CaseActSectionWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountArrestSurrendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ArrestSurrenderWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountChargesheetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChargesheetWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountEvidencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EvidenceWhereInput
 }
 
 /**
@@ -1586,120 +6756,301 @@ export type CaseCountOutputTypeCountOrganizationsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.CaseOrganizationWhereInput
 }
 
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountInvestigationEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvestigationEventWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountEmbeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmbeddingWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountFaceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FaceRecordWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountCaseSimilaritiesFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CaseSimilarityWhereInput
+}
+
+/**
+ * CaseCountOutputType without action
+ */
+export type CaseCountOutputTypeCountCaseSimilaritiesToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CaseSimilarityWhereInput
+}
+
 
 export type CaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   caseNumber?: boolean
+  crimeNo?: boolean
+  caseNo?: boolean
   title?: boolean
   description?: boolean
-  crimeType?: boolean
-  status?: boolean
-  incidentDate?: boolean
+  crimeRegisteredDate?: boolean
+  incidentFromDate?: boolean
+  incidentToDate?: boolean
+  infoReceivedPSDate?: boolean
+  caseCategoryId?: boolean
+  gravityOffenceId?: boolean
+  crimeMajorHeadId?: boolean
+  crimeMinorHeadId?: boolean
+  caseStatusId?: boolean
+  registeringOfficerId?: boolean
+  policeUnitId?: boolean
+  courtId?: boolean
+  riskScore?: boolean
+  priorityScore?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  stationId?: boolean
   modusOperandiId?: boolean
-  station?: boolean | Prisma.PoliceStationDefaultArgs<ExtArgs>
-  evidences?: boolean | Prisma.Case$evidencesArgs<ExtArgs>
+  caseCategory?: boolean | Prisma.CaseCategoryDefaultArgs<ExtArgs>
+  gravityOffence?: boolean | Prisma.GravityOffenceDefaultArgs<ExtArgs>
+  crimeMajorHead?: boolean | Prisma.CrimeHeadDefaultArgs<ExtArgs>
+  crimeMinorHead?: boolean | Prisma.CrimeSubHeadDefaultArgs<ExtArgs>
+  caseStatus?: boolean | Prisma.CaseStatusMasterDefaultArgs<ExtArgs>
+  registeringOfficer?: boolean | Prisma.Case$registeringOfficerArgs<ExtArgs>
+  policeUnit?: boolean | Prisma.PoliceUnitDefaultArgs<ExtArgs>
+  court?: boolean | Prisma.Case$courtArgs<ExtArgs>
+  complainants?: boolean | Prisma.Case$complainantsArgs<ExtArgs>
   persons?: boolean | Prisma.Case$personsArgs<ExtArgs>
+  actSections?: boolean | Prisma.Case$actSectionsArgs<ExtArgs>
+  arrestSurrenders?: boolean | Prisma.Case$arrestSurrendersArgs<ExtArgs>
+  chargesheets?: boolean | Prisma.Case$chargesheetsArgs<ExtArgs>
+  evidences?: boolean | Prisma.Case$evidencesArgs<ExtArgs>
   vehicles?: boolean | Prisma.Case$vehiclesArgs<ExtArgs>
   phones?: boolean | Prisma.Case$phonesArgs<ExtArgs>
   locations?: boolean | Prisma.Case$locationsArgs<ExtArgs>
   organizations?: boolean | Prisma.Case$organizationsArgs<ExtArgs>
   modusOperandi?: boolean | Prisma.Case$modusOperandiArgs<ExtArgs>
+  investigationEvents?: boolean | Prisma.Case$investigationEventsArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Case$embeddingsArgs<ExtArgs>
+  faceRecords?: boolean | Prisma.Case$faceRecordsArgs<ExtArgs>
+  caseSimilaritiesFrom?: boolean | Prisma.Case$caseSimilaritiesFromArgs<ExtArgs>
+  caseSimilaritiesTo?: boolean | Prisma.Case$caseSimilaritiesToArgs<ExtArgs>
   _count?: boolean | Prisma.CaseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["case"]>
 
 export type CaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   caseNumber?: boolean
+  crimeNo?: boolean
+  caseNo?: boolean
   title?: boolean
   description?: boolean
-  crimeType?: boolean
-  status?: boolean
-  incidentDate?: boolean
+  crimeRegisteredDate?: boolean
+  incidentFromDate?: boolean
+  incidentToDate?: boolean
+  infoReceivedPSDate?: boolean
+  caseCategoryId?: boolean
+  gravityOffenceId?: boolean
+  crimeMajorHeadId?: boolean
+  crimeMinorHeadId?: boolean
+  caseStatusId?: boolean
+  registeringOfficerId?: boolean
+  policeUnitId?: boolean
+  courtId?: boolean
+  riskScore?: boolean
+  priorityScore?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  stationId?: boolean
   modusOperandiId?: boolean
-  station?: boolean | Prisma.PoliceStationDefaultArgs<ExtArgs>
+  caseCategory?: boolean | Prisma.CaseCategoryDefaultArgs<ExtArgs>
+  gravityOffence?: boolean | Prisma.GravityOffenceDefaultArgs<ExtArgs>
+  crimeMajorHead?: boolean | Prisma.CrimeHeadDefaultArgs<ExtArgs>
+  crimeMinorHead?: boolean | Prisma.CrimeSubHeadDefaultArgs<ExtArgs>
+  caseStatus?: boolean | Prisma.CaseStatusMasterDefaultArgs<ExtArgs>
+  registeringOfficer?: boolean | Prisma.Case$registeringOfficerArgs<ExtArgs>
+  policeUnit?: boolean | Prisma.PoliceUnitDefaultArgs<ExtArgs>
+  court?: boolean | Prisma.Case$courtArgs<ExtArgs>
   modusOperandi?: boolean | Prisma.Case$modusOperandiArgs<ExtArgs>
 }, ExtArgs["result"]["case"]>
 
 export type CaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   caseNumber?: boolean
+  crimeNo?: boolean
+  caseNo?: boolean
   title?: boolean
   description?: boolean
-  crimeType?: boolean
-  status?: boolean
-  incidentDate?: boolean
+  crimeRegisteredDate?: boolean
+  incidentFromDate?: boolean
+  incidentToDate?: boolean
+  infoReceivedPSDate?: boolean
+  caseCategoryId?: boolean
+  gravityOffenceId?: boolean
+  crimeMajorHeadId?: boolean
+  crimeMinorHeadId?: boolean
+  caseStatusId?: boolean
+  registeringOfficerId?: boolean
+  policeUnitId?: boolean
+  courtId?: boolean
+  riskScore?: boolean
+  priorityScore?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  stationId?: boolean
   modusOperandiId?: boolean
-  station?: boolean | Prisma.PoliceStationDefaultArgs<ExtArgs>
+  caseCategory?: boolean | Prisma.CaseCategoryDefaultArgs<ExtArgs>
+  gravityOffence?: boolean | Prisma.GravityOffenceDefaultArgs<ExtArgs>
+  crimeMajorHead?: boolean | Prisma.CrimeHeadDefaultArgs<ExtArgs>
+  crimeMinorHead?: boolean | Prisma.CrimeSubHeadDefaultArgs<ExtArgs>
+  caseStatus?: boolean | Prisma.CaseStatusMasterDefaultArgs<ExtArgs>
+  registeringOfficer?: boolean | Prisma.Case$registeringOfficerArgs<ExtArgs>
+  policeUnit?: boolean | Prisma.PoliceUnitDefaultArgs<ExtArgs>
+  court?: boolean | Prisma.Case$courtArgs<ExtArgs>
   modusOperandi?: boolean | Prisma.Case$modusOperandiArgs<ExtArgs>
 }, ExtArgs["result"]["case"]>
 
 export type CaseSelectScalar = {
   id?: boolean
   caseNumber?: boolean
+  crimeNo?: boolean
+  caseNo?: boolean
   title?: boolean
   description?: boolean
-  crimeType?: boolean
-  status?: boolean
-  incidentDate?: boolean
+  crimeRegisteredDate?: boolean
+  incidentFromDate?: boolean
+  incidentToDate?: boolean
+  infoReceivedPSDate?: boolean
+  caseCategoryId?: boolean
+  gravityOffenceId?: boolean
+  crimeMajorHeadId?: boolean
+  crimeMinorHeadId?: boolean
+  caseStatusId?: boolean
+  registeringOfficerId?: boolean
+  policeUnitId?: boolean
+  courtId?: boolean
+  riskScore?: boolean
+  priorityScore?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  stationId?: boolean
   modusOperandiId?: boolean
 }
 
-export type CaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caseNumber" | "title" | "description" | "crimeType" | "status" | "incidentDate" | "createdAt" | "updatedAt" | "stationId" | "modusOperandiId", ExtArgs["result"]["case"]>
+export type CaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caseNumber" | "crimeNo" | "caseNo" | "title" | "description" | "crimeRegisteredDate" | "incidentFromDate" | "incidentToDate" | "infoReceivedPSDate" | "caseCategoryId" | "gravityOffenceId" | "crimeMajorHeadId" | "crimeMinorHeadId" | "caseStatusId" | "registeringOfficerId" | "policeUnitId" | "courtId" | "riskScore" | "priorityScore" | "aiSummary" | "aiClassification" | "createdAt" | "updatedAt" | "modusOperandiId", ExtArgs["result"]["case"]>
 export type CaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  station?: boolean | Prisma.PoliceStationDefaultArgs<ExtArgs>
-  evidences?: boolean | Prisma.Case$evidencesArgs<ExtArgs>
+  caseCategory?: boolean | Prisma.CaseCategoryDefaultArgs<ExtArgs>
+  gravityOffence?: boolean | Prisma.GravityOffenceDefaultArgs<ExtArgs>
+  crimeMajorHead?: boolean | Prisma.CrimeHeadDefaultArgs<ExtArgs>
+  crimeMinorHead?: boolean | Prisma.CrimeSubHeadDefaultArgs<ExtArgs>
+  caseStatus?: boolean | Prisma.CaseStatusMasterDefaultArgs<ExtArgs>
+  registeringOfficer?: boolean | Prisma.Case$registeringOfficerArgs<ExtArgs>
+  policeUnit?: boolean | Prisma.PoliceUnitDefaultArgs<ExtArgs>
+  court?: boolean | Prisma.Case$courtArgs<ExtArgs>
+  complainants?: boolean | Prisma.Case$complainantsArgs<ExtArgs>
   persons?: boolean | Prisma.Case$personsArgs<ExtArgs>
+  actSections?: boolean | Prisma.Case$actSectionsArgs<ExtArgs>
+  arrestSurrenders?: boolean | Prisma.Case$arrestSurrendersArgs<ExtArgs>
+  chargesheets?: boolean | Prisma.Case$chargesheetsArgs<ExtArgs>
+  evidences?: boolean | Prisma.Case$evidencesArgs<ExtArgs>
   vehicles?: boolean | Prisma.Case$vehiclesArgs<ExtArgs>
   phones?: boolean | Prisma.Case$phonesArgs<ExtArgs>
   locations?: boolean | Prisma.Case$locationsArgs<ExtArgs>
   organizations?: boolean | Prisma.Case$organizationsArgs<ExtArgs>
   modusOperandi?: boolean | Prisma.Case$modusOperandiArgs<ExtArgs>
+  investigationEvents?: boolean | Prisma.Case$investigationEventsArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Case$embeddingsArgs<ExtArgs>
+  faceRecords?: boolean | Prisma.Case$faceRecordsArgs<ExtArgs>
+  caseSimilaritiesFrom?: boolean | Prisma.Case$caseSimilaritiesFromArgs<ExtArgs>
+  caseSimilaritiesTo?: boolean | Prisma.Case$caseSimilaritiesToArgs<ExtArgs>
   _count?: boolean | Prisma.CaseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  station?: boolean | Prisma.PoliceStationDefaultArgs<ExtArgs>
+  caseCategory?: boolean | Prisma.CaseCategoryDefaultArgs<ExtArgs>
+  gravityOffence?: boolean | Prisma.GravityOffenceDefaultArgs<ExtArgs>
+  crimeMajorHead?: boolean | Prisma.CrimeHeadDefaultArgs<ExtArgs>
+  crimeMinorHead?: boolean | Prisma.CrimeSubHeadDefaultArgs<ExtArgs>
+  caseStatus?: boolean | Prisma.CaseStatusMasterDefaultArgs<ExtArgs>
+  registeringOfficer?: boolean | Prisma.Case$registeringOfficerArgs<ExtArgs>
+  policeUnit?: boolean | Prisma.PoliceUnitDefaultArgs<ExtArgs>
+  court?: boolean | Prisma.Case$courtArgs<ExtArgs>
   modusOperandi?: boolean | Prisma.Case$modusOperandiArgs<ExtArgs>
 }
 export type CaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  station?: boolean | Prisma.PoliceStationDefaultArgs<ExtArgs>
+  caseCategory?: boolean | Prisma.CaseCategoryDefaultArgs<ExtArgs>
+  gravityOffence?: boolean | Prisma.GravityOffenceDefaultArgs<ExtArgs>
+  crimeMajorHead?: boolean | Prisma.CrimeHeadDefaultArgs<ExtArgs>
+  crimeMinorHead?: boolean | Prisma.CrimeSubHeadDefaultArgs<ExtArgs>
+  caseStatus?: boolean | Prisma.CaseStatusMasterDefaultArgs<ExtArgs>
+  registeringOfficer?: boolean | Prisma.Case$registeringOfficerArgs<ExtArgs>
+  policeUnit?: boolean | Prisma.PoliceUnitDefaultArgs<ExtArgs>
+  court?: boolean | Prisma.Case$courtArgs<ExtArgs>
   modusOperandi?: boolean | Prisma.Case$modusOperandiArgs<ExtArgs>
 }
 
 export type $CasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Case"
   objects: {
-    station: Prisma.$PoliceStationPayload<ExtArgs>
-    evidences: Prisma.$EvidencePayload<ExtArgs>[]
+    caseCategory: Prisma.$CaseCategoryPayload<ExtArgs>
+    gravityOffence: Prisma.$GravityOffencePayload<ExtArgs>
+    crimeMajorHead: Prisma.$CrimeHeadPayload<ExtArgs>
+    crimeMinorHead: Prisma.$CrimeSubHeadPayload<ExtArgs>
+    caseStatus: Prisma.$CaseStatusMasterPayload<ExtArgs>
+    registeringOfficer: Prisma.$EmployeePayload<ExtArgs> | null
+    policeUnit: Prisma.$PoliceUnitPayload<ExtArgs>
+    court: Prisma.$CourtPayload<ExtArgs> | null
+    complainants: Prisma.$ComplainantPayload<ExtArgs>[]
     persons: Prisma.$CasePersonPayload<ExtArgs>[]
+    actSections: Prisma.$CaseActSectionPayload<ExtArgs>[]
+    arrestSurrenders: Prisma.$ArrestSurrenderPayload<ExtArgs>[]
+    chargesheets: Prisma.$ChargesheetPayload<ExtArgs>[]
+    evidences: Prisma.$EvidencePayload<ExtArgs>[]
     vehicles: Prisma.$CaseVehiclePayload<ExtArgs>[]
     phones: Prisma.$CasePhonePayload<ExtArgs>[]
     locations: Prisma.$CaseLocationPayload<ExtArgs>[]
     organizations: Prisma.$CaseOrganizationPayload<ExtArgs>[]
     modusOperandi: Prisma.$ModusOperandiPayload<ExtArgs> | null
+    investigationEvents: Prisma.$InvestigationEventPayload<ExtArgs>[]
+    embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
+    faceRecords: Prisma.$FaceRecordPayload<ExtArgs>[]
+    caseSimilaritiesFrom: Prisma.$CaseSimilarityPayload<ExtArgs>[]
+    caseSimilaritiesTo: Prisma.$CaseSimilarityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     caseNumber: string
-    title: string
+    crimeNo: string
+    caseNo: string
+    title: string | null
     description: string | null
-    crimeType: $Enums.CrimeType
-    status: $Enums.CaseStatus
-    incidentDate: Date
+    crimeRegisteredDate: Date
+    incidentFromDate: Date | null
+    incidentToDate: Date | null
+    infoReceivedPSDate: Date | null
+    caseCategoryId: number
+    gravityOffenceId: number
+    crimeMajorHeadId: number
+    crimeMinorHeadId: number
+    caseStatusId: number
+    registeringOfficerId: number | null
+    policeUnitId: number
+    courtId: number | null
+    riskScore: number | null
+    priorityScore: number | null
+    aiSummary: string | null
+    aiClassification: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
-    stationId: string
     modusOperandiId: string | null
   }, ExtArgs["result"]["case"]>
   composites: {}
@@ -2095,14 +7446,30 @@ readonly fields: CaseFieldRefs;
  */
 export interface Prisma__CaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  station<T extends Prisma.PoliceStationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PoliceStationDefaultArgs<ExtArgs>>): Prisma.Prisma__PoliceStationClient<runtime.Types.Result.GetResult<Prisma.$PoliceStationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  evidences<T extends Prisma.Case$evidencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$evidencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  caseCategory<T extends Prisma.CaseCategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CaseCategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CaseCategoryClient<runtime.Types.Result.GetResult<Prisma.$CaseCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  gravityOffence<T extends Prisma.GravityOffenceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GravityOffenceDefaultArgs<ExtArgs>>): Prisma.Prisma__GravityOffenceClient<runtime.Types.Result.GetResult<Prisma.$GravityOffencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  crimeMajorHead<T extends Prisma.CrimeHeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrimeHeadDefaultArgs<ExtArgs>>): Prisma.Prisma__CrimeHeadClient<runtime.Types.Result.GetResult<Prisma.$CrimeHeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  crimeMinorHead<T extends Prisma.CrimeSubHeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrimeSubHeadDefaultArgs<ExtArgs>>): Prisma.Prisma__CrimeSubHeadClient<runtime.Types.Result.GetResult<Prisma.$CrimeSubHeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  caseStatus<T extends Prisma.CaseStatusMasterDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CaseStatusMasterDefaultArgs<ExtArgs>>): Prisma.Prisma__CaseStatusMasterClient<runtime.Types.Result.GetResult<Prisma.$CaseStatusMasterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  registeringOfficer<T extends Prisma.Case$registeringOfficerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$registeringOfficerArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  policeUnit<T extends Prisma.PoliceUnitDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PoliceUnitDefaultArgs<ExtArgs>>): Prisma.Prisma__PoliceUnitClient<runtime.Types.Result.GetResult<Prisma.$PoliceUnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  court<T extends Prisma.Case$courtArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$courtArgs<ExtArgs>>): Prisma.Prisma__CourtClient<runtime.Types.Result.GetResult<Prisma.$CourtPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  complainants<T extends Prisma.Case$complainantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$complainantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplainantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   persons<T extends Prisma.Case$personsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$personsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePersonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  actSections<T extends Prisma.Case$actSectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$actSectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseActSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  arrestSurrenders<T extends Prisma.Case$arrestSurrendersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$arrestSurrendersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ArrestSurrenderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  chargesheets<T extends Prisma.Case$chargesheetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$chargesheetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChargesheetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  evidences<T extends Prisma.Case$evidencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$evidencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   vehicles<T extends Prisma.Case$vehiclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseVehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   phones<T extends Prisma.Case$phonesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$phonesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePhonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   locations<T extends Prisma.Case$locationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   organizations<T extends Prisma.Case$organizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$organizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseOrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   modusOperandi<T extends Prisma.Case$modusOperandiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$modusOperandiArgs<ExtArgs>>): Prisma.Prisma__ModusOperandiClient<runtime.Types.Result.GetResult<Prisma.$ModusOperandiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  investigationEvents<T extends Prisma.Case$investigationEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$investigationEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvestigationEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  embeddings<T extends Prisma.Case$embeddingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  faceRecords<T extends Prisma.Case$faceRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$faceRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FaceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  caseSimilaritiesFrom<T extends Prisma.Case$caseSimilaritiesFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$caseSimilaritiesFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseSimilarityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  caseSimilaritiesTo<T extends Prisma.Case$caseSimilaritiesToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$caseSimilaritiesToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseSimilarityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2134,14 +7501,28 @@ export interface Prisma__CaseClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface CaseFieldRefs {
   readonly id: Prisma.FieldRef<"Case", 'String'>
   readonly caseNumber: Prisma.FieldRef<"Case", 'String'>
+  readonly crimeNo: Prisma.FieldRef<"Case", 'String'>
+  readonly caseNo: Prisma.FieldRef<"Case", 'String'>
   readonly title: Prisma.FieldRef<"Case", 'String'>
   readonly description: Prisma.FieldRef<"Case", 'String'>
-  readonly crimeType: Prisma.FieldRef<"Case", 'CrimeType'>
-  readonly status: Prisma.FieldRef<"Case", 'CaseStatus'>
-  readonly incidentDate: Prisma.FieldRef<"Case", 'DateTime'>
+  readonly crimeRegisteredDate: Prisma.FieldRef<"Case", 'DateTime'>
+  readonly incidentFromDate: Prisma.FieldRef<"Case", 'DateTime'>
+  readonly incidentToDate: Prisma.FieldRef<"Case", 'DateTime'>
+  readonly infoReceivedPSDate: Prisma.FieldRef<"Case", 'DateTime'>
+  readonly caseCategoryId: Prisma.FieldRef<"Case", 'Int'>
+  readonly gravityOffenceId: Prisma.FieldRef<"Case", 'Int'>
+  readonly crimeMajorHeadId: Prisma.FieldRef<"Case", 'Int'>
+  readonly crimeMinorHeadId: Prisma.FieldRef<"Case", 'Int'>
+  readonly caseStatusId: Prisma.FieldRef<"Case", 'Int'>
+  readonly registeringOfficerId: Prisma.FieldRef<"Case", 'Int'>
+  readonly policeUnitId: Prisma.FieldRef<"Case", 'Int'>
+  readonly courtId: Prisma.FieldRef<"Case", 'Int'>
+  readonly riskScore: Prisma.FieldRef<"Case", 'Float'>
+  readonly priorityScore: Prisma.FieldRef<"Case", 'Float'>
+  readonly aiSummary: Prisma.FieldRef<"Case", 'String'>
+  readonly aiClassification: Prisma.FieldRef<"Case", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Case", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Case", 'DateTime'>
-  readonly stationId: Prisma.FieldRef<"Case", 'String'>
   readonly modusOperandiId: Prisma.FieldRef<"Case", 'String'>
 }
     
@@ -2544,27 +7925,65 @@ export type CaseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Case.evidences
+ * Case.registeringOfficer
  */
-export type Case$evidencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Case$registeringOfficerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Evidence
+   * Select specific fields to fetch from the Employee
    */
-  select?: Prisma.EvidenceSelect<ExtArgs> | null
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Evidence
+   * Omit specific fields from the Employee
    */
-  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.EvidenceInclude<ExtArgs> | null
-  where?: Prisma.EvidenceWhereInput
-  orderBy?: Prisma.EvidenceOrderByWithRelationInput | Prisma.EvidenceOrderByWithRelationInput[]
-  cursor?: Prisma.EvidenceWhereUniqueInput
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+}
+
+/**
+ * Case.court
+ */
+export type Case$courtArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Court
+   */
+  select?: Prisma.CourtSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Court
+   */
+  omit?: Prisma.CourtOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CourtInclude<ExtArgs> | null
+  where?: Prisma.CourtWhereInput
+}
+
+/**
+ * Case.complainants
+ */
+export type Case$complainantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Complainant
+   */
+  select?: Prisma.ComplainantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Complainant
+   */
+  omit?: Prisma.ComplainantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ComplainantInclude<ExtArgs> | null
+  where?: Prisma.ComplainantWhereInput
+  orderBy?: Prisma.ComplainantOrderByWithRelationInput | Prisma.ComplainantOrderByWithRelationInput[]
+  cursor?: Prisma.ComplainantWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.EvidenceScalarFieldEnum | Prisma.EvidenceScalarFieldEnum[]
+  distinct?: Prisma.ComplainantScalarFieldEnum | Prisma.ComplainantScalarFieldEnum[]
 }
 
 /**
@@ -2589,6 +8008,102 @@ export type Case$personsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.CasePersonScalarFieldEnum | Prisma.CasePersonScalarFieldEnum[]
+}
+
+/**
+ * Case.actSections
+ */
+export type Case$actSectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CaseActSection
+   */
+  select?: Prisma.CaseActSectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CaseActSection
+   */
+  omit?: Prisma.CaseActSectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CaseActSectionInclude<ExtArgs> | null
+  where?: Prisma.CaseActSectionWhereInput
+  orderBy?: Prisma.CaseActSectionOrderByWithRelationInput | Prisma.CaseActSectionOrderByWithRelationInput[]
+  cursor?: Prisma.CaseActSectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CaseActSectionScalarFieldEnum | Prisma.CaseActSectionScalarFieldEnum[]
+}
+
+/**
+ * Case.arrestSurrenders
+ */
+export type Case$arrestSurrendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ArrestSurrender
+   */
+  select?: Prisma.ArrestSurrenderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ArrestSurrender
+   */
+  omit?: Prisma.ArrestSurrenderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ArrestSurrenderInclude<ExtArgs> | null
+  where?: Prisma.ArrestSurrenderWhereInput
+  orderBy?: Prisma.ArrestSurrenderOrderByWithRelationInput | Prisma.ArrestSurrenderOrderByWithRelationInput[]
+  cursor?: Prisma.ArrestSurrenderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ArrestSurrenderScalarFieldEnum | Prisma.ArrestSurrenderScalarFieldEnum[]
+}
+
+/**
+ * Case.chargesheets
+ */
+export type Case$chargesheetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Chargesheet
+   */
+  select?: Prisma.ChargesheetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Chargesheet
+   */
+  omit?: Prisma.ChargesheetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChargesheetInclude<ExtArgs> | null
+  where?: Prisma.ChargesheetWhereInput
+  orderBy?: Prisma.ChargesheetOrderByWithRelationInput | Prisma.ChargesheetOrderByWithRelationInput[]
+  cursor?: Prisma.ChargesheetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChargesheetScalarFieldEnum | Prisma.ChargesheetScalarFieldEnum[]
+}
+
+/**
+ * Case.evidences
+ */
+export type Case$evidencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evidence
+   */
+  select?: Prisma.EvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evidence
+   */
+  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvidenceInclude<ExtArgs> | null
+  where?: Prisma.EvidenceWhereInput
+  orderBy?: Prisma.EvidenceOrderByWithRelationInput | Prisma.EvidenceOrderByWithRelationInput[]
+  cursor?: Prisma.EvidenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EvidenceScalarFieldEnum | Prisma.EvidenceScalarFieldEnum[]
 }
 
 /**
@@ -2704,6 +8219,126 @@ export type Case$modusOperandiArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.ModusOperandiInclude<ExtArgs> | null
   where?: Prisma.ModusOperandiWhereInput
+}
+
+/**
+ * Case.investigationEvents
+ */
+export type Case$investigationEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InvestigationEvent
+   */
+  select?: Prisma.InvestigationEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InvestigationEvent
+   */
+  omit?: Prisma.InvestigationEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvestigationEventInclude<ExtArgs> | null
+  where?: Prisma.InvestigationEventWhereInput
+  orderBy?: Prisma.InvestigationEventOrderByWithRelationInput | Prisma.InvestigationEventOrderByWithRelationInput[]
+  cursor?: Prisma.InvestigationEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvestigationEventScalarFieldEnum | Prisma.InvestigationEventScalarFieldEnum[]
+}
+
+/**
+ * Case.embeddings
+ */
+export type Case$embeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Embedding
+   */
+  select?: Prisma.EmbeddingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Embedding
+   */
+  omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  where?: Prisma.EmbeddingWhereInput
+  orderBy?: Prisma.EmbeddingOrderByWithRelationInput | Prisma.EmbeddingOrderByWithRelationInput[]
+  cursor?: Prisma.EmbeddingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmbeddingScalarFieldEnum | Prisma.EmbeddingScalarFieldEnum[]
+}
+
+/**
+ * Case.faceRecords
+ */
+export type Case$faceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FaceRecord
+   */
+  select?: Prisma.FaceRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FaceRecord
+   */
+  omit?: Prisma.FaceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FaceRecordInclude<ExtArgs> | null
+  where?: Prisma.FaceRecordWhereInput
+  orderBy?: Prisma.FaceRecordOrderByWithRelationInput | Prisma.FaceRecordOrderByWithRelationInput[]
+  cursor?: Prisma.FaceRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FaceRecordScalarFieldEnum | Prisma.FaceRecordScalarFieldEnum[]
+}
+
+/**
+ * Case.caseSimilaritiesFrom
+ */
+export type Case$caseSimilaritiesFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CaseSimilarity
+   */
+  select?: Prisma.CaseSimilaritySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CaseSimilarity
+   */
+  omit?: Prisma.CaseSimilarityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CaseSimilarityInclude<ExtArgs> | null
+  where?: Prisma.CaseSimilarityWhereInput
+  orderBy?: Prisma.CaseSimilarityOrderByWithRelationInput | Prisma.CaseSimilarityOrderByWithRelationInput[]
+  cursor?: Prisma.CaseSimilarityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CaseSimilarityScalarFieldEnum | Prisma.CaseSimilarityScalarFieldEnum[]
+}
+
+/**
+ * Case.caseSimilaritiesTo
+ */
+export type Case$caseSimilaritiesToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CaseSimilarity
+   */
+  select?: Prisma.CaseSimilaritySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CaseSimilarity
+   */
+  omit?: Prisma.CaseSimilarityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CaseSimilarityInclude<ExtArgs> | null
+  where?: Prisma.CaseSimilarityWhereInput
+  orderBy?: Prisma.CaseSimilarityOrderByWithRelationInput | Prisma.CaseSimilarityOrderByWithRelationInput[]
+  cursor?: Prisma.CaseSimilarityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CaseSimilarityScalarFieldEnum | Prisma.CaseSimilarityScalarFieldEnum[]
 }
 
 /**

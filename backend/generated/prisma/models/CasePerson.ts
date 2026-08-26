@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model CasePerson
@@ -28,18 +28,24 @@ export type CasePersonMinAggregateOutputType = {
   caseId: string | null
   personId: string | null
   role: $Enums.PersonRole | null
+  notes: string | null
+  isPrimary: boolean | null
 }
 
 export type CasePersonMaxAggregateOutputType = {
   caseId: string | null
   personId: string | null
   role: $Enums.PersonRole | null
+  notes: string | null
+  isPrimary: boolean | null
 }
 
 export type CasePersonCountAggregateOutputType = {
   caseId: number
   personId: number
   role: number
+  notes: number
+  isPrimary: number
   _all: number
 }
 
@@ -48,18 +54,24 @@ export type CasePersonMinAggregateInputType = {
   caseId?: true
   personId?: true
   role?: true
+  notes?: true
+  isPrimary?: true
 }
 
 export type CasePersonMaxAggregateInputType = {
   caseId?: true
   personId?: true
   role?: true
+  notes?: true
+  isPrimary?: true
 }
 
 export type CasePersonCountAggregateInputType = {
   caseId?: true
   personId?: true
   role?: true
+  notes?: true
+  isPrimary?: true
   _all?: true
 }
 
@@ -139,6 +151,8 @@ export type CasePersonGroupByOutputType = {
   caseId: string
   personId: string
   role: $Enums.PersonRole
+  notes: string | null
+  isPrimary: boolean
   _count: CasePersonCountAggregateOutputType | null
   _min: CasePersonMinAggregateOutputType | null
   _max: CasePersonMaxAggregateOutputType | null
@@ -166,6 +180,8 @@ export type CasePersonWhereInput = {
   caseId?: Prisma.StringFilter<"CasePerson"> | string
   personId?: Prisma.StringFilter<"CasePerson"> | string
   role?: Prisma.EnumPersonRoleFilter<"CasePerson"> | $Enums.PersonRole
+  notes?: Prisma.StringNullableFilter<"CasePerson"> | string | null
+  isPrimary?: Prisma.BoolFilter<"CasePerson"> | boolean
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   person?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
 }
@@ -174,26 +190,32 @@ export type CasePersonOrderByWithRelationInput = {
   caseId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
   case?: Prisma.CaseOrderByWithRelationInput
   person?: Prisma.PersonOrderByWithRelationInput
 }
 
 export type CasePersonWhereUniqueInput = Prisma.AtLeast<{
-  caseId_personId?: Prisma.CasePersonCaseIdPersonIdCompoundUniqueInput
+  caseId_personId_role?: Prisma.CasePersonCaseIdPersonIdRoleCompoundUniqueInput
   AND?: Prisma.CasePersonWhereInput | Prisma.CasePersonWhereInput[]
   OR?: Prisma.CasePersonWhereInput[]
   NOT?: Prisma.CasePersonWhereInput | Prisma.CasePersonWhereInput[]
   caseId?: Prisma.StringFilter<"CasePerson"> | string
   personId?: Prisma.StringFilter<"CasePerson"> | string
   role?: Prisma.EnumPersonRoleFilter<"CasePerson"> | $Enums.PersonRole
+  notes?: Prisma.StringNullableFilter<"CasePerson"> | string | null
+  isPrimary?: Prisma.BoolFilter<"CasePerson"> | boolean
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   person?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
-}, "caseId_personId">
+}, "caseId_personId_role">
 
 export type CasePersonOrderByWithAggregationInput = {
   caseId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
   _count?: Prisma.CasePersonCountOrderByAggregateInput
   _max?: Prisma.CasePersonMaxOrderByAggregateInput
   _min?: Prisma.CasePersonMinOrderByAggregateInput
@@ -206,46 +228,62 @@ export type CasePersonScalarWhereWithAggregatesInput = {
   caseId?: Prisma.StringWithAggregatesFilter<"CasePerson"> | string
   personId?: Prisma.StringWithAggregatesFilter<"CasePerson"> | string
   role?: Prisma.EnumPersonRoleWithAggregatesFilter<"CasePerson"> | $Enums.PersonRole
+  notes?: Prisma.StringNullableWithAggregatesFilter<"CasePerson"> | string | null
+  isPrimary?: Prisma.BoolWithAggregatesFilter<"CasePerson"> | boolean
 }
 
 export type CasePersonCreateInput = {
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
   case: Prisma.CaseCreateNestedOneWithoutPersonsInput
-  person: Prisma.PersonCreateNestedOneWithoutCasesInput
+  person: Prisma.PersonCreateNestedOneWithoutCaseRolesInput
 }
 
 export type CasePersonUncheckedCreateInput = {
   caseId: string
   personId: string
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
 }
 
 export type CasePersonUpdateInput = {
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   case?: Prisma.CaseUpdateOneRequiredWithoutPersonsNestedInput
-  person?: Prisma.PersonUpdateOneRequiredWithoutCasesNestedInput
+  person?: Prisma.PersonUpdateOneRequiredWithoutCaseRolesNestedInput
 }
 
 export type CasePersonUncheckedUpdateInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CasePersonCreateManyInput = {
   caseId: string
   personId: string
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
 }
 
 export type CasePersonUpdateManyMutationInput = {
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CasePersonUncheckedUpdateManyInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CasePersonListRelationFilter = {
@@ -258,27 +296,34 @@ export type CasePersonOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type CasePersonCaseIdPersonIdCompoundUniqueInput = {
+export type CasePersonCaseIdPersonIdRoleCompoundUniqueInput = {
   caseId: string
   personId: string
+  role: $Enums.PersonRole
 }
 
 export type CasePersonCountOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
 }
 
 export type CasePersonMaxOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
 }
 
 export type CasePersonMinOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
 }
 
 export type CasePersonCreateNestedManyWithoutCaseInput = {
@@ -371,12 +416,16 @@ export type EnumPersonRoleFieldUpdateOperationsInput = {
 
 export type CasePersonCreateWithoutCaseInput = {
   role: $Enums.PersonRole
-  person: Prisma.PersonCreateNestedOneWithoutCasesInput
+  notes?: string | null
+  isPrimary?: boolean
+  person: Prisma.PersonCreateNestedOneWithoutCaseRolesInput
 }
 
 export type CasePersonUncheckedCreateWithoutCaseInput = {
   personId: string
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
 }
 
 export type CasePersonCreateOrConnectWithoutCaseInput = {
@@ -412,16 +461,22 @@ export type CasePersonScalarWhereInput = {
   caseId?: Prisma.StringFilter<"CasePerson"> | string
   personId?: Prisma.StringFilter<"CasePerson"> | string
   role?: Prisma.EnumPersonRoleFilter<"CasePerson"> | $Enums.PersonRole
+  notes?: Prisma.StringNullableFilter<"CasePerson"> | string | null
+  isPrimary?: Prisma.BoolFilter<"CasePerson"> | boolean
 }
 
 export type CasePersonCreateWithoutPersonInput = {
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
   case: Prisma.CaseCreateNestedOneWithoutPersonsInput
 }
 
 export type CasePersonUncheckedCreateWithoutPersonInput = {
   caseId: string
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
 }
 
 export type CasePersonCreateOrConnectWithoutPersonInput = {
@@ -453,41 +508,57 @@ export type CasePersonUpdateManyWithWhereWithoutPersonInput = {
 export type CasePersonCreateManyCaseInput = {
   personId: string
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
 }
 
 export type CasePersonUpdateWithoutCaseInput = {
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
-  person?: Prisma.PersonUpdateOneRequiredWithoutCasesNestedInput
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  person?: Prisma.PersonUpdateOneRequiredWithoutCaseRolesNestedInput
 }
 
 export type CasePersonUncheckedUpdateWithoutCaseInput = {
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CasePersonUncheckedUpdateManyWithoutCaseInput = {
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CasePersonCreateManyPersonInput = {
   caseId: string
   role: $Enums.PersonRole
+  notes?: string | null
+  isPrimary?: boolean
 }
 
 export type CasePersonUpdateWithoutPersonInput = {
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   case?: Prisma.CaseUpdateOneRequiredWithoutPersonsNestedInput
 }
 
 export type CasePersonUncheckedUpdateWithoutPersonInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CasePersonUncheckedUpdateManyWithoutPersonInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumPersonRoleFieldUpdateOperationsInput | $Enums.PersonRole
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -496,6 +567,8 @@ export type CasePersonSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   caseId?: boolean
   personId?: boolean
   role?: boolean
+  notes?: boolean
+  isPrimary?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["casePerson"]>
@@ -504,6 +577,8 @@ export type CasePersonSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   caseId?: boolean
   personId?: boolean
   role?: boolean
+  notes?: boolean
+  isPrimary?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["casePerson"]>
@@ -512,6 +587,8 @@ export type CasePersonSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   caseId?: boolean
   personId?: boolean
   role?: boolean
+  notes?: boolean
+  isPrimary?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["casePerson"]>
@@ -520,9 +597,11 @@ export type CasePersonSelectScalar = {
   caseId?: boolean
   personId?: boolean
   role?: boolean
+  notes?: boolean
+  isPrimary?: boolean
 }
 
-export type CasePersonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "personId" | "role", ExtArgs["result"]["casePerson"]>
+export type CasePersonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "personId" | "role" | "notes" | "isPrimary", ExtArgs["result"]["casePerson"]>
 export type CasePersonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
@@ -546,6 +625,8 @@ export type $CasePersonPayload<ExtArgs extends runtime.Types.Extensions.Internal
     caseId: string
     personId: string
     role: $Enums.PersonRole
+    notes: string | null
+    isPrimary: boolean
   }, ExtArgs["result"]["casePerson"]>
   composites: {}
 }
@@ -974,6 +1055,8 @@ export interface CasePersonFieldRefs {
   readonly caseId: Prisma.FieldRef<"CasePerson", 'String'>
   readonly personId: Prisma.FieldRef<"CasePerson", 'String'>
   readonly role: Prisma.FieldRef<"CasePerson", 'PersonRole'>
+  readonly notes: Prisma.FieldRef<"CasePerson", 'String'>
+  readonly isPrimary: Prisma.FieldRef<"CasePerson", 'Boolean'>
 }
     
 

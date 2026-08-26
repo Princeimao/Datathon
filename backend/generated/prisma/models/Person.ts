@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Person
@@ -29,39 +29,56 @@ export type AggregatePerson = {
 export type PersonAvgAggregateOutputType = {
   age: number | null
   riskScore: number | null
+  threatScore: number | null
+  influenceScore: number | null
 }
 
 export type PersonSumAggregateOutputType = {
   age: number | null
   riskScore: number | null
+  threatScore: number | null
+  influenceScore: number | null
 }
 
 export type PersonMinAggregateOutputType = {
   id: string | null
   name: string | null
   age: number | null
+  dateOfBirth: Date | null
   gender: $Enums.Gender | null
   riskScore: number | null
+  threatScore: number | null
+  influenceScore: number | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PersonMaxAggregateOutputType = {
   id: string | null
   name: string | null
   age: number | null
+  dateOfBirth: Date | null
   gender: $Enums.Gender | null
   riskScore: number | null
+  threatScore: number | null
+  influenceScore: number | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PersonCountAggregateOutputType = {
   id: number
   name: number
   age: number
+  dateOfBirth: number
   gender: number
-  riskScore: number
-  createdAt: number
   aliases: number
+  riskScore: number
+  threatScore: number
+  influenceScore: number
+  aiProfile: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -69,39 +86,56 @@ export type PersonCountAggregateOutputType = {
 export type PersonAvgAggregateInputType = {
   age?: true
   riskScore?: true
+  threatScore?: true
+  influenceScore?: true
 }
 
 export type PersonSumAggregateInputType = {
   age?: true
   riskScore?: true
+  threatScore?: true
+  influenceScore?: true
 }
 
 export type PersonMinAggregateInputType = {
   id?: true
   name?: true
   age?: true
+  dateOfBirth?: true
   gender?: true
   riskScore?: true
+  threatScore?: true
+  influenceScore?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type PersonMaxAggregateInputType = {
   id?: true
   name?: true
   age?: true
+  dateOfBirth?: true
   gender?: true
   riskScore?: true
+  threatScore?: true
+  influenceScore?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type PersonCountAggregateInputType = {
   id?: true
   name?: true
   age?: true
+  dateOfBirth?: true
   gender?: true
-  riskScore?: true
-  createdAt?: true
   aliases?: true
+  riskScore?: true
+  threatScore?: true
+  influenceScore?: true
+  aiProfile?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -195,10 +229,15 @@ export type PersonGroupByOutputType = {
   id: string
   name: string | null
   age: number | null
+  dateOfBirth: Date | null
   gender: $Enums.Gender
-  riskScore: number | null
-  createdAt: Date
   aliases: string[]
+  riskScore: number | null
+  threatScore: number | null
+  influenceScore: number | null
+  aiProfile: runtime.JsonValue | null
+  createdAt: Date
+  updatedAt: Date
   _count: PersonCountAggregateOutputType | null
   _avg: PersonAvgAggregateOutputType | null
   _sum: PersonSumAggregateOutputType | null
@@ -228,34 +267,54 @@ export type PersonWhereInput = {
   id?: Prisma.StringFilter<"Person"> | string
   name?: Prisma.StringNullableFilter<"Person"> | string | null
   age?: Prisma.IntNullableFilter<"Person"> | number | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
   gender?: Prisma.EnumGenderFilter<"Person"> | $Enums.Gender
-  riskScore?: Prisma.FloatNullableFilter<"Person"> | number | null
-  createdAt?: Prisma.DateTimeFilter<"Person"> | Date | string
   aliases?: Prisma.StringNullableListFilter<"Person">
+  riskScore?: Prisma.FloatNullableFilter<"Person"> | number | null
+  threatScore?: Prisma.FloatNullableFilter<"Person"> | number | null
+  influenceScore?: Prisma.FloatNullableFilter<"Person"> | number | null
+  aiProfile?: Prisma.JsonNullableFilter<"Person">
+  createdAt?: Prisma.DateTimeFilter<"Person"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Person"> | Date | string
+  caseRoles?: Prisma.CasePersonListRelationFilter
+  complainantRecords?: Prisma.ComplainantListRelationFilter
+  phones?: Prisma.PhoneOwnerListRelationFilter
+  vehicles?: Prisma.VehicleOwnerListRelationFilter
+  addresses?: Prisma.PersonLocationListRelationFilter
+  organizations?: Prisma.OrganizationMemberListRelationFilter
   outgoingRelationships?: Prisma.PersonRelationshipListRelationFilter
   incomingRelationships?: Prisma.PersonRelationshipListRelationFilter
-  cases?: Prisma.CasePersonListRelationFilter
-  phones?: Prisma.PhoneListRelationFilter
-  vehicles?: Prisma.VehicleListRelationFilter
-  addresses?: Prisma.LocationListRelationFilter
-  organization?: Prisma.OrganizationMemberListRelationFilter
+  arrestEvents?: Prisma.ArrestSurrenderAccusedListRelationFilter
+  investigationEvents?: Prisma.InvestigationEventListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
+  faceRecords?: Prisma.FaceRecordListRelationFilter
 }
 
 export type PersonOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrder
-  riskScore?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   aliases?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  threatScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  influenceScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiProfile?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  caseRoles?: Prisma.CasePersonOrderByRelationAggregateInput
+  complainantRecords?: Prisma.ComplainantOrderByRelationAggregateInput
+  phones?: Prisma.PhoneOwnerOrderByRelationAggregateInput
+  vehicles?: Prisma.VehicleOwnerOrderByRelationAggregateInput
+  addresses?: Prisma.PersonLocationOrderByRelationAggregateInput
+  organizations?: Prisma.OrganizationMemberOrderByRelationAggregateInput
   outgoingRelationships?: Prisma.PersonRelationshipOrderByRelationAggregateInput
   incomingRelationships?: Prisma.PersonRelationshipOrderByRelationAggregateInput
-  cases?: Prisma.CasePersonOrderByRelationAggregateInput
-  phones?: Prisma.PhoneOrderByRelationAggregateInput
-  vehicles?: Prisma.VehicleOrderByRelationAggregateInput
-  addresses?: Prisma.LocationOrderByRelationAggregateInput
-  organization?: Prisma.OrganizationMemberOrderByRelationAggregateInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedOrderByRelationAggregateInput
+  investigationEvents?: Prisma.InvestigationEventOrderByRelationAggregateInput
+  embeddings?: Prisma.EmbeddingOrderByRelationAggregateInput
+  faceRecords?: Prisma.FaceRecordOrderByRelationAggregateInput
 }
 
 export type PersonWhereUniqueInput = Prisma.AtLeast<{
@@ -265,27 +324,42 @@ export type PersonWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PersonWhereInput | Prisma.PersonWhereInput[]
   name?: Prisma.StringNullableFilter<"Person"> | string | null
   age?: Prisma.IntNullableFilter<"Person"> | number | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
   gender?: Prisma.EnumGenderFilter<"Person"> | $Enums.Gender
-  riskScore?: Prisma.FloatNullableFilter<"Person"> | number | null
-  createdAt?: Prisma.DateTimeFilter<"Person"> | Date | string
   aliases?: Prisma.StringNullableListFilter<"Person">
+  riskScore?: Prisma.FloatNullableFilter<"Person"> | number | null
+  threatScore?: Prisma.FloatNullableFilter<"Person"> | number | null
+  influenceScore?: Prisma.FloatNullableFilter<"Person"> | number | null
+  aiProfile?: Prisma.JsonNullableFilter<"Person">
+  createdAt?: Prisma.DateTimeFilter<"Person"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Person"> | Date | string
+  caseRoles?: Prisma.CasePersonListRelationFilter
+  complainantRecords?: Prisma.ComplainantListRelationFilter
+  phones?: Prisma.PhoneOwnerListRelationFilter
+  vehicles?: Prisma.VehicleOwnerListRelationFilter
+  addresses?: Prisma.PersonLocationListRelationFilter
+  organizations?: Prisma.OrganizationMemberListRelationFilter
   outgoingRelationships?: Prisma.PersonRelationshipListRelationFilter
   incomingRelationships?: Prisma.PersonRelationshipListRelationFilter
-  cases?: Prisma.CasePersonListRelationFilter
-  phones?: Prisma.PhoneListRelationFilter
-  vehicles?: Prisma.VehicleListRelationFilter
-  addresses?: Prisma.LocationListRelationFilter
-  organization?: Prisma.OrganizationMemberListRelationFilter
+  arrestEvents?: Prisma.ArrestSurrenderAccusedListRelationFilter
+  investigationEvents?: Prisma.InvestigationEventListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
+  faceRecords?: Prisma.FaceRecordListRelationFilter
 }, "id">
 
 export type PersonOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrder
-  riskScore?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   aliases?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  threatScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  influenceScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiProfile?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.PersonCountOrderByAggregateInput
   _avg?: Prisma.PersonAvgOrderByAggregateInput
   _max?: Prisma.PersonMaxOrderByAggregateInput
@@ -300,108 +374,173 @@ export type PersonScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Person"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"Person"> | string | null
   age?: Prisma.IntNullableWithAggregatesFilter<"Person"> | number | null
+  dateOfBirth?: Prisma.DateTimeNullableWithAggregatesFilter<"Person"> | Date | string | null
   gender?: Prisma.EnumGenderWithAggregatesFilter<"Person"> | $Enums.Gender
-  riskScore?: Prisma.FloatNullableWithAggregatesFilter<"Person"> | number | null
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Person"> | Date | string
   aliases?: Prisma.StringNullableListFilter<"Person">
+  riskScore?: Prisma.FloatNullableWithAggregatesFilter<"Person"> | number | null
+  threatScore?: Prisma.FloatNullableWithAggregatesFilter<"Person"> | number | null
+  influenceScore?: Prisma.FloatNullableWithAggregatesFilter<"Person"> | number | null
+  aiProfile?: Prisma.JsonNullableWithAggregatesFilter<"Person">
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Person"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Person"> | Date | string
 }
 
 export type PersonCreateInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
 export type PersonUncheckedCreateInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
 export type PersonUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonCreateManyInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PersonNullableScalarRelationFilter = {
+  is?: Prisma.PersonWhereInput | null
+  isNot?: Prisma.PersonWhereInput | null
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -416,48 +555,55 @@ export type PersonCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  riskScore?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   aliases?: Prisma.SortOrder
+  riskScore?: Prisma.SortOrder
+  threatScore?: Prisma.SortOrder
+  influenceScore?: Prisma.SortOrder
+  aiProfile?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PersonAvgOrderByAggregateInput = {
   age?: Prisma.SortOrder
   riskScore?: Prisma.SortOrder
+  threatScore?: Prisma.SortOrder
+  influenceScore?: Prisma.SortOrder
 }
 
 export type PersonMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   riskScore?: Prisma.SortOrder
+  threatScore?: Prisma.SortOrder
+  influenceScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PersonMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   riskScore?: Prisma.SortOrder
+  threatScore?: Prisma.SortOrder
+  influenceScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PersonSumOrderByAggregateInput = {
   age?: Prisma.SortOrder
   riskScore?: Prisma.SortOrder
-}
-
-export type PersonListRelationFilter = {
-  every?: Prisma.PersonWhereInput
-  some?: Prisma.PersonWhereInput
-  none?: Prisma.PersonWhereInput
-}
-
-export type PersonOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+  threatScore?: Prisma.SortOrder
+  influenceScore?: Prisma.SortOrder
 }
 
 export type PersonScalarRelationFilter = {
@@ -465,28 +611,24 @@ export type PersonScalarRelationFilter = {
   isNot?: Prisma.PersonWhereInput
 }
 
+export type PersonCreateNestedOneWithoutComplainantRecordsInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutComplainantRecordsInput, Prisma.PersonUncheckedCreateWithoutComplainantRecordsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutComplainantRecordsInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneWithoutComplainantRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutComplainantRecordsInput, Prisma.PersonUncheckedCreateWithoutComplainantRecordsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutComplainantRecordsInput
+  upsert?: Prisma.PersonUpsertWithoutComplainantRecordsInput
+  disconnect?: Prisma.PersonWhereInput | boolean
+  delete?: Prisma.PersonWhereInput | boolean
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutComplainantRecordsInput, Prisma.PersonUpdateWithoutComplainantRecordsInput>, Prisma.PersonUncheckedUpdateWithoutComplainantRecordsInput>
+}
+
 export type PersonCreatealiasesInput = {
   set: string[]
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type EnumGenderFieldUpdateOperationsInput = {
-  set?: $Enums.Gender
-}
-
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type PersonUpdatealiasesInput = {
@@ -494,132 +636,88 @@ export type PersonUpdatealiasesInput = {
   push?: string | string[]
 }
 
-export type PersonCreateNestedManyWithoutVehiclesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput> | Prisma.PersonCreateWithoutVehiclesInput[] | Prisma.PersonUncheckedCreateWithoutVehiclesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutVehiclesInput | Prisma.PersonCreateOrConnectWithoutVehiclesInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUncheckedCreateNestedManyWithoutVehiclesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput> | Prisma.PersonCreateWithoutVehiclesInput[] | Prisma.PersonUncheckedCreateWithoutVehiclesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutVehiclesInput | Prisma.PersonCreateOrConnectWithoutVehiclesInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUpdateManyWithoutVehiclesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput> | Prisma.PersonCreateWithoutVehiclesInput[] | Prisma.PersonUncheckedCreateWithoutVehiclesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutVehiclesInput | Prisma.PersonCreateOrConnectWithoutVehiclesInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutVehiclesInput | Prisma.PersonUpsertWithWhereUniqueWithoutVehiclesInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutVehiclesInput | Prisma.PersonUpdateWithWhereUniqueWithoutVehiclesInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutVehiclesInput | Prisma.PersonUpdateManyWithWhereWithoutVehiclesInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonUncheckedUpdateManyWithoutVehiclesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput> | Prisma.PersonCreateWithoutVehiclesInput[] | Prisma.PersonUncheckedCreateWithoutVehiclesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutVehiclesInput | Prisma.PersonCreateOrConnectWithoutVehiclesInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutVehiclesInput | Prisma.PersonUpsertWithWhereUniqueWithoutVehiclesInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutVehiclesInput | Prisma.PersonUpdateWithWhereUniqueWithoutVehiclesInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutVehiclesInput | Prisma.PersonUpdateManyWithWhereWithoutVehiclesInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonCreateNestedManyWithoutPhonesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput> | Prisma.PersonCreateWithoutPhonesInput[] | Prisma.PersonUncheckedCreateWithoutPhonesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPhonesInput | Prisma.PersonCreateOrConnectWithoutPhonesInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUncheckedCreateNestedManyWithoutPhonesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput> | Prisma.PersonCreateWithoutPhonesInput[] | Prisma.PersonUncheckedCreateWithoutPhonesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPhonesInput | Prisma.PersonCreateOrConnectWithoutPhonesInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUpdateManyWithoutPhonesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput> | Prisma.PersonCreateWithoutPhonesInput[] | Prisma.PersonUncheckedCreateWithoutPhonesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPhonesInput | Prisma.PersonCreateOrConnectWithoutPhonesInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutPhonesInput | Prisma.PersonUpsertWithWhereUniqueWithoutPhonesInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutPhonesInput | Prisma.PersonUpdateWithWhereUniqueWithoutPhonesInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutPhonesInput | Prisma.PersonUpdateManyWithWhereWithoutPhonesInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonUncheckedUpdateManyWithoutPhonesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput> | Prisma.PersonCreateWithoutPhonesInput[] | Prisma.PersonUncheckedCreateWithoutPhonesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPhonesInput | Prisma.PersonCreateOrConnectWithoutPhonesInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutPhonesInput | Prisma.PersonUpsertWithWhereUniqueWithoutPhonesInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutPhonesInput | Prisma.PersonUpdateWithWhereUniqueWithoutPhonesInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutPhonesInput | Prisma.PersonUpdateManyWithWhereWithoutPhonesInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonCreateNestedManyWithoutAddressesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput> | Prisma.PersonCreateWithoutAddressesInput[] | Prisma.PersonUncheckedCreateWithoutAddressesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutAddressesInput | Prisma.PersonCreateOrConnectWithoutAddressesInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUncheckedCreateNestedManyWithoutAddressesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput> | Prisma.PersonCreateWithoutAddressesInput[] | Prisma.PersonUncheckedCreateWithoutAddressesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutAddressesInput | Prisma.PersonCreateOrConnectWithoutAddressesInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUpdateManyWithoutAddressesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput> | Prisma.PersonCreateWithoutAddressesInput[] | Prisma.PersonUncheckedCreateWithoutAddressesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutAddressesInput | Prisma.PersonCreateOrConnectWithoutAddressesInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutAddressesInput | Prisma.PersonUpsertWithWhereUniqueWithoutAddressesInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutAddressesInput | Prisma.PersonUpdateWithWhereUniqueWithoutAddressesInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutAddressesInput | Prisma.PersonUpdateManyWithWhereWithoutAddressesInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonUncheckedUpdateManyWithoutAddressesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput> | Prisma.PersonCreateWithoutAddressesInput[] | Prisma.PersonUncheckedCreateWithoutAddressesInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutAddressesInput | Prisma.PersonCreateOrConnectWithoutAddressesInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutAddressesInput | Prisma.PersonUpsertWithWhereUniqueWithoutAddressesInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutAddressesInput | Prisma.PersonUpdateWithWhereUniqueWithoutAddressesInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutAddressesInput | Prisma.PersonUpdateManyWithWhereWithoutAddressesInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonCreateNestedOneWithoutCasesInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutCasesInput, Prisma.PersonUncheckedCreateWithoutCasesInput>
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutCasesInput
+export type PersonCreateNestedOneWithoutCaseRolesInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutCaseRolesInput, Prisma.PersonUncheckedCreateWithoutCaseRolesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutCaseRolesInput
   connect?: Prisma.PersonWhereUniqueInput
 }
 
-export type PersonUpdateOneRequiredWithoutCasesNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutCasesInput, Prisma.PersonUncheckedCreateWithoutCasesInput>
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutCasesInput
-  upsert?: Prisma.PersonUpsertWithoutCasesInput
+export type PersonUpdateOneRequiredWithoutCaseRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutCaseRolesInput, Prisma.PersonUncheckedCreateWithoutCaseRolesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutCaseRolesInput
+  upsert?: Prisma.PersonUpsertWithoutCaseRolesInput
   connect?: Prisma.PersonWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutCasesInput, Prisma.PersonUpdateWithoutCasesInput>, Prisma.PersonUncheckedUpdateWithoutCasesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutCaseRolesInput, Prisma.PersonUpdateWithoutCaseRolesInput>, Prisma.PersonUncheckedUpdateWithoutCaseRolesInput>
+}
+
+export type PersonCreateNestedOneWithoutPhonesInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPhonesInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneRequiredWithoutPhonesNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPhonesInput
+  upsert?: Prisma.PersonUpsertWithoutPhonesInput
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutPhonesInput, Prisma.PersonUpdateWithoutPhonesInput>, Prisma.PersonUncheckedUpdateWithoutPhonesInput>
+}
+
+export type PersonCreateNestedOneWithoutVehiclesInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutVehiclesInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneRequiredWithoutVehiclesNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutVehiclesInput
+  upsert?: Prisma.PersonUpsertWithoutVehiclesInput
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutVehiclesInput, Prisma.PersonUpdateWithoutVehiclesInput>, Prisma.PersonUncheckedUpdateWithoutVehiclesInput>
+}
+
+export type PersonCreateNestedOneWithoutArrestEventsInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutArrestEventsInput, Prisma.PersonUncheckedCreateWithoutArrestEventsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutArrestEventsInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneRequiredWithoutArrestEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutArrestEventsInput, Prisma.PersonUncheckedCreateWithoutArrestEventsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutArrestEventsInput
+  upsert?: Prisma.PersonUpsertWithoutArrestEventsInput
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutArrestEventsInput, Prisma.PersonUpdateWithoutArrestEventsInput>, Prisma.PersonUncheckedUpdateWithoutArrestEventsInput>
+}
+
+export type PersonCreateNestedOneWithoutAddressesInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutAddressesInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneRequiredWithoutAddressesNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutAddressesInput
+  upsert?: Prisma.PersonUpsertWithoutAddressesInput
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutAddressesInput, Prisma.PersonUpdateWithoutAddressesInput>, Prisma.PersonUncheckedUpdateWithoutAddressesInput>
+}
+
+export type PersonCreateNestedOneWithoutOrganizationsInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationsInput, Prisma.PersonUncheckedCreateWithoutOrganizationsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutOrganizationsInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneRequiredWithoutOrganizationsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationsInput, Prisma.PersonUncheckedCreateWithoutOrganizationsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutOrganizationsInput
+  upsert?: Prisma.PersonUpsertWithoutOrganizationsInput
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutOrganizationsInput, Prisma.PersonUpdateWithoutOrganizationsInput>, Prisma.PersonUncheckedUpdateWithoutOrganizationsInput>
 }
 
 export type PersonCreateNestedOneWithoutOutgoingRelationshipsInput = {
@@ -650,116 +748,344 @@ export type PersonUpdateOneRequiredWithoutIncomingRelationshipsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutIncomingRelationshipsInput, Prisma.PersonUpdateWithoutIncomingRelationshipsInput>, Prisma.PersonUncheckedUpdateWithoutIncomingRelationshipsInput>
 }
 
-export type PersonCreateNestedOneWithoutOrganizationInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationInput, Prisma.PersonUncheckedCreateWithoutOrganizationInput>
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutOrganizationInput
+export type PersonCreateNestedOneWithoutInvestigationEventsInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutInvestigationEventsInput, Prisma.PersonUncheckedCreateWithoutInvestigationEventsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutInvestigationEventsInput
   connect?: Prisma.PersonWhereUniqueInput
 }
 
-export type PersonUpdateOneRequiredWithoutOrganizationNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationInput, Prisma.PersonUncheckedCreateWithoutOrganizationInput>
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutOrganizationInput
-  upsert?: Prisma.PersonUpsertWithoutOrganizationInput
+export type PersonUpdateOneWithoutInvestigationEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutInvestigationEventsInput, Prisma.PersonUncheckedCreateWithoutInvestigationEventsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutInvestigationEventsInput
+  upsert?: Prisma.PersonUpsertWithoutInvestigationEventsInput
+  disconnect?: Prisma.PersonWhereInput | boolean
+  delete?: Prisma.PersonWhereInput | boolean
   connect?: Prisma.PersonWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutOrganizationInput, Prisma.PersonUpdateWithoutOrganizationInput>, Prisma.PersonUncheckedUpdateWithoutOrganizationInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutInvestigationEventsInput, Prisma.PersonUpdateWithoutInvestigationEventsInput>, Prisma.PersonUncheckedUpdateWithoutInvestigationEventsInput>
 }
 
-export type PersonCreateWithoutVehiclesInput = {
+export type PersonCreateNestedOneWithoutEmbeddingsInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutEmbeddingsInput, Prisma.PersonUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutEmbeddingsInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneWithoutEmbeddingsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutEmbeddingsInput, Prisma.PersonUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutEmbeddingsInput
+  upsert?: Prisma.PersonUpsertWithoutEmbeddingsInput
+  disconnect?: Prisma.PersonWhereInput | boolean
+  delete?: Prisma.PersonWhereInput | boolean
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutEmbeddingsInput, Prisma.PersonUpdateWithoutEmbeddingsInput>, Prisma.PersonUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type PersonCreateNestedOneWithoutFaceRecordsInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutFaceRecordsInput, Prisma.PersonUncheckedCreateWithoutFaceRecordsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutFaceRecordsInput
+  connect?: Prisma.PersonWhereUniqueInput
+}
+
+export type PersonUpdateOneWithoutFaceRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutFaceRecordsInput, Prisma.PersonUncheckedCreateWithoutFaceRecordsInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutFaceRecordsInput
+  upsert?: Prisma.PersonUpsertWithoutFaceRecordsInput
+  disconnect?: Prisma.PersonWhereInput | boolean
+  delete?: Prisma.PersonWhereInput | boolean
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutFaceRecordsInput, Prisma.PersonUpdateWithoutFaceRecordsInput>, Prisma.PersonUncheckedUpdateWithoutFaceRecordsInput>
+}
+
+export type PersonCreateWithoutComplainantRecordsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
-export type PersonUncheckedCreateWithoutVehiclesInput = {
+export type PersonUncheckedCreateWithoutComplainantRecordsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
-export type PersonCreateOrConnectWithoutVehiclesInput = {
+export type PersonCreateOrConnectWithoutComplainantRecordsInput = {
   where: Prisma.PersonWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutComplainantRecordsInput, Prisma.PersonUncheckedCreateWithoutComplainantRecordsInput>
 }
 
-export type PersonUpsertWithWhereUniqueWithoutVehiclesInput = {
+export type PersonUpsertWithoutComplainantRecordsInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutComplainantRecordsInput, Prisma.PersonUncheckedUpdateWithoutComplainantRecordsInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutComplainantRecordsInput, Prisma.PersonUncheckedCreateWithoutComplainantRecordsInput>
+  where?: Prisma.PersonWhereInput
+}
+
+export type PersonUpdateToOneWithWhereWithoutComplainantRecordsInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutComplainantRecordsInput, Prisma.PersonUncheckedUpdateWithoutComplainantRecordsInput>
+}
+
+export type PersonUpdateWithoutComplainantRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonUncheckedUpdateWithoutComplainantRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonCreateWithoutCaseRolesInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
+}
+
+export type PersonUncheckedCreateWithoutCaseRolesInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
+}
+
+export type PersonCreateOrConnectWithoutCaseRolesInput = {
   where: Prisma.PersonWhereUniqueInput
-  update: Prisma.XOR<Prisma.PersonUpdateWithoutVehiclesInput, Prisma.PersonUncheckedUpdateWithoutVehiclesInput>
-  create: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutCaseRolesInput, Prisma.PersonUncheckedCreateWithoutCaseRolesInput>
 }
 
-export type PersonUpdateWithWhereUniqueWithoutVehiclesInput = {
-  where: Prisma.PersonWhereUniqueInput
-  data: Prisma.XOR<Prisma.PersonUpdateWithoutVehiclesInput, Prisma.PersonUncheckedUpdateWithoutVehiclesInput>
+export type PersonUpsertWithoutCaseRolesInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutCaseRolesInput, Prisma.PersonUncheckedUpdateWithoutCaseRolesInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutCaseRolesInput, Prisma.PersonUncheckedCreateWithoutCaseRolesInput>
+  where?: Prisma.PersonWhereInput
 }
 
-export type PersonUpdateManyWithWhereWithoutVehiclesInput = {
-  where: Prisma.PersonScalarWhereInput
-  data: Prisma.XOR<Prisma.PersonUpdateManyMutationInput, Prisma.PersonUncheckedUpdateManyWithoutVehiclesInput>
+export type PersonUpdateToOneWithWhereWithoutCaseRolesInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutCaseRolesInput, Prisma.PersonUncheckedUpdateWithoutCaseRolesInput>
 }
 
-export type PersonScalarWhereInput = {
-  AND?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-  OR?: Prisma.PersonScalarWhereInput[]
-  NOT?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-  id?: Prisma.StringFilter<"Person"> | string
-  name?: Prisma.StringNullableFilter<"Person"> | string | null
-  age?: Prisma.IntNullableFilter<"Person"> | number | null
-  gender?: Prisma.EnumGenderFilter<"Person"> | $Enums.Gender
-  riskScore?: Prisma.FloatNullableFilter<"Person"> | number | null
-  createdAt?: Prisma.DateTimeFilter<"Person"> | Date | string
-  aliases?: Prisma.StringNullableListFilter<"Person">
+export type PersonUpdateWithoutCaseRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonUncheckedUpdateWithoutCaseRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonCreateWithoutPhonesInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
 export type PersonUncheckedCreateWithoutPhonesInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
 export type PersonCreateOrConnectWithoutPhonesInput = {
@@ -767,52 +1093,359 @@ export type PersonCreateOrConnectWithoutPhonesInput = {
   create: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput>
 }
 
-export type PersonUpsertWithWhereUniqueWithoutPhonesInput = {
-  where: Prisma.PersonWhereUniqueInput
+export type PersonUpsertWithoutPhonesInput = {
   update: Prisma.XOR<Prisma.PersonUpdateWithoutPhonesInput, Prisma.PersonUncheckedUpdateWithoutPhonesInput>
   create: Prisma.XOR<Prisma.PersonCreateWithoutPhonesInput, Prisma.PersonUncheckedCreateWithoutPhonesInput>
+  where?: Prisma.PersonWhereInput
 }
 
-export type PersonUpdateWithWhereUniqueWithoutPhonesInput = {
-  where: Prisma.PersonWhereUniqueInput
+export type PersonUpdateToOneWithWhereWithoutPhonesInput = {
+  where?: Prisma.PersonWhereInput
   data: Prisma.XOR<Prisma.PersonUpdateWithoutPhonesInput, Prisma.PersonUncheckedUpdateWithoutPhonesInput>
 }
 
-export type PersonUpdateManyWithWhereWithoutPhonesInput = {
-  where: Prisma.PersonScalarWhereInput
-  data: Prisma.XOR<Prisma.PersonUpdateManyMutationInput, Prisma.PersonUncheckedUpdateManyWithoutPhonesInput>
+export type PersonUpdateWithoutPhonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonUncheckedUpdateWithoutPhonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonCreateWithoutVehiclesInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
+}
+
+export type PersonUncheckedCreateWithoutVehiclesInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
+}
+
+export type PersonCreateOrConnectWithoutVehiclesInput = {
+  where: Prisma.PersonWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput>
+}
+
+export type PersonUpsertWithoutVehiclesInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutVehiclesInput, Prisma.PersonUncheckedUpdateWithoutVehiclesInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutVehiclesInput, Prisma.PersonUncheckedCreateWithoutVehiclesInput>
+  where?: Prisma.PersonWhereInput
+}
+
+export type PersonUpdateToOneWithWhereWithoutVehiclesInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutVehiclesInput, Prisma.PersonUncheckedUpdateWithoutVehiclesInput>
+}
+
+export type PersonUpdateWithoutVehiclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonUncheckedUpdateWithoutVehiclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonCreateWithoutArrestEventsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
+}
+
+export type PersonUncheckedCreateWithoutArrestEventsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
+}
+
+export type PersonCreateOrConnectWithoutArrestEventsInput = {
+  where: Prisma.PersonWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonCreateWithoutArrestEventsInput, Prisma.PersonUncheckedCreateWithoutArrestEventsInput>
+}
+
+export type PersonUpsertWithoutArrestEventsInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutArrestEventsInput, Prisma.PersonUncheckedUpdateWithoutArrestEventsInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutArrestEventsInput, Prisma.PersonUncheckedCreateWithoutArrestEventsInput>
+  where?: Prisma.PersonWhereInput
+}
+
+export type PersonUpdateToOneWithWhereWithoutArrestEventsInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutArrestEventsInput, Prisma.PersonUncheckedUpdateWithoutArrestEventsInput>
+}
+
+export type PersonUpdateWithoutArrestEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonUncheckedUpdateWithoutArrestEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonCreateWithoutAddressesInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
 export type PersonUncheckedCreateWithoutAddressesInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
 export type PersonCreateOrConnectWithoutAddressesInput = {
@@ -820,132 +1453,239 @@ export type PersonCreateOrConnectWithoutAddressesInput = {
   create: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput>
 }
 
-export type PersonUpsertWithWhereUniqueWithoutAddressesInput = {
-  where: Prisma.PersonWhereUniqueInput
+export type PersonUpsertWithoutAddressesInput = {
   update: Prisma.XOR<Prisma.PersonUpdateWithoutAddressesInput, Prisma.PersonUncheckedUpdateWithoutAddressesInput>
   create: Prisma.XOR<Prisma.PersonCreateWithoutAddressesInput, Prisma.PersonUncheckedCreateWithoutAddressesInput>
+  where?: Prisma.PersonWhereInput
 }
 
-export type PersonUpdateWithWhereUniqueWithoutAddressesInput = {
-  where: Prisma.PersonWhereUniqueInput
+export type PersonUpdateToOneWithWhereWithoutAddressesInput = {
+  where?: Prisma.PersonWhereInput
   data: Prisma.XOR<Prisma.PersonUpdateWithoutAddressesInput, Prisma.PersonUncheckedUpdateWithoutAddressesInput>
 }
 
-export type PersonUpdateManyWithWhereWithoutAddressesInput = {
-  where: Prisma.PersonScalarWhereInput
-  data: Prisma.XOR<Prisma.PersonUpdateManyMutationInput, Prisma.PersonUncheckedUpdateManyWithoutAddressesInput>
-}
-
-export type PersonCreateWithoutCasesInput = {
-  id?: string
-  name?: string | null
-  age?: number | null
-  gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
-  aliases?: Prisma.PersonCreatealiasesInput | string[]
-  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
-  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
-}
-
-export type PersonUncheckedCreateWithoutCasesInput = {
-  id?: string
-  name?: string | null
-  age?: number | null
-  gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
-  aliases?: Prisma.PersonCreatealiasesInput | string[]
-  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
-  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
-}
-
-export type PersonCreateOrConnectWithoutCasesInput = {
-  where: Prisma.PersonWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonCreateWithoutCasesInput, Prisma.PersonUncheckedCreateWithoutCasesInput>
-}
-
-export type PersonUpsertWithoutCasesInput = {
-  update: Prisma.XOR<Prisma.PersonUpdateWithoutCasesInput, Prisma.PersonUncheckedUpdateWithoutCasesInput>
-  create: Prisma.XOR<Prisma.PersonCreateWithoutCasesInput, Prisma.PersonUncheckedCreateWithoutCasesInput>
-  where?: Prisma.PersonWhereInput
-}
-
-export type PersonUpdateToOneWithWhereWithoutCasesInput = {
-  where?: Prisma.PersonWhereInput
-  data: Prisma.XOR<Prisma.PersonUpdateWithoutCasesInput, Prisma.PersonUncheckedUpdateWithoutCasesInput>
-}
-
-export type PersonUpdateWithoutCasesInput = {
+export type PersonUpdateWithoutAddressesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonUncheckedUpdateWithoutCasesInput = {
+export type PersonUncheckedUpdateWithoutAddressesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonCreateWithoutOrganizationsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
+}
+
+export type PersonUncheckedCreateWithoutOrganizationsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
+}
+
+export type PersonCreateOrConnectWithoutOrganizationsInput = {
+  where: Prisma.PersonWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationsInput, Prisma.PersonUncheckedCreateWithoutOrganizationsInput>
+}
+
+export type PersonUpsertWithoutOrganizationsInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutOrganizationsInput, Prisma.PersonUncheckedUpdateWithoutOrganizationsInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationsInput, Prisma.PersonUncheckedCreateWithoutOrganizationsInput>
+  where?: Prisma.PersonWhereInput
+}
+
+export type PersonUpdateToOneWithWhereWithoutOrganizationsInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutOrganizationsInput, Prisma.PersonUncheckedUpdateWithoutOrganizationsInput>
+}
+
+export type PersonUpdateWithoutOrganizationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
+}
+
+export type PersonUncheckedUpdateWithoutOrganizationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonCreateWithoutOutgoingRelationshipsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
 export type PersonUncheckedCreateWithoutOutgoingRelationshipsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
 export type PersonCreateOrConnectWithoutOutgoingRelationshipsInput = {
@@ -957,32 +1697,52 @@ export type PersonCreateWithoutIncomingRelationshipsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
 export type PersonUncheckedCreateWithoutIncomingRelationshipsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
-  organization?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
 export type PersonCreateOrConnectWithoutIncomingRelationshipsInput = {
@@ -1005,32 +1765,52 @@ export type PersonUpdateWithoutOutgoingRelationshipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonUncheckedUpdateWithoutOutgoingRelationshipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonUpsertWithoutIncomingRelationshipsInput = {
@@ -1048,238 +1828,412 @@ export type PersonUpdateWithoutIncomingRelationshipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
 }
 
 export type PersonUncheckedUpdateWithoutIncomingRelationshipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonCreateWithoutOrganizationInput = {
+export type PersonCreateWithoutInvestigationEventsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationCreateNestedManyWithoutResidentsInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
 }
 
-export type PersonUncheckedCreateWithoutOrganizationInput = {
+export type PersonUncheckedCreateWithoutInvestigationEventsInput = {
   id?: string
   name?: string | null
   age?: number | null
+  dateOfBirth?: Date | string | null
   gender?: $Enums.Gender
-  riskScore?: number | null
-  createdAt?: Date | string
   aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
-  cases?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
-  phones?: Prisma.PhoneUncheckedCreateNestedManyWithoutOwnersInput
-  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutOwnersInput
-  addresses?: Prisma.LocationUncheckedCreateNestedManyWithoutResidentsInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
 }
 
-export type PersonCreateOrConnectWithoutOrganizationInput = {
+export type PersonCreateOrConnectWithoutInvestigationEventsInput = {
   where: Prisma.PersonWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationInput, Prisma.PersonUncheckedCreateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutInvestigationEventsInput, Prisma.PersonUncheckedCreateWithoutInvestigationEventsInput>
 }
 
-export type PersonUpsertWithoutOrganizationInput = {
-  update: Prisma.XOR<Prisma.PersonUpdateWithoutOrganizationInput, Prisma.PersonUncheckedUpdateWithoutOrganizationInput>
-  create: Prisma.XOR<Prisma.PersonCreateWithoutOrganizationInput, Prisma.PersonUncheckedCreateWithoutOrganizationInput>
+export type PersonUpsertWithoutInvestigationEventsInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutInvestigationEventsInput, Prisma.PersonUncheckedUpdateWithoutInvestigationEventsInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutInvestigationEventsInput, Prisma.PersonUncheckedCreateWithoutInvestigationEventsInput>
   where?: Prisma.PersonWhereInput
 }
 
-export type PersonUpdateToOneWithWhereWithoutOrganizationInput = {
+export type PersonUpdateToOneWithWhereWithoutInvestigationEventsInput = {
   where?: Prisma.PersonWhereInput
-  data: Prisma.XOR<Prisma.PersonUpdateWithoutOrganizationInput, Prisma.PersonUncheckedUpdateWithoutOrganizationInput>
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutInvestigationEventsInput, Prisma.PersonUncheckedUpdateWithoutInvestigationEventsInput>
 }
 
-export type PersonUpdateWithoutOrganizationInput = {
+export type PersonUpdateWithoutInvestigationEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonUncheckedUpdateWithoutOrganizationInput = {
+export type PersonUncheckedUpdateWithoutInvestigationEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonUpdateWithoutVehiclesInput = {
+export type PersonCreateWithoutEmbeddingsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutPersonInput
+}
+
+export type PersonUncheckedCreateWithoutEmbeddingsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutPersonInput
+}
+
+export type PersonCreateOrConnectWithoutEmbeddingsInput = {
+  where: Prisma.PersonWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonCreateWithoutEmbeddingsInput, Prisma.PersonUncheckedCreateWithoutEmbeddingsInput>
+}
+
+export type PersonUpsertWithoutEmbeddingsInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutEmbeddingsInput, Prisma.PersonUncheckedUpdateWithoutEmbeddingsInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutEmbeddingsInput, Prisma.PersonUncheckedCreateWithoutEmbeddingsInput>
+  where?: Prisma.PersonWhereInput
+}
+
+export type PersonUpdateToOneWithWhereWithoutEmbeddingsInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutEmbeddingsInput, Prisma.PersonUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type PersonUpdateWithoutEmbeddingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonUncheckedUpdateWithoutVehiclesInput = {
+export type PersonUncheckedUpdateWithoutEmbeddingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonUncheckedUpdateManyWithoutVehiclesInput = {
+export type PersonCreateWithoutFaceRecordsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPersonInput
+}
+
+export type PersonUncheckedCreateWithoutFaceRecordsInput = {
+  id?: string
+  name?: string | null
+  age?: number | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender
+  aliases?: Prisma.PersonCreatealiasesInput | string[]
+  riskScore?: number | null
+  threatScore?: number | null
+  influenceScore?: number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseRoles?: Prisma.CasePersonUncheckedCreateNestedManyWithoutPersonInput
+  complainantRecords?: Prisma.ComplainantUncheckedCreateNestedManyWithoutPersonInput
+  phones?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPersonInput
+  vehicles?: Prisma.VehicleOwnerUncheckedCreateNestedManyWithoutPersonInput
+  addresses?: Prisma.PersonLocationUncheckedCreateNestedManyWithoutPersonInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutPersonInput
+  outgoingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutSourcePersonInput
+  incomingRelationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutTargetPersonInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedCreateNestedManyWithoutPersonInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutPersonInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPersonInput
+}
+
+export type PersonCreateOrConnectWithoutFaceRecordsInput = {
+  where: Prisma.PersonWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonCreateWithoutFaceRecordsInput, Prisma.PersonUncheckedCreateWithoutFaceRecordsInput>
+}
+
+export type PersonUpsertWithoutFaceRecordsInput = {
+  update: Prisma.XOR<Prisma.PersonUpdateWithoutFaceRecordsInput, Prisma.PersonUncheckedUpdateWithoutFaceRecordsInput>
+  create: Prisma.XOR<Prisma.PersonCreateWithoutFaceRecordsInput, Prisma.PersonUncheckedCreateWithoutFaceRecordsInput>
+  where?: Prisma.PersonWhereInput
+}
+
+export type PersonUpdateToOneWithWhereWithoutFaceRecordsInput = {
+  where?: Prisma.PersonWhereInput
+  data: Prisma.XOR<Prisma.PersonUpdateWithoutFaceRecordsInput, Prisma.PersonUncheckedUpdateWithoutFaceRecordsInput>
+}
+
+export type PersonUpdateWithoutFaceRecordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
-}
-
-export type PersonUpdateWithoutPhonesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPersonNestedInput
 }
 
-export type PersonUncheckedUpdateWithoutPhonesInput = {
+export type PersonUncheckedUpdateWithoutFaceRecordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  threatScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  influenceScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  aiProfile?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseRoles?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
+  complainantRecords?: Prisma.ComplainantUncheckedUpdateManyWithoutPersonNestedInput
+  phones?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  vehicles?: Prisma.VehicleOwnerUncheckedUpdateManyWithoutPersonNestedInput
+  addresses?: Prisma.PersonLocationUncheckedUpdateManyWithoutPersonNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
   outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
   incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  addresses?: Prisma.LocationUncheckedUpdateManyWithoutResidentsNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
-}
-
-export type PersonUncheckedUpdateManyWithoutPhonesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  aliases?: Prisma.PersonUpdatealiasesInput | string[]
-}
-
-export type PersonUpdateWithoutAddressesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  aliases?: Prisma.PersonUpdatealiasesInput | string[]
-  outgoingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutSourcePersonNestedInput
-  incomingRelationships?: Prisma.PersonRelationshipUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUpdateManyWithoutOwnersNestedInput
-  organization?: Prisma.OrganizationMemberUpdateManyWithoutPersonNestedInput
-}
-
-export type PersonUncheckedUpdateWithoutAddressesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  aliases?: Prisma.PersonUpdatealiasesInput | string[]
-  outgoingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutSourcePersonNestedInput
-  incomingRelationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonNestedInput
-  cases?: Prisma.CasePersonUncheckedUpdateManyWithoutPersonNestedInput
-  phones?: Prisma.PhoneUncheckedUpdateManyWithoutOwnersNestedInput
-  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutOwnersNestedInput
-  organization?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutPersonNestedInput
-}
-
-export type PersonUncheckedUpdateManyWithoutAddressesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  riskScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  aliases?: Prisma.PersonUpdatealiasesInput | string[]
+  arrestEvents?: Prisma.ArrestSurrenderAccusedUncheckedUpdateManyWithoutPersonNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutPersonNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPersonNestedInput
 }
 
 
@@ -1288,23 +2242,33 @@ export type PersonUncheckedUpdateManyWithoutAddressesInput = {
  */
 
 export type PersonCountOutputType = {
-  outgoingRelationships: number
-  incomingRelationships: number
-  cases: number
+  caseRoles: number
+  complainantRecords: number
   phones: number
   vehicles: number
   addresses: number
-  organization: number
+  organizations: number
+  outgoingRelationships: number
+  incomingRelationships: number
+  arrestEvents: number
+  investigationEvents: number
+  embeddings: number
+  faceRecords: number
 }
 
 export type PersonCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  outgoingRelationships?: boolean | PersonCountOutputTypeCountOutgoingRelationshipsArgs
-  incomingRelationships?: boolean | PersonCountOutputTypeCountIncomingRelationshipsArgs
-  cases?: boolean | PersonCountOutputTypeCountCasesArgs
+  caseRoles?: boolean | PersonCountOutputTypeCountCaseRolesArgs
+  complainantRecords?: boolean | PersonCountOutputTypeCountComplainantRecordsArgs
   phones?: boolean | PersonCountOutputTypeCountPhonesArgs
   vehicles?: boolean | PersonCountOutputTypeCountVehiclesArgs
   addresses?: boolean | PersonCountOutputTypeCountAddressesArgs
-  organization?: boolean | PersonCountOutputTypeCountOrganizationArgs
+  organizations?: boolean | PersonCountOutputTypeCountOrganizationsArgs
+  outgoingRelationships?: boolean | PersonCountOutputTypeCountOutgoingRelationshipsArgs
+  incomingRelationships?: boolean | PersonCountOutputTypeCountIncomingRelationshipsArgs
+  arrestEvents?: boolean | PersonCountOutputTypeCountArrestEventsArgs
+  investigationEvents?: boolean | PersonCountOutputTypeCountInvestigationEventsArgs
+  embeddings?: boolean | PersonCountOutputTypeCountEmbeddingsArgs
+  faceRecords?: boolean | PersonCountOutputTypeCountFaceRecordsArgs
 }
 
 /**
@@ -1315,6 +2279,48 @@ export type PersonCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the PersonCountOutputType
    */
   select?: Prisma.PersonCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PersonCountOutputType without action
+ */
+export type PersonCountOutputTypeCountCaseRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CasePersonWhereInput
+}
+
+/**
+ * PersonCountOutputType without action
+ */
+export type PersonCountOutputTypeCountComplainantRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ComplainantWhereInput
+}
+
+/**
+ * PersonCountOutputType without action
+ */
+export type PersonCountOutputTypeCountPhonesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PhoneOwnerWhereInput
+}
+
+/**
+ * PersonCountOutputType without action
+ */
+export type PersonCountOutputTypeCountVehiclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VehicleOwnerWhereInput
+}
+
+/**
+ * PersonCountOutputType without action
+ */
+export type PersonCountOutputTypeCountAddressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PersonLocationWhereInput
+}
+
+/**
+ * PersonCountOutputType without action
+ */
+export type PersonCountOutputTypeCountOrganizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrganizationMemberWhereInput
 }
 
 /**
@@ -1334,36 +2340,29 @@ export type PersonCountOutputTypeCountIncomingRelationshipsArgs<ExtArgs extends 
 /**
  * PersonCountOutputType without action
  */
-export type PersonCountOutputTypeCountCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CasePersonWhereInput
+export type PersonCountOutputTypeCountArrestEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ArrestSurrenderAccusedWhereInput
 }
 
 /**
  * PersonCountOutputType without action
  */
-export type PersonCountOutputTypeCountPhonesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PhoneWhereInput
+export type PersonCountOutputTypeCountInvestigationEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvestigationEventWhereInput
 }
 
 /**
  * PersonCountOutputType without action
  */
-export type PersonCountOutputTypeCountVehiclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.VehicleWhereInput
+export type PersonCountOutputTypeCountEmbeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmbeddingWhereInput
 }
 
 /**
  * PersonCountOutputType without action
  */
-export type PersonCountOutputTypeCountAddressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LocationWhereInput
-}
-
-/**
- * PersonCountOutputType without action
- */
-export type PersonCountOutputTypeCountOrganizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrganizationMemberWhereInput
+export type PersonCountOutputTypeCountFaceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FaceRecordWhereInput
 }
 
 
@@ -1371,17 +2370,27 @@ export type PersonSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   id?: boolean
   name?: boolean
   age?: boolean
+  dateOfBirth?: boolean
   gender?: boolean
-  riskScore?: boolean
-  createdAt?: boolean
   aliases?: boolean
-  outgoingRelationships?: boolean | Prisma.Person$outgoingRelationshipsArgs<ExtArgs>
-  incomingRelationships?: boolean | Prisma.Person$incomingRelationshipsArgs<ExtArgs>
-  cases?: boolean | Prisma.Person$casesArgs<ExtArgs>
+  riskScore?: boolean
+  threatScore?: boolean
+  influenceScore?: boolean
+  aiProfile?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  caseRoles?: boolean | Prisma.Person$caseRolesArgs<ExtArgs>
+  complainantRecords?: boolean | Prisma.Person$complainantRecordsArgs<ExtArgs>
   phones?: boolean | Prisma.Person$phonesArgs<ExtArgs>
   vehicles?: boolean | Prisma.Person$vehiclesArgs<ExtArgs>
   addresses?: boolean | Prisma.Person$addressesArgs<ExtArgs>
-  organization?: boolean | Prisma.Person$organizationArgs<ExtArgs>
+  organizations?: boolean | Prisma.Person$organizationsArgs<ExtArgs>
+  outgoingRelationships?: boolean | Prisma.Person$outgoingRelationshipsArgs<ExtArgs>
+  incomingRelationships?: boolean | Prisma.Person$incomingRelationshipsArgs<ExtArgs>
+  arrestEvents?: boolean | Prisma.Person$arrestEventsArgs<ExtArgs>
+  investigationEvents?: boolean | Prisma.Person$investigationEventsArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Person$embeddingsArgs<ExtArgs>
+  faceRecords?: boolean | Prisma.Person$faceRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.PersonCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["person"]>
 
@@ -1389,41 +2398,61 @@ export type PersonSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   name?: boolean
   age?: boolean
+  dateOfBirth?: boolean
   gender?: boolean
-  riskScore?: boolean
-  createdAt?: boolean
   aliases?: boolean
+  riskScore?: boolean
+  threatScore?: boolean
+  influenceScore?: boolean
+  aiProfile?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["person"]>
 
 export type PersonSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   age?: boolean
+  dateOfBirth?: boolean
   gender?: boolean
-  riskScore?: boolean
-  createdAt?: boolean
   aliases?: boolean
+  riskScore?: boolean
+  threatScore?: boolean
+  influenceScore?: boolean
+  aiProfile?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["person"]>
 
 export type PersonSelectScalar = {
   id?: boolean
   name?: boolean
   age?: boolean
+  dateOfBirth?: boolean
   gender?: boolean
-  riskScore?: boolean
-  createdAt?: boolean
   aliases?: boolean
+  riskScore?: boolean
+  threatScore?: boolean
+  influenceScore?: boolean
+  aiProfile?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type PersonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "age" | "gender" | "riskScore" | "createdAt" | "aliases", ExtArgs["result"]["person"]>
+export type PersonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "age" | "dateOfBirth" | "gender" | "aliases" | "riskScore" | "threatScore" | "influenceScore" | "aiProfile" | "createdAt" | "updatedAt", ExtArgs["result"]["person"]>
 export type PersonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  outgoingRelationships?: boolean | Prisma.Person$outgoingRelationshipsArgs<ExtArgs>
-  incomingRelationships?: boolean | Prisma.Person$incomingRelationshipsArgs<ExtArgs>
-  cases?: boolean | Prisma.Person$casesArgs<ExtArgs>
+  caseRoles?: boolean | Prisma.Person$caseRolesArgs<ExtArgs>
+  complainantRecords?: boolean | Prisma.Person$complainantRecordsArgs<ExtArgs>
   phones?: boolean | Prisma.Person$phonesArgs<ExtArgs>
   vehicles?: boolean | Prisma.Person$vehiclesArgs<ExtArgs>
   addresses?: boolean | Prisma.Person$addressesArgs<ExtArgs>
-  organization?: boolean | Prisma.Person$organizationArgs<ExtArgs>
+  organizations?: boolean | Prisma.Person$organizationsArgs<ExtArgs>
+  outgoingRelationships?: boolean | Prisma.Person$outgoingRelationshipsArgs<ExtArgs>
+  incomingRelationships?: boolean | Prisma.Person$incomingRelationshipsArgs<ExtArgs>
+  arrestEvents?: boolean | Prisma.Person$arrestEventsArgs<ExtArgs>
+  investigationEvents?: boolean | Prisma.Person$investigationEventsArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Person$embeddingsArgs<ExtArgs>
+  faceRecords?: boolean | Prisma.Person$faceRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.PersonCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PersonIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1432,22 +2461,32 @@ export type PersonIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $PersonPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Person"
   objects: {
+    caseRoles: Prisma.$CasePersonPayload<ExtArgs>[]
+    complainantRecords: Prisma.$ComplainantPayload<ExtArgs>[]
+    phones: Prisma.$PhoneOwnerPayload<ExtArgs>[]
+    vehicles: Prisma.$VehicleOwnerPayload<ExtArgs>[]
+    addresses: Prisma.$PersonLocationPayload<ExtArgs>[]
+    organizations: Prisma.$OrganizationMemberPayload<ExtArgs>[]
     outgoingRelationships: Prisma.$PersonRelationshipPayload<ExtArgs>[]
     incomingRelationships: Prisma.$PersonRelationshipPayload<ExtArgs>[]
-    cases: Prisma.$CasePersonPayload<ExtArgs>[]
-    phones: Prisma.$PhonePayload<ExtArgs>[]
-    vehicles: Prisma.$VehiclePayload<ExtArgs>[]
-    addresses: Prisma.$LocationPayload<ExtArgs>[]
-    organization: Prisma.$OrganizationMemberPayload<ExtArgs>[]
+    arrestEvents: Prisma.$ArrestSurrenderAccusedPayload<ExtArgs>[]
+    investigationEvents: Prisma.$InvestigationEventPayload<ExtArgs>[]
+    embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
+    faceRecords: Prisma.$FaceRecordPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string | null
     age: number | null
+    dateOfBirth: Date | null
     gender: $Enums.Gender
-    riskScore: number | null
-    createdAt: Date
     aliases: string[]
+    riskScore: number | null
+    threatScore: number | null
+    influenceScore: number | null
+    aiProfile: runtime.JsonValue | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["person"]>
   composites: {}
 }
@@ -1842,13 +2881,18 @@ readonly fields: PersonFieldRefs;
  */
 export interface Prisma__PersonClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  caseRoles<T extends Prisma.Person$caseRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$caseRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePersonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  complainantRecords<T extends Prisma.Person$complainantRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$complainantRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplainantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  phones<T extends Prisma.Person$phonesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$phonesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhoneOwnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vehicles<T extends Prisma.Person$vehiclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VehicleOwnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  addresses<T extends Prisma.Person$addressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$addressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  organizations<T extends Prisma.Person$organizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$organizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   outgoingRelationships<T extends Prisma.Person$outgoingRelationshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$outgoingRelationshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   incomingRelationships<T extends Prisma.Person$incomingRelationshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$incomingRelationshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  cases<T extends Prisma.Person$casesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$casesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePersonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  phones<T extends Prisma.Person$phonesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$phonesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  vehicles<T extends Prisma.Person$vehiclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  addresses<T extends Prisma.Person$addressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$addressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  organization<T extends Prisma.Person$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$organizationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  arrestEvents<T extends Prisma.Person$arrestEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$arrestEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ArrestSurrenderAccusedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  investigationEvents<T extends Prisma.Person$investigationEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$investigationEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvestigationEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  embeddings<T extends Prisma.Person$embeddingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  faceRecords<T extends Prisma.Person$faceRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Person$faceRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FaceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1881,10 +2925,15 @@ export interface PersonFieldRefs {
   readonly id: Prisma.FieldRef<"Person", 'String'>
   readonly name: Prisma.FieldRef<"Person", 'String'>
   readonly age: Prisma.FieldRef<"Person", 'Int'>
+  readonly dateOfBirth: Prisma.FieldRef<"Person", 'DateTime'>
   readonly gender: Prisma.FieldRef<"Person", 'Gender'>
-  readonly riskScore: Prisma.FieldRef<"Person", 'Float'>
-  readonly createdAt: Prisma.FieldRef<"Person", 'DateTime'>
   readonly aliases: Prisma.FieldRef<"Person", 'String[]'>
+  readonly riskScore: Prisma.FieldRef<"Person", 'Float'>
+  readonly threatScore: Prisma.FieldRef<"Person", 'Float'>
+  readonly influenceScore: Prisma.FieldRef<"Person", 'Float'>
+  readonly aiProfile: Prisma.FieldRef<"Person", 'Json'>
+  readonly createdAt: Prisma.FieldRef<"Person", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Person", 'DateTime'>
 }
     
 
@@ -2108,7 +3157,7 @@ export type PersonCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   /**
    * The data needed to create a Person.
    */
-  data?: Prisma.XOR<Prisma.PersonCreateInput, Prisma.PersonUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.PersonCreateInput, Prisma.PersonUncheckedCreateInput>
 }
 
 /**
@@ -2278,6 +3327,150 @@ export type PersonDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Person.caseRoles
+ */
+export type Person$caseRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CasePerson
+   */
+  select?: Prisma.CasePersonSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CasePerson
+   */
+  omit?: Prisma.CasePersonOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CasePersonInclude<ExtArgs> | null
+  where?: Prisma.CasePersonWhereInput
+  orderBy?: Prisma.CasePersonOrderByWithRelationInput | Prisma.CasePersonOrderByWithRelationInput[]
+  cursor?: Prisma.CasePersonWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CasePersonScalarFieldEnum | Prisma.CasePersonScalarFieldEnum[]
+}
+
+/**
+ * Person.complainantRecords
+ */
+export type Person$complainantRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Complainant
+   */
+  select?: Prisma.ComplainantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Complainant
+   */
+  omit?: Prisma.ComplainantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ComplainantInclude<ExtArgs> | null
+  where?: Prisma.ComplainantWhereInput
+  orderBy?: Prisma.ComplainantOrderByWithRelationInput | Prisma.ComplainantOrderByWithRelationInput[]
+  cursor?: Prisma.ComplainantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ComplainantScalarFieldEnum | Prisma.ComplainantScalarFieldEnum[]
+}
+
+/**
+ * Person.phones
+ */
+export type Person$phonesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PhoneOwner
+   */
+  select?: Prisma.PhoneOwnerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PhoneOwner
+   */
+  omit?: Prisma.PhoneOwnerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhoneOwnerInclude<ExtArgs> | null
+  where?: Prisma.PhoneOwnerWhereInput
+  orderBy?: Prisma.PhoneOwnerOrderByWithRelationInput | Prisma.PhoneOwnerOrderByWithRelationInput[]
+  cursor?: Prisma.PhoneOwnerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PhoneOwnerScalarFieldEnum | Prisma.PhoneOwnerScalarFieldEnum[]
+}
+
+/**
+ * Person.vehicles
+ */
+export type Person$vehiclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VehicleOwner
+   */
+  select?: Prisma.VehicleOwnerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VehicleOwner
+   */
+  omit?: Prisma.VehicleOwnerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VehicleOwnerInclude<ExtArgs> | null
+  where?: Prisma.VehicleOwnerWhereInput
+  orderBy?: Prisma.VehicleOwnerOrderByWithRelationInput | Prisma.VehicleOwnerOrderByWithRelationInput[]
+  cursor?: Prisma.VehicleOwnerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VehicleOwnerScalarFieldEnum | Prisma.VehicleOwnerScalarFieldEnum[]
+}
+
+/**
+ * Person.addresses
+ */
+export type Person$addressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PersonLocation
+   */
+  select?: Prisma.PersonLocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PersonLocation
+   */
+  omit?: Prisma.PersonLocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PersonLocationInclude<ExtArgs> | null
+  where?: Prisma.PersonLocationWhereInput
+  orderBy?: Prisma.PersonLocationOrderByWithRelationInput | Prisma.PersonLocationOrderByWithRelationInput[]
+  cursor?: Prisma.PersonLocationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PersonLocationScalarFieldEnum | Prisma.PersonLocationScalarFieldEnum[]
+}
+
+/**
+ * Person.organizations
+ */
+export type Person$organizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganizationMember
+   */
+  select?: Prisma.OrganizationMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrganizationMember
+   */
+  omit?: Prisma.OrganizationMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationMemberInclude<ExtArgs> | null
+  where?: Prisma.OrganizationMemberWhereInput
+  orderBy?: Prisma.OrganizationMemberOrderByWithRelationInput | Prisma.OrganizationMemberOrderByWithRelationInput[]
+  cursor?: Prisma.OrganizationMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrganizationMemberScalarFieldEnum | Prisma.OrganizationMemberScalarFieldEnum[]
+}
+
+/**
  * Person.outgoingRelationships
  */
 export type Person$outgoingRelationshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2326,123 +3519,99 @@ export type Person$incomingRelationshipsArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
- * Person.cases
+ * Person.arrestEvents
  */
-export type Person$casesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Person$arrestEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CasePerson
+   * Select specific fields to fetch from the ArrestSurrenderAccused
    */
-  select?: Prisma.CasePersonSelect<ExtArgs> | null
+  select?: Prisma.ArrestSurrenderAccusedSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CasePerson
+   * Omit specific fields from the ArrestSurrenderAccused
    */
-  omit?: Prisma.CasePersonOmit<ExtArgs> | null
+  omit?: Prisma.ArrestSurrenderAccusedOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CasePersonInclude<ExtArgs> | null
-  where?: Prisma.CasePersonWhereInput
-  orderBy?: Prisma.CasePersonOrderByWithRelationInput | Prisma.CasePersonOrderByWithRelationInput[]
-  cursor?: Prisma.CasePersonWhereUniqueInput
+  include?: Prisma.ArrestSurrenderAccusedInclude<ExtArgs> | null
+  where?: Prisma.ArrestSurrenderAccusedWhereInput
+  orderBy?: Prisma.ArrestSurrenderAccusedOrderByWithRelationInput | Prisma.ArrestSurrenderAccusedOrderByWithRelationInput[]
+  cursor?: Prisma.ArrestSurrenderAccusedWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CasePersonScalarFieldEnum | Prisma.CasePersonScalarFieldEnum[]
+  distinct?: Prisma.ArrestSurrenderAccusedScalarFieldEnum | Prisma.ArrestSurrenderAccusedScalarFieldEnum[]
 }
 
 /**
- * Person.phones
+ * Person.investigationEvents
  */
-export type Person$phonesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Person$investigationEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Phone
+   * Select specific fields to fetch from the InvestigationEvent
    */
-  select?: Prisma.PhoneSelect<ExtArgs> | null
+  select?: Prisma.InvestigationEventSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Phone
+   * Omit specific fields from the InvestigationEvent
    */
-  omit?: Prisma.PhoneOmit<ExtArgs> | null
+  omit?: Prisma.InvestigationEventOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PhoneInclude<ExtArgs> | null
-  where?: Prisma.PhoneWhereInput
-  orderBy?: Prisma.PhoneOrderByWithRelationInput | Prisma.PhoneOrderByWithRelationInput[]
-  cursor?: Prisma.PhoneWhereUniqueInput
+  include?: Prisma.InvestigationEventInclude<ExtArgs> | null
+  where?: Prisma.InvestigationEventWhereInput
+  orderBy?: Prisma.InvestigationEventOrderByWithRelationInput | Prisma.InvestigationEventOrderByWithRelationInput[]
+  cursor?: Prisma.InvestigationEventWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PhoneScalarFieldEnum | Prisma.PhoneScalarFieldEnum[]
+  distinct?: Prisma.InvestigationEventScalarFieldEnum | Prisma.InvestigationEventScalarFieldEnum[]
 }
 
 /**
- * Person.vehicles
+ * Person.embeddings
  */
-export type Person$vehiclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Person$embeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Vehicle
+   * Select specific fields to fetch from the Embedding
    */
-  select?: Prisma.VehicleSelect<ExtArgs> | null
+  select?: Prisma.EmbeddingSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Vehicle
+   * Omit specific fields from the Embedding
    */
-  omit?: Prisma.VehicleOmit<ExtArgs> | null
+  omit?: Prisma.EmbeddingOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.VehicleInclude<ExtArgs> | null
-  where?: Prisma.VehicleWhereInput
-  orderBy?: Prisma.VehicleOrderByWithRelationInput | Prisma.VehicleOrderByWithRelationInput[]
-  cursor?: Prisma.VehicleWhereUniqueInput
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  where?: Prisma.EmbeddingWhereInput
+  orderBy?: Prisma.EmbeddingOrderByWithRelationInput | Prisma.EmbeddingOrderByWithRelationInput[]
+  cursor?: Prisma.EmbeddingWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.VehicleScalarFieldEnum | Prisma.VehicleScalarFieldEnum[]
+  distinct?: Prisma.EmbeddingScalarFieldEnum | Prisma.EmbeddingScalarFieldEnum[]
 }
 
 /**
- * Person.addresses
+ * Person.faceRecords
  */
-export type Person$addressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Person$faceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Location
+   * Select specific fields to fetch from the FaceRecord
    */
-  select?: Prisma.LocationSelect<ExtArgs> | null
+  select?: Prisma.FaceRecordSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Location
+   * Omit specific fields from the FaceRecord
    */
-  omit?: Prisma.LocationOmit<ExtArgs> | null
+  omit?: Prisma.FaceRecordOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LocationInclude<ExtArgs> | null
-  where?: Prisma.LocationWhereInput
-  orderBy?: Prisma.LocationOrderByWithRelationInput | Prisma.LocationOrderByWithRelationInput[]
-  cursor?: Prisma.LocationWhereUniqueInput
+  include?: Prisma.FaceRecordInclude<ExtArgs> | null
+  where?: Prisma.FaceRecordWhereInput
+  orderBy?: Prisma.FaceRecordOrderByWithRelationInput | Prisma.FaceRecordOrderByWithRelationInput[]
+  cursor?: Prisma.FaceRecordWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.LocationScalarFieldEnum | Prisma.LocationScalarFieldEnum[]
-}
-
-/**
- * Person.organization
- */
-export type Person$organizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the OrganizationMember
-   */
-  select?: Prisma.OrganizationMemberSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the OrganizationMember
-   */
-  omit?: Prisma.OrganizationMemberOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrganizationMemberInclude<ExtArgs> | null
-  where?: Prisma.OrganizationMemberWhereInput
-  orderBy?: Prisma.OrganizationMemberOrderByWithRelationInput | Prisma.OrganizationMemberOrderByWithRelationInput[]
-  cursor?: Prisma.OrganizationMemberWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OrganizationMemberScalarFieldEnum | Prisma.OrganizationMemberScalarFieldEnum[]
+  distinct?: Prisma.FaceRecordScalarFieldEnum | Prisma.FaceRecordScalarFieldEnum[]
 }
 
 /**

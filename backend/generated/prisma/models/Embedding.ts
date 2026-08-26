@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Embedding
@@ -26,18 +26,40 @@ export type AggregateEmbedding = {
 
 export type EmbeddingMinAggregateOutputType = {
   id: string | null
-  entityType: string | null
+  entityType: $Enums.EntityType | null
   entityId: string | null
   vectorId: string | null
+  modelName: string | null
+  contentHash: string | null
   createdAt: Date | null
+  updatedAt: Date | null
+  caseId: string | null
+  personId: string | null
+  evidenceId: string | null
+  vehicleId: string | null
+  phoneId: string | null
+  locationId: string | null
+  organizationId: string | null
+  modusOperandiId: string | null
 }
 
 export type EmbeddingMaxAggregateOutputType = {
   id: string | null
-  entityType: string | null
+  entityType: $Enums.EntityType | null
   entityId: string | null
   vectorId: string | null
+  modelName: string | null
+  contentHash: string | null
   createdAt: Date | null
+  updatedAt: Date | null
+  caseId: string | null
+  personId: string | null
+  evidenceId: string | null
+  vehicleId: string | null
+  phoneId: string | null
+  locationId: string | null
+  organizationId: string | null
+  modusOperandiId: string | null
 }
 
 export type EmbeddingCountAggregateOutputType = {
@@ -45,7 +67,19 @@ export type EmbeddingCountAggregateOutputType = {
   entityType: number
   entityId: number
   vectorId: number
+  modelName: number
+  contentHash: number
+  metadata: number
   createdAt: number
+  updatedAt: number
+  caseId: number
+  personId: number
+  evidenceId: number
+  vehicleId: number
+  phoneId: number
+  locationId: number
+  organizationId: number
+  modusOperandiId: number
   _all: number
 }
 
@@ -55,7 +89,18 @@ export type EmbeddingMinAggregateInputType = {
   entityType?: true
   entityId?: true
   vectorId?: true
+  modelName?: true
+  contentHash?: true
   createdAt?: true
+  updatedAt?: true
+  caseId?: true
+  personId?: true
+  evidenceId?: true
+  vehicleId?: true
+  phoneId?: true
+  locationId?: true
+  organizationId?: true
+  modusOperandiId?: true
 }
 
 export type EmbeddingMaxAggregateInputType = {
@@ -63,7 +108,18 @@ export type EmbeddingMaxAggregateInputType = {
   entityType?: true
   entityId?: true
   vectorId?: true
+  modelName?: true
+  contentHash?: true
   createdAt?: true
+  updatedAt?: true
+  caseId?: true
+  personId?: true
+  evidenceId?: true
+  vehicleId?: true
+  phoneId?: true
+  locationId?: true
+  organizationId?: true
+  modusOperandiId?: true
 }
 
 export type EmbeddingCountAggregateInputType = {
@@ -71,7 +127,19 @@ export type EmbeddingCountAggregateInputType = {
   entityType?: true
   entityId?: true
   vectorId?: true
+  modelName?: true
+  contentHash?: true
+  metadata?: true
   createdAt?: true
+  updatedAt?: true
+  caseId?: true
+  personId?: true
+  evidenceId?: true
+  vehicleId?: true
+  phoneId?: true
+  locationId?: true
+  organizationId?: true
+  modusOperandiId?: true
   _all?: true
 }
 
@@ -149,10 +217,22 @@ export type EmbeddingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type EmbeddingGroupByOutputType = {
   id: string
-  entityType: string
+  entityType: $Enums.EntityType
   entityId: string
-  vectorId: string
+  vectorId: string | null
+  modelName: string | null
+  contentHash: string | null
+  metadata: runtime.JsonValue | null
   createdAt: Date
+  updatedAt: Date
+  caseId: string | null
+  personId: string | null
+  evidenceId: string | null
+  vehicleId: string | null
+  phoneId: string | null
+  locationId: string | null
+  organizationId: string | null
+  modusOperandiId: string | null
   _count: EmbeddingCountAggregateOutputType | null
   _min: EmbeddingMinAggregateOutputType | null
   _max: EmbeddingMaxAggregateOutputType | null
@@ -178,18 +258,58 @@ export type EmbeddingWhereInput = {
   OR?: Prisma.EmbeddingWhereInput[]
   NOT?: Prisma.EmbeddingWhereInput | Prisma.EmbeddingWhereInput[]
   id?: Prisma.StringFilter<"Embedding"> | string
-  entityType?: Prisma.StringFilter<"Embedding"> | string
+  entityType?: Prisma.EnumEntityTypeFilter<"Embedding"> | $Enums.EntityType
   entityId?: Prisma.StringFilter<"Embedding"> | string
-  vectorId?: Prisma.StringFilter<"Embedding"> | string
+  vectorId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  modelName?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  contentHash?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  metadata?: Prisma.JsonNullableFilter<"Embedding">
   createdAt?: Prisma.DateTimeFilter<"Embedding"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Embedding"> | Date | string
+  caseId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  personId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  evidenceId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  vehicleId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  phoneId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  locationId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  organizationId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  modusOperandiId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  case?: Prisma.XOR<Prisma.CaseNullableScalarRelationFilter, Prisma.CaseWhereInput> | null
+  person?: Prisma.XOR<Prisma.PersonNullableScalarRelationFilter, Prisma.PersonWhereInput> | null
+  evidence?: Prisma.XOR<Prisma.EvidenceNullableScalarRelationFilter, Prisma.EvidenceWhereInput> | null
+  vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  phone?: Prisma.XOR<Prisma.PhoneNullableScalarRelationFilter, Prisma.PhoneWhereInput> | null
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+  modusOperandi?: Prisma.XOR<Prisma.ModusOperandiNullableScalarRelationFilter, Prisma.ModusOperandiWhereInput> | null
 }
 
 export type EmbeddingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
-  vectorId?: Prisma.SortOrder
+  vectorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  modelName?: Prisma.SortOrderInput | Prisma.SortOrder
+  contentHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  caseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  personId?: Prisma.SortOrderInput | Prisma.SortOrder
+  evidenceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  vehicleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  modusOperandiId?: Prisma.SortOrderInput | Prisma.SortOrder
+  case?: Prisma.CaseOrderByWithRelationInput
+  person?: Prisma.PersonOrderByWithRelationInput
+  evidence?: Prisma.EvidenceOrderByWithRelationInput
+  vehicle?: Prisma.VehicleOrderByWithRelationInput
+  phone?: Prisma.PhoneOrderByWithRelationInput
+  location?: Prisma.LocationOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
+  modusOperandi?: Prisma.ModusOperandiOrderByWithRelationInput
 }
 
 export type EmbeddingWhereUniqueInput = Prisma.AtLeast<{
@@ -197,18 +317,50 @@ export type EmbeddingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EmbeddingWhereInput | Prisma.EmbeddingWhereInput[]
   OR?: Prisma.EmbeddingWhereInput[]
   NOT?: Prisma.EmbeddingWhereInput | Prisma.EmbeddingWhereInput[]
-  entityType?: Prisma.StringFilter<"Embedding"> | string
+  entityType?: Prisma.EnumEntityTypeFilter<"Embedding"> | $Enums.EntityType
   entityId?: Prisma.StringFilter<"Embedding"> | string
-  vectorId?: Prisma.StringFilter<"Embedding"> | string
+  vectorId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  modelName?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  contentHash?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  metadata?: Prisma.JsonNullableFilter<"Embedding">
   createdAt?: Prisma.DateTimeFilter<"Embedding"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Embedding"> | Date | string
+  caseId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  personId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  evidenceId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  vehicleId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  phoneId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  locationId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  organizationId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  modusOperandiId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  case?: Prisma.XOR<Prisma.CaseNullableScalarRelationFilter, Prisma.CaseWhereInput> | null
+  person?: Prisma.XOR<Prisma.PersonNullableScalarRelationFilter, Prisma.PersonWhereInput> | null
+  evidence?: Prisma.XOR<Prisma.EvidenceNullableScalarRelationFilter, Prisma.EvidenceWhereInput> | null
+  vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  phone?: Prisma.XOR<Prisma.PhoneNullableScalarRelationFilter, Prisma.PhoneWhereInput> | null
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+  modusOperandi?: Prisma.XOR<Prisma.ModusOperandiNullableScalarRelationFilter, Prisma.ModusOperandiWhereInput> | null
 }, "id">
 
 export type EmbeddingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
-  vectorId?: Prisma.SortOrder
+  vectorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  modelName?: Prisma.SortOrderInput | Prisma.SortOrder
+  contentHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  caseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  personId?: Prisma.SortOrderInput | Prisma.SortOrder
+  evidenceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  vehicleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  modusOperandiId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EmbeddingCountOrderByAggregateInput
   _max?: Prisma.EmbeddingMaxOrderByAggregateInput
   _min?: Prisma.EmbeddingMinOrderByAggregateInput
@@ -219,66 +371,164 @@ export type EmbeddingScalarWhereWithAggregatesInput = {
   OR?: Prisma.EmbeddingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EmbeddingScalarWhereWithAggregatesInput | Prisma.EmbeddingScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Embedding"> | string
-  entityType?: Prisma.StringWithAggregatesFilter<"Embedding"> | string
+  entityType?: Prisma.EnumEntityTypeWithAggregatesFilter<"Embedding"> | $Enums.EntityType
   entityId?: Prisma.StringWithAggregatesFilter<"Embedding"> | string
-  vectorId?: Prisma.StringWithAggregatesFilter<"Embedding"> | string
+  vectorId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  modelName?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  contentHash?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  metadata?: Prisma.JsonNullableWithAggregatesFilter<"Embedding">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Embedding"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Embedding"> | Date | string
+  caseId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  personId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  evidenceId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  vehicleId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  phoneId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  locationId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  organizationId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
+  modusOperandiId?: Prisma.StringNullableWithAggregatesFilter<"Embedding"> | string | null
 }
 
 export type EmbeddingCreateInput = {
   id?: string
-  entityType: string
+  entityType: $Enums.EntityType
   entityId: string
-  vectorId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
 }
 
 export type EmbeddingUncheckedCreateInput = {
   id?: string
-  entityType: string
+  entityType: $Enums.EntityType
   entityId: string
-  vectorId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
 }
 
 export type EmbeddingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entityType?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
-  vectorId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
 }
 
 export type EmbeddingUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entityType?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
-  vectorId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EmbeddingCreateManyInput = {
   id?: string
-  entityType: string
+  entityType: $Enums.EntityType
   entityId: string
-  vectorId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
 }
 
 export type EmbeddingUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entityType?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
-  vectorId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EmbeddingUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entityType?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
-  vectorId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingListRelationFilter = {
+  every?: Prisma.EmbeddingWhereInput
+  some?: Prisma.EmbeddingWhereInput
+  none?: Prisma.EmbeddingWhereInput
+}
+
+export type EmbeddingOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type EmbeddingCountOrderByAggregateInput = {
@@ -286,7 +536,19 @@ export type EmbeddingCountOrderByAggregateInput = {
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   vectorId?: Prisma.SortOrder
+  modelName?: Prisma.SortOrder
+  contentHash?: Prisma.SortOrder
+  metadata?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  caseId?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
+  evidenceId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  phoneId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  modusOperandiId?: Prisma.SortOrder
 }
 
 export type EmbeddingMaxOrderByAggregateInput = {
@@ -294,7 +556,18 @@ export type EmbeddingMaxOrderByAggregateInput = {
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   vectorId?: Prisma.SortOrder
+  modelName?: Prisma.SortOrder
+  contentHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  caseId?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
+  evidenceId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  phoneId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  modusOperandiId?: Prisma.SortOrder
 }
 
 export type EmbeddingMinOrderByAggregateInput = {
@@ -302,7 +575,1501 @@ export type EmbeddingMinOrderByAggregateInput = {
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   vectorId?: Prisma.SortOrder
+  modelName?: Prisma.SortOrder
+  contentHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  caseId?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
+  evidenceId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  phoneId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  modusOperandiId?: Prisma.SortOrder
+}
+
+export type EmbeddingCreateNestedManyWithoutCaseInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutCaseInput, Prisma.EmbeddingUncheckedCreateWithoutCaseInput> | Prisma.EmbeddingCreateWithoutCaseInput[] | Prisma.EmbeddingUncheckedCreateWithoutCaseInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutCaseInput | Prisma.EmbeddingCreateOrConnectWithoutCaseInput[]
+  createMany?: Prisma.EmbeddingCreateManyCaseInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutCaseInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutCaseInput, Prisma.EmbeddingUncheckedCreateWithoutCaseInput> | Prisma.EmbeddingCreateWithoutCaseInput[] | Prisma.EmbeddingUncheckedCreateWithoutCaseInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutCaseInput | Prisma.EmbeddingCreateOrConnectWithoutCaseInput[]
+  createMany?: Prisma.EmbeddingCreateManyCaseInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutCaseNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutCaseInput, Prisma.EmbeddingUncheckedCreateWithoutCaseInput> | Prisma.EmbeddingCreateWithoutCaseInput[] | Prisma.EmbeddingUncheckedCreateWithoutCaseInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutCaseInput | Prisma.EmbeddingCreateOrConnectWithoutCaseInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutCaseInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutCaseInput[]
+  createMany?: Prisma.EmbeddingCreateManyCaseInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutCaseInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutCaseInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutCaseInput | Prisma.EmbeddingUpdateManyWithWhereWithoutCaseInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutCaseNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutCaseInput, Prisma.EmbeddingUncheckedCreateWithoutCaseInput> | Prisma.EmbeddingCreateWithoutCaseInput[] | Prisma.EmbeddingUncheckedCreateWithoutCaseInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutCaseInput | Prisma.EmbeddingCreateOrConnectWithoutCaseInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutCaseInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutCaseInput[]
+  createMany?: Prisma.EmbeddingCreateManyCaseInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutCaseInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutCaseInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutCaseInput | Prisma.EmbeddingUpdateManyWithWhereWithoutCaseInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutPersonInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPersonInput, Prisma.EmbeddingUncheckedCreateWithoutPersonInput> | Prisma.EmbeddingCreateWithoutPersonInput[] | Prisma.EmbeddingUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPersonInput | Prisma.EmbeddingCreateOrConnectWithoutPersonInput[]
+  createMany?: Prisma.EmbeddingCreateManyPersonInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutPersonInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPersonInput, Prisma.EmbeddingUncheckedCreateWithoutPersonInput> | Prisma.EmbeddingCreateWithoutPersonInput[] | Prisma.EmbeddingUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPersonInput | Prisma.EmbeddingCreateOrConnectWithoutPersonInput[]
+  createMany?: Prisma.EmbeddingCreateManyPersonInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutPersonNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPersonInput, Prisma.EmbeddingUncheckedCreateWithoutPersonInput> | Prisma.EmbeddingCreateWithoutPersonInput[] | Prisma.EmbeddingUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPersonInput | Prisma.EmbeddingCreateOrConnectWithoutPersonInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutPersonInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutPersonInput[]
+  createMany?: Prisma.EmbeddingCreateManyPersonInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutPersonInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutPersonInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutPersonInput | Prisma.EmbeddingUpdateManyWithWhereWithoutPersonInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutPersonNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPersonInput, Prisma.EmbeddingUncheckedCreateWithoutPersonInput> | Prisma.EmbeddingCreateWithoutPersonInput[] | Prisma.EmbeddingUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPersonInput | Prisma.EmbeddingCreateOrConnectWithoutPersonInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutPersonInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutPersonInput[]
+  createMany?: Prisma.EmbeddingCreateManyPersonInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutPersonInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutPersonInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutPersonInput | Prisma.EmbeddingUpdateManyWithWhereWithoutPersonInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutPhoneInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPhoneInput, Prisma.EmbeddingUncheckedCreateWithoutPhoneInput> | Prisma.EmbeddingCreateWithoutPhoneInput[] | Prisma.EmbeddingUncheckedCreateWithoutPhoneInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPhoneInput | Prisma.EmbeddingCreateOrConnectWithoutPhoneInput[]
+  createMany?: Prisma.EmbeddingCreateManyPhoneInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutPhoneInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPhoneInput, Prisma.EmbeddingUncheckedCreateWithoutPhoneInput> | Prisma.EmbeddingCreateWithoutPhoneInput[] | Prisma.EmbeddingUncheckedCreateWithoutPhoneInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPhoneInput | Prisma.EmbeddingCreateOrConnectWithoutPhoneInput[]
+  createMany?: Prisma.EmbeddingCreateManyPhoneInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutPhoneNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPhoneInput, Prisma.EmbeddingUncheckedCreateWithoutPhoneInput> | Prisma.EmbeddingCreateWithoutPhoneInput[] | Prisma.EmbeddingUncheckedCreateWithoutPhoneInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPhoneInput | Prisma.EmbeddingCreateOrConnectWithoutPhoneInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutPhoneInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutPhoneInput[]
+  createMany?: Prisma.EmbeddingCreateManyPhoneInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutPhoneInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutPhoneInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutPhoneInput | Prisma.EmbeddingUpdateManyWithWhereWithoutPhoneInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutPhoneNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutPhoneInput, Prisma.EmbeddingUncheckedCreateWithoutPhoneInput> | Prisma.EmbeddingCreateWithoutPhoneInput[] | Prisma.EmbeddingUncheckedCreateWithoutPhoneInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutPhoneInput | Prisma.EmbeddingCreateOrConnectWithoutPhoneInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutPhoneInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutPhoneInput[]
+  createMany?: Prisma.EmbeddingCreateManyPhoneInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutPhoneInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutPhoneInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutPhoneInput | Prisma.EmbeddingUpdateManyWithWhereWithoutPhoneInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutVehicleInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutVehicleInput, Prisma.EmbeddingUncheckedCreateWithoutVehicleInput> | Prisma.EmbeddingCreateWithoutVehicleInput[] | Prisma.EmbeddingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutVehicleInput | Prisma.EmbeddingCreateOrConnectWithoutVehicleInput[]
+  createMany?: Prisma.EmbeddingCreateManyVehicleInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutVehicleInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutVehicleInput, Prisma.EmbeddingUncheckedCreateWithoutVehicleInput> | Prisma.EmbeddingCreateWithoutVehicleInput[] | Prisma.EmbeddingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutVehicleInput | Prisma.EmbeddingCreateOrConnectWithoutVehicleInput[]
+  createMany?: Prisma.EmbeddingCreateManyVehicleInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutVehicleNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutVehicleInput, Prisma.EmbeddingUncheckedCreateWithoutVehicleInput> | Prisma.EmbeddingCreateWithoutVehicleInput[] | Prisma.EmbeddingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutVehicleInput | Prisma.EmbeddingCreateOrConnectWithoutVehicleInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutVehicleInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutVehicleInput[]
+  createMany?: Prisma.EmbeddingCreateManyVehicleInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutVehicleInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutVehicleInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutVehicleInput | Prisma.EmbeddingUpdateManyWithWhereWithoutVehicleInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutVehicleNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutVehicleInput, Prisma.EmbeddingUncheckedCreateWithoutVehicleInput> | Prisma.EmbeddingCreateWithoutVehicleInput[] | Prisma.EmbeddingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutVehicleInput | Prisma.EmbeddingCreateOrConnectWithoutVehicleInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutVehicleInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutVehicleInput[]
+  createMany?: Prisma.EmbeddingCreateManyVehicleInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutVehicleInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutVehicleInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutVehicleInput | Prisma.EmbeddingUpdateManyWithWhereWithoutVehicleInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutLocationInput, Prisma.EmbeddingUncheckedCreateWithoutLocationInput> | Prisma.EmbeddingCreateWithoutLocationInput[] | Prisma.EmbeddingUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutLocationInput | Prisma.EmbeddingCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.EmbeddingCreateManyLocationInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutLocationInput, Prisma.EmbeddingUncheckedCreateWithoutLocationInput> | Prisma.EmbeddingCreateWithoutLocationInput[] | Prisma.EmbeddingUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutLocationInput | Prisma.EmbeddingCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.EmbeddingCreateManyLocationInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutLocationInput, Prisma.EmbeddingUncheckedCreateWithoutLocationInput> | Prisma.EmbeddingCreateWithoutLocationInput[] | Prisma.EmbeddingUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutLocationInput | Prisma.EmbeddingCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutLocationInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.EmbeddingCreateManyLocationInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutLocationInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutLocationInput | Prisma.EmbeddingUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutLocationInput, Prisma.EmbeddingUncheckedCreateWithoutLocationInput> | Prisma.EmbeddingCreateWithoutLocationInput[] | Prisma.EmbeddingUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutLocationInput | Prisma.EmbeddingCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutLocationInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.EmbeddingCreateManyLocationInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutLocationInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutLocationInput | Prisma.EmbeddingUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutOrganizationInput, Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput> | Prisma.EmbeddingCreateWithoutOrganizationInput[] | Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput | Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.EmbeddingCreateManyOrganizationInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutOrganizationInput, Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput> | Prisma.EmbeddingCreateWithoutOrganizationInput[] | Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput | Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.EmbeddingCreateManyOrganizationInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutOrganizationInput, Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput> | Prisma.EmbeddingCreateWithoutOrganizationInput[] | Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput | Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.EmbeddingCreateManyOrganizationInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutOrganizationInput | Prisma.EmbeddingUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutOrganizationInput, Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput> | Prisma.EmbeddingCreateWithoutOrganizationInput[] | Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput | Prisma.EmbeddingCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.EmbeddingCreateManyOrganizationInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutOrganizationInput | Prisma.EmbeddingUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutEvidenceInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutEvidenceInput, Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput> | Prisma.EmbeddingCreateWithoutEvidenceInput[] | Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput | Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput[]
+  createMany?: Prisma.EmbeddingCreateManyEvidenceInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutEvidenceInput, Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput> | Prisma.EmbeddingCreateWithoutEvidenceInput[] | Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput | Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput[]
+  createMany?: Prisma.EmbeddingCreateManyEvidenceInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutEvidenceNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutEvidenceInput, Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput> | Prisma.EmbeddingCreateWithoutEvidenceInput[] | Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput | Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutEvidenceInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutEvidenceInput[]
+  createMany?: Prisma.EmbeddingCreateManyEvidenceInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutEvidenceInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutEvidenceInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutEvidenceInput | Prisma.EmbeddingUpdateManyWithWhereWithoutEvidenceInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutEvidenceInput, Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput> | Prisma.EmbeddingCreateWithoutEvidenceInput[] | Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput | Prisma.EmbeddingCreateOrConnectWithoutEvidenceInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutEvidenceInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutEvidenceInput[]
+  createMany?: Prisma.EmbeddingCreateManyEvidenceInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutEvidenceInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutEvidenceInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutEvidenceInput | Prisma.EmbeddingUpdateManyWithWhereWithoutEvidenceInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingCreateNestedManyWithoutModusOperandiInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput> | Prisma.EmbeddingCreateWithoutModusOperandiInput[] | Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput | Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput[]
+  createMany?: Prisma.EmbeddingCreateManyModusOperandiInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUncheckedCreateNestedManyWithoutModusOperandiInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput> | Prisma.EmbeddingCreateWithoutModusOperandiInput[] | Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput | Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput[]
+  createMany?: Prisma.EmbeddingCreateManyModusOperandiInputEnvelope
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+}
+
+export type EmbeddingUpdateManyWithoutModusOperandiNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput> | Prisma.EmbeddingCreateWithoutModusOperandiInput[] | Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput | Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutModusOperandiInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutModusOperandiInput[]
+  createMany?: Prisma.EmbeddingCreateManyModusOperandiInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutModusOperandiInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutModusOperandiInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutModusOperandiInput | Prisma.EmbeddingUpdateManyWithWhereWithoutModusOperandiInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutModusOperandiNestedInput = {
+  create?: Prisma.XOR<Prisma.EmbeddingCreateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput> | Prisma.EmbeddingCreateWithoutModusOperandiInput[] | Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput[]
+  connectOrCreate?: Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput | Prisma.EmbeddingCreateOrConnectWithoutModusOperandiInput[]
+  upsert?: Prisma.EmbeddingUpsertWithWhereUniqueWithoutModusOperandiInput | Prisma.EmbeddingUpsertWithWhereUniqueWithoutModusOperandiInput[]
+  createMany?: Prisma.EmbeddingCreateManyModusOperandiInputEnvelope
+  set?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  disconnect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  delete?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  connect?: Prisma.EmbeddingWhereUniqueInput | Prisma.EmbeddingWhereUniqueInput[]
+  update?: Prisma.EmbeddingUpdateWithWhereUniqueWithoutModusOperandiInput | Prisma.EmbeddingUpdateWithWhereUniqueWithoutModusOperandiInput[]
+  updateMany?: Prisma.EmbeddingUpdateManyWithWhereWithoutModusOperandiInput | Prisma.EmbeddingUpdateManyWithWhereWithoutModusOperandiInput[]
+  deleteMany?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+}
+
+export type EnumEntityTypeFieldUpdateOperationsInput = {
+  set?: $Enums.EntityType
+}
+
+export type EmbeddingCreateWithoutCaseInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutCaseInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutCaseInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutCaseInput, Prisma.EmbeddingUncheckedCreateWithoutCaseInput>
+}
+
+export type EmbeddingCreateManyCaseInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyCaseInput | Prisma.EmbeddingCreateManyCaseInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutCaseInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutCaseInput, Prisma.EmbeddingUncheckedUpdateWithoutCaseInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutCaseInput, Prisma.EmbeddingUncheckedCreateWithoutCaseInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutCaseInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutCaseInput, Prisma.EmbeddingUncheckedUpdateWithoutCaseInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutCaseInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutCaseInput>
+}
+
+export type EmbeddingScalarWhereInput = {
+  AND?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+  OR?: Prisma.EmbeddingScalarWhereInput[]
+  NOT?: Prisma.EmbeddingScalarWhereInput | Prisma.EmbeddingScalarWhereInput[]
+  id?: Prisma.StringFilter<"Embedding"> | string
+  entityType?: Prisma.EnumEntityTypeFilter<"Embedding"> | $Enums.EntityType
+  entityId?: Prisma.StringFilter<"Embedding"> | string
+  vectorId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  modelName?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  contentHash?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  metadata?: Prisma.JsonNullableFilter<"Embedding">
+  createdAt?: Prisma.DateTimeFilter<"Embedding"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Embedding"> | Date | string
+  caseId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  personId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  evidenceId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  vehicleId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  phoneId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  locationId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  organizationId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+  modusOperandiId?: Prisma.StringNullableFilter<"Embedding"> | string | null
+}
+
+export type EmbeddingCreateWithoutPersonInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutPersonInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutPersonInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutPersonInput, Prisma.EmbeddingUncheckedCreateWithoutPersonInput>
+}
+
+export type EmbeddingCreateManyPersonInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyPersonInput | Prisma.EmbeddingCreateManyPersonInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutPersonInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutPersonInput, Prisma.EmbeddingUncheckedUpdateWithoutPersonInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutPersonInput, Prisma.EmbeddingUncheckedCreateWithoutPersonInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutPersonInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutPersonInput, Prisma.EmbeddingUncheckedUpdateWithoutPersonInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutPersonInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutPersonInput>
+}
+
+export type EmbeddingCreateWithoutPhoneInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutPhoneInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutPhoneInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutPhoneInput, Prisma.EmbeddingUncheckedCreateWithoutPhoneInput>
+}
+
+export type EmbeddingCreateManyPhoneInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyPhoneInput | Prisma.EmbeddingCreateManyPhoneInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutPhoneInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutPhoneInput, Prisma.EmbeddingUncheckedUpdateWithoutPhoneInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutPhoneInput, Prisma.EmbeddingUncheckedCreateWithoutPhoneInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutPhoneInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutPhoneInput, Prisma.EmbeddingUncheckedUpdateWithoutPhoneInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutPhoneInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutPhoneInput>
+}
+
+export type EmbeddingCreateWithoutVehicleInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutVehicleInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutVehicleInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutVehicleInput, Prisma.EmbeddingUncheckedCreateWithoutVehicleInput>
+}
+
+export type EmbeddingCreateManyVehicleInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyVehicleInput | Prisma.EmbeddingCreateManyVehicleInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutVehicleInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutVehicleInput, Prisma.EmbeddingUncheckedUpdateWithoutVehicleInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutVehicleInput, Prisma.EmbeddingUncheckedCreateWithoutVehicleInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutVehicleInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutVehicleInput, Prisma.EmbeddingUncheckedUpdateWithoutVehicleInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutVehicleInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutVehicleInput>
+}
+
+export type EmbeddingCreateWithoutLocationInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutLocationInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutLocationInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutLocationInput, Prisma.EmbeddingUncheckedCreateWithoutLocationInput>
+}
+
+export type EmbeddingCreateManyLocationInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyLocationInput | Prisma.EmbeddingCreateManyLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutLocationInput, Prisma.EmbeddingUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutLocationInput, Prisma.EmbeddingUncheckedCreateWithoutLocationInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutLocationInput, Prisma.EmbeddingUncheckedUpdateWithoutLocationInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutLocationInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutLocationInput>
+}
+
+export type EmbeddingCreateWithoutOrganizationInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutOrganizationInput, Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput>
+}
+
+export type EmbeddingCreateManyOrganizationInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyOrganizationInput | Prisma.EmbeddingCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutOrganizationInput, Prisma.EmbeddingUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutOrganizationInput, Prisma.EmbeddingUncheckedCreateWithoutOrganizationInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutOrganizationInput, Prisma.EmbeddingUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type EmbeddingCreateWithoutEvidenceInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+  modusOperandi?: Prisma.ModusOperandiCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutEvidenceInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutEvidenceInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutEvidenceInput, Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput>
+}
+
+export type EmbeddingCreateManyEvidenceInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyEvidenceInput | Prisma.EmbeddingCreateManyEvidenceInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutEvidenceInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutEvidenceInput, Prisma.EmbeddingUncheckedUpdateWithoutEvidenceInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutEvidenceInput, Prisma.EmbeddingUncheckedCreateWithoutEvidenceInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutEvidenceInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutEvidenceInput, Prisma.EmbeddingUncheckedUpdateWithoutEvidenceInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutEvidenceInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceInput>
+}
+
+export type EmbeddingCreateWithoutModusOperandiInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case?: Prisma.CaseCreateNestedOneWithoutEmbeddingsInput
+  person?: Prisma.PersonCreateNestedOneWithoutEmbeddingsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutEmbeddingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutEmbeddingsInput
+  phone?: Prisma.PhoneCreateNestedOneWithoutEmbeddingsInput
+  location?: Prisma.LocationCreateNestedOneWithoutEmbeddingsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutEmbeddingsInput
+}
+
+export type EmbeddingUncheckedCreateWithoutModusOperandiInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+}
+
+export type EmbeddingCreateOrConnectWithoutModusOperandiInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput>
+}
+
+export type EmbeddingCreateManyModusOperandiInputEnvelope = {
+  data: Prisma.EmbeddingCreateManyModusOperandiInput | Prisma.EmbeddingCreateManyModusOperandiInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmbeddingUpsertWithWhereUniqueWithoutModusOperandiInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmbeddingUpdateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedUpdateWithoutModusOperandiInput>
+  create: Prisma.XOR<Prisma.EmbeddingCreateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedCreateWithoutModusOperandiInput>
+}
+
+export type EmbeddingUpdateWithWhereUniqueWithoutModusOperandiInput = {
+  where: Prisma.EmbeddingWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateWithoutModusOperandiInput, Prisma.EmbeddingUncheckedUpdateWithoutModusOperandiInput>
+}
+
+export type EmbeddingUpdateManyWithWhereWithoutModusOperandiInput = {
+  where: Prisma.EmbeddingScalarWhereInput
+  data: Prisma.XOR<Prisma.EmbeddingUpdateManyMutationInput, Prisma.EmbeddingUncheckedUpdateManyWithoutModusOperandiInput>
+}
+
+export type EmbeddingCreateManyCaseInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutCaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutCaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutCaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyPersonInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutPersonInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutPersonInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutPersonInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyPhoneInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutPhoneInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutPhoneInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutPhoneInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyVehicleInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyLocationInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyOrganizationInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyEvidenceInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+  modusOperandiId?: string | null
+}
+
+export type EmbeddingUpdateWithoutEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+  modusOperandi?: Prisma.ModusOperandiUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modusOperandiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingCreateManyModusOperandiInput = {
+  id?: string
+  entityType: $Enums.EntityType
+  entityId: string
+  vectorId?: string | null
+  modelName?: string | null
+  contentHash?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  caseId?: string | null
+  personId?: string | null
+  evidenceId?: string | null
+  vehicleId?: string | null
+  phoneId?: string | null
+  locationId?: string | null
+  organizationId?: string | null
+}
+
+export type EmbeddingUpdateWithoutModusOperandiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneWithoutEmbeddingsNestedInput
+  person?: Prisma.PersonUpdateOneWithoutEmbeddingsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutEmbeddingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutEmbeddingsNestedInput
+  phone?: Prisma.PhoneUpdateOneWithoutEmbeddingsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutEmbeddingsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutEmbeddingsNestedInput
+}
+
+export type EmbeddingUncheckedUpdateWithoutModusOperandiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EmbeddingUncheckedUpdateManyWithoutModusOperandiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  entityType?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  entityId?: Prisma.StringFieldUpdateOperationsInput | string
+  vectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modelName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  personId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -312,7 +2079,27 @@ export type EmbeddingSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   entityType?: boolean
   entityId?: boolean
   vectorId?: boolean
+  modelName?: boolean
+  contentHash?: boolean
+  metadata?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  caseId?: boolean
+  personId?: boolean
+  evidenceId?: boolean
+  vehicleId?: boolean
+  phoneId?: boolean
+  locationId?: boolean
+  organizationId?: boolean
+  modusOperandiId?: boolean
+  case?: boolean | Prisma.Embedding$caseArgs<ExtArgs>
+  person?: boolean | Prisma.Embedding$personArgs<ExtArgs>
+  evidence?: boolean | Prisma.Embedding$evidenceArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Embedding$vehicleArgs<ExtArgs>
+  phone?: boolean | Prisma.Embedding$phoneArgs<ExtArgs>
+  location?: boolean | Prisma.Embedding$locationArgs<ExtArgs>
+  organization?: boolean | Prisma.Embedding$organizationArgs<ExtArgs>
+  modusOperandi?: boolean | Prisma.Embedding$modusOperandiArgs<ExtArgs>
 }, ExtArgs["result"]["embedding"]>
 
 export type EmbeddingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -320,7 +2107,27 @@ export type EmbeddingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   entityType?: boolean
   entityId?: boolean
   vectorId?: boolean
+  modelName?: boolean
+  contentHash?: boolean
+  metadata?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  caseId?: boolean
+  personId?: boolean
+  evidenceId?: boolean
+  vehicleId?: boolean
+  phoneId?: boolean
+  locationId?: boolean
+  organizationId?: boolean
+  modusOperandiId?: boolean
+  case?: boolean | Prisma.Embedding$caseArgs<ExtArgs>
+  person?: boolean | Prisma.Embedding$personArgs<ExtArgs>
+  evidence?: boolean | Prisma.Embedding$evidenceArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Embedding$vehicleArgs<ExtArgs>
+  phone?: boolean | Prisma.Embedding$phoneArgs<ExtArgs>
+  location?: boolean | Prisma.Embedding$locationArgs<ExtArgs>
+  organization?: boolean | Prisma.Embedding$organizationArgs<ExtArgs>
+  modusOperandi?: boolean | Prisma.Embedding$modusOperandiArgs<ExtArgs>
 }, ExtArgs["result"]["embedding"]>
 
 export type EmbeddingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -328,7 +2135,27 @@ export type EmbeddingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   entityType?: boolean
   entityId?: boolean
   vectorId?: boolean
+  modelName?: boolean
+  contentHash?: boolean
+  metadata?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  caseId?: boolean
+  personId?: boolean
+  evidenceId?: boolean
+  vehicleId?: boolean
+  phoneId?: boolean
+  locationId?: boolean
+  organizationId?: boolean
+  modusOperandiId?: boolean
+  case?: boolean | Prisma.Embedding$caseArgs<ExtArgs>
+  person?: boolean | Prisma.Embedding$personArgs<ExtArgs>
+  evidence?: boolean | Prisma.Embedding$evidenceArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Embedding$vehicleArgs<ExtArgs>
+  phone?: boolean | Prisma.Embedding$phoneArgs<ExtArgs>
+  location?: boolean | Prisma.Embedding$locationArgs<ExtArgs>
+  organization?: boolean | Prisma.Embedding$organizationArgs<ExtArgs>
+  modusOperandi?: boolean | Prisma.Embedding$modusOperandiArgs<ExtArgs>
 }, ExtArgs["result"]["embedding"]>
 
 export type EmbeddingSelectScalar = {
@@ -336,20 +2163,83 @@ export type EmbeddingSelectScalar = {
   entityType?: boolean
   entityId?: boolean
   vectorId?: boolean
+  modelName?: boolean
+  contentHash?: boolean
+  metadata?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  caseId?: boolean
+  personId?: boolean
+  evidenceId?: boolean
+  vehicleId?: boolean
+  phoneId?: boolean
+  locationId?: boolean
+  organizationId?: boolean
+  modusOperandiId?: boolean
 }
 
-export type EmbeddingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "entityType" | "entityId" | "vectorId" | "createdAt", ExtArgs["result"]["embedding"]>
+export type EmbeddingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "entityType" | "entityId" | "vectorId" | "modelName" | "contentHash" | "metadata" | "createdAt" | "updatedAt" | "caseId" | "personId" | "evidenceId" | "vehicleId" | "phoneId" | "locationId" | "organizationId" | "modusOperandiId", ExtArgs["result"]["embedding"]>
+export type EmbeddingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  case?: boolean | Prisma.Embedding$caseArgs<ExtArgs>
+  person?: boolean | Prisma.Embedding$personArgs<ExtArgs>
+  evidence?: boolean | Prisma.Embedding$evidenceArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Embedding$vehicleArgs<ExtArgs>
+  phone?: boolean | Prisma.Embedding$phoneArgs<ExtArgs>
+  location?: boolean | Prisma.Embedding$locationArgs<ExtArgs>
+  organization?: boolean | Prisma.Embedding$organizationArgs<ExtArgs>
+  modusOperandi?: boolean | Prisma.Embedding$modusOperandiArgs<ExtArgs>
+}
+export type EmbeddingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  case?: boolean | Prisma.Embedding$caseArgs<ExtArgs>
+  person?: boolean | Prisma.Embedding$personArgs<ExtArgs>
+  evidence?: boolean | Prisma.Embedding$evidenceArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Embedding$vehicleArgs<ExtArgs>
+  phone?: boolean | Prisma.Embedding$phoneArgs<ExtArgs>
+  location?: boolean | Prisma.Embedding$locationArgs<ExtArgs>
+  organization?: boolean | Prisma.Embedding$organizationArgs<ExtArgs>
+  modusOperandi?: boolean | Prisma.Embedding$modusOperandiArgs<ExtArgs>
+}
+export type EmbeddingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  case?: boolean | Prisma.Embedding$caseArgs<ExtArgs>
+  person?: boolean | Prisma.Embedding$personArgs<ExtArgs>
+  evidence?: boolean | Prisma.Embedding$evidenceArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Embedding$vehicleArgs<ExtArgs>
+  phone?: boolean | Prisma.Embedding$phoneArgs<ExtArgs>
+  location?: boolean | Prisma.Embedding$locationArgs<ExtArgs>
+  organization?: boolean | Prisma.Embedding$organizationArgs<ExtArgs>
+  modusOperandi?: boolean | Prisma.Embedding$modusOperandiArgs<ExtArgs>
+}
 
 export type $EmbeddingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Embedding"
-  objects: {}
+  objects: {
+    case: Prisma.$CasePayload<ExtArgs> | null
+    person: Prisma.$PersonPayload<ExtArgs> | null
+    evidence: Prisma.$EvidencePayload<ExtArgs> | null
+    vehicle: Prisma.$VehiclePayload<ExtArgs> | null
+    phone: Prisma.$PhonePayload<ExtArgs> | null
+    location: Prisma.$LocationPayload<ExtArgs> | null
+    organization: Prisma.$OrganizationPayload<ExtArgs> | null
+    modusOperandi: Prisma.$ModusOperandiPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    entityType: string
+    entityType: $Enums.EntityType
     entityId: string
-    vectorId: string
+    vectorId: string | null
+    modelName: string | null
+    contentHash: string | null
+    metadata: runtime.JsonValue | null
     createdAt: Date
+    updatedAt: Date
+    caseId: string | null
+    personId: string | null
+    evidenceId: string | null
+    vehicleId: string | null
+    phoneId: string | null
+    locationId: string | null
+    organizationId: string | null
+    modusOperandiId: string | null
   }, ExtArgs["result"]["embedding"]>
   composites: {}
 }
@@ -744,6 +2634,14 @@ readonly fields: EmbeddingFieldRefs;
  */
 export interface Prisma__EmbeddingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  case<T extends Prisma.Embedding$caseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$caseArgs<ExtArgs>>): Prisma.Prisma__CaseClient<runtime.Types.Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  person<T extends Prisma.Embedding$personArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$personArgs<ExtArgs>>): Prisma.Prisma__PersonClient<runtime.Types.Result.GetResult<Prisma.$PersonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  evidence<T extends Prisma.Embedding$evidenceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$evidenceArgs<ExtArgs>>): Prisma.Prisma__EvidenceClient<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  vehicle<T extends Prisma.Embedding$vehicleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$vehicleArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  phone<T extends Prisma.Embedding$phoneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$phoneArgs<ExtArgs>>): Prisma.Prisma__PhoneClient<runtime.Types.Result.GetResult<Prisma.$PhonePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.Embedding$locationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$locationArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.Embedding$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  modusOperandi<T extends Prisma.Embedding$modusOperandiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Embedding$modusOperandiArgs<ExtArgs>>): Prisma.Prisma__ModusOperandiClient<runtime.Types.Result.GetResult<Prisma.$ModusOperandiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -774,10 +2672,22 @@ export interface Prisma__EmbeddingClient<T, Null = never, ExtArgs extends runtim
  */
 export interface EmbeddingFieldRefs {
   readonly id: Prisma.FieldRef<"Embedding", 'String'>
-  readonly entityType: Prisma.FieldRef<"Embedding", 'String'>
+  readonly entityType: Prisma.FieldRef<"Embedding", 'EntityType'>
   readonly entityId: Prisma.FieldRef<"Embedding", 'String'>
   readonly vectorId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly modelName: Prisma.FieldRef<"Embedding", 'String'>
+  readonly contentHash: Prisma.FieldRef<"Embedding", 'String'>
+  readonly metadata: Prisma.FieldRef<"Embedding", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Embedding", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Embedding", 'DateTime'>
+  readonly caseId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly personId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly evidenceId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly vehicleId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly phoneId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly locationId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly organizationId: Prisma.FieldRef<"Embedding", 'String'>
+  readonly modusOperandiId: Prisma.FieldRef<"Embedding", 'String'>
 }
     
 
@@ -794,6 +2704,10 @@ export type EmbeddingFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Embedding
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
   /**
    * Filter, which Embedding to fetch.
    */
@@ -813,6 +2727,10 @@ export type EmbeddingFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  /**
    * Filter, which Embedding to fetch.
    */
   where: Prisma.EmbeddingWhereUniqueInput
@@ -830,6 +2748,10 @@ export type EmbeddingFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Embedding
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
   /**
    * Filter, which Embedding to fetch.
    */
@@ -879,6 +2801,10 @@ export type EmbeddingFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  /**
    * Filter, which Embedding to fetch.
    */
   where?: Prisma.EmbeddingWhereInput
@@ -926,6 +2852,10 @@ export type EmbeddingFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Embedding
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
   /**
    * Filter, which Embeddings to fetch.
    */
@@ -975,6 +2905,10 @@ export type EmbeddingCreateArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  /**
    * The data needed to create a Embedding.
    */
   data: Prisma.XOR<Prisma.EmbeddingCreateInput, Prisma.EmbeddingUncheckedCreateInput>
@@ -1008,6 +2942,10 @@ export type EmbeddingCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    */
   data: Prisma.EmbeddingCreateManyInput | Prisma.EmbeddingCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1022,6 +2960,10 @@ export type EmbeddingUpdateArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Embedding
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
   /**
    * The data needed to update a Embedding.
    */
@@ -1074,6 +3016,10 @@ export type EmbeddingUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many Embeddings to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1088,6 +3034,10 @@ export type EmbeddingUpsertArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Embedding
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
   /**
    * The filter to search for the Embedding to update in case it exists.
    */
@@ -1115,6 +3065,10 @@ export type EmbeddingDeleteArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  /**
    * Filter which Embedding to delete.
    */
   where: Prisma.EmbeddingWhereUniqueInput
@@ -1135,6 +3089,158 @@ export type EmbeddingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Embedding.case
+ */
+export type Embedding$caseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Case
+   */
+  select?: Prisma.CaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Case
+   */
+  omit?: Prisma.CaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CaseInclude<ExtArgs> | null
+  where?: Prisma.CaseWhereInput
+}
+
+/**
+ * Embedding.person
+ */
+export type Embedding$personArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Person
+   */
+  select?: Prisma.PersonSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Person
+   */
+  omit?: Prisma.PersonOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PersonInclude<ExtArgs> | null
+  where?: Prisma.PersonWhereInput
+}
+
+/**
+ * Embedding.evidence
+ */
+export type Embedding$evidenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evidence
+   */
+  select?: Prisma.EvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evidence
+   */
+  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvidenceInclude<ExtArgs> | null
+  where?: Prisma.EvidenceWhereInput
+}
+
+/**
+ * Embedding.vehicle
+ */
+export type Embedding$vehicleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Vehicle
+   */
+  select?: Prisma.VehicleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Vehicle
+   */
+  omit?: Prisma.VehicleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VehicleInclude<ExtArgs> | null
+  where?: Prisma.VehicleWhereInput
+}
+
+/**
+ * Embedding.phone
+ */
+export type Embedding$phoneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Phone
+   */
+  select?: Prisma.PhoneSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Phone
+   */
+  omit?: Prisma.PhoneOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhoneInclude<ExtArgs> | null
+  where?: Prisma.PhoneWhereInput
+}
+
+/**
+ * Embedding.location
+ */
+export type Embedding$locationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Location
+   */
+  select?: Prisma.LocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Location
+   */
+  omit?: Prisma.LocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
+}
+
+/**
+ * Embedding.organization
+ */
+export type Embedding$organizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Organization
+   */
+  select?: Prisma.OrganizationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Organization
+   */
+  omit?: Prisma.OrganizationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationInclude<ExtArgs> | null
+  where?: Prisma.OrganizationWhereInput
+}
+
+/**
+ * Embedding.modusOperandi
+ */
+export type Embedding$modusOperandiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ModusOperandi
+   */
+  select?: Prisma.ModusOperandiSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ModusOperandi
+   */
+  omit?: Prisma.ModusOperandiOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModusOperandiInclude<ExtArgs> | null
+  where?: Prisma.ModusOperandiWhereInput
+}
+
+/**
  * Embedding without action
  */
 export type EmbeddingDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1146,4 +3252,8 @@ export type EmbeddingDefaultArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Embedding
    */
   omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
 }

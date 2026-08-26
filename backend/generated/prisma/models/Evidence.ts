@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Evidence
@@ -20,72 +20,154 @@ export type EvidenceModel = runtime.Types.Result.DefaultSelection<Prisma.$Eviden
 
 export type AggregateEvidence = {
   _count: EvidenceCountAggregateOutputType | null
+  _avg: EvidenceAvgAggregateOutputType | null
+  _sum: EvidenceSumAggregateOutputType | null
   _min: EvidenceMinAggregateOutputType | null
   _max: EvidenceMaxAggregateOutputType | null
+}
+
+export type EvidenceAvgAggregateOutputType = {
+  fileSize: number | null
+  uploadedById: number | null
+  aiConfidence: number | null
+}
+
+export type EvidenceSumAggregateOutputType = {
+  fileSize: number | null
+  uploadedById: number | null
+  aiConfidence: number | null
 }
 
 export type EvidenceMinAggregateOutputType = {
   id: string | null
   caseId: string | null
   type: $Enums.EvidenceType | null
+  title: string | null
   description: string | null
   fileUrl: string | null
-  uploadedById: string | null
+  mimeType: string | null
+  fileName: string | null
+  fileSize: number | null
+  fileHash: string | null
+  uploadedById: number | null
+  aiSummary: string | null
+  aiConfidence: number | null
+  processedAt: Date | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type EvidenceMaxAggregateOutputType = {
   id: string | null
   caseId: string | null
   type: $Enums.EvidenceType | null
+  title: string | null
   description: string | null
   fileUrl: string | null
-  uploadedById: string | null
+  mimeType: string | null
+  fileName: string | null
+  fileSize: number | null
+  fileHash: string | null
+  uploadedById: number | null
+  aiSummary: string | null
+  aiConfidence: number | null
+  processedAt: Date | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type EvidenceCountAggregateOutputType = {
   id: number
   caseId: number
   type: number
+  title: number
   description: number
   fileUrl: number
+  mimeType: number
+  fileName: number
+  fileSize: number
+  fileHash: number
   uploadedById: number
   extractedData: number
+  aiSummary: number
+  aiClassification: number
+  aiConfidence: number
+  processedAt: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
+
+export type EvidenceAvgAggregateInputType = {
+  fileSize?: true
+  uploadedById?: true
+  aiConfidence?: true
+}
+
+export type EvidenceSumAggregateInputType = {
+  fileSize?: true
+  uploadedById?: true
+  aiConfidence?: true
+}
 
 export type EvidenceMinAggregateInputType = {
   id?: true
   caseId?: true
   type?: true
+  title?: true
   description?: true
   fileUrl?: true
+  mimeType?: true
+  fileName?: true
+  fileSize?: true
+  fileHash?: true
   uploadedById?: true
+  aiSummary?: true
+  aiConfidence?: true
+  processedAt?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type EvidenceMaxAggregateInputType = {
   id?: true
   caseId?: true
   type?: true
+  title?: true
   description?: true
   fileUrl?: true
+  mimeType?: true
+  fileName?: true
+  fileSize?: true
+  fileHash?: true
   uploadedById?: true
+  aiSummary?: true
+  aiConfidence?: true
+  processedAt?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type EvidenceCountAggregateInputType = {
   id?: true
   caseId?: true
   type?: true
+  title?: true
   description?: true
   fileUrl?: true
+  mimeType?: true
+  fileName?: true
+  fileSize?: true
+  fileHash?: true
   uploadedById?: true
   extractedData?: true
+  aiSummary?: true
+  aiClassification?: true
+  aiConfidence?: true
+  processedAt?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -127,6 +209,18 @@ export type EvidenceAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: EvidenceAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: EvidenceSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: EvidenceMinAggregateInputType
@@ -157,6 +251,8 @@ export type EvidenceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: EvidenceCountAggregateInputType | true
+  _avg?: EvidenceAvgAggregateInputType
+  _sum?: EvidenceSumAggregateInputType
   _min?: EvidenceMinAggregateInputType
   _max?: EvidenceMaxAggregateInputType
 }
@@ -165,12 +261,24 @@ export type EvidenceGroupByOutputType = {
   id: string
   caseId: string
   type: $Enums.EvidenceType
+  title: string | null
   description: string | null
   fileUrl: string
-  uploadedById: string
+  mimeType: string | null
+  fileName: string | null
+  fileSize: number | null
+  fileHash: string | null
+  uploadedById: number
   extractedData: runtime.JsonValue | null
+  aiSummary: string | null
+  aiClassification: runtime.JsonValue | null
+  aiConfidence: number | null
+  processedAt: Date | null
   createdAt: Date
+  updatedAt: Date
   _count: EvidenceCountAggregateOutputType | null
+  _avg: EvidenceAvgAggregateOutputType | null
+  _sum: EvidenceSumAggregateOutputType | null
   _min: EvidenceMinAggregateOutputType | null
   _max: EvidenceMaxAggregateOutputType | null
 }
@@ -197,26 +305,54 @@ export type EvidenceWhereInput = {
   id?: Prisma.StringFilter<"Evidence"> | string
   caseId?: Prisma.StringFilter<"Evidence"> | string
   type?: Prisma.EnumEvidenceTypeFilter<"Evidence"> | $Enums.EvidenceType
+  title?: Prisma.StringNullableFilter<"Evidence"> | string | null
   description?: Prisma.StringNullableFilter<"Evidence"> | string | null
   fileUrl?: Prisma.StringFilter<"Evidence"> | string
-  uploadedById?: Prisma.StringFilter<"Evidence"> | string
+  mimeType?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  fileName?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  fileSize?: Prisma.IntNullableFilter<"Evidence"> | number | null
+  fileHash?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  uploadedById?: Prisma.IntFilter<"Evidence"> | number
   extractedData?: Prisma.JsonNullableFilter<"Evidence">
+  aiSummary?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  aiClassification?: Prisma.JsonNullableFilter<"Evidence">
+  aiConfidence?: Prisma.FloatNullableFilter<"Evidence"> | number | null
+  processedAt?: Prisma.DateTimeNullableFilter<"Evidence"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
-  uploadedBy?: Prisma.XOR<Prisma.OfficerScalarRelationFilter, Prisma.OfficerWhereInput>
+  uploadedBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  relationships?: Prisma.PersonRelationshipListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
+  investigationEvents?: Prisma.InvestigationEventListRelationFilter
+  faceRecords?: Prisma.FaceRecordListRelationFilter
 }
 
 export type EvidenceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   caseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileName?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileSize?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileHash?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   extractedData?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiClassification?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  processedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   case?: Prisma.CaseOrderByWithRelationInput
-  uploadedBy?: Prisma.OfficerOrderByWithRelationInput
+  uploadedBy?: Prisma.EmployeeOrderByWithRelationInput
+  relationships?: Prisma.PersonRelationshipOrderByRelationAggregateInput
+  embeddings?: Prisma.EmbeddingOrderByRelationAggregateInput
+  investigationEvents?: Prisma.InvestigationEventOrderByRelationAggregateInput
+  faceRecords?: Prisma.FaceRecordOrderByRelationAggregateInput
 }
 
 export type EvidenceWhereUniqueInput = Prisma.AtLeast<{
@@ -226,27 +362,53 @@ export type EvidenceWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EvidenceWhereInput | Prisma.EvidenceWhereInput[]
   caseId?: Prisma.StringFilter<"Evidence"> | string
   type?: Prisma.EnumEvidenceTypeFilter<"Evidence"> | $Enums.EvidenceType
+  title?: Prisma.StringNullableFilter<"Evidence"> | string | null
   description?: Prisma.StringNullableFilter<"Evidence"> | string | null
   fileUrl?: Prisma.StringFilter<"Evidence"> | string
-  uploadedById?: Prisma.StringFilter<"Evidence"> | string
+  mimeType?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  fileName?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  fileSize?: Prisma.IntNullableFilter<"Evidence"> | number | null
+  fileHash?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  uploadedById?: Prisma.IntFilter<"Evidence"> | number
   extractedData?: Prisma.JsonNullableFilter<"Evidence">
+  aiSummary?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  aiClassification?: Prisma.JsonNullableFilter<"Evidence">
+  aiConfidence?: Prisma.FloatNullableFilter<"Evidence"> | number | null
+  processedAt?: Prisma.DateTimeNullableFilter<"Evidence"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
-  uploadedBy?: Prisma.XOR<Prisma.OfficerScalarRelationFilter, Prisma.OfficerWhereInput>
+  uploadedBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  relationships?: Prisma.PersonRelationshipListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
+  investigationEvents?: Prisma.InvestigationEventListRelationFilter
+  faceRecords?: Prisma.FaceRecordListRelationFilter
 }, "id">
 
 export type EvidenceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   caseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileName?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileSize?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileHash?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   extractedData?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiClassification?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  processedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.EvidenceCountOrderByAggregateInput
+  _avg?: Prisma.EvidenceAvgOrderByAggregateInput
   _max?: Prisma.EvidenceMaxOrderByAggregateInput
   _min?: Prisma.EvidenceMinOrderByAggregateInput
+  _sum?: Prisma.EvidenceSumOrderByAggregateInput
 }
 
 export type EvidenceScalarWhereWithAggregatesInput = {
@@ -256,86 +418,182 @@ export type EvidenceScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Evidence"> | string
   caseId?: Prisma.StringWithAggregatesFilter<"Evidence"> | string
   type?: Prisma.EnumEvidenceTypeWithAggregatesFilter<"Evidence"> | $Enums.EvidenceType
+  title?: Prisma.StringNullableWithAggregatesFilter<"Evidence"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Evidence"> | string | null
   fileUrl?: Prisma.StringWithAggregatesFilter<"Evidence"> | string
-  uploadedById?: Prisma.StringWithAggregatesFilter<"Evidence"> | string
+  mimeType?: Prisma.StringNullableWithAggregatesFilter<"Evidence"> | string | null
+  fileName?: Prisma.StringNullableWithAggregatesFilter<"Evidence"> | string | null
+  fileSize?: Prisma.IntNullableWithAggregatesFilter<"Evidence"> | number | null
+  fileHash?: Prisma.StringNullableWithAggregatesFilter<"Evidence"> | string | null
+  uploadedById?: Prisma.IntWithAggregatesFilter<"Evidence"> | number
   extractedData?: Prisma.JsonNullableWithAggregatesFilter<"Evidence">
+  aiSummary?: Prisma.StringNullableWithAggregatesFilter<"Evidence"> | string | null
+  aiClassification?: Prisma.JsonNullableWithAggregatesFilter<"Evidence">
+  aiConfidence?: Prisma.FloatNullableWithAggregatesFilter<"Evidence"> | number | null
+  processedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Evidence"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Evidence"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Evidence"> | Date | string
 }
 
 export type EvidenceCreateInput = {
   id?: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   case: Prisma.CaseCreateNestedOneWithoutEvidencesInput
-  uploadedBy: Prisma.OfficerCreateNestedOneWithoutEvidencesInput
+  uploadedBy: Prisma.EmployeeCreateNestedOneWithoutEvidenceInput
+  relationships?: Prisma.PersonRelationshipCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutEvidenceInput
 }
 
 export type EvidenceUncheckedCreateInput = {
   id?: string
   caseId: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
-  uploadedById: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutEvidenceInput
 }
 
 export type EvidenceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   case?: Prisma.CaseUpdateOneRequiredWithoutEvidencesNestedInput
-  uploadedBy?: Prisma.OfficerUpdateOneRequiredWithoutEvidencesNestedInput
+  uploadedBy?: Prisma.EmployeeUpdateOneRequiredWithoutEvidenceNestedInput
+  relationships?: Prisma.PersonRelationshipUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutEvidenceNestedInput
 }
 
 export type EvidenceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutEvidenceNestedInput
 }
 
 export type EvidenceCreateManyInput = {
   id?: string
   caseId: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
-  uploadedById: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type EvidenceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EvidenceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EvidenceListRelationFilter = {
@@ -348,35 +606,80 @@ export type EvidenceOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type EvidenceNullableScalarRelationFilter = {
+  is?: Prisma.EvidenceWhereInput | null
+  isNot?: Prisma.EvidenceWhereInput | null
+}
+
 export type EvidenceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   caseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  mimeType?: Prisma.SortOrder
+  fileName?: Prisma.SortOrder
+  fileSize?: Prisma.SortOrder
+  fileHash?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   extractedData?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
+  aiClassification?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  processedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type EvidenceAvgOrderByAggregateInput = {
+  fileSize?: Prisma.SortOrder
+  uploadedById?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
 }
 
 export type EvidenceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   caseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  mimeType?: Prisma.SortOrder
+  fileName?: Prisma.SortOrder
+  fileSize?: Prisma.SortOrder
+  fileHash?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  processedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type EvidenceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   caseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  mimeType?: Prisma.SortOrder
+  fileName?: Prisma.SortOrder
+  fileSize?: Prisma.SortOrder
+  fileHash?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  processedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type EvidenceSumOrderByAggregateInput = {
+  fileSize?: Prisma.SortOrder
+  uploadedById?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
 }
 
 export type EvidenceCreateNestedManyWithoutCaseInput = {
@@ -421,10 +724,6 @@ export type EvidenceUncheckedUpdateManyWithoutCaseNestedInput = {
   deleteMany?: Prisma.EvidenceScalarWhereInput | Prisma.EvidenceScalarWhereInput[]
 }
 
-export type EnumEvidenceTypeFieldUpdateOperationsInput = {
-  set?: $Enums.EvidenceType
-}
-
 export type EvidenceCreateNestedManyWithoutUploadedByInput = {
   create?: Prisma.XOR<Prisma.EvidenceCreateWithoutUploadedByInput, Prisma.EvidenceUncheckedCreateWithoutUploadedByInput> | Prisma.EvidenceCreateWithoutUploadedByInput[] | Prisma.EvidenceUncheckedCreateWithoutUploadedByInput[]
   connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutUploadedByInput | Prisma.EvidenceCreateOrConnectWithoutUploadedByInput[]
@@ -467,24 +766,120 @@ export type EvidenceUncheckedUpdateManyWithoutUploadedByNestedInput = {
   deleteMany?: Prisma.EvidenceScalarWhereInput | Prisma.EvidenceScalarWhereInput[]
 }
 
+export type EvidenceCreateNestedOneWithoutRelationshipsInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutRelationshipsInput, Prisma.EvidenceUncheckedCreateWithoutRelationshipsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutRelationshipsInput
+  connect?: Prisma.EvidenceWhereUniqueInput
+}
+
+export type EvidenceUpdateOneWithoutRelationshipsNestedInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutRelationshipsInput, Prisma.EvidenceUncheckedCreateWithoutRelationshipsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutRelationshipsInput
+  upsert?: Prisma.EvidenceUpsertWithoutRelationshipsInput
+  disconnect?: Prisma.EvidenceWhereInput | boolean
+  delete?: Prisma.EvidenceWhereInput | boolean
+  connect?: Prisma.EvidenceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EvidenceUpdateToOneWithWhereWithoutRelationshipsInput, Prisma.EvidenceUpdateWithoutRelationshipsInput>, Prisma.EvidenceUncheckedUpdateWithoutRelationshipsInput>
+}
+
+export type EnumEvidenceTypeFieldUpdateOperationsInput = {
+  set?: $Enums.EvidenceType
+}
+
+export type EvidenceCreateNestedOneWithoutInvestigationEventsInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutInvestigationEventsInput, Prisma.EvidenceUncheckedCreateWithoutInvestigationEventsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutInvestigationEventsInput
+  connect?: Prisma.EvidenceWhereUniqueInput
+}
+
+export type EvidenceUpdateOneWithoutInvestigationEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutInvestigationEventsInput, Prisma.EvidenceUncheckedCreateWithoutInvestigationEventsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutInvestigationEventsInput
+  upsert?: Prisma.EvidenceUpsertWithoutInvestigationEventsInput
+  disconnect?: Prisma.EvidenceWhereInput | boolean
+  delete?: Prisma.EvidenceWhereInput | boolean
+  connect?: Prisma.EvidenceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EvidenceUpdateToOneWithWhereWithoutInvestigationEventsInput, Prisma.EvidenceUpdateWithoutInvestigationEventsInput>, Prisma.EvidenceUncheckedUpdateWithoutInvestigationEventsInput>
+}
+
+export type EvidenceCreateNestedOneWithoutEmbeddingsInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutEmbeddingsInput, Prisma.EvidenceUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutEmbeddingsInput
+  connect?: Prisma.EvidenceWhereUniqueInput
+}
+
+export type EvidenceUpdateOneWithoutEmbeddingsNestedInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutEmbeddingsInput, Prisma.EvidenceUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutEmbeddingsInput
+  upsert?: Prisma.EvidenceUpsertWithoutEmbeddingsInput
+  disconnect?: Prisma.EvidenceWhereInput | boolean
+  delete?: Prisma.EvidenceWhereInput | boolean
+  connect?: Prisma.EvidenceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EvidenceUpdateToOneWithWhereWithoutEmbeddingsInput, Prisma.EvidenceUpdateWithoutEmbeddingsInput>, Prisma.EvidenceUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type EvidenceCreateNestedOneWithoutFaceRecordsInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutFaceRecordsInput, Prisma.EvidenceUncheckedCreateWithoutFaceRecordsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutFaceRecordsInput
+  connect?: Prisma.EvidenceWhereUniqueInput
+}
+
+export type EvidenceUpdateOneWithoutFaceRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutFaceRecordsInput, Prisma.EvidenceUncheckedCreateWithoutFaceRecordsInput>
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutFaceRecordsInput
+  upsert?: Prisma.EvidenceUpsertWithoutFaceRecordsInput
+  disconnect?: Prisma.EvidenceWhereInput | boolean
+  delete?: Prisma.EvidenceWhereInput | boolean
+  connect?: Prisma.EvidenceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EvidenceUpdateToOneWithWhereWithoutFaceRecordsInput, Prisma.EvidenceUpdateWithoutFaceRecordsInput>, Prisma.EvidenceUncheckedUpdateWithoutFaceRecordsInput>
+}
+
 export type EvidenceCreateWithoutCaseInput = {
   id?: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
-  uploadedBy: Prisma.OfficerCreateNestedOneWithoutEvidencesInput
+  updatedAt?: Date | string
+  uploadedBy: Prisma.EmployeeCreateNestedOneWithoutEvidenceInput
+  relationships?: Prisma.PersonRelationshipCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutEvidenceInput
 }
 
 export type EvidenceUncheckedCreateWithoutCaseInput = {
   id?: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
-  uploadedById: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutEvidenceInput
 }
 
 export type EvidenceCreateOrConnectWithoutCaseInput = {
@@ -520,31 +915,69 @@ export type EvidenceScalarWhereInput = {
   id?: Prisma.StringFilter<"Evidence"> | string
   caseId?: Prisma.StringFilter<"Evidence"> | string
   type?: Prisma.EnumEvidenceTypeFilter<"Evidence"> | $Enums.EvidenceType
+  title?: Prisma.StringNullableFilter<"Evidence"> | string | null
   description?: Prisma.StringNullableFilter<"Evidence"> | string | null
   fileUrl?: Prisma.StringFilter<"Evidence"> | string
-  uploadedById?: Prisma.StringFilter<"Evidence"> | string
+  mimeType?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  fileName?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  fileSize?: Prisma.IntNullableFilter<"Evidence"> | number | null
+  fileHash?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  uploadedById?: Prisma.IntFilter<"Evidence"> | number
   extractedData?: Prisma.JsonNullableFilter<"Evidence">
+  aiSummary?: Prisma.StringNullableFilter<"Evidence"> | string | null
+  aiClassification?: Prisma.JsonNullableFilter<"Evidence">
+  aiConfidence?: Prisma.FloatNullableFilter<"Evidence"> | number | null
+  processedAt?: Prisma.DateTimeNullableFilter<"Evidence"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
 }
 
 export type EvidenceCreateWithoutUploadedByInput = {
   id?: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   case: Prisma.CaseCreateNestedOneWithoutEvidencesInput
+  relationships?: Prisma.PersonRelationshipCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutEvidenceInput
 }
 
 export type EvidenceUncheckedCreateWithoutUploadedByInput = {
   id?: string
   caseId: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutEvidenceInput
 }
 
 export type EvidenceCreateOrConnectWithoutUploadedByInput = {
@@ -573,167 +1006,831 @@ export type EvidenceUpdateManyWithWhereWithoutUploadedByInput = {
   data: Prisma.XOR<Prisma.EvidenceUpdateManyMutationInput, Prisma.EvidenceUncheckedUpdateManyWithoutUploadedByInput>
 }
 
+export type EvidenceCreateWithoutRelationshipsInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case: Prisma.CaseCreateNestedOneWithoutEvidencesInput
+  uploadedBy: Prisma.EmployeeCreateNestedOneWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceUncheckedCreateWithoutRelationshipsInput = {
+  id?: string
+  caseId: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceCreateOrConnectWithoutRelationshipsInput = {
+  where: Prisma.EvidenceWhereUniqueInput
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutRelationshipsInput, Prisma.EvidenceUncheckedCreateWithoutRelationshipsInput>
+}
+
+export type EvidenceUpsertWithoutRelationshipsInput = {
+  update: Prisma.XOR<Prisma.EvidenceUpdateWithoutRelationshipsInput, Prisma.EvidenceUncheckedUpdateWithoutRelationshipsInput>
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutRelationshipsInput, Prisma.EvidenceUncheckedCreateWithoutRelationshipsInput>
+  where?: Prisma.EvidenceWhereInput
+}
+
+export type EvidenceUpdateToOneWithWhereWithoutRelationshipsInput = {
+  where?: Prisma.EvidenceWhereInput
+  data: Prisma.XOR<Prisma.EvidenceUpdateWithoutRelationshipsInput, Prisma.EvidenceUncheckedUpdateWithoutRelationshipsInput>
+}
+
+export type EvidenceUpdateWithoutRelationshipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneRequiredWithoutEvidencesNestedInput
+  uploadedBy?: Prisma.EmployeeUpdateOneRequiredWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceUncheckedUpdateWithoutRelationshipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceCreateWithoutInvestigationEventsInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case: Prisma.CaseCreateNestedOneWithoutEvidencesInput
+  uploadedBy: Prisma.EmployeeCreateNestedOneWithoutEvidenceInput
+  relationships?: Prisma.PersonRelationshipCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceUncheckedCreateWithoutInvestigationEventsInput = {
+  id?: string
+  caseId: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceCreateOrConnectWithoutInvestigationEventsInput = {
+  where: Prisma.EvidenceWhereUniqueInput
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutInvestigationEventsInput, Prisma.EvidenceUncheckedCreateWithoutInvestigationEventsInput>
+}
+
+export type EvidenceUpsertWithoutInvestigationEventsInput = {
+  update: Prisma.XOR<Prisma.EvidenceUpdateWithoutInvestigationEventsInput, Prisma.EvidenceUncheckedUpdateWithoutInvestigationEventsInput>
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutInvestigationEventsInput, Prisma.EvidenceUncheckedCreateWithoutInvestigationEventsInput>
+  where?: Prisma.EvidenceWhereInput
+}
+
+export type EvidenceUpdateToOneWithWhereWithoutInvestigationEventsInput = {
+  where?: Prisma.EvidenceWhereInput
+  data: Prisma.XOR<Prisma.EvidenceUpdateWithoutInvestigationEventsInput, Prisma.EvidenceUncheckedUpdateWithoutInvestigationEventsInput>
+}
+
+export type EvidenceUpdateWithoutInvestigationEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneRequiredWithoutEvidencesNestedInput
+  uploadedBy?: Prisma.EmployeeUpdateOneRequiredWithoutEvidenceNestedInput
+  relationships?: Prisma.PersonRelationshipUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceUncheckedUpdateWithoutInvestigationEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceCreateWithoutEmbeddingsInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case: Prisma.CaseCreateNestedOneWithoutEvidencesInput
+  uploadedBy: Prisma.EmployeeCreateNestedOneWithoutEvidenceInput
+  relationships?: Prisma.PersonRelationshipCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceUncheckedCreateWithoutEmbeddingsInput = {
+  id?: string
+  caseId: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutEvidenceInput
+  faceRecords?: Prisma.FaceRecordUncheckedCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceCreateOrConnectWithoutEmbeddingsInput = {
+  where: Prisma.EvidenceWhereUniqueInput
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutEmbeddingsInput, Prisma.EvidenceUncheckedCreateWithoutEmbeddingsInput>
+}
+
+export type EvidenceUpsertWithoutEmbeddingsInput = {
+  update: Prisma.XOR<Prisma.EvidenceUpdateWithoutEmbeddingsInput, Prisma.EvidenceUncheckedUpdateWithoutEmbeddingsInput>
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutEmbeddingsInput, Prisma.EvidenceUncheckedCreateWithoutEmbeddingsInput>
+  where?: Prisma.EvidenceWhereInput
+}
+
+export type EvidenceUpdateToOneWithWhereWithoutEmbeddingsInput = {
+  where?: Prisma.EvidenceWhereInput
+  data: Prisma.XOR<Prisma.EvidenceUpdateWithoutEmbeddingsInput, Prisma.EvidenceUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type EvidenceUpdateWithoutEmbeddingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneRequiredWithoutEvidencesNestedInput
+  uploadedBy?: Prisma.EmployeeUpdateOneRequiredWithoutEvidenceNestedInput
+  relationships?: Prisma.PersonRelationshipUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceUncheckedUpdateWithoutEmbeddingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceCreateWithoutFaceRecordsInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  case: Prisma.CaseCreateNestedOneWithoutEvidencesInput
+  uploadedBy: Prisma.EmployeeCreateNestedOneWithoutEvidenceInput
+  relationships?: Prisma.PersonRelationshipCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceUncheckedCreateWithoutFaceRecordsInput = {
+  id?: string
+  caseId: string
+  type: $Enums.EvidenceType
+  title?: string | null
+  description?: string | null
+  fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutEvidenceInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedCreateNestedManyWithoutEvidenceInput
+}
+
+export type EvidenceCreateOrConnectWithoutFaceRecordsInput = {
+  where: Prisma.EvidenceWhereUniqueInput
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutFaceRecordsInput, Prisma.EvidenceUncheckedCreateWithoutFaceRecordsInput>
+}
+
+export type EvidenceUpsertWithoutFaceRecordsInput = {
+  update: Prisma.XOR<Prisma.EvidenceUpdateWithoutFaceRecordsInput, Prisma.EvidenceUncheckedUpdateWithoutFaceRecordsInput>
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutFaceRecordsInput, Prisma.EvidenceUncheckedCreateWithoutFaceRecordsInput>
+  where?: Prisma.EvidenceWhereInput
+}
+
+export type EvidenceUpdateToOneWithWhereWithoutFaceRecordsInput = {
+  where?: Prisma.EvidenceWhereInput
+  data: Prisma.XOR<Prisma.EvidenceUpdateWithoutFaceRecordsInput, Prisma.EvidenceUncheckedUpdateWithoutFaceRecordsInput>
+}
+
+export type EvidenceUpdateWithoutFaceRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  case?: Prisma.CaseUpdateOneRequiredWithoutEvidencesNestedInput
+  uploadedBy?: Prisma.EmployeeUpdateOneRequiredWithoutEvidenceNestedInput
+  relationships?: Prisma.PersonRelationshipUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutEvidenceNestedInput
+}
+
+export type EvidenceUncheckedUpdateWithoutFaceRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
+  extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutEvidenceNestedInput
+}
+
 export type EvidenceCreateManyCaseInput = {
   id?: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
-  uploadedById: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
+  uploadedById: number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type EvidenceUpdateWithoutCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  uploadedBy?: Prisma.OfficerUpdateOneRequiredWithoutEvidencesNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uploadedBy?: Prisma.EmployeeUpdateOneRequiredWithoutEvidenceNestedInput
+  relationships?: Prisma.PersonRelationshipUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutEvidenceNestedInput
 }
 
 export type EvidenceUncheckedUpdateWithoutCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutEvidenceNestedInput
 }
 
 export type EvidenceUncheckedUpdateManyWithoutCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.IntFieldUpdateOperationsInput | number
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EvidenceCreateManyUploadedByInput = {
   id?: string
   caseId: string
   type: $Enums.EvidenceType
+  title?: string | null
   description?: string | null
   fileUrl: string
+  mimeType?: string | null
+  fileName?: string | null
+  fileSize?: number | null
+  fileHash?: string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: number | null
+  processedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type EvidenceUpdateWithoutUploadedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   case?: Prisma.CaseUpdateOneRequiredWithoutEvidencesNestedInput
+  relationships?: Prisma.PersonRelationshipUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUpdateManyWithoutEvidenceNestedInput
 }
 
 export type EvidenceUncheckedUpdateWithoutUploadedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relationships?: Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutEvidenceNestedInput
+  investigationEvents?: Prisma.InvestigationEventUncheckedUpdateManyWithoutEvidenceNestedInput
+  faceRecords?: Prisma.FaceRecordUncheckedUpdateManyWithoutEvidenceNestedInput
 }
 
 export type EvidenceUncheckedUpdateManyWithoutUploadedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fileHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   extractedData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiClassification?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type EvidenceCountOutputType
+ */
+
+export type EvidenceCountOutputType = {
+  relationships: number
+  embeddings: number
+  investigationEvents: number
+  faceRecords: number
+}
+
+export type EvidenceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  relationships?: boolean | EvidenceCountOutputTypeCountRelationshipsArgs
+  embeddings?: boolean | EvidenceCountOutputTypeCountEmbeddingsArgs
+  investigationEvents?: boolean | EvidenceCountOutputTypeCountInvestigationEventsArgs
+  faceRecords?: boolean | EvidenceCountOutputTypeCountFaceRecordsArgs
+}
+
+/**
+ * EvidenceCountOutputType without action
+ */
+export type EvidenceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EvidenceCountOutputType
+   */
+  select?: Prisma.EvidenceCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * EvidenceCountOutputType without action
+ */
+export type EvidenceCountOutputTypeCountRelationshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PersonRelationshipWhereInput
+}
+
+/**
+ * EvidenceCountOutputType without action
+ */
+export type EvidenceCountOutputTypeCountEmbeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmbeddingWhereInput
+}
+
+/**
+ * EvidenceCountOutputType without action
+ */
+export type EvidenceCountOutputTypeCountInvestigationEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvestigationEventWhereInput
+}
+
+/**
+ * EvidenceCountOutputType without action
+ */
+export type EvidenceCountOutputTypeCountFaceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FaceRecordWhereInput
+}
 
 
 export type EvidenceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   caseId?: boolean
   type?: boolean
+  title?: boolean
   description?: boolean
   fileUrl?: boolean
+  mimeType?: boolean
+  fileName?: boolean
+  fileSize?: boolean
+  fileHash?: boolean
   uploadedById?: boolean
   extractedData?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
+  aiConfidence?: boolean
+  processedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
-  uploadedBy?: boolean | Prisma.OfficerDefaultArgs<ExtArgs>
+  uploadedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  relationships?: boolean | Prisma.Evidence$relationshipsArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Evidence$embeddingsArgs<ExtArgs>
+  investigationEvents?: boolean | Prisma.Evidence$investigationEventsArgs<ExtArgs>
+  faceRecords?: boolean | Prisma.Evidence$faceRecordsArgs<ExtArgs>
+  _count?: boolean | Prisma.EvidenceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evidence"]>
 
 export type EvidenceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   caseId?: boolean
   type?: boolean
+  title?: boolean
   description?: boolean
   fileUrl?: boolean
+  mimeType?: boolean
+  fileName?: boolean
+  fileSize?: boolean
+  fileHash?: boolean
   uploadedById?: boolean
   extractedData?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
+  aiConfidence?: boolean
+  processedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
-  uploadedBy?: boolean | Prisma.OfficerDefaultArgs<ExtArgs>
+  uploadedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evidence"]>
 
 export type EvidenceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   caseId?: boolean
   type?: boolean
+  title?: boolean
   description?: boolean
   fileUrl?: boolean
+  mimeType?: boolean
+  fileName?: boolean
+  fileSize?: boolean
+  fileHash?: boolean
   uploadedById?: boolean
   extractedData?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
+  aiConfidence?: boolean
+  processedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
-  uploadedBy?: boolean | Prisma.OfficerDefaultArgs<ExtArgs>
+  uploadedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evidence"]>
 
 export type EvidenceSelectScalar = {
   id?: boolean
   caseId?: boolean
   type?: boolean
+  title?: boolean
   description?: boolean
   fileUrl?: boolean
+  mimeType?: boolean
+  fileName?: boolean
+  fileSize?: boolean
+  fileHash?: boolean
   uploadedById?: boolean
   extractedData?: boolean
+  aiSummary?: boolean
+  aiClassification?: boolean
+  aiConfidence?: boolean
+  processedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type EvidenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caseId" | "type" | "description" | "fileUrl" | "uploadedById" | "extractedData" | "createdAt", ExtArgs["result"]["evidence"]>
+export type EvidenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caseId" | "type" | "title" | "description" | "fileUrl" | "mimeType" | "fileName" | "fileSize" | "fileHash" | "uploadedById" | "extractedData" | "aiSummary" | "aiClassification" | "aiConfidence" | "processedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["evidence"]>
 export type EvidenceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
-  uploadedBy?: boolean | Prisma.OfficerDefaultArgs<ExtArgs>
+  uploadedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  relationships?: boolean | Prisma.Evidence$relationshipsArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Evidence$embeddingsArgs<ExtArgs>
+  investigationEvents?: boolean | Prisma.Evidence$investigationEventsArgs<ExtArgs>
+  faceRecords?: boolean | Prisma.Evidence$faceRecordsArgs<ExtArgs>
+  _count?: boolean | Prisma.EvidenceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EvidenceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
-  uploadedBy?: boolean | Prisma.OfficerDefaultArgs<ExtArgs>
+  uploadedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type EvidenceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
-  uploadedBy?: boolean | Prisma.OfficerDefaultArgs<ExtArgs>
+  uploadedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 
 export type $EvidencePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Evidence"
   objects: {
     case: Prisma.$CasePayload<ExtArgs>
-    uploadedBy: Prisma.$OfficerPayload<ExtArgs>
+    uploadedBy: Prisma.$EmployeePayload<ExtArgs>
+    relationships: Prisma.$PersonRelationshipPayload<ExtArgs>[]
+    embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
+    investigationEvents: Prisma.$InvestigationEventPayload<ExtArgs>[]
+    faceRecords: Prisma.$FaceRecordPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     caseId: string
     type: $Enums.EvidenceType
+    title: string | null
     description: string | null
     fileUrl: string
-    uploadedById: string
+    mimeType: string | null
+    fileName: string | null
+    fileSize: number | null
+    fileHash: string | null
+    uploadedById: number
     extractedData: runtime.JsonValue | null
+    aiSummary: string | null
+    aiClassification: runtime.JsonValue | null
+    aiConfidence: number | null
+    processedAt: Date | null
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["evidence"]>
   composites: {}
 }
@@ -1129,7 +2226,11 @@ readonly fields: EvidenceFieldRefs;
 export interface Prisma__EvidenceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   case<T extends Prisma.CaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CaseDefaultArgs<ExtArgs>>): Prisma.Prisma__CaseClient<runtime.Types.Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  uploadedBy<T extends Prisma.OfficerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfficerDefaultArgs<ExtArgs>>): Prisma.Prisma__OfficerClient<runtime.Types.Result.GetResult<Prisma.$OfficerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  uploadedBy<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  relationships<T extends Prisma.Evidence$relationshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Evidence$relationshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  embeddings<T extends Prisma.Evidence$embeddingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Evidence$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  investigationEvents<T extends Prisma.Evidence$investigationEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Evidence$investigationEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvestigationEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  faceRecords<T extends Prisma.Evidence$faceRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Evidence$faceRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FaceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1162,11 +2263,21 @@ export interface EvidenceFieldRefs {
   readonly id: Prisma.FieldRef<"Evidence", 'String'>
   readonly caseId: Prisma.FieldRef<"Evidence", 'String'>
   readonly type: Prisma.FieldRef<"Evidence", 'EvidenceType'>
+  readonly title: Prisma.FieldRef<"Evidence", 'String'>
   readonly description: Prisma.FieldRef<"Evidence", 'String'>
   readonly fileUrl: Prisma.FieldRef<"Evidence", 'String'>
-  readonly uploadedById: Prisma.FieldRef<"Evidence", 'String'>
+  readonly mimeType: Prisma.FieldRef<"Evidence", 'String'>
+  readonly fileName: Prisma.FieldRef<"Evidence", 'String'>
+  readonly fileSize: Prisma.FieldRef<"Evidence", 'Int'>
+  readonly fileHash: Prisma.FieldRef<"Evidence", 'String'>
+  readonly uploadedById: Prisma.FieldRef<"Evidence", 'Int'>
   readonly extractedData: Prisma.FieldRef<"Evidence", 'Json'>
+  readonly aiSummary: Prisma.FieldRef<"Evidence", 'String'>
+  readonly aiClassification: Prisma.FieldRef<"Evidence", 'Json'>
+  readonly aiConfidence: Prisma.FieldRef<"Evidence", 'Float'>
+  readonly processedAt: Prisma.FieldRef<"Evidence", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Evidence", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Evidence", 'DateTime'>
 }
     
 
@@ -1565,6 +2676,102 @@ export type EvidenceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Evidences to delete.
    */
   limit?: number
+}
+
+/**
+ * Evidence.relationships
+ */
+export type Evidence$relationshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PersonRelationship
+   */
+  select?: Prisma.PersonRelationshipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PersonRelationship
+   */
+  omit?: Prisma.PersonRelationshipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PersonRelationshipInclude<ExtArgs> | null
+  where?: Prisma.PersonRelationshipWhereInput
+  orderBy?: Prisma.PersonRelationshipOrderByWithRelationInput | Prisma.PersonRelationshipOrderByWithRelationInput[]
+  cursor?: Prisma.PersonRelationshipWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PersonRelationshipScalarFieldEnum | Prisma.PersonRelationshipScalarFieldEnum[]
+}
+
+/**
+ * Evidence.embeddings
+ */
+export type Evidence$embeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Embedding
+   */
+  select?: Prisma.EmbeddingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Embedding
+   */
+  omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  where?: Prisma.EmbeddingWhereInput
+  orderBy?: Prisma.EmbeddingOrderByWithRelationInput | Prisma.EmbeddingOrderByWithRelationInput[]
+  cursor?: Prisma.EmbeddingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmbeddingScalarFieldEnum | Prisma.EmbeddingScalarFieldEnum[]
+}
+
+/**
+ * Evidence.investigationEvents
+ */
+export type Evidence$investigationEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InvestigationEvent
+   */
+  select?: Prisma.InvestigationEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InvestigationEvent
+   */
+  omit?: Prisma.InvestigationEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvestigationEventInclude<ExtArgs> | null
+  where?: Prisma.InvestigationEventWhereInput
+  orderBy?: Prisma.InvestigationEventOrderByWithRelationInput | Prisma.InvestigationEventOrderByWithRelationInput[]
+  cursor?: Prisma.InvestigationEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvestigationEventScalarFieldEnum | Prisma.InvestigationEventScalarFieldEnum[]
+}
+
+/**
+ * Evidence.faceRecords
+ */
+export type Evidence$faceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FaceRecord
+   */
+  select?: Prisma.FaceRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FaceRecord
+   */
+  omit?: Prisma.FaceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FaceRecordInclude<ExtArgs> | null
+  where?: Prisma.FaceRecordWhereInput
+  orderBy?: Prisma.FaceRecordOrderByWithRelationInput | Prisma.FaceRecordOrderByWithRelationInput[]
+  cursor?: Prisma.FaceRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FaceRecordScalarFieldEnum | Prisma.FaceRecordScalarFieldEnum[]
 }
 
 /**

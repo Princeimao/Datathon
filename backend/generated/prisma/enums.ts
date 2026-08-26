@@ -9,33 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const CrimeType = {
-  HOMICIDE: 'HOMICIDE',
-  ROBBERY: 'ROBBERY',
-  ASSAULT: 'ASSAULT',
-  THEFT: 'THEFT',
-  BURGLARY: 'BURGLARY',
-  KIDNAPPING: 'KIDNAPPING',
-  FRAUD: 'FRAUD',
-  CYBERCRIME: 'CYBERCRIME',
-  DRUG_OFFENSE: 'DRUG_OFFENSE',
-  RAPE: 'RAPE',
-  MURDER: 'MURDER',
-  OTHER: 'OTHER'
-} as const
-
-export type CrimeType = (typeof CrimeType)[keyof typeof CrimeType]
-
-
-export const CaseStatus = {
-  OPEN: 'OPEN',
-  CLOSED: 'CLOSED',
-  COLD: 'COLD'
-} as const
-
-export type CaseStatus = (typeof CaseStatus)[keyof typeof CaseStatus]
-
-
 export const EvidenceType = {
   DOCUMENT: 'DOCUMENT',
   IMAGE: 'IMAGE',
@@ -49,6 +22,19 @@ export const EvidenceType = {
 export type EvidenceType = (typeof EvidenceType)[keyof typeof EvidenceType]
 
 
+export const PersonRole = {
+  SUSPECT: 'SUSPECT',
+  ACCUSED: 'ACCUSED',
+  VICTIM: 'VICTIM',
+  COMPLAINANT: 'COMPLAINANT',
+  WITNESS: 'WITNESS',
+  INFORMANT: 'INFORMANT',
+  UNKNOWN: 'UNKNOWN'
+} as const
+
+export type PersonRole = (typeof PersonRole)[keyof typeof PersonRole]
+
+
 export const Gender = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
@@ -59,34 +45,108 @@ export const Gender = {
 export type Gender = (typeof Gender)[keyof typeof Gender]
 
 
-export const LocationType = {
-  CRIME_SCENE: 'CRIME_SCENE',
-  RELATED_PLACE: 'RELATED_PLACE',
-  REPORTING_STATION: 'REPORTING_STATION',
-  UNKNOWN: 'UNKNOWN'
-} as const
-
-export type LocationType = (typeof LocationType)[keyof typeof LocationType]
-
-
-export const PersonRole = {
-  SUSPECT: 'SUSPECT',
-  VICTIM: 'VICTIM',
-  WITNESS: 'WITNESS',
-  INFORMANT: 'INFORMANT',
-  UNKNOWN: 'UNKNOWN'
-} as const
-
-export type PersonRole = (typeof PersonRole)[keyof typeof PersonRole]
-
-
 export const RelationshipType = {
   ASSOCIATED_WITH: 'ASSOCIATED_WITH',
   FAMILY: 'FAMILY',
   GANG_MEMBER: 'GANG_MEMBER',
   CONTACTED: 'CONTACTED',
   ACCOMPLICE: 'ACCOMPLICE',
-  FINANCIAL_LINK: 'FINANCIAL_LINK'
+  FINANCIAL_LINK: 'FINANCIAL_LINK',
+  BUSINESS_PARTNER: 'BUSINESS_PARTNER',
+  FRIEND: 'FRIEND',
+  COLLEAGUE: 'COLLEAGUE',
+  RELATIVE: 'RELATIVE',
+  OTHER: 'OTHER'
 } as const
 
 export type RelationshipType = (typeof RelationshipType)[keyof typeof RelationshipType]
+
+
+export const LocationType = {
+  CRIME_SCENE: 'CRIME_SCENE',
+  RELATED_PLACE: 'RELATED_PLACE',
+  REPORTING_STATION: 'REPORTING_STATION',
+  ARREST_LOCATION: 'ARREST_LOCATION',
+  RESIDENCE: 'RESIDENCE',
+  WORKPLACE: 'WORKPLACE',
+  COURT: 'COURT',
+  HOSPITAL: 'HOSPITAL',
+  OTHER: 'OTHER',
+  UNKNOWN: 'UNKNOWN'
+} as const
+
+export type LocationType = (typeof LocationType)[keyof typeof LocationType]
+
+
+export const ArrestSurrenderType = {
+  ARREST: 'ARREST',
+  SURRENDER: 'SURRENDER'
+} as const
+
+export type ArrestSurrenderType = (typeof ArrestSurrenderType)[keyof typeof ArrestSurrenderType]
+
+
+export const CaseCategoryCode = {
+  FIR: 'FIR',
+  UDR: 'UDR',
+  PAR: 'PAR',
+  ZERO_FIR: 'ZERO_FIR',
+  OTHER: 'OTHER'
+} as const
+
+export type CaseCategoryCode = (typeof CaseCategoryCode)[keyof typeof CaseCategoryCode]
+
+
+export const ChargesheetType = {
+  CHARGESHEET: 'CHARGESHEET',
+  FALSE_CASE: 'FALSE_CASE',
+  UNDETECTED: 'UNDETECTED',
+  FINAL_REPORT: 'FINAL_REPORT',
+  OTHER: 'OTHER'
+} as const
+
+export type ChargesheetType = (typeof ChargesheetType)[keyof typeof ChargesheetType]
+
+
+export const OrganizationMemberRole = {
+  MEMBER: 'MEMBER',
+  OWNER: 'OWNER',
+  DIRECTOR: 'DIRECTOR',
+  EMPLOYEE: 'EMPLOYEE',
+  PARTNER: 'PARTNER',
+  ASSOCIATE: 'ASSOCIATE',
+  OTHER: 'OTHER'
+} as const
+
+export type OrganizationMemberRole = (typeof OrganizationMemberRole)[keyof typeof OrganizationMemberRole]
+
+
+export const EntityType = {
+  CASE: 'CASE',
+  PERSON: 'PERSON',
+  EVIDENCE: 'EVIDENCE',
+  VEHICLE: 'VEHICLE',
+  PHONE: 'PHONE',
+  LOCATION: 'LOCATION',
+  ORGANIZATION: 'ORGANIZATION',
+  MODUS_OPERANDI: 'MODUS_OPERANDI',
+  COURT: 'COURT',
+  POLICE_UNIT: 'POLICE_UNIT'
+} as const
+
+export type EntityType = (typeof EntityType)[keyof typeof EntityType]
+
+
+export const InvestigationEventType = {
+  ARREST: 'ARREST',
+  SURRENDER: 'SURRENDER',
+  SEARCH: 'SEARCH',
+  SEIZURE: 'SEIZURE',
+  INTERROGATION: 'INTERROGATION',
+  COURT_APPEARANCE: 'COURT_APPEARANCE',
+  EVIDENCE_COLLECTION: 'EVIDENCE_COLLECTION',
+  STATEMENT: 'STATEMENT',
+  OTHER: 'OTHER'
+} as const
+
+export type InvestigationEventType = (typeof InvestigationEventType)[keyof typeof InvestigationEventType]

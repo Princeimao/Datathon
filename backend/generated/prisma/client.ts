@@ -16,12 +16,12 @@ import { fileURLToPath } from 'node:url'
 globalThis['__dirname'] = path.dirname(fileURLToPath(import.meta.url))
 
 import * as runtime from "@prisma/client/runtime/client"
-import * as $Enums from "./enums.js"
-import * as $Class from "./internal/class.js"
-import * as Prisma from "./internal/prismaNamespace.js"
+import * as $Enums from "./enums"
+import * as $Class from "./internal/class"
+import * as Prisma from "./internal/prismaNamespace"
 
-export * as $Enums from './enums.js'
-export * from "./enums.js"
+export * as $Enums from './enums'
+export * from "./enums"
 /**
  * ## Prisma Client
  * 
@@ -47,70 +47,170 @@ export { Prisma }
  */
 export type Case = Prisma.CaseModel
 /**
- * Model Evidence
+ * Model CaseCategory
  * 
  */
-export type Evidence = Prisma.EvidenceModel
+export type CaseCategory = Prisma.CaseCategoryModel
+/**
+ * Model CaseStatusMaster
+ * 
+ */
+export type CaseStatusMaster = Prisma.CaseStatusMasterModel
+/**
+ * Model GravityOffence
+ * 
+ */
+export type GravityOffence = Prisma.GravityOffenceModel
+/**
+ * Model CrimeHead
+ * 
+ */
+export type CrimeHead = Prisma.CrimeHeadModel
+/**
+ * Model CrimeSubHead
+ * 
+ */
+export type CrimeSubHead = Prisma.CrimeSubHeadModel
+/**
+ * Model Act
+ * 
+ */
+export type Act = Prisma.ActModel
+/**
+ * Model Section
+ * 
+ */
+export type Section = Prisma.SectionModel
+/**
+ * Model CaseActSection
+ * 
+ */
+export type CaseActSection = Prisma.CaseActSectionModel
+/**
+ * Model CrimeHeadActSection
+ * 
+ */
+export type CrimeHeadActSection = Prisma.CrimeHeadActSectionModel
+/**
+ * Model Complainant
+ * 
+ */
+export type Complainant = Prisma.ComplainantModel
 /**
  * Model Person
  * 
  */
 export type Person = Prisma.PersonModel
 /**
- * Model Vehicle
+ * Model CasePerson
  * 
  */
-export type Vehicle = Prisma.VehicleModel
+export type CasePerson = Prisma.CasePersonModel
 /**
  * Model Phone
  * 
  */
 export type Phone = Prisma.PhoneModel
 /**
- * Model Location
+ * Model PhoneOwner
  * 
  */
-export type Location = Prisma.LocationModel
-/**
- * Model ModusOperandi
- * 
- */
-export type ModusOperandi = Prisma.ModusOperandiModel
-/**
- * Model Organization
- * 
- */
-export type Organization = Prisma.OrganizationModel
-/**
- * Model Officer
- * 
- */
-export type Officer = Prisma.OfficerModel
-/**
- * Model PoliceStation
- * 
- */
-export type PoliceStation = Prisma.PoliceStationModel
-/**
- * Model CasePerson
- * 
- */
-export type CasePerson = Prisma.CasePersonModel
-/**
- * Model CaseVehicle
- * 
- */
-export type CaseVehicle = Prisma.CaseVehicleModel
+export type PhoneOwner = Prisma.PhoneOwnerModel
 /**
  * Model CasePhone
  * 
  */
 export type CasePhone = Prisma.CasePhoneModel
 /**
+ * Model Vehicle
+ * 
+ */
+export type Vehicle = Prisma.VehicleModel
+/**
+ * Model VehicleOwner
+ * 
+ */
+export type VehicleOwner = Prisma.VehicleOwnerModel
+/**
+ * Model CaseVehicle
+ * 
+ */
+export type CaseVehicle = Prisma.CaseVehicleModel
+/**
+ * Model State
+ * 
+ */
+export type State = Prisma.StateModel
+/**
+ * Model District
+ * 
+ */
+export type District = Prisma.DistrictModel
+/**
+ * Model PoliceUnit
+ * 
+ */
+export type PoliceUnit = Prisma.PoliceUnitModel
+/**
+ * Model UnitType
+ * 
+ */
+export type UnitType = Prisma.UnitTypeModel
+/**
+ * Model Rank
+ * 
+ */
+export type Rank = Prisma.RankModel
+/**
+ * Model Designation
+ * 
+ */
+export type Designation = Prisma.DesignationModel
+/**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
+/**
+ * Model Court
+ * 
+ */
+export type Court = Prisma.CourtModel
+/**
+ * Model ArrestSurrender
+ * 
+ */
+export type ArrestSurrender = Prisma.ArrestSurrenderModel
+/**
+ * Model ArrestSurrenderAccused
+ * 
+ */
+export type ArrestSurrenderAccused = Prisma.ArrestSurrenderAccusedModel
+/**
+ * Model Location
+ * 
+ */
+export type Location = Prisma.LocationModel
+/**
  * Model CaseLocation
  * 
  */
 export type CaseLocation = Prisma.CaseLocationModel
+/**
+ * Model PersonLocation
+ * 
+ */
+export type PersonLocation = Prisma.PersonLocationModel
+/**
+ * Model Organization
+ * 
+ */
+export type Organization = Prisma.OrganizationModel
+/**
+ * Model OrganizationMember
+ * 
+ */
+export type OrganizationMember = Prisma.OrganizationMemberModel
 /**
  * Model CaseOrganization
  * 
@@ -122,12 +222,52 @@ export type CaseOrganization = Prisma.CaseOrganizationModel
  */
 export type PersonRelationship = Prisma.PersonRelationshipModel
 /**
- * Model OrganizationMember
+ * Model Evidence
  * 
  */
-export type OrganizationMember = Prisma.OrganizationMemberModel
+export type Evidence = Prisma.EvidenceModel
+/**
+ * Model ModusOperandi
+ * 
+ */
+export type ModusOperandi = Prisma.ModusOperandiModel
+/**
+ * Model InvestigationEvent
+ * 
+ */
+export type InvestigationEvent = Prisma.InvestigationEventModel
+/**
+ * Model Chargesheet
+ * 
+ */
+export type Chargesheet = Prisma.ChargesheetModel
 /**
  * Model Embedding
  * 
  */
 export type Embedding = Prisma.EmbeddingModel
+/**
+ * Model CaseSimilarity
+ * 
+ */
+export type CaseSimilarity = Prisma.CaseSimilarityModel
+/**
+ * Model FaceRecord
+ * 
+ */
+export type FaceRecord = Prisma.FaceRecordModel
+/**
+ * Model CasteMaster
+ * 
+ */
+export type CasteMaster = Prisma.CasteMasterModel
+/**
+ * Model ReligionMaster
+ * 
+ */
+export type ReligionMaster = Prisma.ReligionMasterModel
+/**
+ * Model OccupationMaster
+ * 
+ */
+export type OccupationMaster = Prisma.OccupationMasterModel

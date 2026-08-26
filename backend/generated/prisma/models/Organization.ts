@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Organization
@@ -28,18 +28,24 @@ export type OrganizationMinAggregateOutputType = {
   id: string | null
   name: string | null
   description: string | null
+  organizationType: string | null
+  active: boolean | null
 }
 
 export type OrganizationMaxAggregateOutputType = {
   id: string | null
   name: string | null
   description: string | null
+  organizationType: string | null
+  active: boolean | null
 }
 
 export type OrganizationCountAggregateOutputType = {
   id: number
   name: number
   description: number
+  organizationType: number
+  active: number
   _all: number
 }
 
@@ -48,18 +54,24 @@ export type OrganizationMinAggregateInputType = {
   id?: true
   name?: true
   description?: true
+  organizationType?: true
+  active?: true
 }
 
 export type OrganizationMaxAggregateInputType = {
   id?: true
   name?: true
   description?: true
+  organizationType?: true
+  active?: true
 }
 
 export type OrganizationCountAggregateInputType = {
   id?: true
   name?: true
   description?: true
+  organizationType?: true
+  active?: true
   _all?: true
 }
 
@@ -139,6 +151,8 @@ export type OrganizationGroupByOutputType = {
   id: string
   name: string
   description: string | null
+  organizationType: string | null
+  active: boolean
   _count: OrganizationCountAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
@@ -166,16 +180,22 @@ export type OrganizationWhereInput = {
   id?: Prisma.StringFilter<"Organization"> | string
   name?: Prisma.StringFilter<"Organization"> | string
   description?: Prisma.StringNullableFilter<"Organization"> | string | null
+  organizationType?: Prisma.StringNullableFilter<"Organization"> | string | null
+  active?: Prisma.BoolFilter<"Organization"> | boolean
   members?: Prisma.OrganizationMemberListRelationFilter
   cases?: Prisma.CaseOrganizationListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  organizationType?: Prisma.SortOrderInput | Prisma.SortOrder
+  active?: Prisma.SortOrder
   members?: Prisma.OrganizationMemberOrderByRelationAggregateInput
   cases?: Prisma.CaseOrganizationOrderByRelationAggregateInput
+  embeddings?: Prisma.EmbeddingOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -185,14 +205,19 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.OrganizationWhereInput[]
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   description?: Prisma.StringNullableFilter<"Organization"> | string | null
+  organizationType?: Prisma.StringNullableFilter<"Organization"> | string | null
+  active?: Prisma.BoolFilter<"Organization"> | boolean
   members?: Prisma.OrganizationMemberListRelationFilter
   cases?: Prisma.CaseOrganizationListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
 }, "id" | "name">
 
 export type OrganizationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  organizationType?: Prisma.SortOrderInput | Prisma.SortOrder
+  active?: Prisma.SortOrder
   _count?: Prisma.OrganizationCountOrderByAggregateInput
   _max?: Prisma.OrganizationMaxOrderByAggregateInput
   _min?: Prisma.OrganizationMinOrderByAggregateInput
@@ -205,74 +230,100 @@ export type OrganizationScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   name?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
+  organizationType?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
+  active?: Prisma.BoolWithAggregatesFilter<"Organization"> | boolean
 }
 
 export type OrganizationCreateInput = {
   id?: string
   name: string
   description?: string | null
+  organizationType?: string | null
+  active?: boolean
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
   cases?: Prisma.CaseOrganizationCreateNestedManyWithoutOrganizationInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
   id?: string
   name: string
   description?: string | null
+  organizationType?: string | null
+  active?: boolean
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
   cases?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutOrganizationInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
   cases?: Prisma.CaseOrganizationUpdateManyWithoutOrganizationNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   cases?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutOrganizationNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
   id?: string
   name: string
   description?: string | null
+  organizationType?: string | null
+  active?: boolean
 }
 
 export type OrganizationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type OrganizationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type OrganizationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  organizationType?: Prisma.SortOrder
+  active?: Prisma.SortOrder
 }
 
 export type OrganizationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  organizationType?: Prisma.SortOrder
+  active?: Prisma.SortOrder
 }
 
 export type OrganizationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  organizationType?: Prisma.SortOrder
+  active?: Prisma.SortOrder
 }
 
 export type OrganizationScalarRelationFilter = {
@@ -280,18 +331,9 @@ export type OrganizationScalarRelationFilter = {
   isNot?: Prisma.OrganizationWhereInput
 }
 
-export type OrganizationCreateNestedOneWithoutCasesInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCasesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneRequiredWithoutCasesNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCasesInput
-  upsert?: Prisma.OrganizationUpsertWithoutCasesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCasesInput, Prisma.OrganizationUpdateWithoutCasesInput>, Prisma.OrganizationUncheckedUpdateWithoutCasesInput>
+export type OrganizationNullableScalarRelationFilter = {
+  is?: Prisma.OrganizationWhereInput | null
+  isNot?: Prisma.OrganizationWhereInput | null
 }
 
 export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -308,62 +350,54 @@ export type OrganizationUpdateOneRequiredWithoutMembersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutMembersInput, Prisma.OrganizationUpdateWithoutMembersInput>, Prisma.OrganizationUncheckedUpdateWithoutMembersInput>
 }
 
-export type OrganizationCreateWithoutCasesInput = {
-  id?: string
-  name: string
-  description?: string | null
-  members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
+export type OrganizationCreateNestedOneWithoutCasesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCasesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
 }
 
-export type OrganizationUncheckedCreateWithoutCasesInput = {
-  id?: string
-  name: string
-  description?: string | null
-  members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
+export type OrganizationUpdateOneRequiredWithoutCasesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCasesInput
+  upsert?: Prisma.OrganizationUpsertWithoutCasesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCasesInput, Prisma.OrganizationUpdateWithoutCasesInput>, Prisma.OrganizationUncheckedUpdateWithoutCasesInput>
 }
 
-export type OrganizationCreateOrConnectWithoutCasesInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
+export type OrganizationCreateNestedOneWithoutEmbeddingsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEmbeddingsInput, Prisma.OrganizationUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEmbeddingsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
 }
 
-export type OrganizationUpsertWithoutCasesInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCasesInput, Prisma.OrganizationUncheckedUpdateWithoutCasesInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutCasesInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCasesInput, Prisma.OrganizationUncheckedUpdateWithoutCasesInput>
-}
-
-export type OrganizationUpdateWithoutCasesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutCasesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+export type OrganizationUpdateOneWithoutEmbeddingsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEmbeddingsInput, Prisma.OrganizationUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEmbeddingsInput
+  upsert?: Prisma.OrganizationUpsertWithoutEmbeddingsInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutEmbeddingsInput, Prisma.OrganizationUpdateWithoutEmbeddingsInput>, Prisma.OrganizationUncheckedUpdateWithoutEmbeddingsInput>
 }
 
 export type OrganizationCreateWithoutMembersInput = {
   id?: string
   name: string
   description?: string | null
+  organizationType?: string | null
+  active?: boolean
   cases?: Prisma.CaseOrganizationCreateNestedManyWithoutOrganizationInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
   id?: string
   name: string
   description?: string | null
+  organizationType?: string | null
+  active?: boolean
   cases?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutOrganizationInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -386,13 +420,131 @@ export type OrganizationUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cases?: Prisma.CaseOrganizationUpdateManyWithoutOrganizationNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cases?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutOrganizationNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCasesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  organizationType?: string | null
+  active?: boolean
+  members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCasesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  organizationType?: string | null
+  active?: boolean
+  members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCasesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
+}
+
+export type OrganizationUpsertWithoutCasesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCasesInput, Prisma.OrganizationUncheckedUpdateWithoutCasesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCasesInput, Prisma.OrganizationUncheckedCreateWithoutCasesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCasesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCasesInput, Prisma.OrganizationUncheckedUpdateWithoutCasesInput>
+}
+
+export type OrganizationUpdateWithoutCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutEmbeddingsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  organizationType?: string | null
+  active?: boolean
+  members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
+  cases?: Prisma.CaseOrganizationCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutEmbeddingsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  organizationType?: string | null
+  active?: boolean
+  members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  cases?: Prisma.CaseOrganizationUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutEmbeddingsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEmbeddingsInput, Prisma.OrganizationUncheckedCreateWithoutEmbeddingsInput>
+}
+
+export type OrganizationUpsertWithoutEmbeddingsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutEmbeddingsInput, Prisma.OrganizationUncheckedUpdateWithoutEmbeddingsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEmbeddingsInput, Prisma.OrganizationUncheckedCreateWithoutEmbeddingsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutEmbeddingsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutEmbeddingsInput, Prisma.OrganizationUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type OrganizationUpdateWithoutEmbeddingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
+  cases?: Prisma.CaseOrganizationUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutEmbeddingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   cases?: Prisma.CaseOrganizationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
@@ -404,11 +556,13 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
 export type OrganizationCountOutputType = {
   members: number
   cases: number
+  embeddings: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | OrganizationCountOutputTypeCountMembersArgs
   cases?: boolean | OrganizationCountOutputTypeCountCasesArgs
+  embeddings?: boolean | OrganizationCountOutputTypeCountEmbeddingsArgs
 }
 
 /**
@@ -435,13 +589,23 @@ export type OrganizationCountOutputTypeCountCasesArgs<ExtArgs extends runtime.Ty
   where?: Prisma.CaseOrganizationWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountEmbeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmbeddingWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   description?: boolean
+  organizationType?: boolean
+  active?: boolean
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   cases?: boolean | Prisma.Organization$casesArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Organization$embeddingsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -449,24 +613,31 @@ export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   description?: boolean
+  organizationType?: boolean
+  active?: boolean
 }, ExtArgs["result"]["organization"]>
 
 export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   description?: boolean
+  organizationType?: boolean
+  active?: boolean
 }, ExtArgs["result"]["organization"]>
 
 export type OrganizationSelectScalar = {
   id?: boolean
   name?: boolean
   description?: boolean
+  organizationType?: boolean
+  active?: boolean
 }
 
-export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["organization"]>
+export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "organizationType" | "active", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   cases?: boolean | Prisma.Organization$casesArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Organization$embeddingsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -477,11 +648,14 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     members: Prisma.$OrganizationMemberPayload<ExtArgs>[]
     cases: Prisma.$CaseOrganizationPayload<ExtArgs>[]
+    embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     description: string | null
+    organizationType: string | null
+    active: boolean
   }, ExtArgs["result"]["organization"]>
   composites: {}
 }
@@ -878,6 +1052,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cases<T extends Prisma.Organization$casesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$casesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaseOrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  embeddings<T extends Prisma.Organization$embeddingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -910,6 +1085,8 @@ export interface OrganizationFieldRefs {
   readonly id: Prisma.FieldRef<"Organization", 'String'>
   readonly name: Prisma.FieldRef<"Organization", 'String'>
   readonly description: Prisma.FieldRef<"Organization", 'String'>
+  readonly organizationType: Prisma.FieldRef<"Organization", 'String'>
+  readonly active: Prisma.FieldRef<"Organization", 'Boolean'>
 }
     
 
@@ -1348,6 +1525,30 @@ export type Organization$casesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.CaseOrganizationScalarFieldEnum | Prisma.CaseOrganizationScalarFieldEnum[]
+}
+
+/**
+ * Organization.embeddings
+ */
+export type Organization$embeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Embedding
+   */
+  select?: Prisma.EmbeddingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Embedding
+   */
+  omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  where?: Prisma.EmbeddingWhereInput
+  orderBy?: Prisma.EmbeddingOrderByWithRelationInput | Prisma.EmbeddingOrderByWithRelationInput[]
+  cursor?: Prisma.EmbeddingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmbeddingScalarFieldEnum | Prisma.EmbeddingScalarFieldEnum[]
 }
 
 /**

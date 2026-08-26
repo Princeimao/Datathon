@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const API_BASE = "https://tasc.development.catalystappsail.in/api/v1";
+const API_BASE = "http://localhost:3000/api/v1";
 
 const apiClient = axios.create({
   baseURL: API_BASE,
@@ -132,29 +132,103 @@ export const api = {
     );
   },
 
+  // Location endpoints
+
+  states: () => request("/location/states"),
+  districts: () => request("/location/districts"),
+
+  stateBoundary: (stateId: number | string) =>
+    request(`/location/states/${stateId}/boundary`),
+
+  districtBoundary: (districtId: number | string) =>
+    request(`/location/districts/${districtId}/boundary`),
+
+  policeStations: (params: { state?: string; district?: string }) => {
+    if (params.district) {
+      return request(
+        `/police/city/${encodeURIComponent(params.district)}`,
+      );
+    }
+
+    if (params.state) {
+      return request(
+        `/police/state/${encodeURIComponent(params.state)}`,
+      );
+    }
+
+    return Promise.resolve({ stations: [] });
+  },
+
   // Map data
   mapData: (filters?: {
     state?: string;
     district?: string;
+    policeUnitId?: string;
     crimeType?: string;
-    stationId?: string;
+    heatmapLayer?: string;
+    timeOfDay?: string;
+    year?: string;
     dateFrom?: string;
     dateTo?: string;
     riskLevel?: string;
+    minCases?: number;
+    moConfidence?: number;
+    moPatterns?: string[];
+    activeAlerts?: boolean;
   }) => {
     const p = new URLSearchParams();
 
     if (filters) {
-      Object.entries(filters).forEach(([key, value]) => {
-        if (
-          value &&
-          value !== "All States" &&
-          value !== "All Cities" &&
-          value !== "All Crime Types" &&
-          value !== "All Risk Levels"
-        ) {
-          p.set(key, value);
+      const effective = { ...filters };
+
+      // The Heatmap Layer drives the backend crime-type query when the
+      // investigator has not picked an explicit crime type.
+      const heatmapCrimeTypes: Record<string, string> = {
+        "Theft Hotspots": "Theft",
+        "Cybercrime Hotspots": "Cybercrime",
+        "Assault Hotspots": "Assault",
+        "Robbery Hotspots": "Robbery",
+        "Homicide Hotspots": "Homicide",
+      };
+
+      if (
+        (!effective.crimeType || effective.crimeType === "All Crime Types") &&
+        effective.heatmapLayer &&
+        heatmapCrimeTypes[effective.heatmapLayer]
+      ) {
+        effective.crimeType = heatmapCrimeTypes[effective.heatmapLayer];
+      }
+
+      Object.entries(effective).forEach(([key, value]) => {
+        if (value === undefined || value === null || value === "") return;
+
+        if (key === "moPatterns") {
+          if (Array.isArray(value) && value.length) p.set(key, value.join(","));
+          return;
         }
+
+        if (key === "heatmapLayer") return;
+
+        if (typeof value === "boolean") {
+          if (value) p.set(key, "true");
+          return;
+        }
+
+        if (
+          value === "All States" ||
+          value === "All Districts" ||
+          value === "All Cities" ||
+          value === "All Stations" ||
+          value === "All Crime Types" ||
+          value === "All Risk Levels" ||
+          value === "All Day" ||
+          value === "All Layers" ||
+          value === "All Years"
+        ) {
+          return;
+        }
+
+        p.set(key, String(value));
       });
     }
 
@@ -163,8 +237,19 @@ export const api = {
     );
   },
 
-  getSignedUrl: async (data: { fileName: string; contentType: string }) => {
+  getSignedUrl: async (data: {
+    fileName: string;
+    contentType: string;
+    keyPrefix?: string;
+  }) => {
     const res = await apiClient.post("/storage/signed-url", data);
+    return res;
+  },
+
+  getSignedGetUrl: async (data: { objectKey: string }) => {
+    const res = await apiClient.get(
+      `/storage/signed-get?objectKey=${encodeURIComponent(data.objectKey)}`,
+    );
     return res;
   },
 
@@ -172,4 +257,46 @@ export const api = {
     const res = await apiClient.post("/similarity/search", data);
     return res;
   },
+
+  investigation: (caseId: string) => {
+    return request(`/similarity/investigation/${caseId}`);
+  },
+
+  // Structured (manual) case/person insertion
+  structuredIngest: (payload: any) =>
+    request("/ingest/structured", {
+      method: "POST",
+      data: payload,
+    }),
+
+  // Case Board multi-perspective search
+  caseBoardSearch: (params: { q: string; types?: string[]; limit?: number }) => {
+    const p = new URLSearchParams();
+
+    p.set("q", params.q);
+
+    if (params.types?.length) p.set("types", params.types.join(","));
+
+    if (params.limit) p.set("limit", String(params.limit));
+
+    return request(`/visualization/search?${p.toString()}`);
+  },
+
+  // Luxand face recognition
+  enrollFace: (payload: any) =>
+    request("/faces/enroll", {
+      method: "POST",
+      data: payload,
+    }),
+
+  searchFaces: (payload: any) =>
+    request("/faces/search", {
+      method: "POST",
+      data: payload,
+    }),
+
+  facesSubjects: () => request("/faces/subjects"),
+
+  personFaces: (personId: string) =>
+    request(`/faces/person/${personId}`),
 };

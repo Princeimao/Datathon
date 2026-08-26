@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.js'
-export type * from './prismaNamespace.js'
+export type * from '../models'
+export type * from './prismaNamespace'
 
 export const Decimal = runtime.Decimal
 
@@ -52,23 +52,51 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Case: 'Case',
-  Evidence: 'Evidence',
+  CaseCategory: 'CaseCategory',
+  CaseStatusMaster: 'CaseStatusMaster',
+  GravityOffence: 'GravityOffence',
+  CrimeHead: 'CrimeHead',
+  CrimeSubHead: 'CrimeSubHead',
+  Act: 'Act',
+  Section: 'Section',
+  CaseActSection: 'CaseActSection',
+  CrimeHeadActSection: 'CrimeHeadActSection',
+  Complainant: 'Complainant',
   Person: 'Person',
-  Vehicle: 'Vehicle',
-  Phone: 'Phone',
-  Location: 'Location',
-  ModusOperandi: 'ModusOperandi',
-  Organization: 'Organization',
-  Officer: 'Officer',
-  PoliceStation: 'PoliceStation',
   CasePerson: 'CasePerson',
-  CaseVehicle: 'CaseVehicle',
+  Phone: 'Phone',
+  PhoneOwner: 'PhoneOwner',
   CasePhone: 'CasePhone',
+  Vehicle: 'Vehicle',
+  VehicleOwner: 'VehicleOwner',
+  CaseVehicle: 'CaseVehicle',
+  State: 'State',
+  District: 'District',
+  PoliceUnit: 'PoliceUnit',
+  UnitType: 'UnitType',
+  Rank: 'Rank',
+  Designation: 'Designation',
+  Employee: 'Employee',
+  Court: 'Court',
+  ArrestSurrender: 'ArrestSurrender',
+  ArrestSurrenderAccused: 'ArrestSurrenderAccused',
+  Location: 'Location',
   CaseLocation: 'CaseLocation',
+  PersonLocation: 'PersonLocation',
+  Organization: 'Organization',
+  OrganizationMember: 'OrganizationMember',
   CaseOrganization: 'CaseOrganization',
   PersonRelationship: 'PersonRelationship',
-  OrganizationMember: 'OrganizationMember',
-  Embedding: 'Embedding'
+  Evidence: 'Evidence',
+  ModusOperandi: 'ModusOperandi',
+  InvestigationEvent: 'InvestigationEvent',
+  Chargesheet: 'Chargesheet',
+  Embedding: 'Embedding',
+  CaseSimilarity: 'CaseSimilarity',
+  FaceRecord: 'FaceRecord',
+  CasteMaster: 'CasteMaster',
+  ReligionMaster: 'ReligionMaster',
+  OccupationMaster: 'OccupationMaster'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -90,45 +118,198 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const CaseScalarFieldEnum = {
   id: 'id',
   caseNumber: 'caseNumber',
+  crimeNo: 'crimeNo',
+  caseNo: 'caseNo',
   title: 'title',
   description: 'description',
-  crimeType: 'crimeType',
-  status: 'status',
-  incidentDate: 'incidentDate',
+  crimeRegisteredDate: 'crimeRegisteredDate',
+  incidentFromDate: 'incidentFromDate',
+  incidentToDate: 'incidentToDate',
+  infoReceivedPSDate: 'infoReceivedPSDate',
+  caseCategoryId: 'caseCategoryId',
+  gravityOffenceId: 'gravityOffenceId',
+  crimeMajorHeadId: 'crimeMajorHeadId',
+  crimeMinorHeadId: 'crimeMinorHeadId',
+  caseStatusId: 'caseStatusId',
+  registeringOfficerId: 'registeringOfficerId',
+  policeUnitId: 'policeUnitId',
+  courtId: 'courtId',
+  riskScore: 'riskScore',
+  priorityScore: 'priorityScore',
+  aiSummary: 'aiSummary',
+  aiClassification: 'aiClassification',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  stationId: 'stationId',
   modusOperandiId: 'modusOperandiId'
 } as const
 
 export type CaseScalarFieldEnum = (typeof CaseScalarFieldEnum)[keyof typeof CaseScalarFieldEnum]
 
 
-export const EvidenceScalarFieldEnum = {
+export const CaseCategoryScalarFieldEnum = {
   id: 'id',
-  caseId: 'caseId',
-  type: 'type',
+  lookupValue: 'lookupValue',
+  code: 'code',
   description: 'description',
-  fileUrl: 'fileUrl',
-  uploadedById: 'uploadedById',
-  extractedData: 'extractedData',
-  createdAt: 'createdAt'
+  active: 'active'
 } as const
 
-export type EvidenceScalarFieldEnum = (typeof EvidenceScalarFieldEnum)[keyof typeof EvidenceScalarFieldEnum]
+export type CaseCategoryScalarFieldEnum = (typeof CaseCategoryScalarFieldEnum)[keyof typeof CaseCategoryScalarFieldEnum]
+
+
+export const CaseStatusMasterScalarFieldEnum = {
+  id: 'id',
+  caseStatusName: 'caseStatusName',
+  description: 'description',
+  active: 'active'
+} as const
+
+export type CaseStatusMasterScalarFieldEnum = (typeof CaseStatusMasterScalarFieldEnum)[keyof typeof CaseStatusMasterScalarFieldEnum]
+
+
+export const GravityOffenceScalarFieldEnum = {
+  id: 'id',
+  lookupValue: 'lookupValue',
+  description: 'description',
+  active: 'active'
+} as const
+
+export type GravityOffenceScalarFieldEnum = (typeof GravityOffenceScalarFieldEnum)[keyof typeof GravityOffenceScalarFieldEnum]
+
+
+export const CrimeHeadScalarFieldEnum = {
+  id: 'id',
+  crimeGroupName: 'crimeGroupName',
+  active: 'active'
+} as const
+
+export type CrimeHeadScalarFieldEnum = (typeof CrimeHeadScalarFieldEnum)[keyof typeof CrimeHeadScalarFieldEnum]
+
+
+export const CrimeSubHeadScalarFieldEnum = {
+  id: 'id',
+  crimeHeadId: 'crimeHeadId',
+  crimeHeadName: 'crimeHeadName',
+  seqId: 'seqId',
+  active: 'active'
+} as const
+
+export type CrimeSubHeadScalarFieldEnum = (typeof CrimeSubHeadScalarFieldEnum)[keyof typeof CrimeSubHeadScalarFieldEnum]
+
+
+export const ActScalarFieldEnum = {
+  id: 'id',
+  actCode: 'actCode',
+  actDescription: 'actDescription',
+  shortName: 'shortName',
+  active: 'active'
+} as const
+
+export type ActScalarFieldEnum = (typeof ActScalarFieldEnum)[keyof typeof ActScalarFieldEnum]
+
+
+export const SectionScalarFieldEnum = {
+  actCode: 'actCode',
+  sectionCode: 'sectionCode',
+  sectionDescription: 'sectionDescription',
+  active: 'active'
+} as const
+
+export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
+
+
+export const CaseActSectionScalarFieldEnum = {
+  caseId: 'caseId',
+  actCode: 'actCode',
+  sectionCode: 'sectionCode',
+  actOrder: 'actOrder',
+  sectionOrder: 'sectionOrder'
+} as const
+
+export type CaseActSectionScalarFieldEnum = (typeof CaseActSectionScalarFieldEnum)[keyof typeof CaseActSectionScalarFieldEnum]
+
+
+export const CrimeHeadActSectionScalarFieldEnum = {
+  crimeHeadId: 'crimeHeadId',
+  actCode: 'actCode',
+  sectionCode: 'sectionCode'
+} as const
+
+export type CrimeHeadActSectionScalarFieldEnum = (typeof CrimeHeadActSectionScalarFieldEnum)[keyof typeof CrimeHeadActSectionScalarFieldEnum]
+
+
+export const ComplainantScalarFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  name: 'name',
+  ageYear: 'ageYear',
+  occupationId: 'occupationId',
+  religionId: 'religionId',
+  casteId: 'casteId',
+  gender: 'gender',
+  personId: 'personId'
+} as const
+
+export type ComplainantScalarFieldEnum = (typeof ComplainantScalarFieldEnum)[keyof typeof ComplainantScalarFieldEnum]
 
 
 export const PersonScalarFieldEnum = {
   id: 'id',
   name: 'name',
   age: 'age',
+  dateOfBirth: 'dateOfBirth',
   gender: 'gender',
+  aliases: 'aliases',
   riskScore: 'riskScore',
+  threatScore: 'threatScore',
+  influenceScore: 'influenceScore',
+  aiProfile: 'aiProfile',
   createdAt: 'createdAt',
-  aliases: 'aliases'
+  updatedAt: 'updatedAt'
 } as const
 
 export type PersonScalarFieldEnum = (typeof PersonScalarFieldEnum)[keyof typeof PersonScalarFieldEnum]
+
+
+export const CasePersonScalarFieldEnum = {
+  caseId: 'caseId',
+  personId: 'personId',
+  role: 'role',
+  notes: 'notes',
+  isPrimary: 'isPrimary'
+} as const
+
+export type CasePersonScalarFieldEnum = (typeof CasePersonScalarFieldEnum)[keyof typeof CasePersonScalarFieldEnum]
+
+
+export const PhoneScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  countryCode: 'countryCode',
+  isActive: 'isActive'
+} as const
+
+export type PhoneScalarFieldEnum = (typeof PhoneScalarFieldEnum)[keyof typeof PhoneScalarFieldEnum]
+
+
+export const PhoneOwnerScalarFieldEnum = {
+  personId: 'personId',
+  phoneId: 'phoneId',
+  ownershipType: 'ownershipType',
+  confidence: 'confidence'
+} as const
+
+export type PhoneOwnerScalarFieldEnum = (typeof PhoneOwnerScalarFieldEnum)[keyof typeof PhoneOwnerScalarFieldEnum]
+
+
+export const CasePhoneScalarFieldEnum = {
+  caseId: 'caseId',
+  phoneId: 'phoneId',
+  context: 'context',
+  confidence: 'confidence'
+} as const
+
+export type CasePhoneScalarFieldEnum = (typeof CasePhoneScalarFieldEnum)[keyof typeof CasePhoneScalarFieldEnum]
 
 
 export const VehicleScalarFieldEnum = {
@@ -136,18 +317,158 @@ export const VehicleScalarFieldEnum = {
   registrationNo: 'registrationNo',
   make: 'make',
   model: 'model',
-  color: 'color'
+  color: 'color',
+  vehicleType: 'vehicleType',
+  chassisNumber: 'chassisNumber',
+  engineNumber: 'engineNumber'
 } as const
 
 export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
 
 
-export const PhoneScalarFieldEnum = {
-  id: 'id',
-  number: 'number'
+export const VehicleOwnerScalarFieldEnum = {
+  personId: 'personId',
+  vehicleId: 'vehicleId',
+  ownershipType: 'ownershipType',
+  confidence: 'confidence'
 } as const
 
-export type PhoneScalarFieldEnum = (typeof PhoneScalarFieldEnum)[keyof typeof PhoneScalarFieldEnum]
+export type VehicleOwnerScalarFieldEnum = (typeof VehicleOwnerScalarFieldEnum)[keyof typeof VehicleOwnerScalarFieldEnum]
+
+
+export const CaseVehicleScalarFieldEnum = {
+  caseId: 'caseId',
+  vehicleId: 'vehicleId',
+  context: 'context',
+  confidence: 'confidence'
+} as const
+
+export type CaseVehicleScalarFieldEnum = (typeof CaseVehicleScalarFieldEnum)[keyof typeof CaseVehicleScalarFieldEnum]
+
+
+export const StateScalarFieldEnum = {
+  id: 'id',
+  stateName: 'stateName',
+  nationalityId: 'nationalityId',
+  active: 'active'
+} as const
+
+export type StateScalarFieldEnum = (typeof StateScalarFieldEnum)[keyof typeof StateScalarFieldEnum]
+
+
+export const DistrictScalarFieldEnum = {
+  id: 'id',
+  districtName: 'districtName',
+  stateId: 'stateId',
+  active: 'active'
+} as const
+
+export type DistrictScalarFieldEnum = (typeof DistrictScalarFieldEnum)[keyof typeof DistrictScalarFieldEnum]
+
+
+export const PoliceUnitScalarFieldEnum = {
+  id: 'id',
+  unitName: 'unitName',
+  unitTypeId: 'unitTypeId',
+  parentUnitId: 'parentUnitId',
+  stateId: 'stateId',
+  districtId: 'districtId',
+  nationalityId: 'nationalityId',
+  active: 'active'
+} as const
+
+export type PoliceUnitScalarFieldEnum = (typeof PoliceUnitScalarFieldEnum)[keyof typeof PoliceUnitScalarFieldEnum]
+
+
+export const UnitTypeScalarFieldEnum = {
+  id: 'id',
+  unitTypeName: 'unitTypeName',
+  cityDistState: 'cityDistState',
+  hierarchy: 'hierarchy',
+  active: 'active'
+} as const
+
+export type UnitTypeScalarFieldEnum = (typeof UnitTypeScalarFieldEnum)[keyof typeof UnitTypeScalarFieldEnum]
+
+
+export const RankScalarFieldEnum = {
+  id: 'id',
+  rankName: 'rankName',
+  hierarchy: 'hierarchy',
+  active: 'active'
+} as const
+
+export type RankScalarFieldEnum = (typeof RankScalarFieldEnum)[keyof typeof RankScalarFieldEnum]
+
+
+export const DesignationScalarFieldEnum = {
+  id: 'id',
+  designationName: 'designationName',
+  sortOrder: 'sortOrder',
+  active: 'active'
+} as const
+
+export type DesignationScalarFieldEnum = (typeof DesignationScalarFieldEnum)[keyof typeof DesignationScalarFieldEnum]
+
+
+export const EmployeeScalarFieldEnum = {
+  id: 'id',
+  kgid: 'kgid',
+  badgeNumber: 'badgeNumber',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  employeeDOB: 'employeeDOB',
+  gender: 'gender',
+  bloodGroupId: 'bloodGroupId',
+  physicallyChallenged: 'physicallyChallenged',
+  appointmentDate: 'appointmentDate',
+  districtId: 'districtId',
+  unitId: 'unitId',
+  rankId: 'rankId',
+  designationId: 'designationId',
+  active: 'active'
+} as const
+
+export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
+
+
+export const CourtScalarFieldEnum = {
+  id: 'id',
+  courtName: 'courtName',
+  districtId: 'districtId',
+  stateId: 'stateId',
+  active: 'active'
+} as const
+
+export type CourtScalarFieldEnum = (typeof CourtScalarFieldEnum)[keyof typeof CourtScalarFieldEnum]
+
+
+export const ArrestSurrenderScalarFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  type: 'type',
+  eventDate: 'eventDate',
+  stateId: 'stateId',
+  districtId: 'districtId',
+  policeUnitId: 'policeUnitId',
+  ioId: 'ioId',
+  courtId: 'courtId',
+  isAccused: 'isAccused',
+  isComplainantAccused: 'isComplainantAccused'
+} as const
+
+export type ArrestSurrenderScalarFieldEnum = (typeof ArrestSurrenderScalarFieldEnum)[keyof typeof ArrestSurrenderScalarFieldEnum]
+
+
+export const ArrestSurrenderAccusedScalarFieldEnum = {
+  id: 'id',
+  arrestSurrenderId: 'arrestSurrenderId',
+  personId: 'personId',
+  accusedSortId: 'accusedSortId',
+  isPrimary: 'isPrimary'
+} as const
+
+export type ArrestSurrenderAccusedScalarFieldEnum = (typeof ArrestSurrenderAccusedScalarFieldEnum)[keyof typeof ArrestSurrenderAccusedScalarFieldEnum]
 
 
 export const LocationScalarFieldEnum = {
@@ -155,94 +476,68 @@ export const LocationScalarFieldEnum = {
   address: 'address',
   latitude: 'latitude',
   longitude: 'longitude',
-  district: 'district',
-  station: 'station',
-  locationType: 'locationType'
+  districtId: 'districtId',
+  stateId: 'stateId',
+  policeUnitId: 'policeUnitId',
+  districtName: 'districtName',
+  stationName: 'stationName',
+  locationType: 'locationType',
+  accuracyMeters: 'accuracyMeters',
+  source: 'source',
+  createdAt: 'createdAt'
 } as const
 
 export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
 
 
-export const ModusOperandiScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  targetType: 'targetType',
-  weaponType: 'weaponType',
-  timePattern: 'timePattern',
-  vehiclePattern: 'vehiclePattern'
-} as const
-
-export type ModusOperandiScalarFieldEnum = (typeof ModusOperandiScalarFieldEnum)[keyof typeof ModusOperandiScalarFieldEnum]
-
-
-export const OrganizationScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description'
-} as const
-
-export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
-
-
-export const OfficerScalarFieldEnum = {
-  id: 'id',
-  badgeNumber: 'badgeNumber',
-  name: 'name',
-  rank: 'rank'
-} as const
-
-export type OfficerScalarFieldEnum = (typeof OfficerScalarFieldEnum)[keyof typeof OfficerScalarFieldEnum]
-
-
-export const PoliceStationScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  state: 'state',
-  district: 'district',
-  lat: 'lat',
-  lng: 'lng'
-} as const
-
-export type PoliceStationScalarFieldEnum = (typeof PoliceStationScalarFieldEnum)[keyof typeof PoliceStationScalarFieldEnum]
-
-
-export const CasePersonScalarFieldEnum = {
-  caseId: 'caseId',
-  personId: 'personId',
-  role: 'role'
-} as const
-
-export type CasePersonScalarFieldEnum = (typeof CasePersonScalarFieldEnum)[keyof typeof CasePersonScalarFieldEnum]
-
-
-export const CaseVehicleScalarFieldEnum = {
-  caseId: 'caseId',
-  vehicleId: 'vehicleId'
-} as const
-
-export type CaseVehicleScalarFieldEnum = (typeof CaseVehicleScalarFieldEnum)[keyof typeof CaseVehicleScalarFieldEnum]
-
-
-export const CasePhoneScalarFieldEnum = {
-  caseId: 'caseId',
-  phoneId: 'phoneId'
-} as const
-
-export type CasePhoneScalarFieldEnum = (typeof CasePhoneScalarFieldEnum)[keyof typeof CasePhoneScalarFieldEnum]
-
-
 export const CaseLocationScalarFieldEnum = {
   caseId: 'caseId',
-  locationId: 'locationId'
+  locationId: 'locationId',
+  locationType: 'locationType',
+  description: 'description',
+  occurredAt: 'occurredAt'
 } as const
 
 export type CaseLocationScalarFieldEnum = (typeof CaseLocationScalarFieldEnum)[keyof typeof CaseLocationScalarFieldEnum]
 
 
+export const PersonLocationScalarFieldEnum = {
+  personId: 'personId',
+  locationId: 'locationId',
+  relationship: 'relationship',
+  confidence: 'confidence'
+} as const
+
+export type PersonLocationScalarFieldEnum = (typeof PersonLocationScalarFieldEnum)[keyof typeof PersonLocationScalarFieldEnum]
+
+
+export const OrganizationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  organizationType: 'organizationType',
+  active: 'active'
+} as const
+
+export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+export const OrganizationMemberScalarFieldEnum = {
+  personId: 'personId',
+  organizationId: 'organizationId',
+  role: 'role',
+  customRole: 'customRole',
+  confidence: 'confidence'
+} as const
+
+export type OrganizationMemberScalarFieldEnum = (typeof OrganizationMemberScalarFieldEnum)[keyof typeof OrganizationMemberScalarFieldEnum]
+
+
 export const CaseOrganizationScalarFieldEnum = {
   caseId: 'caseId',
-  organizationId: 'organizationId'
+  organizationId: 'organizationId',
+  context: 'context',
+  confidence: 'confidence'
 } as const
 
 export type CaseOrganizationScalarFieldEnum = (typeof CaseOrganizationScalarFieldEnum)[keyof typeof CaseOrganizationScalarFieldEnum]
@@ -254,20 +549,86 @@ export const PersonRelationshipScalarFieldEnum = {
   targetPersonId: 'targetPersonId',
   relationType: 'relationType',
   confidence: 'confidence',
-  createdAt: 'createdAt'
+  source: 'source',
+  evidenceId: 'evidenceId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type PersonRelationshipScalarFieldEnum = (typeof PersonRelationshipScalarFieldEnum)[keyof typeof PersonRelationshipScalarFieldEnum]
 
 
-export const OrganizationMemberScalarFieldEnum = {
-  personId: 'personId',
-  organizationId: 'organizationId',
-  role: 'role',
-  confidence: 'confidence'
+export const EvidenceScalarFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  type: 'type',
+  title: 'title',
+  description: 'description',
+  fileUrl: 'fileUrl',
+  mimeType: 'mimeType',
+  fileName: 'fileName',
+  fileSize: 'fileSize',
+  fileHash: 'fileHash',
+  uploadedById: 'uploadedById',
+  extractedData: 'extractedData',
+  aiSummary: 'aiSummary',
+  aiClassification: 'aiClassification',
+  aiConfidence: 'aiConfidence',
+  processedAt: 'processedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type OrganizationMemberScalarFieldEnum = (typeof OrganizationMemberScalarFieldEnum)[keyof typeof OrganizationMemberScalarFieldEnum]
+export type EvidenceScalarFieldEnum = (typeof EvidenceScalarFieldEnum)[keyof typeof EvidenceScalarFieldEnum]
+
+
+export const ModusOperandiScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  targetType: 'targetType',
+  weaponType: 'weaponType',
+  timePattern: 'timePattern',
+  vehiclePattern: 'vehiclePattern',
+  entryMethod: 'entryMethod',
+  escapeMethod: 'escapeMethod',
+  communicationMethod: 'communicationMethod',
+  riskLevel: 'riskLevel',
+  confidence: 'confidence',
+  patterns: 'patterns'
+} as const
+
+export type ModusOperandiScalarFieldEnum = (typeof ModusOperandiScalarFieldEnum)[keyof typeof ModusOperandiScalarFieldEnum]
+
+
+export const InvestigationEventScalarFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  eventType: 'eventType',
+  eventDate: 'eventDate',
+  officerId: 'officerId',
+  personId: 'personId',
+  evidenceId: 'evidenceId',
+  arrestSurrenderId: 'arrestSurrenderId',
+  locationId: 'locationId',
+  description: 'description',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type InvestigationEventScalarFieldEnum = (typeof InvestigationEventScalarFieldEnum)[keyof typeof InvestigationEventScalarFieldEnum]
+
+
+export const ChargesheetScalarFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  csDate: 'csDate',
+  csType: 'csType',
+  policePersonId: 'policePersonId'
+} as const
+
+export type ChargesheetScalarFieldEnum = (typeof ChargesheetScalarFieldEnum)[keyof typeof ChargesheetScalarFieldEnum]
 
 
 export const EmbeddingScalarFieldEnum = {
@@ -275,10 +636,77 @@ export const EmbeddingScalarFieldEnum = {
   entityType: 'entityType',
   entityId: 'entityId',
   vectorId: 'vectorId',
-  createdAt: 'createdAt'
+  modelName: 'modelName',
+  contentHash: 'contentHash',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  caseId: 'caseId',
+  personId: 'personId',
+  evidenceId: 'evidenceId',
+  vehicleId: 'vehicleId',
+  phoneId: 'phoneId',
+  locationId: 'locationId',
+  organizationId: 'organizationId',
+  modusOperandiId: 'modusOperandiId'
 } as const
 
 export type EmbeddingScalarFieldEnum = (typeof EmbeddingScalarFieldEnum)[keyof typeof EmbeddingScalarFieldEnum]
+
+
+export const CaseSimilarityScalarFieldEnum = {
+  id: 'id',
+  sourceCaseId: 'sourceCaseId',
+  targetCaseId: 'targetCaseId',
+  similarityScore: 'similarityScore',
+  similarityType: 'similarityType',
+  matchedFeatures: 'matchedFeatures',
+  createdAt: 'createdAt'
+} as const
+
+export type CaseSimilarityScalarFieldEnum = (typeof CaseSimilarityScalarFieldEnum)[keyof typeof CaseSimilarityScalarFieldEnum]
+
+
+export const FaceRecordScalarFieldEnum = {
+  id: 'id',
+  personId: 'personId',
+  caseId: 'caseId',
+  evidenceId: 'evidenceId',
+  luxandSubjectId: 'luxandSubjectId',
+  luxandFaceId: 'luxandFaceId',
+  imageKey: 'imageKey',
+  imageUrl: 'imageUrl',
+  confidence: 'confidence',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FaceRecordScalarFieldEnum = (typeof FaceRecordScalarFieldEnum)[keyof typeof FaceRecordScalarFieldEnum]
+
+
+export const CasteMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type CasteMasterScalarFieldEnum = (typeof CasteMasterScalarFieldEnum)[keyof typeof CasteMasterScalarFieldEnum]
+
+
+export const ReligionMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type ReligionMasterScalarFieldEnum = (typeof ReligionMasterScalarFieldEnum)[keyof typeof ReligionMasterScalarFieldEnum]
+
+
+export const OccupationMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type OccupationMasterScalarFieldEnum = (typeof OccupationMasterScalarFieldEnum)[keyof typeof OccupationMasterScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -305,14 +733,6 @@ export const QueryMode = {
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
@@ -320,4 +740,12 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

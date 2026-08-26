@@ -34,10 +34,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import {
-  sentimentSeries,
-  type TimeGrain,
-} from "../analyticsData";
+import { sentimentSeries, type TimeGrain } from "../analyticsData";
 import { Card, Badge, Select } from "../components/customUi";
 import { cn } from "../lib/utils";
 import { api } from "../services/api";
@@ -69,11 +66,42 @@ interface DashboardData {
   highRiskCount: number;
   moCount: number;
   crimeMix: { name: string; value: number }[];
-  districtStats: { district: string; state: string; cases: number; crimeTypes: Record<string, number> }[];
-  moNetwork: { mo: string; suspects: number; incidents: number; confidence: number }[];
-  predictiveRisks: { id: string; name: string; state: string; cases: number; risk: string; forecast: number; urbanization: number; unemployment: number; anomaly: string }[];
-  timeline: { label: string; cases: number; forecast: number; sentiment: number }[];
-  socioeconomicPoints: { name: string; urbanization: number; unemployment: number; cases: number; forecast: number }[];
+  districtStats: {
+    district: string;
+    state: string;
+    cases: number;
+    crimeTypes: Record<string, number>;
+  }[];
+  moNetwork: {
+    mo: string;
+    suspects: number;
+    incidents: number;
+    confidence: number;
+  }[];
+  predictiveRisks: {
+    id: string;
+    name: string;
+    state: string;
+    cases: number;
+    risk: string;
+    forecast: number;
+    urbanization: number;
+    unemployment: number;
+    anomaly: string;
+  }[];
+  timeline: {
+    label: string;
+    cases: number;
+    forecast: number;
+    sentiment: number;
+  }[];
+  socioeconomicPoints: {
+    name: string;
+    urbanization: number;
+    unemployment: number;
+    cases: number;
+    forecast: number;
+  }[];
 }
 
 export default function Dashboard({
@@ -87,6 +115,7 @@ export default function Dashboard({
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [states, setStates] = useState<{ id: string; stateName: string }[]>([]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -97,8 +126,29 @@ export default function Dashboard({
         crimeType: category,
         groupBy: grain,
       });
-      
-      setData(res.data);
+
+      const payload = res?.data ?? {};
+      const normalized = {
+        ...payload,
+        crimeMix: Array.isArray(payload.crimeMix) ? payload.crimeMix : [],
+        districtStats: Array.isArray(payload.districtStats)
+          ? payload.districtStats
+          : [],
+        moNetwork: Array.isArray(payload.moNetwork) ? payload.moNetwork : [],
+        predictiveRisks: Array.isArray(payload.predictiveRisks)
+          ? payload.predictiveRisks
+          : [],
+        timeline: Array.isArray(payload.timeline) ? payload.timeline : [],
+        socioeconomicPoints: Array.isArray(payload.socioeconomicPoints)
+          ? payload.socioeconomicPoints
+          : [],
+        totalCases: payload.totalCases ?? 0,
+        anomalyCount: payload.anomalyCount ?? 0,
+        highRiskCount: payload.highRiskCount ?? 0,
+        moCount: payload.moCount ?? 0,
+      };
+
+      setData(normalized);
     } catch (err: any) {
       console.error("Dashboard fetch failed:", err);
       setError(err.message || "Failed to load data");
@@ -107,25 +157,29 @@ export default function Dashboard({
     }
   }, [state, category, grain]);
 
+  const loadStates = async () => {
+    try {
+      const res: any = await api.states();
+      setStates(Array.isArray(res) ? res : []);
+    } catch (err: any) {
+      console.error("States fetch failed:", err);
+      setError(err.message || "Failed to load states");
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    loadStates();
   }, [fetchData]);
-
-  /* Derive display values from live data */
-  const states = useMemo(() => {
-    if (!data) return [];
-    return Array.from(new Set(data.districtStats.map((d) => d.state))).sort();
-  }, [data]);
 
   const districtBars = useMemo(() => {
     if (!data) return [];
-    return data.districtStats
-      .slice(0, 8)
-      .map((d) => ({
-        name: d.district.length > 16 ? d.district.slice(0, 14) + "…" : d.district,
-        cases: d.cases,
-        forecast: data.predictiveRisks.find((p) => p.name === d.district)?.forecast ?? 0,
-      }));
+    return data.districtStats.slice(0, 8).map((d) => ({
+      name: d.district.length > 16 ? d.district.slice(0, 14) + "…" : d.district,
+      cases: d.cases,
+      forecast:
+        data.predictiveRisks.find((p) => p.name === d.district)?.forecast ?? 0,
+    }));
   }, [data]);
 
   const crimeMixColored = useMemo(() => {
@@ -154,7 +208,9 @@ export default function Dashboard({
       <div className="flex h-[60vh] items-center justify-center">
         <Card className="max-w-md p-8 text-center">
           <AlertTriangle size={36} className="mx-auto mb-3 text-red-500" />
-          <h3 className="text-lg font-semibold text-red-700">Connection Error</h3>
+          <h3 className="text-lg font-semibold text-red-700">
+            Connection Error
+          </h3>
           <p className="mt-2 text-sm text-gray-600">{error}</p>
           <button
             onClick={fetchData}
@@ -191,7 +247,9 @@ export default function Dashboard({
             >
               <option value="all">All India</option>
               {states.map((item) => (
-                <option key={item} value={item}>{item}</option>
+                <option key={item.id} value={item.stateName}>
+                  {item.stateName}
+                </option>
               ))}
             </Select>
 
@@ -487,7 +545,9 @@ export default function Dashboard({
                 </div>
               ))}
             {data.predictiveRisks.length === 0 && (
-              <p className="text-sm text-green-600">No risk data available for current filters</p>
+              <p className="text-sm text-green-600">
+                No risk data available for current filters
+              </p>
             )}
           </div>
         </Card>
@@ -639,7 +699,9 @@ export default function Dashboard({
             </div>
           ))}
           {data.moNetwork.length === 0 && (
-            <p className="col-span-full text-sm text-green-600">No MO patterns found for current filters</p>
+            <p className="col-span-full text-sm text-green-600">
+              No MO patterns found for current filters
+            </p>
           )}
         </div>
       </Card>

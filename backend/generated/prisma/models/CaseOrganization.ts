@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model CaseOrganization
@@ -20,40 +20,70 @@ export type CaseOrganizationModel = runtime.Types.Result.DefaultSelection<Prisma
 
 export type AggregateCaseOrganization = {
   _count: CaseOrganizationCountAggregateOutputType | null
+  _avg: CaseOrganizationAvgAggregateOutputType | null
+  _sum: CaseOrganizationSumAggregateOutputType | null
   _min: CaseOrganizationMinAggregateOutputType | null
   _max: CaseOrganizationMaxAggregateOutputType | null
+}
+
+export type CaseOrganizationAvgAggregateOutputType = {
+  confidence: number | null
+}
+
+export type CaseOrganizationSumAggregateOutputType = {
+  confidence: number | null
 }
 
 export type CaseOrganizationMinAggregateOutputType = {
   caseId: string | null
   organizationId: string | null
+  context: string | null
+  confidence: number | null
 }
 
 export type CaseOrganizationMaxAggregateOutputType = {
   caseId: string | null
   organizationId: string | null
+  context: string | null
+  confidence: number | null
 }
 
 export type CaseOrganizationCountAggregateOutputType = {
   caseId: number
   organizationId: number
+  context: number
+  confidence: number
   _all: number
 }
 
 
+export type CaseOrganizationAvgAggregateInputType = {
+  confidence?: true
+}
+
+export type CaseOrganizationSumAggregateInputType = {
+  confidence?: true
+}
+
 export type CaseOrganizationMinAggregateInputType = {
   caseId?: true
   organizationId?: true
+  context?: true
+  confidence?: true
 }
 
 export type CaseOrganizationMaxAggregateInputType = {
   caseId?: true
   organizationId?: true
+  context?: true
+  confidence?: true
 }
 
 export type CaseOrganizationCountAggregateInputType = {
   caseId?: true
   organizationId?: true
+  context?: true
+  confidence?: true
   _all?: true
 }
 
@@ -95,6 +125,18 @@ export type CaseOrganizationAggregateArgs<ExtArgs extends runtime.Types.Extensio
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CaseOrganizationAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CaseOrganizationSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CaseOrganizationMinAggregateInputType
@@ -125,6 +167,8 @@ export type CaseOrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   _count?: CaseOrganizationCountAggregateInputType | true
+  _avg?: CaseOrganizationAvgAggregateInputType
+  _sum?: CaseOrganizationSumAggregateInputType
   _min?: CaseOrganizationMinAggregateInputType
   _max?: CaseOrganizationMaxAggregateInputType
 }
@@ -132,7 +176,11 @@ export type CaseOrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions
 export type CaseOrganizationGroupByOutputType = {
   caseId: string
   organizationId: string
+  context: string | null
+  confidence: number | null
   _count: CaseOrganizationCountAggregateOutputType | null
+  _avg: CaseOrganizationAvgAggregateOutputType | null
+  _sum: CaseOrganizationSumAggregateOutputType | null
   _min: CaseOrganizationMinAggregateOutputType | null
   _max: CaseOrganizationMaxAggregateOutputType | null
 }
@@ -158,6 +206,8 @@ export type CaseOrganizationWhereInput = {
   NOT?: Prisma.CaseOrganizationWhereInput | Prisma.CaseOrganizationWhereInput[]
   caseId?: Prisma.StringFilter<"CaseOrganization"> | string
   organizationId?: Prisma.StringFilter<"CaseOrganization"> | string
+  context?: Prisma.StringNullableFilter<"CaseOrganization"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CaseOrganization"> | number | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }
@@ -165,6 +215,8 @@ export type CaseOrganizationWhereInput = {
 export type CaseOrganizationOrderByWithRelationInput = {
   caseId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  context?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   case?: Prisma.CaseOrderByWithRelationInput
   organization?: Prisma.OrganizationOrderByWithRelationInput
 }
@@ -176,6 +228,8 @@ export type CaseOrganizationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CaseOrganizationWhereInput | Prisma.CaseOrganizationWhereInput[]
   caseId?: Prisma.StringFilter<"CaseOrganization"> | string
   organizationId?: Prisma.StringFilter<"CaseOrganization"> | string
+  context?: Prisma.StringNullableFilter<"CaseOrganization"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CaseOrganization"> | number | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }, "caseId_organizationId">
@@ -183,9 +237,13 @@ export type CaseOrganizationWhereUniqueInput = Prisma.AtLeast<{
 export type CaseOrganizationOrderByWithAggregationInput = {
   caseId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  context?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CaseOrganizationCountOrderByAggregateInput
+  _avg?: Prisma.CaseOrganizationAvgOrderByAggregateInput
   _max?: Prisma.CaseOrganizationMaxOrderByAggregateInput
   _min?: Prisma.CaseOrganizationMinOrderByAggregateInput
+  _sum?: Prisma.CaseOrganizationSumOrderByAggregateInput
 }
 
 export type CaseOrganizationScalarWhereWithAggregatesInput = {
@@ -194,9 +252,13 @@ export type CaseOrganizationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CaseOrganizationScalarWhereWithAggregatesInput | Prisma.CaseOrganizationScalarWhereWithAggregatesInput[]
   caseId?: Prisma.StringWithAggregatesFilter<"CaseOrganization"> | string
   organizationId?: Prisma.StringWithAggregatesFilter<"CaseOrganization"> | string
+  context?: Prisma.StringNullableWithAggregatesFilter<"CaseOrganization"> | string | null
+  confidence?: Prisma.FloatNullableWithAggregatesFilter<"CaseOrganization"> | number | null
 }
 
 export type CaseOrganizationCreateInput = {
+  context?: string | null
+  confidence?: number | null
   case: Prisma.CaseCreateNestedOneWithoutOrganizationsInput
   organization: Prisma.OrganizationCreateNestedOneWithoutCasesInput
 }
@@ -204,9 +266,13 @@ export type CaseOrganizationCreateInput = {
 export type CaseOrganizationUncheckedCreateInput = {
   caseId: string
   organizationId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseOrganizationUpdateInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   case?: Prisma.CaseUpdateOneRequiredWithoutOrganizationsNestedInput
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutCasesNestedInput
 }
@@ -214,20 +280,27 @@ export type CaseOrganizationUpdateInput = {
 export type CaseOrganizationUncheckedUpdateInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseOrganizationCreateManyInput = {
   caseId: string
   organizationId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseOrganizationUpdateManyMutationInput = {
-
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseOrganizationUncheckedUpdateManyInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseOrganizationListRelationFilter = {
@@ -248,16 +321,30 @@ export type CaseOrganizationCaseIdOrganizationIdCompoundUniqueInput = {
 export type CaseOrganizationCountOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type CaseOrganizationAvgOrderByAggregateInput = {
+  confidence?: Prisma.SortOrder
 }
 
 export type CaseOrganizationMaxOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
 }
 
 export type CaseOrganizationMinOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type CaseOrganizationSumOrderByAggregateInput = {
+  confidence?: Prisma.SortOrder
 }
 
 export type CaseOrganizationCreateNestedManyWithoutCaseInput = {
@@ -345,11 +432,15 @@ export type CaseOrganizationUncheckedUpdateManyWithoutOrganizationNestedInput = 
 }
 
 export type CaseOrganizationCreateWithoutCaseInput = {
+  context?: string | null
+  confidence?: number | null
   organization: Prisma.OrganizationCreateNestedOneWithoutCasesInput
 }
 
 export type CaseOrganizationUncheckedCreateWithoutCaseInput = {
   organizationId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseOrganizationCreateOrConnectWithoutCaseInput = {
@@ -384,14 +475,20 @@ export type CaseOrganizationScalarWhereInput = {
   NOT?: Prisma.CaseOrganizationScalarWhereInput | Prisma.CaseOrganizationScalarWhereInput[]
   caseId?: Prisma.StringFilter<"CaseOrganization"> | string
   organizationId?: Prisma.StringFilter<"CaseOrganization"> | string
+  context?: Prisma.StringNullableFilter<"CaseOrganization"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CaseOrganization"> | number | null
 }
 
 export type CaseOrganizationCreateWithoutOrganizationInput = {
+  context?: string | null
+  confidence?: number | null
   case: Prisma.CaseCreateNestedOneWithoutOrganizationsInput
 }
 
 export type CaseOrganizationUncheckedCreateWithoutOrganizationInput = {
   caseId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseOrganizationCreateOrConnectWithoutOrganizationInput = {
@@ -422,34 +519,50 @@ export type CaseOrganizationUpdateManyWithWhereWithoutOrganizationInput = {
 
 export type CaseOrganizationCreateManyCaseInput = {
   organizationId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseOrganizationUpdateWithoutCaseInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutCasesNestedInput
 }
 
 export type CaseOrganizationUncheckedUpdateWithoutCaseInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseOrganizationUncheckedUpdateManyWithoutCaseInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseOrganizationCreateManyOrganizationInput = {
   caseId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CaseOrganizationUpdateWithoutOrganizationInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   case?: Prisma.CaseUpdateOneRequiredWithoutOrganizationsNestedInput
 }
 
 export type CaseOrganizationUncheckedUpdateWithoutOrganizationInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CaseOrganizationUncheckedUpdateManyWithoutOrganizationInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 
@@ -457,6 +570,8 @@ export type CaseOrganizationUncheckedUpdateManyWithoutOrganizationInput = {
 export type CaseOrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   organizationId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseOrganization"]>
@@ -464,6 +579,8 @@ export type CaseOrganizationSelect<ExtArgs extends runtime.Types.Extensions.Inte
 export type CaseOrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   organizationId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseOrganization"]>
@@ -471,6 +588,8 @@ export type CaseOrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
 export type CaseOrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   organizationId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseOrganization"]>
@@ -478,9 +597,11 @@ export type CaseOrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
 export type CaseOrganizationSelectScalar = {
   caseId?: boolean
   organizationId?: boolean
+  context?: boolean
+  confidence?: boolean
 }
 
-export type CaseOrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "organizationId", ExtArgs["result"]["caseOrganization"]>
+export type CaseOrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "organizationId" | "context" | "confidence", ExtArgs["result"]["caseOrganization"]>
 export type CaseOrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -503,6 +624,8 @@ export type $CaseOrganizationPayload<ExtArgs extends runtime.Types.Extensions.In
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     caseId: string
     organizationId: string
+    context: string | null
+    confidence: number | null
   }, ExtArgs["result"]["caseOrganization"]>
   composites: {}
 }
@@ -930,6 +1053,8 @@ export interface Prisma__CaseOrganizationClient<T, Null = never, ExtArgs extends
 export interface CaseOrganizationFieldRefs {
   readonly caseId: Prisma.FieldRef<"CaseOrganization", 'String'>
   readonly organizationId: Prisma.FieldRef<"CaseOrganization", 'String'>
+  readonly context: Prisma.FieldRef<"CaseOrganization", 'String'>
+  readonly confidence: Prisma.FieldRef<"CaseOrganization", 'Float'>
 }
     
 

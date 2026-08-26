@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model CasePhone
@@ -20,40 +20,70 @@ export type CasePhoneModel = runtime.Types.Result.DefaultSelection<Prisma.$CaseP
 
 export type AggregateCasePhone = {
   _count: CasePhoneCountAggregateOutputType | null
+  _avg: CasePhoneAvgAggregateOutputType | null
+  _sum: CasePhoneSumAggregateOutputType | null
   _min: CasePhoneMinAggregateOutputType | null
   _max: CasePhoneMaxAggregateOutputType | null
+}
+
+export type CasePhoneAvgAggregateOutputType = {
+  confidence: number | null
+}
+
+export type CasePhoneSumAggregateOutputType = {
+  confidence: number | null
 }
 
 export type CasePhoneMinAggregateOutputType = {
   caseId: string | null
   phoneId: string | null
+  context: string | null
+  confidence: number | null
 }
 
 export type CasePhoneMaxAggregateOutputType = {
   caseId: string | null
   phoneId: string | null
+  context: string | null
+  confidence: number | null
 }
 
 export type CasePhoneCountAggregateOutputType = {
   caseId: number
   phoneId: number
+  context: number
+  confidence: number
   _all: number
 }
 
 
+export type CasePhoneAvgAggregateInputType = {
+  confidence?: true
+}
+
+export type CasePhoneSumAggregateInputType = {
+  confidence?: true
+}
+
 export type CasePhoneMinAggregateInputType = {
   caseId?: true
   phoneId?: true
+  context?: true
+  confidence?: true
 }
 
 export type CasePhoneMaxAggregateInputType = {
   caseId?: true
   phoneId?: true
+  context?: true
+  confidence?: true
 }
 
 export type CasePhoneCountAggregateInputType = {
   caseId?: true
   phoneId?: true
+  context?: true
+  confidence?: true
   _all?: true
 }
 
@@ -95,6 +125,18 @@ export type CasePhoneAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CasePhoneAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CasePhoneSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CasePhoneMinAggregateInputType
@@ -125,6 +167,8 @@ export type CasePhoneGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: CasePhoneCountAggregateInputType | true
+  _avg?: CasePhoneAvgAggregateInputType
+  _sum?: CasePhoneSumAggregateInputType
   _min?: CasePhoneMinAggregateInputType
   _max?: CasePhoneMaxAggregateInputType
 }
@@ -132,7 +176,11 @@ export type CasePhoneGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type CasePhoneGroupByOutputType = {
   caseId: string
   phoneId: string
+  context: string | null
+  confidence: number | null
   _count: CasePhoneCountAggregateOutputType | null
+  _avg: CasePhoneAvgAggregateOutputType | null
+  _sum: CasePhoneSumAggregateOutputType | null
   _min: CasePhoneMinAggregateOutputType | null
   _max: CasePhoneMaxAggregateOutputType | null
 }
@@ -158,6 +206,8 @@ export type CasePhoneWhereInput = {
   NOT?: Prisma.CasePhoneWhereInput | Prisma.CasePhoneWhereInput[]
   caseId?: Prisma.StringFilter<"CasePhone"> | string
   phoneId?: Prisma.StringFilter<"CasePhone"> | string
+  context?: Prisma.StringNullableFilter<"CasePhone"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CasePhone"> | number | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   phone?: Prisma.XOR<Prisma.PhoneScalarRelationFilter, Prisma.PhoneWhereInput>
 }
@@ -165,6 +215,8 @@ export type CasePhoneWhereInput = {
 export type CasePhoneOrderByWithRelationInput = {
   caseId?: Prisma.SortOrder
   phoneId?: Prisma.SortOrder
+  context?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   case?: Prisma.CaseOrderByWithRelationInput
   phone?: Prisma.PhoneOrderByWithRelationInput
 }
@@ -176,6 +228,8 @@ export type CasePhoneWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CasePhoneWhereInput | Prisma.CasePhoneWhereInput[]
   caseId?: Prisma.StringFilter<"CasePhone"> | string
   phoneId?: Prisma.StringFilter<"CasePhone"> | string
+  context?: Prisma.StringNullableFilter<"CasePhone"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CasePhone"> | number | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   phone?: Prisma.XOR<Prisma.PhoneScalarRelationFilter, Prisma.PhoneWhereInput>
 }, "caseId_phoneId">
@@ -183,9 +237,13 @@ export type CasePhoneWhereUniqueInput = Prisma.AtLeast<{
 export type CasePhoneOrderByWithAggregationInput = {
   caseId?: Prisma.SortOrder
   phoneId?: Prisma.SortOrder
+  context?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CasePhoneCountOrderByAggregateInput
+  _avg?: Prisma.CasePhoneAvgOrderByAggregateInput
   _max?: Prisma.CasePhoneMaxOrderByAggregateInput
   _min?: Prisma.CasePhoneMinOrderByAggregateInput
+  _sum?: Prisma.CasePhoneSumOrderByAggregateInput
 }
 
 export type CasePhoneScalarWhereWithAggregatesInput = {
@@ -194,9 +252,13 @@ export type CasePhoneScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CasePhoneScalarWhereWithAggregatesInput | Prisma.CasePhoneScalarWhereWithAggregatesInput[]
   caseId?: Prisma.StringWithAggregatesFilter<"CasePhone"> | string
   phoneId?: Prisma.StringWithAggregatesFilter<"CasePhone"> | string
+  context?: Prisma.StringNullableWithAggregatesFilter<"CasePhone"> | string | null
+  confidence?: Prisma.FloatNullableWithAggregatesFilter<"CasePhone"> | number | null
 }
 
 export type CasePhoneCreateInput = {
+  context?: string | null
+  confidence?: number | null
   case: Prisma.CaseCreateNestedOneWithoutPhonesInput
   phone: Prisma.PhoneCreateNestedOneWithoutCasesInput
 }
@@ -204,9 +266,13 @@ export type CasePhoneCreateInput = {
 export type CasePhoneUncheckedCreateInput = {
   caseId: string
   phoneId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CasePhoneUpdateInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   case?: Prisma.CaseUpdateOneRequiredWithoutPhonesNestedInput
   phone?: Prisma.PhoneUpdateOneRequiredWithoutCasesNestedInput
 }
@@ -214,20 +280,27 @@ export type CasePhoneUpdateInput = {
 export type CasePhoneUncheckedUpdateInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CasePhoneCreateManyInput = {
   caseId: string
   phoneId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CasePhoneUpdateManyMutationInput = {
-
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CasePhoneUncheckedUpdateManyInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CasePhoneListRelationFilter = {
@@ -248,16 +321,30 @@ export type CasePhoneCaseIdPhoneIdCompoundUniqueInput = {
 export type CasePhoneCountOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   phoneId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type CasePhoneAvgOrderByAggregateInput = {
+  confidence?: Prisma.SortOrder
 }
 
 export type CasePhoneMaxOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   phoneId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
 }
 
 export type CasePhoneMinOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   phoneId?: Prisma.SortOrder
+  context?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type CasePhoneSumOrderByAggregateInput = {
+  confidence?: Prisma.SortOrder
 }
 
 export type CasePhoneCreateNestedManyWithoutCaseInput = {
@@ -345,11 +432,15 @@ export type CasePhoneUncheckedUpdateManyWithoutPhoneNestedInput = {
 }
 
 export type CasePhoneCreateWithoutCaseInput = {
+  context?: string | null
+  confidence?: number | null
   phone: Prisma.PhoneCreateNestedOneWithoutCasesInput
 }
 
 export type CasePhoneUncheckedCreateWithoutCaseInput = {
   phoneId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CasePhoneCreateOrConnectWithoutCaseInput = {
@@ -384,14 +475,20 @@ export type CasePhoneScalarWhereInput = {
   NOT?: Prisma.CasePhoneScalarWhereInput | Prisma.CasePhoneScalarWhereInput[]
   caseId?: Prisma.StringFilter<"CasePhone"> | string
   phoneId?: Prisma.StringFilter<"CasePhone"> | string
+  context?: Prisma.StringNullableFilter<"CasePhone"> | string | null
+  confidence?: Prisma.FloatNullableFilter<"CasePhone"> | number | null
 }
 
 export type CasePhoneCreateWithoutPhoneInput = {
+  context?: string | null
+  confidence?: number | null
   case: Prisma.CaseCreateNestedOneWithoutPhonesInput
 }
 
 export type CasePhoneUncheckedCreateWithoutPhoneInput = {
   caseId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CasePhoneCreateOrConnectWithoutPhoneInput = {
@@ -422,34 +519,50 @@ export type CasePhoneUpdateManyWithWhereWithoutPhoneInput = {
 
 export type CasePhoneCreateManyCaseInput = {
   phoneId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CasePhoneUpdateWithoutCaseInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   phone?: Prisma.PhoneUpdateOneRequiredWithoutCasesNestedInput
 }
 
 export type CasePhoneUncheckedUpdateWithoutCaseInput = {
   phoneId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CasePhoneUncheckedUpdateManyWithoutCaseInput = {
   phoneId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CasePhoneCreateManyPhoneInput = {
   caseId: string
+  context?: string | null
+  confidence?: number | null
 }
 
 export type CasePhoneUpdateWithoutPhoneInput = {
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   case?: Prisma.CaseUpdateOneRequiredWithoutPhonesNestedInput
 }
 
 export type CasePhoneUncheckedUpdateWithoutPhoneInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type CasePhoneUncheckedUpdateManyWithoutPhoneInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  context?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 
@@ -457,6 +570,8 @@ export type CasePhoneUncheckedUpdateManyWithoutPhoneInput = {
 export type CasePhoneSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   phoneId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   phone?: boolean | Prisma.PhoneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["casePhone"]>
@@ -464,6 +579,8 @@ export type CasePhoneSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type CasePhoneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   phoneId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   phone?: boolean | Prisma.PhoneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["casePhone"]>
@@ -471,6 +588,8 @@ export type CasePhoneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type CasePhoneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   phoneId?: boolean
+  context?: boolean
+  confidence?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   phone?: boolean | Prisma.PhoneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["casePhone"]>
@@ -478,9 +597,11 @@ export type CasePhoneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type CasePhoneSelectScalar = {
   caseId?: boolean
   phoneId?: boolean
+  context?: boolean
+  confidence?: boolean
 }
 
-export type CasePhoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "phoneId", ExtArgs["result"]["casePhone"]>
+export type CasePhoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "phoneId" | "context" | "confidence", ExtArgs["result"]["casePhone"]>
 export type CasePhoneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   phone?: boolean | Prisma.PhoneDefaultArgs<ExtArgs>
@@ -503,6 +624,8 @@ export type $CasePhonePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     caseId: string
     phoneId: string
+    context: string | null
+    confidence: number | null
   }, ExtArgs["result"]["casePhone"]>
   composites: {}
 }
@@ -930,6 +1053,8 @@ export interface Prisma__CasePhoneClient<T, Null = never, ExtArgs extends runtim
 export interface CasePhoneFieldRefs {
   readonly caseId: Prisma.FieldRef<"CasePhone", 'String'>
   readonly phoneId: Prisma.FieldRef<"CasePhone", 'String'>
+  readonly context: Prisma.FieldRef<"CasePhone", 'String'>
+  readonly confidence: Prisma.FieldRef<"CasePhone", 'Float'>
 }
     
 

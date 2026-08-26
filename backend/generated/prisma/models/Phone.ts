@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Phone
@@ -27,16 +27,22 @@ export type AggregatePhone = {
 export type PhoneMinAggregateOutputType = {
   id: string | null
   number: string | null
+  countryCode: string | null
+  isActive: boolean | null
 }
 
 export type PhoneMaxAggregateOutputType = {
   id: string | null
   number: string | null
+  countryCode: string | null
+  isActive: boolean | null
 }
 
 export type PhoneCountAggregateOutputType = {
   id: number
   number: number
+  countryCode: number
+  isActive: number
   _all: number
 }
 
@@ -44,16 +50,22 @@ export type PhoneCountAggregateOutputType = {
 export type PhoneMinAggregateInputType = {
   id?: true
   number?: true
+  countryCode?: true
+  isActive?: true
 }
 
 export type PhoneMaxAggregateInputType = {
   id?: true
   number?: true
+  countryCode?: true
+  isActive?: true
 }
 
 export type PhoneCountAggregateInputType = {
   id?: true
   number?: true
+  countryCode?: true
+  isActive?: true
   _all?: true
 }
 
@@ -132,6 +144,8 @@ export type PhoneGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type PhoneGroupByOutputType = {
   id: string
   number: string
+  countryCode: string | null
+  isActive: boolean
   _count: PhoneCountAggregateOutputType | null
   _min: PhoneMinAggregateOutputType | null
   _max: PhoneMaxAggregateOutputType | null
@@ -158,15 +172,21 @@ export type PhoneWhereInput = {
   NOT?: Prisma.PhoneWhereInput | Prisma.PhoneWhereInput[]
   id?: Prisma.StringFilter<"Phone"> | string
   number?: Prisma.StringFilter<"Phone"> | string
+  countryCode?: Prisma.StringNullableFilter<"Phone"> | string | null
+  isActive?: Prisma.BoolFilter<"Phone"> | boolean
   cases?: Prisma.CasePhoneListRelationFilter
-  owners?: Prisma.PersonListRelationFilter
+  owners?: Prisma.PhoneOwnerListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
 }
 
 export type PhoneOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   cases?: Prisma.CasePhoneOrderByRelationAggregateInput
-  owners?: Prisma.PersonOrderByRelationAggregateInput
+  owners?: Prisma.PhoneOwnerOrderByRelationAggregateInput
+  embeddings?: Prisma.EmbeddingOrderByRelationAggregateInput
 }
 
 export type PhoneWhereUniqueInput = Prisma.AtLeast<{
@@ -175,13 +195,18 @@ export type PhoneWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PhoneWhereInput | Prisma.PhoneWhereInput[]
   OR?: Prisma.PhoneWhereInput[]
   NOT?: Prisma.PhoneWhereInput | Prisma.PhoneWhereInput[]
+  countryCode?: Prisma.StringNullableFilter<"Phone"> | string | null
+  isActive?: Prisma.BoolFilter<"Phone"> | boolean
   cases?: Prisma.CasePhoneListRelationFilter
-  owners?: Prisma.PersonListRelationFilter
+  owners?: Prisma.PhoneOwnerListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
 }, "id" | "number">
 
 export type PhoneOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   _count?: Prisma.PhoneCountOrderByAggregateInput
   _max?: Prisma.PhoneMaxOrderByAggregateInput
   _min?: Prisma.PhoneMinOrderByAggregateInput
@@ -193,74 +218,90 @@ export type PhoneScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PhoneScalarWhereWithAggregatesInput | Prisma.PhoneScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Phone"> | string
   number?: Prisma.StringWithAggregatesFilter<"Phone"> | string
+  countryCode?: Prisma.StringNullableWithAggregatesFilter<"Phone"> | string | null
+  isActive?: Prisma.BoolWithAggregatesFilter<"Phone"> | boolean
 }
 
 export type PhoneCreateInput = {
   id?: string
   number: string
+  countryCode?: string | null
+  isActive?: boolean
   cases?: Prisma.CasePhoneCreateNestedManyWithoutPhoneInput
-  owners?: Prisma.PersonCreateNestedManyWithoutPhonesInput
+  owners?: Prisma.PhoneOwnerCreateNestedManyWithoutPhoneInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPhoneInput
 }
 
 export type PhoneUncheckedCreateInput = {
   id?: string
   number: string
+  countryCode?: string | null
+  isActive?: boolean
   cases?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutPhoneInput
-  owners?: Prisma.PersonUncheckedCreateNestedManyWithoutPhonesInput
+  owners?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPhoneInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPhoneInput
 }
 
 export type PhoneUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cases?: Prisma.CasePhoneUpdateManyWithoutPhoneNestedInput
-  owners?: Prisma.PersonUpdateManyWithoutPhonesNestedInput
+  owners?: Prisma.PhoneOwnerUpdateManyWithoutPhoneNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPhoneNestedInput
 }
 
 export type PhoneUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cases?: Prisma.CasePhoneUncheckedUpdateManyWithoutPhoneNestedInput
-  owners?: Prisma.PersonUncheckedUpdateManyWithoutPhonesNestedInput
+  owners?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPhoneNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPhoneNestedInput
 }
 
 export type PhoneCreateManyInput = {
   id?: string
   number: string
+  countryCode?: string | null
+  isActive?: boolean
 }
 
 export type PhoneUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PhoneUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type PhoneListRelationFilter = {
-  every?: Prisma.PhoneWhereInput
-  some?: Prisma.PhoneWhereInput
-  none?: Prisma.PhoneWhereInput
-}
-
-export type PhoneOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PhoneCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
 }
 
 export type PhoneMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
 }
 
 export type PhoneMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
 }
 
 export type PhoneScalarRelationFilter = {
@@ -268,42 +309,23 @@ export type PhoneScalarRelationFilter = {
   isNot?: Prisma.PhoneWhereInput
 }
 
-export type PhoneCreateNestedManyWithoutOwnersInput = {
-  create?: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput> | Prisma.PhoneCreateWithoutOwnersInput[] | Prisma.PhoneUncheckedCreateWithoutOwnersInput[]
-  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutOwnersInput | Prisma.PhoneCreateOrConnectWithoutOwnersInput[]
-  connect?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
+export type PhoneNullableScalarRelationFilter = {
+  is?: Prisma.PhoneWhereInput | null
+  isNot?: Prisma.PhoneWhereInput | null
 }
 
-export type PhoneUncheckedCreateNestedManyWithoutOwnersInput = {
-  create?: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput> | Prisma.PhoneCreateWithoutOwnersInput[] | Prisma.PhoneUncheckedCreateWithoutOwnersInput[]
-  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutOwnersInput | Prisma.PhoneCreateOrConnectWithoutOwnersInput[]
-  connect?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
+export type PhoneCreateNestedOneWithoutOwnersInput = {
+  create?: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput>
+  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutOwnersInput
+  connect?: Prisma.PhoneWhereUniqueInput
 }
 
-export type PhoneUpdateManyWithoutOwnersNestedInput = {
-  create?: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput> | Prisma.PhoneCreateWithoutOwnersInput[] | Prisma.PhoneUncheckedCreateWithoutOwnersInput[]
-  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutOwnersInput | Prisma.PhoneCreateOrConnectWithoutOwnersInput[]
-  upsert?: Prisma.PhoneUpsertWithWhereUniqueWithoutOwnersInput | Prisma.PhoneUpsertWithWhereUniqueWithoutOwnersInput[]
-  set?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  disconnect?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  delete?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  connect?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  update?: Prisma.PhoneUpdateWithWhereUniqueWithoutOwnersInput | Prisma.PhoneUpdateWithWhereUniqueWithoutOwnersInput[]
-  updateMany?: Prisma.PhoneUpdateManyWithWhereWithoutOwnersInput | Prisma.PhoneUpdateManyWithWhereWithoutOwnersInput[]
-  deleteMany?: Prisma.PhoneScalarWhereInput | Prisma.PhoneScalarWhereInput[]
-}
-
-export type PhoneUncheckedUpdateManyWithoutOwnersNestedInput = {
-  create?: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput> | Prisma.PhoneCreateWithoutOwnersInput[] | Prisma.PhoneUncheckedCreateWithoutOwnersInput[]
-  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutOwnersInput | Prisma.PhoneCreateOrConnectWithoutOwnersInput[]
-  upsert?: Prisma.PhoneUpsertWithWhereUniqueWithoutOwnersInput | Prisma.PhoneUpsertWithWhereUniqueWithoutOwnersInput[]
-  set?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  disconnect?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  delete?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  connect?: Prisma.PhoneWhereUniqueInput | Prisma.PhoneWhereUniqueInput[]
-  update?: Prisma.PhoneUpdateWithWhereUniqueWithoutOwnersInput | Prisma.PhoneUpdateWithWhereUniqueWithoutOwnersInput[]
-  updateMany?: Prisma.PhoneUpdateManyWithWhereWithoutOwnersInput | Prisma.PhoneUpdateManyWithWhereWithoutOwnersInput[]
-  deleteMany?: Prisma.PhoneScalarWhereInput | Prisma.PhoneScalarWhereInput[]
+export type PhoneUpdateOneRequiredWithoutOwnersNestedInput = {
+  create?: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput>
+  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutOwnersInput
+  upsert?: Prisma.PhoneUpsertWithoutOwnersInput
+  connect?: Prisma.PhoneWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PhoneUpdateToOneWithWhereWithoutOwnersInput, Prisma.PhoneUpdateWithoutOwnersInput>, Prisma.PhoneUncheckedUpdateWithoutOwnersInput>
 }
 
 export type PhoneCreateNestedOneWithoutCasesInput = {
@@ -320,16 +342,38 @@ export type PhoneUpdateOneRequiredWithoutCasesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PhoneUpdateToOneWithWhereWithoutCasesInput, Prisma.PhoneUpdateWithoutCasesInput>, Prisma.PhoneUncheckedUpdateWithoutCasesInput>
 }
 
+export type PhoneCreateNestedOneWithoutEmbeddingsInput = {
+  create?: Prisma.XOR<Prisma.PhoneCreateWithoutEmbeddingsInput, Prisma.PhoneUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutEmbeddingsInput
+  connect?: Prisma.PhoneWhereUniqueInput
+}
+
+export type PhoneUpdateOneWithoutEmbeddingsNestedInput = {
+  create?: Prisma.XOR<Prisma.PhoneCreateWithoutEmbeddingsInput, Prisma.PhoneUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.PhoneCreateOrConnectWithoutEmbeddingsInput
+  upsert?: Prisma.PhoneUpsertWithoutEmbeddingsInput
+  disconnect?: Prisma.PhoneWhereInput | boolean
+  delete?: Prisma.PhoneWhereInput | boolean
+  connect?: Prisma.PhoneWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PhoneUpdateToOneWithWhereWithoutEmbeddingsInput, Prisma.PhoneUpdateWithoutEmbeddingsInput>, Prisma.PhoneUncheckedUpdateWithoutEmbeddingsInput>
+}
+
 export type PhoneCreateWithoutOwnersInput = {
   id?: string
   number: string
+  countryCode?: string | null
+  isActive?: boolean
   cases?: Prisma.CasePhoneCreateNestedManyWithoutPhoneInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPhoneInput
 }
 
 export type PhoneUncheckedCreateWithoutOwnersInput = {
   id?: string
   number: string
+  countryCode?: string | null
+  isActive?: boolean
   cases?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutPhoneInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPhoneInput
 }
 
 export type PhoneCreateOrConnectWithoutOwnersInput = {
@@ -337,40 +381,51 @@ export type PhoneCreateOrConnectWithoutOwnersInput = {
   create: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput>
 }
 
-export type PhoneUpsertWithWhereUniqueWithoutOwnersInput = {
-  where: Prisma.PhoneWhereUniqueInput
+export type PhoneUpsertWithoutOwnersInput = {
   update: Prisma.XOR<Prisma.PhoneUpdateWithoutOwnersInput, Prisma.PhoneUncheckedUpdateWithoutOwnersInput>
   create: Prisma.XOR<Prisma.PhoneCreateWithoutOwnersInput, Prisma.PhoneUncheckedCreateWithoutOwnersInput>
+  where?: Prisma.PhoneWhereInput
 }
 
-export type PhoneUpdateWithWhereUniqueWithoutOwnersInput = {
-  where: Prisma.PhoneWhereUniqueInput
+export type PhoneUpdateToOneWithWhereWithoutOwnersInput = {
+  where?: Prisma.PhoneWhereInput
   data: Prisma.XOR<Prisma.PhoneUpdateWithoutOwnersInput, Prisma.PhoneUncheckedUpdateWithoutOwnersInput>
 }
 
-export type PhoneUpdateManyWithWhereWithoutOwnersInput = {
-  where: Prisma.PhoneScalarWhereInput
-  data: Prisma.XOR<Prisma.PhoneUpdateManyMutationInput, Prisma.PhoneUncheckedUpdateManyWithoutOwnersInput>
+export type PhoneUpdateWithoutOwnersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cases?: Prisma.CasePhoneUpdateManyWithoutPhoneNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPhoneNestedInput
 }
 
-export type PhoneScalarWhereInput = {
-  AND?: Prisma.PhoneScalarWhereInput | Prisma.PhoneScalarWhereInput[]
-  OR?: Prisma.PhoneScalarWhereInput[]
-  NOT?: Prisma.PhoneScalarWhereInput | Prisma.PhoneScalarWhereInput[]
-  id?: Prisma.StringFilter<"Phone"> | string
-  number?: Prisma.StringFilter<"Phone"> | string
+export type PhoneUncheckedUpdateWithoutOwnersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cases?: Prisma.CasePhoneUncheckedUpdateManyWithoutPhoneNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPhoneNestedInput
 }
 
 export type PhoneCreateWithoutCasesInput = {
   id?: string
   number: string
-  owners?: Prisma.PersonCreateNestedManyWithoutPhonesInput
+  countryCode?: string | null
+  isActive?: boolean
+  owners?: Prisma.PhoneOwnerCreateNestedManyWithoutPhoneInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutPhoneInput
 }
 
 export type PhoneUncheckedCreateWithoutCasesInput = {
   id?: string
   number: string
-  owners?: Prisma.PersonUncheckedCreateNestedManyWithoutPhonesInput
+  countryCode?: string | null
+  isActive?: boolean
+  owners?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPhoneInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutPhoneInput
 }
 
 export type PhoneCreateOrConnectWithoutCasesInput = {
@@ -392,30 +447,71 @@ export type PhoneUpdateToOneWithWhereWithoutCasesInput = {
 export type PhoneUpdateWithoutCasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
-  owners?: Prisma.PersonUpdateManyWithoutPhonesNestedInput
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  owners?: Prisma.PhoneOwnerUpdateManyWithoutPhoneNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutPhoneNestedInput
 }
 
 export type PhoneUncheckedUpdateWithoutCasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
-  owners?: Prisma.PersonUncheckedUpdateManyWithoutPhonesNestedInput
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  owners?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPhoneNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutPhoneNestedInput
 }
 
-export type PhoneUpdateWithoutOwnersInput = {
+export type PhoneCreateWithoutEmbeddingsInput = {
+  id?: string
+  number: string
+  countryCode?: string | null
+  isActive?: boolean
+  cases?: Prisma.CasePhoneCreateNestedManyWithoutPhoneInput
+  owners?: Prisma.PhoneOwnerCreateNestedManyWithoutPhoneInput
+}
+
+export type PhoneUncheckedCreateWithoutEmbeddingsInput = {
+  id?: string
+  number: string
+  countryCode?: string | null
+  isActive?: boolean
+  cases?: Prisma.CasePhoneUncheckedCreateNestedManyWithoutPhoneInput
+  owners?: Prisma.PhoneOwnerUncheckedCreateNestedManyWithoutPhoneInput
+}
+
+export type PhoneCreateOrConnectWithoutEmbeddingsInput = {
+  where: Prisma.PhoneWhereUniqueInput
+  create: Prisma.XOR<Prisma.PhoneCreateWithoutEmbeddingsInput, Prisma.PhoneUncheckedCreateWithoutEmbeddingsInput>
+}
+
+export type PhoneUpsertWithoutEmbeddingsInput = {
+  update: Prisma.XOR<Prisma.PhoneUpdateWithoutEmbeddingsInput, Prisma.PhoneUncheckedUpdateWithoutEmbeddingsInput>
+  create: Prisma.XOR<Prisma.PhoneCreateWithoutEmbeddingsInput, Prisma.PhoneUncheckedCreateWithoutEmbeddingsInput>
+  where?: Prisma.PhoneWhereInput
+}
+
+export type PhoneUpdateToOneWithWhereWithoutEmbeddingsInput = {
+  where?: Prisma.PhoneWhereInput
+  data: Prisma.XOR<Prisma.PhoneUpdateWithoutEmbeddingsInput, Prisma.PhoneUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type PhoneUpdateWithoutEmbeddingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cases?: Prisma.CasePhoneUpdateManyWithoutPhoneNestedInput
+  owners?: Prisma.PhoneOwnerUpdateManyWithoutPhoneNestedInput
 }
 
-export type PhoneUncheckedUpdateWithoutOwnersInput = {
+export type PhoneUncheckedUpdateWithoutEmbeddingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cases?: Prisma.CasePhoneUncheckedUpdateManyWithoutPhoneNestedInput
-}
-
-export type PhoneUncheckedUpdateManyWithoutOwnersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  number?: Prisma.StringFieldUpdateOperationsInput | string
+  owners?: Prisma.PhoneOwnerUncheckedUpdateManyWithoutPhoneNestedInput
 }
 
 
@@ -426,11 +522,13 @@ export type PhoneUncheckedUpdateManyWithoutOwnersInput = {
 export type PhoneCountOutputType = {
   cases: number
   owners: number
+  embeddings: number
 }
 
 export type PhoneCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cases?: boolean | PhoneCountOutputTypeCountCasesArgs
   owners?: boolean | PhoneCountOutputTypeCountOwnersArgs
+  embeddings?: boolean | PhoneCountOutputTypeCountEmbeddingsArgs
 }
 
 /**
@@ -454,37 +552,54 @@ export type PhoneCountOutputTypeCountCasesArgs<ExtArgs extends runtime.Types.Ext
  * PhoneCountOutputType without action
  */
 export type PhoneCountOutputTypeCountOwnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PersonWhereInput
+  where?: Prisma.PhoneOwnerWhereInput
+}
+
+/**
+ * PhoneCountOutputType without action
+ */
+export type PhoneCountOutputTypeCountEmbeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmbeddingWhereInput
 }
 
 
 export type PhoneSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   number?: boolean
+  countryCode?: boolean
+  isActive?: boolean
   cases?: boolean | Prisma.Phone$casesArgs<ExtArgs>
   owners?: boolean | Prisma.Phone$ownersArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Phone$embeddingsArgs<ExtArgs>
   _count?: boolean | Prisma.PhoneCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["phone"]>
 
 export type PhoneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   number?: boolean
+  countryCode?: boolean
+  isActive?: boolean
 }, ExtArgs["result"]["phone"]>
 
 export type PhoneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   number?: boolean
+  countryCode?: boolean
+  isActive?: boolean
 }, ExtArgs["result"]["phone"]>
 
 export type PhoneSelectScalar = {
   id?: boolean
   number?: boolean
+  countryCode?: boolean
+  isActive?: boolean
 }
 
-export type PhoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number", ExtArgs["result"]["phone"]>
+export type PhoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "countryCode" | "isActive", ExtArgs["result"]["phone"]>
 export type PhoneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cases?: boolean | Prisma.Phone$casesArgs<ExtArgs>
   owners?: boolean | Prisma.Phone$ownersArgs<ExtArgs>
+  embeddings?: boolean | Prisma.Phone$embeddingsArgs<ExtArgs>
   _count?: boolean | Prisma.PhoneCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PhoneIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -494,11 +609,14 @@ export type $PhonePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Phone"
   objects: {
     cases: Prisma.$CasePhonePayload<ExtArgs>[]
-    owners: Prisma.$PersonPayload<ExtArgs>[]
+    owners: Prisma.$PhoneOwnerPayload<ExtArgs>[]
+    embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     number: string
+    countryCode: string | null
+    isActive: boolean
   }, ExtArgs["result"]["phone"]>
   composites: {}
 }
@@ -894,7 +1012,8 @@ readonly fields: PhoneFieldRefs;
 export interface Prisma__PhoneClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cases<T extends Prisma.Phone$casesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phone$casesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePhonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  owners<T extends Prisma.Phone$ownersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phone$ownersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  owners<T extends Prisma.Phone$ownersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phone$ownersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhoneOwnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  embeddings<T extends Prisma.Phone$embeddingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phone$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -926,6 +1045,8 @@ export interface Prisma__PhoneClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface PhoneFieldRefs {
   readonly id: Prisma.FieldRef<"Phone", 'String'>
   readonly number: Prisma.FieldRef<"Phone", 'String'>
+  readonly countryCode: Prisma.FieldRef<"Phone", 'String'>
+  readonly isActive: Prisma.FieldRef<"Phone", 'Boolean'>
 }
     
 
@@ -1347,23 +1468,47 @@ export type Phone$casesArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
  */
 export type Phone$ownersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Person
+   * Select specific fields to fetch from the PhoneOwner
    */
-  select?: Prisma.PersonSelect<ExtArgs> | null
+  select?: Prisma.PhoneOwnerSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Person
+   * Omit specific fields from the PhoneOwner
    */
-  omit?: Prisma.PersonOmit<ExtArgs> | null
+  omit?: Prisma.PhoneOwnerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PersonInclude<ExtArgs> | null
-  where?: Prisma.PersonWhereInput
-  orderBy?: Prisma.PersonOrderByWithRelationInput | Prisma.PersonOrderByWithRelationInput[]
-  cursor?: Prisma.PersonWhereUniqueInput
+  include?: Prisma.PhoneOwnerInclude<ExtArgs> | null
+  where?: Prisma.PhoneOwnerWhereInput
+  orderBy?: Prisma.PhoneOwnerOrderByWithRelationInput | Prisma.PhoneOwnerOrderByWithRelationInput[]
+  cursor?: Prisma.PhoneOwnerWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PersonScalarFieldEnum | Prisma.PersonScalarFieldEnum[]
+  distinct?: Prisma.PhoneOwnerScalarFieldEnum | Prisma.PhoneOwnerScalarFieldEnum[]
+}
+
+/**
+ * Phone.embeddings
+ */
+export type Phone$embeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Embedding
+   */
+  select?: Prisma.EmbeddingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Embedding
+   */
+  omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  where?: Prisma.EmbeddingWhereInput
+  orderBy?: Prisma.EmbeddingOrderByWithRelationInput | Prisma.EmbeddingOrderByWithRelationInput[]
+  cursor?: Prisma.EmbeddingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmbeddingScalarFieldEnum | Prisma.EmbeddingScalarFieldEnum[]
 }
 
 /**

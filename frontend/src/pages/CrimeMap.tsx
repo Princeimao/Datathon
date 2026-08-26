@@ -1,11 +1,15 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
-import CrimeMapFilters, { type MapFilters } from "../components/Filter";
+import CrimeMapFilters, {
+  type MapFilters,
+  DEFAULT_FILTERS,
+} from "../components/Filter";
 import { Card } from "../components/customUi";
 import {
   MapContainer,
   TileLayer,
   GeoJSON,
   CircleMarker,
+  Marker,
   Popup,
   useMap,
 } from "react-leaflet";
@@ -28,6 +32,7 @@ interface CrimePoint {
   state: string;
   stationName: string;
   address: string;
+  riskScore?: number;
 }
 
 interface MapDataResponse {
@@ -43,7 +48,7 @@ interface MapDataResponse {
   }[];
   summary: {
     totalCases: number;
-    highRiskStates: number;
+    highRiskCount: number;
     statesWithData: number;
   };
 }
@@ -67,6 +72,14 @@ const CRIME_MARKER_COLORS: Record<string, string> = {
   OTHER: "#64748b",
 };
 
+const LAYER_CRIME_MAP: Record<string, string> = {
+  "Theft Hotspots": "theft",
+  "Cybercrime Hotspots": "cybercrime",
+  "Assault Hotspots": "assault",
+  "Robbery Hotspots": "robbery",
+  "Homicide Hotspots": "homicide",
+};
+
 function getRiskColor(riskLevel: string) {
   switch (riskLevel) {
     case "high":
@@ -78,6 +91,56 @@ function getRiskColor(riskLevel: string) {
     default:
       return { color: "#6b7280", fillColor: "#d1d5db", fillOpacity: 0.15 };
   }
+}
+
+/* ─── heatmap grid helpers ─── */
+interface HeatCell {
+  id: string;
+  lat: number;
+  lng: number;
+  count: number;
+}
+
+function buildHeatGrid(points: CrimePoint[], layer: string): HeatCell[] {
+  const list = Array.isArray(points) ? points : [];
+  const layerType = LAYER_CRIME_MAP[layer];
+
+  const filtered = layerType
+    ? list.filter(
+        (point) =>
+          (point.crimeType || "").toLowerCase() === layerType,
+      )
+    : list;
+
+  const cell = 0.25;
+  const grid = new Map<string, HeatCell>();
+
+  filtered.forEach((point) => {
+    if (!point.latitude || !point.longitude) return;
+
+    const lat = Math.round(point.latitude / cell) * cell;
+    const lng = Math.round(point.longitude / cell) * cell;
+    const key = `${lat}:${lng}`;
+
+    const existing = grid.get(key);
+
+    if (existing) {
+      existing.count++;
+    } else {
+      grid.set(key, { id: key, lat, lng, count: 1 });
+    }
+  });
+
+  return [...grid.values()].sort((a, b) => b.count - a.count);
+}
+
+function heatColor(count: number, max: number) {
+  const ratio = max > 0 ? count / max : 0;
+
+  if (ratio > 0.75) return "#dc2626";
+  if (ratio > 0.5) return "#f97316";
+  if (ratio > 0.25) return "#f59e0b";
+  return "#16a34a";
 }
 
 /* ─── map controller component ─── */
@@ -105,227 +168,190 @@ function MapController({
 
 /* ─── main component ─── */
 const CrimeMap = () => {
-  const [geoData, setGeoData] = useState<any>(null);
-  const [geoLoading, setGeoLoading] = useState(true);
+  const [boundary, setBoundary] = useState<any>(null);
+  const [boundaryLoading, setBoundaryLoading] = useState(false);
   const [mapData, setMapData] = useState<MapDataResponse | null>(null);
   const [mapLoading, setMapLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [activeFilters, setActiveFilters] = useState<MapFilters | null>(null);
-  const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
+  const [filters, setFilters] = useState<MapFilters>({ ...DEFAULT_FILTERS });
   const geoJsonRef = useRef<any>(null);
 
-  /* Load the GeoJSON file (43MB, loaded once and cached) */
+  const [stateIdMap, setStateIdMap] = useState<Record<string, number>>({});
+  const [districtIdMap, setDistrictIdMap] = useState<Record<string, number>>(
+    {},
+  );
+
+  /* Load state/district id maps (for boundary lookups) */
   useEffect(() => {
     let cancelled = false;
+
     (async () => {
       try {
-        const response = await fetch("/geo/geoJson.geojson");
-        const data = await response.json();
-        if (!cancelled) setGeoData(data);
+        const [statesRes, districtsRes]: any = await Promise.all([
+          api.states(),
+          api.districts(),
+        ]);
+
+        const stateMap: Record<string, number> = {};
+        const districtMap: Record<string, number> = {};
+
+        (statesRes ?? []).forEach((s: any) => {
+          stateMap[s.stateName] = Number(s.id);
+        });
+
+        (districtsRes ?? []).forEach((d: any) => {
+          districtMap[d.districtName] = Number(d.id);
+        });
+
+        if (!cancelled) {
+          setStateIdMap(stateMap);
+          setDistrictIdMap(districtMap);
+        }
       } catch (err) {
-        console.error("GeoJSON load failed:", err);
-        if (!cancelled) setError("Failed to load map boundaries");
-      } finally {
-        if (!cancelled) setGeoLoading(false);
+        console.error("Failed to load boundary id maps:", err);
       }
     })();
-    return () => { cancelled = true; };
-  }, []);
 
-  /* Initial map data load */
-  useEffect(() => {
-    fetchMapData();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   /* Fetch map data from backend */
-  const fetchMapData = useCallback(
-    async (filters?: MapFilters) => {
-      setMapLoading(true);
-      setError(null);
+  const fetchMapData = useCallback(async (next?: MapFilters) => {
+    setMapLoading(true);
+    setError(null);
+    try {
+      const res: any = await api.mapData(next || undefined);
+
+      setMapData(res?.data ?? null);
+    } catch (err: any) {
+      console.error("Map data fetch failed:", err);
+      setError(err.message || "Failed to load crime data");
+    } finally {
+      setMapLoading(false);
+    }
+  }, []);
+
+  /* Fetch the correct boundary (state or district) for the current filter */
+  const fetchBoundary = useCallback(
+    async (next: MapFilters) => {
+      setBoundaryLoading(true);
       try {
-        const params: any = {};
-        if (filters) {
-          if (filters.state !== "All States") params.state = filters.state;
-          if (filters.city !== "All Cities") params.district = filters.city;
-          if (filters.crimeType !== "All Crime Types")
-            params.crimeType = filters.crimeType;
-          if (filters.dateFrom) params.dateFrom = filters.dateFrom;
-          if (filters.dateTo) params.dateTo = filters.dateTo;
-          if (filters.riskLevel !== "All Risk Levels")
-            params.riskLevel = filters.riskLevel;
+        if (next.state === "All States") {
+          setBoundary(null);
+          return;
         }
-        const res = await api.mapData(params);
-        setMapData(res.data);
-      } catch (err: any) {
-        console.error("Map data fetch failed:", err);
-        setError(err.message || "Failed to load crime data");
+
+        if (next.district && next.district !== "All Districts") {
+          const districtId = districtIdMap[next.district];
+
+          if (districtId) {
+            const res: any = await api.districtBoundary(districtId);
+            setBoundary(res ?? null);
+            return;
+          }
+        }
+
+        const stateId = stateIdMap[next.state];
+
+        if (stateId) {
+          const res: any = await api.stateBoundary(stateId);
+          setBoundary(res ?? null);
+        } else {
+          setBoundary(null);
+        }
+      } catch (err) {
+        console.error("Boundary fetch failed:", err);
+        setBoundary(null);
       } finally {
-        setMapLoading(false);
+        setBoundaryLoading(false);
       }
     },
-    [],
+    [stateIdMap, districtIdMap],
   );
 
-  /* Handle filter changes */
+  /* Initial load */
+  useEffect(() => {
+    fetchMapData(DEFAULT_FILTERS);
+  }, [fetchMapData]);
+
+  /* Handle filter changes (normal + quick filters share this path) */
   const handleFilterChange = useCallback(
-    (filters: MapFilters) => {
-      setActiveFilters(filters);
-      fetchMapData(filters);
+    (next: MapFilters) => {
+      setFilters(next);
+      fetchMapData(next);
+      fetchBoundary(next);
     },
-    [fetchMapData],
+    [fetchMapData, fetchBoundary],
   );
 
-  /* Compute the filtered GeoJSON features to render as overlays */
-  const filteredGeoFeatures: GeoJSON.FeatureCollection = useMemo(() => {
-    if (!geoData?.features) return null;
-
-    const state = activeFilters?.state;
-    const city = activeFilters?.city;
-
-    if (!state || state === "All States") {
-      // Show all states with a light overlay if we have crime data
-      if (mapData?.stateStats && mapData.stateStats.length > 0) {
-        const statesWithData = new Set(
-          mapData.stateStats.map((s) => s.state.toLowerCase()),
-        );
-        return {
-          type: "FeatureCollection",
-          features: geoData.features.filter((f: GeoJSON.Feature) => {
-            const name1 = (f.properties?.NAME_1 || "").toLowerCase();
-            return statesWithData.has(name1);
-          }),
-        };
-      }
-      return null;
-    }
-
-    // Filter by state name
-    const stateNorm = state.toLowerCase();
-    const stateFeatures = geoData.features.filter((f: any) => {
-      const name1 = (f.properties?.NAME_1 || "").toLowerCase();
-      return name1 === stateNorm;
-    });
-
-    if (city && city !== "All Cities") {
-      // Drill down to district level
-      const cityNorm = city.toLowerCase();
-      const districtFeatures = stateFeatures.filter((f: any) => {
-        const name2 = (f.properties?.NAME_2 || "").toLowerCase();
-        return name2 === cityNorm || name2.includes(cityNorm) || cityNorm.includes(name2);
-      });
-
-      if (districtFeatures.length > 0) {
-        return { type: "FeatureCollection", features: districtFeatures };
-      }
-    }
-
-    // Return all districts of the selected state
-    return {
-      type: "FeatureCollection",
-      features: stateFeatures,
-    };
-  }, [geoData, activeFilters, mapData]);
-
-  /* Compute map bounds based on filtered features */
+  /* Map bounds follow the selected boundary */
   const mapBounds = useMemo<LatLngBoundsExpression | undefined>(() => {
-    if (!filteredGeoFeatures?.features?.length) return undefined;
+    if (!boundary) return undefined;
 
     try {
-      const layer = L.geoJSON(filteredGeoFeatures);
+      const layer = L.geoJSON(boundary);
       const bounds = layer.getBounds();
-      if (bounds.isValid()) {
-        return bounds;
-      }
+      if (bounds.isValid()) return bounds;
     } catch {
       // fall through
     }
     return undefined;
-  }, [filteredGeoFeatures]);
+  }, [boundary]);
 
-  /* Style for GeoJSON overlays – color by risk level from map data */
-  const geoStyle = useCallback(
-    (feature: any) => {
-      const stateName = feature?.properties?.NAME_1 || "";
-      const districtName = feature?.properties?.NAME_2 || "";
-      const isSelected = activeFilters?.state && activeFilters.state !== "All States";
-
-      // Find risk from stateStats
-      const stateStat = mapData?.stateStats?.find(
-        (s) => s.state.toLowerCase() === stateName.toLowerCase(),
-      );
-
-      if (stateStat) {
-        const riskColors = getRiskColor(stateStat.riskLevel);
-        return {
-          ...riskColors,
-          weight: isSelected ? 2.5 : 1.5,
-          dashArray: isSelected ? "" : "3",
-        };
-      }
-
-      return {
-        color: "#16a34a",
-        fillColor: "#bbf7d0",
-        fillOpacity: 0.1,
-        weight: 1,
-        dashArray: "3",
-      };
-    },
-    [mapData, activeFilters],
-  );
-
-  /* GeoJSON feature interaction */
-  const onEachFeature = useCallback(
-    (feature: any, layer: any) => {
-      const stateName = feature.properties?.NAME_1 || "Unknown";
-      const districtName = feature.properties?.NAME_2 || "";
-      const stateStat = mapData?.stateStats?.find(
-        (s) => s.state.toLowerCase() === stateName.toLowerCase(),
-      );
-
-      const popupContent = `
-        <div style="min-width:180px">
-          <strong style="font-size:14px;color:#14532d">${districtName || stateName}</strong>
-          ${districtName ? `<br/><span style="font-size:11px;color:#6b7280">${stateName}</span>` : ""}
-          ${
-            stateStat
-              ? `
-            <hr style="margin:6px 0;border-color:#e5e7eb"/>
-            <div style="font-size:12px;color:#374151">
-              <div>📊 Cases: <strong>${stateStat.totalCases}</strong></div>
-              <div>⚠️ Risk: <strong style="color:${stateStat.riskLevel === "high" ? "#dc2626" : stateStat.riskLevel === "medium" ? "#f59e0b" : "#16a34a"}">${stateStat.riskLevel.toUpperCase()}</strong></div>
-              ${Object.entries(stateStat.crimeTypes)
-                .slice(0, 3)
-                .map(
-                  ([type, count]) =>
-                    `<div style="font-size:11px;margin-top:2px">${type}: ${count}</div>`,
-                )
-                .join("")}
-            </div>
-          `
-              : '<div style="font-size:12px;color:#9ca3af;margin-top:4px">No crime data</div>'
-          }
-        </div>
-      `;
-
-      layer.bindPopup(popupContent);
-
-      layer.on({
-        mouseover: (e: any) => {
-          e.target.setStyle({
-            weight: 3,
-            fillOpacity: 0.5,
-          });
-        },
-        mouseout: (e: any) => {
-          if (geoJsonRef.current) {
-            geoJsonRef.current.resetStyle(e.target);
-          }
-        },
-      });
-    },
+  const points = useMemo(
+    () => (Array.isArray(mapData?.points) ? mapData.points : []),
     [mapData],
   );
+
+  const heatCells = useMemo(
+    () => buildHeatGrid(points, filters.heatmapLayer),
+    [points, filters.heatmapLayer],
+  );
+
+  const maxHeat = useMemo(
+    () => heatCells.reduce((max, cell) => Math.max(max, cell.count), 0),
+    [heatCells],
+  );
+
+  /* Top hotspot cells for pulse zones / rings / badges */
+  const hotspotCells = useMemo(
+    () => heatCells.slice(0, 12),
+    [heatCells],
+  );
+
+  /* Style for the selected boundary */
+  const boundaryStyle = useCallback(
+    (feature: any) => ({
+      color: "#15803d",
+      weight: 2.5,
+      fillColor: "#22c55e",
+      fillOpacity: 0.12,
+      dashArray: "4",
+    }),
+    [],
+  );
+
+  const onEachBoundaryFeature = useCallback((_feature: any, layer: any) => {
+    layer.bindTooltip("Selected boundary", { sticky: true });
+  }, []);
+
+  const pulseIcon = L.divIcon({
+    className: "pulse-ring-marker",
+    html: '<div class="pulse-ring is-alert"></div>',
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+  });
+
+  const ringIcon = L.divIcon({
+    className: "pulse-ring-marker",
+    html: '<div class="pulse-ring is-ring"></div>',
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+  });
+
+  const showHeatmap = filters.heatmapLayer !== "All Layers";
 
   return (
     <div className="flex gap-5 w-full">
@@ -335,20 +361,28 @@ const CrimeMap = () => {
             India Crime Risk Map
           </h2>
           <p className="text-sm text-green-600">
-            {activeFilters?.state && activeFilters.state !== "All States"
-              ? `Showing ${activeFilters.state}${activeFilters.city && activeFilters.city !== "All Cities" ? ` › ${activeFilters.city}` : ""}`
-              : "Hover over states to see crime risk. Select a state to drill down."}
+            {filters.state !== "All States"
+              ? `Showing ${filters.state}${
+                  filters.district !== "All Districts"
+                    ? ` › ${filters.district}`
+                    : ""
+                }${
+                  filters.policeStation !== "All Stations"
+                    ? ` › ${filters.policeStation}`
+                    : ""
+                }`
+              : "Select a state to drill down to district boundaries."}
           </p>
         </div>
 
         {/* MAP */}
         <div className="w-full h-[90%] relative">
-          {(geoLoading || mapLoading) && (
+          {(mapLoading || boundaryLoading) && (
             <div className="absolute inset-0 z-[1000] flex items-center justify-center bg-white/60 backdrop-blur-sm rounded-xl">
               <div className="flex flex-col items-center gap-2">
                 <Loader2 size={28} className="animate-spin text-green-600" />
                 <span className="text-sm text-green-700">
-                  {geoLoading ? "Loading map boundaries…" : "Fetching crime data…"}
+                  {mapLoading ? "Fetching crime data…" : "Loading boundary…"}
                 </span>
               </div>
             </div>
@@ -360,7 +394,7 @@ const CrimeMap = () => {
                 <AlertTriangle size={28} className="text-red-500" />
                 <p className="text-sm text-red-600">{error}</p>
                 <button
-                  onClick={() => fetchMapData(activeFilters || undefined)}
+                  onClick={() => handleFilterChange(filters)}
                   className="mt-2 rounded-lg bg-green-600 px-4 py-1.5 text-xs text-white"
                 >
                   Retry
@@ -388,19 +422,74 @@ const CrimeMap = () => {
               zoom={!mapBounds ? INDIA_ZOOM : undefined}
             />
 
-            {/* GeoJSON overlay for state/district boundaries */}
-            {filteredGeoFeatures && (
+            {/* Selected state/district boundary (from the backend boundaries
+                controller). Stays visible even when the filtered dataset is
+                empty. */}
+            {boundary && (
               <GeoJSON
-                key={JSON.stringify(activeFilters) + (mapData?.totalPoints || 0)}
+                key={JSON.stringify(filters.state) + JSON.stringify(filters.district)}
                 ref={geoJsonRef}
-                data={filteredGeoFeatures}
-                style={geoStyle}
-                onEachFeature={onEachFeature}
+                data={boundary}
+                style={boundaryStyle}
+                onEachFeature={onEachBoundaryFeature}
               />
             )}
 
+            {/* Heatmap density grid */}
+            {showHeatmap &&
+              heatCells.map((cell) => (
+                <CircleMarker
+                  key={cell.id}
+                  center={[cell.lat, cell.lng]}
+                  radius={Math.min(26, 6 + cell.count * 1.4)}
+                  pathOptions={{
+                    color: heatColor(cell.count, maxHeat),
+                    fillColor: heatColor(cell.count, maxHeat),
+                    fillOpacity: 0.45,
+                    weight: 1,
+                    opacity: 0.7,
+                  }}
+                />
+              ))}
+
+            {/* Pulse zones / animated rings / alert badges on hotspots */}
+            {filters.showPulseZones &&
+              hotspotCells.map((cell) => (
+                <Marker
+                  key={`pulse-${cell.id}`}
+                  position={[cell.lat, cell.lng]}
+                  icon={pulseIcon}
+                  interactive={false}
+                />
+              ))}
+
+            {filters.showAnimatedRings &&
+              hotspotCells.map((cell, index) => (
+                <Marker
+                  key={`ring-${cell.id}`}
+                  position={[cell.lat, cell.lng]}
+                  icon={ringIcon}
+                  interactive={false}
+                />
+              ))}
+
+            {filters.showAlertBadges &&
+              hotspotCells.map((cell) => (
+                <Marker
+                  key={`badge-${cell.id}`}
+                  position={[cell.lat, cell.lng]}
+                  icon={L.divIcon({
+                    className: "alert-badge",
+                    html: String(cell.count),
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10],
+                  })}
+                  interactive={false}
+                />
+              ))}
+
             {/* Crime markers */}
-            {mapData?.points.map((point) => (
+            {points.map((point) => (
               <CircleMarker
                 key={`${point.caseId}-${point.latitude}-${point.longitude}`}
                 center={[point.latitude, point.longitude]}
@@ -493,8 +582,8 @@ const CrimeMap = () => {
       <Card className="w-[28vw] h-[93vh] overflow-y-auto p-5 flex flex-col">
         <CrimeMapFilters
           onFilterChange={handleFilterChange}
-          totalCases={mapData?.summary.totalCases ?? 0}
-          highRiskCount={mapData?.summary.highRiskStates ?? 0}
+          totalCases={mapData?.summary?.totalCases ?? 0}
+          highRiskCount={mapData?.summary?.highRiskCount ?? 0}
           loading={mapLoading}
         />
       </Card>

@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model CaseLocation
@@ -27,16 +27,25 @@ export type AggregateCaseLocation = {
 export type CaseLocationMinAggregateOutputType = {
   caseId: string | null
   locationId: string | null
+  locationType: $Enums.LocationType | null
+  description: string | null
+  occurredAt: Date | null
 }
 
 export type CaseLocationMaxAggregateOutputType = {
   caseId: string | null
   locationId: string | null
+  locationType: $Enums.LocationType | null
+  description: string | null
+  occurredAt: Date | null
 }
 
 export type CaseLocationCountAggregateOutputType = {
   caseId: number
   locationId: number
+  locationType: number
+  description: number
+  occurredAt: number
   _all: number
 }
 
@@ -44,16 +53,25 @@ export type CaseLocationCountAggregateOutputType = {
 export type CaseLocationMinAggregateInputType = {
   caseId?: true
   locationId?: true
+  locationType?: true
+  description?: true
+  occurredAt?: true
 }
 
 export type CaseLocationMaxAggregateInputType = {
   caseId?: true
   locationId?: true
+  locationType?: true
+  description?: true
+  occurredAt?: true
 }
 
 export type CaseLocationCountAggregateInputType = {
   caseId?: true
   locationId?: true
+  locationType?: true
+  description?: true
+  occurredAt?: true
   _all?: true
 }
 
@@ -132,6 +150,9 @@ export type CaseLocationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type CaseLocationGroupByOutputType = {
   caseId: string
   locationId: string
+  locationType: $Enums.LocationType | null
+  description: string | null
+  occurredAt: Date | null
   _count: CaseLocationCountAggregateOutputType | null
   _min: CaseLocationMinAggregateOutputType | null
   _max: CaseLocationMaxAggregateOutputType | null
@@ -158,6 +179,9 @@ export type CaseLocationWhereInput = {
   NOT?: Prisma.CaseLocationWhereInput | Prisma.CaseLocationWhereInput[]
   caseId?: Prisma.StringFilter<"CaseLocation"> | string
   locationId?: Prisma.StringFilter<"CaseLocation"> | string
+  locationType?: Prisma.EnumLocationTypeNullableFilter<"CaseLocation"> | $Enums.LocationType | null
+  description?: Prisma.StringNullableFilter<"CaseLocation"> | string | null
+  occurredAt?: Prisma.DateTimeNullableFilter<"CaseLocation"> | Date | string | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
 }
@@ -165,6 +189,9 @@ export type CaseLocationWhereInput = {
 export type CaseLocationOrderByWithRelationInput = {
   caseId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  locationType?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  occurredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   case?: Prisma.CaseOrderByWithRelationInput
   location?: Prisma.LocationOrderByWithRelationInput
 }
@@ -176,6 +203,9 @@ export type CaseLocationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CaseLocationWhereInput | Prisma.CaseLocationWhereInput[]
   caseId?: Prisma.StringFilter<"CaseLocation"> | string
   locationId?: Prisma.StringFilter<"CaseLocation"> | string
+  locationType?: Prisma.EnumLocationTypeNullableFilter<"CaseLocation"> | $Enums.LocationType | null
+  description?: Prisma.StringNullableFilter<"CaseLocation"> | string | null
+  occurredAt?: Prisma.DateTimeNullableFilter<"CaseLocation"> | Date | string | null
   case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
 }, "caseId_locationId">
@@ -183,6 +213,9 @@ export type CaseLocationWhereUniqueInput = Prisma.AtLeast<{
 export type CaseLocationOrderByWithAggregationInput = {
   caseId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  locationType?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  occurredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CaseLocationCountOrderByAggregateInput
   _max?: Prisma.CaseLocationMaxOrderByAggregateInput
   _min?: Prisma.CaseLocationMinOrderByAggregateInput
@@ -194,9 +227,15 @@ export type CaseLocationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CaseLocationScalarWhereWithAggregatesInput | Prisma.CaseLocationScalarWhereWithAggregatesInput[]
   caseId?: Prisma.StringWithAggregatesFilter<"CaseLocation"> | string
   locationId?: Prisma.StringWithAggregatesFilter<"CaseLocation"> | string
+  locationType?: Prisma.EnumLocationTypeNullableWithAggregatesFilter<"CaseLocation"> | $Enums.LocationType | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"CaseLocation"> | string | null
+  occurredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CaseLocation"> | Date | string | null
 }
 
 export type CaseLocationCreateInput = {
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
   case: Prisma.CaseCreateNestedOneWithoutLocationsInput
   location: Prisma.LocationCreateNestedOneWithoutCasesInput
 }
@@ -204,9 +243,15 @@ export type CaseLocationCreateInput = {
 export type CaseLocationUncheckedCreateInput = {
   caseId: string
   locationId: string
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
 }
 
 export type CaseLocationUpdateInput = {
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   case?: Prisma.CaseUpdateOneRequiredWithoutLocationsNestedInput
   location?: Prisma.LocationUpdateOneRequiredWithoutCasesNestedInput
 }
@@ -214,20 +259,31 @@ export type CaseLocationUpdateInput = {
 export type CaseLocationUncheckedUpdateInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CaseLocationCreateManyInput = {
   caseId: string
   locationId: string
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
 }
 
 export type CaseLocationUpdateManyMutationInput = {
-
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CaseLocationUncheckedUpdateManyInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
   locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CaseLocationListRelationFilter = {
@@ -248,16 +304,25 @@ export type CaseLocationCaseIdLocationIdCompoundUniqueInput = {
 export type CaseLocationCountOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  locationType?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  occurredAt?: Prisma.SortOrder
 }
 
 export type CaseLocationMaxOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  locationType?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  occurredAt?: Prisma.SortOrder
 }
 
 export type CaseLocationMinOrderByAggregateInput = {
   caseId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  locationType?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  occurredAt?: Prisma.SortOrder
 }
 
 export type CaseLocationCreateNestedManyWithoutCaseInput = {
@@ -345,11 +410,17 @@ export type CaseLocationUncheckedUpdateManyWithoutLocationNestedInput = {
 }
 
 export type CaseLocationCreateWithoutCaseInput = {
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
   location: Prisma.LocationCreateNestedOneWithoutCasesInput
 }
 
 export type CaseLocationUncheckedCreateWithoutCaseInput = {
   locationId: string
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
 }
 
 export type CaseLocationCreateOrConnectWithoutCaseInput = {
@@ -384,14 +455,23 @@ export type CaseLocationScalarWhereInput = {
   NOT?: Prisma.CaseLocationScalarWhereInput | Prisma.CaseLocationScalarWhereInput[]
   caseId?: Prisma.StringFilter<"CaseLocation"> | string
   locationId?: Prisma.StringFilter<"CaseLocation"> | string
+  locationType?: Prisma.EnumLocationTypeNullableFilter<"CaseLocation"> | $Enums.LocationType | null
+  description?: Prisma.StringNullableFilter<"CaseLocation"> | string | null
+  occurredAt?: Prisma.DateTimeNullableFilter<"CaseLocation"> | Date | string | null
 }
 
 export type CaseLocationCreateWithoutLocationInput = {
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
   case: Prisma.CaseCreateNestedOneWithoutLocationsInput
 }
 
 export type CaseLocationUncheckedCreateWithoutLocationInput = {
   caseId: string
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
 }
 
 export type CaseLocationCreateOrConnectWithoutLocationInput = {
@@ -422,34 +502,58 @@ export type CaseLocationUpdateManyWithWhereWithoutLocationInput = {
 
 export type CaseLocationCreateManyCaseInput = {
   locationId: string
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
 }
 
 export type CaseLocationUpdateWithoutCaseInput = {
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   location?: Prisma.LocationUpdateOneRequiredWithoutCasesNestedInput
 }
 
 export type CaseLocationUncheckedUpdateWithoutCaseInput = {
   locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CaseLocationUncheckedUpdateManyWithoutCaseInput = {
   locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CaseLocationCreateManyLocationInput = {
   caseId: string
+  locationType?: $Enums.LocationType | null
+  description?: string | null
+  occurredAt?: Date | string | null
 }
 
 export type CaseLocationUpdateWithoutLocationInput = {
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   case?: Prisma.CaseUpdateOneRequiredWithoutLocationsNestedInput
 }
 
 export type CaseLocationUncheckedUpdateWithoutLocationInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CaseLocationUncheckedUpdateManyWithoutLocationInput = {
   caseId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationType?: Prisma.NullableEnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occurredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -457,6 +561,9 @@ export type CaseLocationUncheckedUpdateManyWithoutLocationInput = {
 export type CaseLocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   locationId?: boolean
+  locationType?: boolean
+  description?: boolean
+  occurredAt?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseLocation"]>
@@ -464,6 +571,9 @@ export type CaseLocationSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type CaseLocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   locationId?: boolean
+  locationType?: boolean
+  description?: boolean
+  occurredAt?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseLocation"]>
@@ -471,6 +581,9 @@ export type CaseLocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type CaseLocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   caseId?: boolean
   locationId?: boolean
+  locationType?: boolean
+  description?: boolean
+  occurredAt?: boolean
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caseLocation"]>
@@ -478,9 +591,12 @@ export type CaseLocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type CaseLocationSelectScalar = {
   caseId?: boolean
   locationId?: boolean
+  locationType?: boolean
+  description?: boolean
+  occurredAt?: boolean
 }
 
-export type CaseLocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "locationId", ExtArgs["result"]["caseLocation"]>
+export type CaseLocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"caseId" | "locationId" | "locationType" | "description" | "occurredAt", ExtArgs["result"]["caseLocation"]>
 export type CaseLocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
@@ -503,6 +619,9 @@ export type $CaseLocationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     caseId: string
     locationId: string
+    locationType: $Enums.LocationType | null
+    description: string | null
+    occurredAt: Date | null
   }, ExtArgs["result"]["caseLocation"]>
   composites: {}
 }
@@ -930,6 +1049,9 @@ export interface Prisma__CaseLocationClient<T, Null = never, ExtArgs extends run
 export interface CaseLocationFieldRefs {
   readonly caseId: Prisma.FieldRef<"CaseLocation", 'String'>
   readonly locationId: Prisma.FieldRef<"CaseLocation", 'String'>
+  readonly locationType: Prisma.FieldRef<"CaseLocation", 'LocationType'>
+  readonly description: Prisma.FieldRef<"CaseLocation", 'String'>
+  readonly occurredAt: Prisma.FieldRef<"CaseLocation", 'DateTime'>
 }
     
 

@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model OrganizationMember
@@ -37,14 +37,16 @@ export type OrganizationMemberSumAggregateOutputType = {
 export type OrganizationMemberMinAggregateOutputType = {
   personId: string | null
   organizationId: string | null
-  role: string | null
+  role: $Enums.OrganizationMemberRole | null
+  customRole: string | null
   confidence: number | null
 }
 
 export type OrganizationMemberMaxAggregateOutputType = {
   personId: string | null
   organizationId: string | null
-  role: string | null
+  role: $Enums.OrganizationMemberRole | null
+  customRole: string | null
   confidence: number | null
 }
 
@@ -52,6 +54,7 @@ export type OrganizationMemberCountAggregateOutputType = {
   personId: number
   organizationId: number
   role: number
+  customRole: number
   confidence: number
   _all: number
 }
@@ -69,6 +72,7 @@ export type OrganizationMemberMinAggregateInputType = {
   personId?: true
   organizationId?: true
   role?: true
+  customRole?: true
   confidence?: true
 }
 
@@ -76,6 +80,7 @@ export type OrganizationMemberMaxAggregateInputType = {
   personId?: true
   organizationId?: true
   role?: true
+  customRole?: true
   confidence?: true
 }
 
@@ -83,6 +88,7 @@ export type OrganizationMemberCountAggregateInputType = {
   personId?: true
   organizationId?: true
   role?: true
+  customRole?: true
   confidence?: true
   _all?: true
 }
@@ -176,7 +182,8 @@ export type OrganizationMemberGroupByArgs<ExtArgs extends runtime.Types.Extensio
 export type OrganizationMemberGroupByOutputType = {
   personId: string
   organizationId: string
-  role: string | null
+  role: $Enums.OrganizationMemberRole
+  customRole: string | null
   confidence: number | null
   _count: OrganizationMemberCountAggregateOutputType | null
   _avg: OrganizationMemberAvgAggregateOutputType | null
@@ -206,7 +213,8 @@ export type OrganizationMemberWhereInput = {
   NOT?: Prisma.OrganizationMemberWhereInput | Prisma.OrganizationMemberWhereInput[]
   personId?: Prisma.StringFilter<"OrganizationMember"> | string
   organizationId?: Prisma.StringFilter<"OrganizationMember"> | string
-  role?: Prisma.StringNullableFilter<"OrganizationMember"> | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFilter<"OrganizationMember"> | $Enums.OrganizationMemberRole
+  customRole?: Prisma.StringNullableFilter<"OrganizationMember"> | string | null
   confidence?: Prisma.FloatNullableFilter<"OrganizationMember"> | number | null
   person?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -215,7 +223,8 @@ export type OrganizationMemberWhereInput = {
 export type OrganizationMemberOrderByWithRelationInput = {
   personId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrder
+  customRole?: Prisma.SortOrderInput | Prisma.SortOrder
   confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   person?: Prisma.PersonOrderByWithRelationInput
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -228,7 +237,8 @@ export type OrganizationMemberWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.OrganizationMemberWhereInput | Prisma.OrganizationMemberWhereInput[]
   personId?: Prisma.StringFilter<"OrganizationMember"> | string
   organizationId?: Prisma.StringFilter<"OrganizationMember"> | string
-  role?: Prisma.StringNullableFilter<"OrganizationMember"> | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFilter<"OrganizationMember"> | $Enums.OrganizationMemberRole
+  customRole?: Prisma.StringNullableFilter<"OrganizationMember"> | string | null
   confidence?: Prisma.FloatNullableFilter<"OrganizationMember"> | number | null
   person?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -237,7 +247,8 @@ export type OrganizationMemberWhereUniqueInput = Prisma.AtLeast<{
 export type OrganizationMemberOrderByWithAggregationInput = {
   personId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrder
+  customRole?: Prisma.SortOrderInput | Prisma.SortOrder
   confidence?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.OrganizationMemberCountOrderByAggregateInput
   _avg?: Prisma.OrganizationMemberAvgOrderByAggregateInput
@@ -252,54 +263,62 @@ export type OrganizationMemberScalarWhereWithAggregatesInput = {
   NOT?: Prisma.OrganizationMemberScalarWhereWithAggregatesInput | Prisma.OrganizationMemberScalarWhereWithAggregatesInput[]
   personId?: Prisma.StringWithAggregatesFilter<"OrganizationMember"> | string
   organizationId?: Prisma.StringWithAggregatesFilter<"OrganizationMember"> | string
-  role?: Prisma.StringNullableWithAggregatesFilter<"OrganizationMember"> | string | null
+  role?: Prisma.EnumOrganizationMemberRoleWithAggregatesFilter<"OrganizationMember"> | $Enums.OrganizationMemberRole
+  customRole?: Prisma.StringNullableWithAggregatesFilter<"OrganizationMember"> | string | null
   confidence?: Prisma.FloatNullableWithAggregatesFilter<"OrganizationMember"> | number | null
 }
 
 export type OrganizationMemberCreateInput = {
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
-  person: Prisma.PersonCreateNestedOneWithoutOrganizationInput
+  person: Prisma.PersonCreateNestedOneWithoutOrganizationsInput
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
 }
 
 export type OrganizationMemberUncheckedCreateInput = {
   personId: string
   organizationId: string
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
 }
 
 export type OrganizationMemberUpdateInput = {
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  person?: Prisma.PersonUpdateOneRequiredWithoutOrganizationNestedInput
+  person?: Prisma.PersonUpdateOneRequiredWithoutOrganizationsNestedInput
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
 }
 
 export type OrganizationMemberUncheckedUpdateInput = {
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type OrganizationMemberCreateManyInput = {
   personId: string
   organizationId: string
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
 }
 
 export type OrganizationMemberUpdateManyMutationInput = {
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type OrganizationMemberUncheckedUpdateManyInput = {
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
@@ -322,6 +341,7 @@ export type OrganizationMemberCountOrderByAggregateInput = {
   personId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  customRole?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
 }
 
@@ -333,6 +353,7 @@ export type OrganizationMemberMaxOrderByAggregateInput = {
   personId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  customRole?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
 }
 
@@ -340,6 +361,7 @@ export type OrganizationMemberMinOrderByAggregateInput = {
   personId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  customRole?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
 }
 
@@ -431,15 +453,21 @@ export type OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput 
   deleteMany?: Prisma.OrganizationMemberScalarWhereInput | Prisma.OrganizationMemberScalarWhereInput[]
 }
 
+export type EnumOrganizationMemberRoleFieldUpdateOperationsInput = {
+  set?: $Enums.OrganizationMemberRole
+}
+
 export type OrganizationMemberCreateWithoutPersonInput = {
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
 }
 
 export type OrganizationMemberUncheckedCreateWithoutPersonInput = {
   organizationId: string
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
 }
 
@@ -475,19 +503,22 @@ export type OrganizationMemberScalarWhereInput = {
   NOT?: Prisma.OrganizationMemberScalarWhereInput | Prisma.OrganizationMemberScalarWhereInput[]
   personId?: Prisma.StringFilter<"OrganizationMember"> | string
   organizationId?: Prisma.StringFilter<"OrganizationMember"> | string
-  role?: Prisma.StringNullableFilter<"OrganizationMember"> | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFilter<"OrganizationMember"> | $Enums.OrganizationMemberRole
+  customRole?: Prisma.StringNullableFilter<"OrganizationMember"> | string | null
   confidence?: Prisma.FloatNullableFilter<"OrganizationMember"> | number | null
 }
 
 export type OrganizationMemberCreateWithoutOrganizationInput = {
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
-  person: Prisma.PersonCreateNestedOneWithoutOrganizationInput
+  person: Prisma.PersonCreateNestedOneWithoutOrganizationsInput
 }
 
 export type OrganizationMemberUncheckedCreateWithoutOrganizationInput = {
   personId: string
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
 }
 
@@ -519,49 +550,57 @@ export type OrganizationMemberUpdateManyWithWhereWithoutOrganizationInput = {
 
 export type OrganizationMemberCreateManyPersonInput = {
   organizationId: string
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
 }
 
 export type OrganizationMemberUpdateWithoutPersonInput = {
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
 }
 
 export type OrganizationMemberUncheckedUpdateWithoutPersonInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type OrganizationMemberUncheckedUpdateManyWithoutPersonInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type OrganizationMemberCreateManyOrganizationInput = {
   personId: string
-  role?: string | null
+  role?: $Enums.OrganizationMemberRole
+  customRole?: string | null
   confidence?: number | null
 }
 
 export type OrganizationMemberUpdateWithoutOrganizationInput = {
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  person?: Prisma.PersonUpdateOneRequiredWithoutOrganizationNestedInput
+  person?: Prisma.PersonUpdateOneRequiredWithoutOrganizationsNestedInput
 }
 
 export type OrganizationMemberUncheckedUpdateWithoutOrganizationInput = {
   personId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
 export type OrganizationMemberUncheckedUpdateManyWithoutOrganizationInput = {
   personId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumOrganizationMemberRoleFieldUpdateOperationsInput | $Enums.OrganizationMemberRole
+  customRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
 }
 
@@ -571,6 +610,7 @@ export type OrganizationMemberSelect<ExtArgs extends runtime.Types.Extensions.In
   personId?: boolean
   organizationId?: boolean
   role?: boolean
+  customRole?: boolean
   confidence?: boolean
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -580,6 +620,7 @@ export type OrganizationMemberSelectCreateManyAndReturn<ExtArgs extends runtime.
   personId?: boolean
   organizationId?: boolean
   role?: boolean
+  customRole?: boolean
   confidence?: boolean
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -589,6 +630,7 @@ export type OrganizationMemberSelectUpdateManyAndReturn<ExtArgs extends runtime.
   personId?: boolean
   organizationId?: boolean
   role?: boolean
+  customRole?: boolean
   confidence?: boolean
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -598,10 +640,11 @@ export type OrganizationMemberSelectScalar = {
   personId?: boolean
   organizationId?: boolean
   role?: boolean
+  customRole?: boolean
   confidence?: boolean
 }
 
-export type OrganizationMemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"personId" | "organizationId" | "role" | "confidence", ExtArgs["result"]["organizationMember"]>
+export type OrganizationMemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"personId" | "organizationId" | "role" | "customRole" | "confidence", ExtArgs["result"]["organizationMember"]>
 export type OrganizationMemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -624,7 +667,8 @@ export type $OrganizationMemberPayload<ExtArgs extends runtime.Types.Extensions.
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     personId: string
     organizationId: string
-    role: string | null
+    role: $Enums.OrganizationMemberRole
+    customRole: string | null
     confidence: number | null
   }, ExtArgs["result"]["organizationMember"]>
   composites: {}
@@ -1053,7 +1097,8 @@ export interface Prisma__OrganizationMemberClient<T, Null = never, ExtArgs exten
 export interface OrganizationMemberFieldRefs {
   readonly personId: Prisma.FieldRef<"OrganizationMember", 'String'>
   readonly organizationId: Prisma.FieldRef<"OrganizationMember", 'String'>
-  readonly role: Prisma.FieldRef<"OrganizationMember", 'String'>
+  readonly role: Prisma.FieldRef<"OrganizationMember", 'OrganizationMemberRole'>
+  readonly customRole: Prisma.FieldRef<"OrganizationMember", 'String'>
   readonly confidence: Prisma.FieldRef<"OrganizationMember", 'Float'>
 }
     

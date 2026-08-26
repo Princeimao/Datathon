@@ -6,6 +6,7 @@ import CrimeMap from "./pages/CrimeMap";
 import IntelligenceGraph from "./pages/IntelligenceGraph";
 import TrendAnalysis from "./pages/TrendAnalysis";
 import SimilarityWorkbench from "./pages/SimilarityWorkbench";
+import StructuredInsert from "./pages/StructuredInsert";
 import BulkImport from "./pages/BulkImport";
 import Footer from "./components/Footer";
 
@@ -48,6 +49,7 @@ export default function App() {
             <Route path="/graph" element={<IntelligenceGraph />} />
             <Route path="/trend" element={<TrendAnalysis />} />
             <Route path="/similarity" element={<SimilarityWorkbench />} />
+            <Route path="/insert" element={<StructuredInsert />} />
             <Route path="/import" element={<BulkImport />} />
           </Routes>
         </main>

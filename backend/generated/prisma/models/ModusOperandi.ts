@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model ModusOperandi
@@ -20,8 +20,20 @@ export type ModusOperandiModel = runtime.Types.Result.DefaultSelection<Prisma.$M
 
 export type AggregateModusOperandi = {
   _count: ModusOperandiCountAggregateOutputType | null
+  _avg: ModusOperandiAvgAggregateOutputType | null
+  _sum: ModusOperandiSumAggregateOutputType | null
   _min: ModusOperandiMinAggregateOutputType | null
   _max: ModusOperandiMaxAggregateOutputType | null
+}
+
+export type ModusOperandiAvgAggregateOutputType = {
+  riskLevel: number | null
+  confidence: number | null
+}
+
+export type ModusOperandiSumAggregateOutputType = {
+  riskLevel: number | null
+  confidence: number | null
 }
 
 export type ModusOperandiMinAggregateOutputType = {
@@ -32,6 +44,11 @@ export type ModusOperandiMinAggregateOutputType = {
   weaponType: string | null
   timePattern: string | null
   vehiclePattern: string | null
+  entryMethod: string | null
+  escapeMethod: string | null
+  communicationMethod: string | null
+  riskLevel: number | null
+  confidence: number | null
 }
 
 export type ModusOperandiMaxAggregateOutputType = {
@@ -42,6 +59,11 @@ export type ModusOperandiMaxAggregateOutputType = {
   weaponType: string | null
   timePattern: string | null
   vehiclePattern: string | null
+  entryMethod: string | null
+  escapeMethod: string | null
+  communicationMethod: string | null
+  riskLevel: number | null
+  confidence: number | null
 }
 
 export type ModusOperandiCountAggregateOutputType = {
@@ -52,9 +74,25 @@ export type ModusOperandiCountAggregateOutputType = {
   weaponType: number
   timePattern: number
   vehiclePattern: number
+  entryMethod: number
+  escapeMethod: number
+  communicationMethod: number
+  riskLevel: number
+  confidence: number
+  patterns: number
   _all: number
 }
 
+
+export type ModusOperandiAvgAggregateInputType = {
+  riskLevel?: true
+  confidence?: true
+}
+
+export type ModusOperandiSumAggregateInputType = {
+  riskLevel?: true
+  confidence?: true
+}
 
 export type ModusOperandiMinAggregateInputType = {
   id?: true
@@ -64,6 +102,11 @@ export type ModusOperandiMinAggregateInputType = {
   weaponType?: true
   timePattern?: true
   vehiclePattern?: true
+  entryMethod?: true
+  escapeMethod?: true
+  communicationMethod?: true
+  riskLevel?: true
+  confidence?: true
 }
 
 export type ModusOperandiMaxAggregateInputType = {
@@ -74,6 +117,11 @@ export type ModusOperandiMaxAggregateInputType = {
   weaponType?: true
   timePattern?: true
   vehiclePattern?: true
+  entryMethod?: true
+  escapeMethod?: true
+  communicationMethod?: true
+  riskLevel?: true
+  confidence?: true
 }
 
 export type ModusOperandiCountAggregateInputType = {
@@ -84,6 +132,12 @@ export type ModusOperandiCountAggregateInputType = {
   weaponType?: true
   timePattern?: true
   vehiclePattern?: true
+  entryMethod?: true
+  escapeMethod?: true
+  communicationMethod?: true
+  riskLevel?: true
+  confidence?: true
+  patterns?: true
   _all?: true
 }
 
@@ -125,6 +179,18 @@ export type ModusOperandiAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ModusOperandiAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ModusOperandiSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ModusOperandiMinAggregateInputType
@@ -155,6 +221,8 @@ export type ModusOperandiGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: ModusOperandiCountAggregateInputType | true
+  _avg?: ModusOperandiAvgAggregateInputType
+  _sum?: ModusOperandiSumAggregateInputType
   _min?: ModusOperandiMinAggregateInputType
   _max?: ModusOperandiMaxAggregateInputType
 }
@@ -167,7 +235,15 @@ export type ModusOperandiGroupByOutputType = {
   weaponType: string | null
   timePattern: string | null
   vehiclePattern: string | null
+  entryMethod: string | null
+  escapeMethod: string | null
+  communicationMethod: string | null
+  riskLevel: number | null
+  confidence: number | null
+  patterns: string[]
   _count: ModusOperandiCountAggregateOutputType | null
+  _avg: ModusOperandiAvgAggregateOutputType | null
+  _sum: ModusOperandiSumAggregateOutputType | null
   _min: ModusOperandiMinAggregateOutputType | null
   _max: ModusOperandiMaxAggregateOutputType | null
 }
@@ -198,7 +274,14 @@ export type ModusOperandiWhereInput = {
   weaponType?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
   timePattern?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
   vehiclePattern?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  entryMethod?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  escapeMethod?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  communicationMethod?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  riskLevel?: Prisma.FloatNullableFilter<"ModusOperandi"> | number | null
+  confidence?: Prisma.FloatNullableFilter<"ModusOperandi"> | number | null
+  patterns?: Prisma.StringNullableListFilter<"ModusOperandi">
   cases?: Prisma.CaseListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
 }
 
 export type ModusOperandiOrderByWithRelationInput = {
@@ -209,7 +292,14 @@ export type ModusOperandiOrderByWithRelationInput = {
   weaponType?: Prisma.SortOrderInput | Prisma.SortOrder
   timePattern?: Prisma.SortOrderInput | Prisma.SortOrder
   vehiclePattern?: Prisma.SortOrderInput | Prisma.SortOrder
+  entryMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  escapeMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  communicationMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  riskLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  patterns?: Prisma.SortOrder
   cases?: Prisma.CaseOrderByRelationAggregateInput
+  embeddings?: Prisma.EmbeddingOrderByRelationAggregateInput
 }
 
 export type ModusOperandiWhereUniqueInput = Prisma.AtLeast<{
@@ -223,7 +313,14 @@ export type ModusOperandiWhereUniqueInput = Prisma.AtLeast<{
   weaponType?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
   timePattern?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
   vehiclePattern?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  entryMethod?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  escapeMethod?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  communicationMethod?: Prisma.StringNullableFilter<"ModusOperandi"> | string | null
+  riskLevel?: Prisma.FloatNullableFilter<"ModusOperandi"> | number | null
+  confidence?: Prisma.FloatNullableFilter<"ModusOperandi"> | number | null
+  patterns?: Prisma.StringNullableListFilter<"ModusOperandi">
   cases?: Prisma.CaseListRelationFilter
+  embeddings?: Prisma.EmbeddingListRelationFilter
 }, "id" | "name">
 
 export type ModusOperandiOrderByWithAggregationInput = {
@@ -234,9 +331,17 @@ export type ModusOperandiOrderByWithAggregationInput = {
   weaponType?: Prisma.SortOrderInput | Prisma.SortOrder
   timePattern?: Prisma.SortOrderInput | Prisma.SortOrder
   vehiclePattern?: Prisma.SortOrderInput | Prisma.SortOrder
+  entryMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  escapeMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  communicationMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  riskLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  patterns?: Prisma.SortOrder
   _count?: Prisma.ModusOperandiCountOrderByAggregateInput
+  _avg?: Prisma.ModusOperandiAvgOrderByAggregateInput
   _max?: Prisma.ModusOperandiMaxOrderByAggregateInput
   _min?: Prisma.ModusOperandiMinOrderByAggregateInput
+  _sum?: Prisma.ModusOperandiSumOrderByAggregateInput
 }
 
 export type ModusOperandiScalarWhereWithAggregatesInput = {
@@ -250,6 +355,12 @@ export type ModusOperandiScalarWhereWithAggregatesInput = {
   weaponType?: Prisma.StringNullableWithAggregatesFilter<"ModusOperandi"> | string | null
   timePattern?: Prisma.StringNullableWithAggregatesFilter<"ModusOperandi"> | string | null
   vehiclePattern?: Prisma.StringNullableWithAggregatesFilter<"ModusOperandi"> | string | null
+  entryMethod?: Prisma.StringNullableWithAggregatesFilter<"ModusOperandi"> | string | null
+  escapeMethod?: Prisma.StringNullableWithAggregatesFilter<"ModusOperandi"> | string | null
+  communicationMethod?: Prisma.StringNullableWithAggregatesFilter<"ModusOperandi"> | string | null
+  riskLevel?: Prisma.FloatNullableWithAggregatesFilter<"ModusOperandi"> | number | null
+  confidence?: Prisma.FloatNullableWithAggregatesFilter<"ModusOperandi"> | number | null
+  patterns?: Prisma.StringNullableListFilter<"ModusOperandi">
 }
 
 export type ModusOperandiCreateInput = {
@@ -260,7 +371,14 @@ export type ModusOperandiCreateInput = {
   weaponType?: string | null
   timePattern?: string | null
   vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
   cases?: Prisma.CaseCreateNestedManyWithoutModusOperandiInput
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutModusOperandiInput
 }
 
 export type ModusOperandiUncheckedCreateInput = {
@@ -271,7 +389,14 @@ export type ModusOperandiUncheckedCreateInput = {
   weaponType?: string | null
   timePattern?: string | null
   vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
   cases?: Prisma.CaseUncheckedCreateNestedManyWithoutModusOperandiInput
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutModusOperandiInput
 }
 
 export type ModusOperandiUpdateInput = {
@@ -282,7 +407,14 @@ export type ModusOperandiUpdateInput = {
   weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
   cases?: Prisma.CaseUpdateManyWithoutModusOperandiNestedInput
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutModusOperandiNestedInput
 }
 
 export type ModusOperandiUncheckedUpdateInput = {
@@ -293,7 +425,14 @@ export type ModusOperandiUncheckedUpdateInput = {
   weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
   cases?: Prisma.CaseUncheckedUpdateManyWithoutModusOperandiNestedInput
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutModusOperandiNestedInput
 }
 
 export type ModusOperandiCreateManyInput = {
@@ -304,6 +443,12 @@ export type ModusOperandiCreateManyInput = {
   weaponType?: string | null
   timePattern?: string | null
   vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
 }
 
 export type ModusOperandiUpdateManyMutationInput = {
@@ -314,6 +459,12 @@ export type ModusOperandiUpdateManyMutationInput = {
   weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
 }
 
 export type ModusOperandiUncheckedUpdateManyInput = {
@@ -324,6 +475,12 @@ export type ModusOperandiUncheckedUpdateManyInput = {
   weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
 }
 
 export type ModusOperandiNullableScalarRelationFilter = {
@@ -339,6 +496,17 @@ export type ModusOperandiCountOrderByAggregateInput = {
   weaponType?: Prisma.SortOrder
   timePattern?: Prisma.SortOrder
   vehiclePattern?: Prisma.SortOrder
+  entryMethod?: Prisma.SortOrder
+  escapeMethod?: Prisma.SortOrder
+  communicationMethod?: Prisma.SortOrder
+  riskLevel?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+  patterns?: Prisma.SortOrder
+}
+
+export type ModusOperandiAvgOrderByAggregateInput = {
+  riskLevel?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
 }
 
 export type ModusOperandiMaxOrderByAggregateInput = {
@@ -349,6 +517,11 @@ export type ModusOperandiMaxOrderByAggregateInput = {
   weaponType?: Prisma.SortOrder
   timePattern?: Prisma.SortOrder
   vehiclePattern?: Prisma.SortOrder
+  entryMethod?: Prisma.SortOrder
+  escapeMethod?: Prisma.SortOrder
+  communicationMethod?: Prisma.SortOrder
+  riskLevel?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
 }
 
 export type ModusOperandiMinOrderByAggregateInput = {
@@ -359,6 +532,16 @@ export type ModusOperandiMinOrderByAggregateInput = {
   weaponType?: Prisma.SortOrder
   timePattern?: Prisma.SortOrder
   vehiclePattern?: Prisma.SortOrder
+  entryMethod?: Prisma.SortOrder
+  escapeMethod?: Prisma.SortOrder
+  communicationMethod?: Prisma.SortOrder
+  riskLevel?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
+}
+
+export type ModusOperandiSumOrderByAggregateInput = {
+  riskLevel?: Prisma.SortOrder
+  confidence?: Prisma.SortOrder
 }
 
 export type ModusOperandiCreateNestedOneWithoutCasesInput = {
@@ -377,6 +560,31 @@ export type ModusOperandiUpdateOneWithoutCasesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ModusOperandiUpdateToOneWithWhereWithoutCasesInput, Prisma.ModusOperandiUpdateWithoutCasesInput>, Prisma.ModusOperandiUncheckedUpdateWithoutCasesInput>
 }
 
+export type ModusOperandiCreatepatternsInput = {
+  set: string[]
+}
+
+export type ModusOperandiUpdatepatternsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type ModusOperandiCreateNestedOneWithoutEmbeddingsInput = {
+  create?: Prisma.XOR<Prisma.ModusOperandiCreateWithoutEmbeddingsInput, Prisma.ModusOperandiUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.ModusOperandiCreateOrConnectWithoutEmbeddingsInput
+  connect?: Prisma.ModusOperandiWhereUniqueInput
+}
+
+export type ModusOperandiUpdateOneWithoutEmbeddingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ModusOperandiCreateWithoutEmbeddingsInput, Prisma.ModusOperandiUncheckedCreateWithoutEmbeddingsInput>
+  connectOrCreate?: Prisma.ModusOperandiCreateOrConnectWithoutEmbeddingsInput
+  upsert?: Prisma.ModusOperandiUpsertWithoutEmbeddingsInput
+  disconnect?: Prisma.ModusOperandiWhereInput | boolean
+  delete?: Prisma.ModusOperandiWhereInput | boolean
+  connect?: Prisma.ModusOperandiWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ModusOperandiUpdateToOneWithWhereWithoutEmbeddingsInput, Prisma.ModusOperandiUpdateWithoutEmbeddingsInput>, Prisma.ModusOperandiUncheckedUpdateWithoutEmbeddingsInput>
+}
+
 export type ModusOperandiCreateWithoutCasesInput = {
   id?: string
   name: string
@@ -385,6 +593,13 @@ export type ModusOperandiCreateWithoutCasesInput = {
   weaponType?: string | null
   timePattern?: string | null
   vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
+  embeddings?: Prisma.EmbeddingCreateNestedManyWithoutModusOperandiInput
 }
 
 export type ModusOperandiUncheckedCreateWithoutCasesInput = {
@@ -395,6 +610,13 @@ export type ModusOperandiUncheckedCreateWithoutCasesInput = {
   weaponType?: string | null
   timePattern?: string | null
   vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
+  embeddings?: Prisma.EmbeddingUncheckedCreateNestedManyWithoutModusOperandiInput
 }
 
 export type ModusOperandiCreateOrConnectWithoutCasesInput = {
@@ -421,6 +643,13 @@ export type ModusOperandiUpdateWithoutCasesInput = {
   weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
+  embeddings?: Prisma.EmbeddingUpdateManyWithoutModusOperandiNestedInput
 }
 
 export type ModusOperandiUncheckedUpdateWithoutCasesInput = {
@@ -431,6 +660,97 @@ export type ModusOperandiUncheckedUpdateWithoutCasesInput = {
   weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
+  embeddings?: Prisma.EmbeddingUncheckedUpdateManyWithoutModusOperandiNestedInput
+}
+
+export type ModusOperandiCreateWithoutEmbeddingsInput = {
+  id?: string
+  name: string
+  description: string
+  targetType?: string | null
+  weaponType?: string | null
+  timePattern?: string | null
+  vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
+  cases?: Prisma.CaseCreateNestedManyWithoutModusOperandiInput
+}
+
+export type ModusOperandiUncheckedCreateWithoutEmbeddingsInput = {
+  id?: string
+  name: string
+  description: string
+  targetType?: string | null
+  weaponType?: string | null
+  timePattern?: string | null
+  vehiclePattern?: string | null
+  entryMethod?: string | null
+  escapeMethod?: string | null
+  communicationMethod?: string | null
+  riskLevel?: number | null
+  confidence?: number | null
+  patterns?: Prisma.ModusOperandiCreatepatternsInput | string[]
+  cases?: Prisma.CaseUncheckedCreateNestedManyWithoutModusOperandiInput
+}
+
+export type ModusOperandiCreateOrConnectWithoutEmbeddingsInput = {
+  where: Prisma.ModusOperandiWhereUniqueInput
+  create: Prisma.XOR<Prisma.ModusOperandiCreateWithoutEmbeddingsInput, Prisma.ModusOperandiUncheckedCreateWithoutEmbeddingsInput>
+}
+
+export type ModusOperandiUpsertWithoutEmbeddingsInput = {
+  update: Prisma.XOR<Prisma.ModusOperandiUpdateWithoutEmbeddingsInput, Prisma.ModusOperandiUncheckedUpdateWithoutEmbeddingsInput>
+  create: Prisma.XOR<Prisma.ModusOperandiCreateWithoutEmbeddingsInput, Prisma.ModusOperandiUncheckedCreateWithoutEmbeddingsInput>
+  where?: Prisma.ModusOperandiWhereInput
+}
+
+export type ModusOperandiUpdateToOneWithWhereWithoutEmbeddingsInput = {
+  where?: Prisma.ModusOperandiWhereInput
+  data: Prisma.XOR<Prisma.ModusOperandiUpdateWithoutEmbeddingsInput, Prisma.ModusOperandiUncheckedUpdateWithoutEmbeddingsInput>
+}
+
+export type ModusOperandiUpdateWithoutEmbeddingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  targetType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
+  cases?: Prisma.CaseUpdateManyWithoutModusOperandiNestedInput
+}
+
+export type ModusOperandiUncheckedUpdateWithoutEmbeddingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  targetType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  weaponType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehiclePattern?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escapeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  communicationMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  riskLevel?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  patterns?: Prisma.ModusOperandiUpdatepatternsInput | string[]
+  cases?: Prisma.CaseUncheckedUpdateManyWithoutModusOperandiNestedInput
 }
 
 
@@ -440,10 +760,12 @@ export type ModusOperandiUncheckedUpdateWithoutCasesInput = {
 
 export type ModusOperandiCountOutputType = {
   cases: number
+  embeddings: number
 }
 
 export type ModusOperandiCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cases?: boolean | ModusOperandiCountOutputTypeCountCasesArgs
+  embeddings?: boolean | ModusOperandiCountOutputTypeCountEmbeddingsArgs
 }
 
 /**
@@ -463,6 +785,13 @@ export type ModusOperandiCountOutputTypeCountCasesArgs<ExtArgs extends runtime.T
   where?: Prisma.CaseWhereInput
 }
 
+/**
+ * ModusOperandiCountOutputType without action
+ */
+export type ModusOperandiCountOutputTypeCountEmbeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmbeddingWhereInput
+}
+
 
 export type ModusOperandiSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -472,7 +801,14 @@ export type ModusOperandiSelect<ExtArgs extends runtime.Types.Extensions.Interna
   weaponType?: boolean
   timePattern?: boolean
   vehiclePattern?: boolean
+  entryMethod?: boolean
+  escapeMethod?: boolean
+  communicationMethod?: boolean
+  riskLevel?: boolean
+  confidence?: boolean
+  patterns?: boolean
   cases?: boolean | Prisma.ModusOperandi$casesArgs<ExtArgs>
+  embeddings?: boolean | Prisma.ModusOperandi$embeddingsArgs<ExtArgs>
   _count?: boolean | Prisma.ModusOperandiCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["modusOperandi"]>
 
@@ -484,6 +820,12 @@ export type ModusOperandiSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   weaponType?: boolean
   timePattern?: boolean
   vehiclePattern?: boolean
+  entryMethod?: boolean
+  escapeMethod?: boolean
+  communicationMethod?: boolean
+  riskLevel?: boolean
+  confidence?: boolean
+  patterns?: boolean
 }, ExtArgs["result"]["modusOperandi"]>
 
 export type ModusOperandiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -494,6 +836,12 @@ export type ModusOperandiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   weaponType?: boolean
   timePattern?: boolean
   vehiclePattern?: boolean
+  entryMethod?: boolean
+  escapeMethod?: boolean
+  communicationMethod?: boolean
+  riskLevel?: boolean
+  confidence?: boolean
+  patterns?: boolean
 }, ExtArgs["result"]["modusOperandi"]>
 
 export type ModusOperandiSelectScalar = {
@@ -504,11 +852,18 @@ export type ModusOperandiSelectScalar = {
   weaponType?: boolean
   timePattern?: boolean
   vehiclePattern?: boolean
+  entryMethod?: boolean
+  escapeMethod?: boolean
+  communicationMethod?: boolean
+  riskLevel?: boolean
+  confidence?: boolean
+  patterns?: boolean
 }
 
-export type ModusOperandiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "targetType" | "weaponType" | "timePattern" | "vehiclePattern", ExtArgs["result"]["modusOperandi"]>
+export type ModusOperandiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "targetType" | "weaponType" | "timePattern" | "vehiclePattern" | "entryMethod" | "escapeMethod" | "communicationMethod" | "riskLevel" | "confidence" | "patterns", ExtArgs["result"]["modusOperandi"]>
 export type ModusOperandiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cases?: boolean | Prisma.ModusOperandi$casesArgs<ExtArgs>
+  embeddings?: boolean | Prisma.ModusOperandi$embeddingsArgs<ExtArgs>
   _count?: boolean | Prisma.ModusOperandiCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ModusOperandiIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -518,6 +873,7 @@ export type $ModusOperandiPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "ModusOperandi"
   objects: {
     cases: Prisma.$CasePayload<ExtArgs>[]
+    embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -527,6 +883,12 @@ export type $ModusOperandiPayload<ExtArgs extends runtime.Types.Extensions.Inter
     weaponType: string | null
     timePattern: string | null
     vehiclePattern: string | null
+    entryMethod: string | null
+    escapeMethod: string | null
+    communicationMethod: string | null
+    riskLevel: number | null
+    confidence: number | null
+    patterns: string[]
   }, ExtArgs["result"]["modusOperandi"]>
   composites: {}
 }
@@ -922,6 +1284,7 @@ readonly fields: ModusOperandiFieldRefs;
 export interface Prisma__ModusOperandiClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cases<T extends Prisma.ModusOperandi$casesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ModusOperandi$casesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  embeddings<T extends Prisma.ModusOperandi$embeddingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ModusOperandi$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -958,6 +1321,12 @@ export interface ModusOperandiFieldRefs {
   readonly weaponType: Prisma.FieldRef<"ModusOperandi", 'String'>
   readonly timePattern: Prisma.FieldRef<"ModusOperandi", 'String'>
   readonly vehiclePattern: Prisma.FieldRef<"ModusOperandi", 'String'>
+  readonly entryMethod: Prisma.FieldRef<"ModusOperandi", 'String'>
+  readonly escapeMethod: Prisma.FieldRef<"ModusOperandi", 'String'>
+  readonly communicationMethod: Prisma.FieldRef<"ModusOperandi", 'String'>
+  readonly riskLevel: Prisma.FieldRef<"ModusOperandi", 'Float'>
+  readonly confidence: Prisma.FieldRef<"ModusOperandi", 'Float'>
+  readonly patterns: Prisma.FieldRef<"ModusOperandi", 'String[]'>
 }
     
 
@@ -1372,6 +1741,30 @@ export type ModusOperandi$casesArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.CaseScalarFieldEnum | Prisma.CaseScalarFieldEnum[]
+}
+
+/**
+ * ModusOperandi.embeddings
+ */
+export type ModusOperandi$embeddingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Embedding
+   */
+  select?: Prisma.EmbeddingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Embedding
+   */
+  omit?: Prisma.EmbeddingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmbeddingInclude<ExtArgs> | null
+  where?: Prisma.EmbeddingWhereInput
+  orderBy?: Prisma.EmbeddingOrderByWithRelationInput | Prisma.EmbeddingOrderByWithRelationInput[]
+  cursor?: Prisma.EmbeddingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmbeddingScalarFieldEnum | Prisma.EmbeddingScalarFieldEnum[]
 }
 
 /**

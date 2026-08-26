@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -10,76 +5,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-}
-
-enum CrimeType {
-  HOMICIDE
-  ROBBERY
-  ASSAULT
-  THEFT
-  BURGLARY
-  KIDNAPPING
-  FRAUD
-  CYBERCRIME
-  DRUG_OFFENSE
-  RAPE
-  MURDER
-  OTHER
-}
-
-enum CaseStatus {
-  OPEN
-  CLOSED
-  COLD
-}
-
-model Case {
-  id              String   @id @default(cuid())
-
-  caseNumber      String   @unique
-  title           String
-  description     String?
-
-  crimeType       CrimeType
-  status          CaseStatus  @default(OPEN)
-
-  incidentDate    DateTime
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  stationId       String
-  station         PoliceStation @relation(fields: [stationId], references: [id])
-
-  evidences       Evidence[]
-
-  persons         CasePerson[]
-  vehicles        CaseVehicle[]
-  phones          CasePhone[]
-  locations       CaseLocation[]
-  organizations   CaseOrganization[]
-
-  modusOperandiId String?
-  modusOperandi   ModusOperandi? @relation(fields: [modusOperandiId], references: [id])
-}
-
-model Evidence {
-  id            String @id @default(cuid())
-
-  caseId        String
-  case          Case @relation(fields: [caseId], references: [id])
-
-  type          EvidenceType
-
-  description   String?
-
-  fileUrl       String
-
-  uploadedById  String
-  uploadedBy    Officer @relation(fields: [uploadedById], references: [id])
-
-  extractedData Json?
-
-  createdAt     DateTime @default(now())
 }
 
 enum EvidenceType {
@@ -92,25 +17,14 @@ enum EvidenceType {
   OTHER
 }
 
-model Person {
-  id               String @id @default(cuid())
-
-  name             String?
-  age              Int?
-  gender           Gender   @default(UNKNOWN)
-  riskScore        Float?
-
-  outgoingRelationships PersonRelationship[] @relation("SourcePerson")
-  incomingRelationships PersonRelationship[] @relation("TargetPerson")
-
-  createdAt        DateTime @default(now())
-
-  aliases          String[]
-  cases            CasePerson[]
-  phones           Phone[]
-  vehicles         Vehicle[]
-  addresses        Location[]
-  organization     OrganizationMember[]
+enum PersonRole {
+  SUSPECT
+  ACCUSED
+  VICTIM
+  COMPLAINANT
+  WITNESS
+  INFORMANT
+  UNKNOWN
 }
 
 enum Gender {
@@ -120,183 +34,6 @@ enum Gender {
   UNKNOWN
 }
 
-model Vehicle {
-  id              String @id @default(cuid())
-
-  registrationNo  String? @unique
-  make            String?
-  model           String?
-  color           String?
-
-  cases           CaseVehicle[]
-  owners          Person[]
-}
-
-model Phone {
-  id            String @id @default(cuid())
-
-  number        String @unique
-  cases         CasePhone[]
-  owners        Person[]
-}
-
-model Location {
-  id          String @id @default(cuid())
-
-  address     String?
-  
-  latitude    Float
-  longitude   Float
-
-  district    String?
-  station     String?
-  locationType LocationType?
-
-  cases       CaseLocation[]
-  residents   Person[]
-
-  @@unique([latitude, longitude])
-}
-
-enum LocationType {
-  CRIME_SCENE
-  RELATED_PLACE
-  REPORTING_STATION
-  UNKNOWN
-}
-
-model ModusOperandi {
-  id             String @id @default(cuid())
-
-  name           String @unique
-  description    String
-  targetType     String?
-  weaponType     String?
-  timePattern    String?
-  vehiclePattern String?
-  cases          Case[]
-}
-
-model Organization {
-  id          String @id @default(cuid())
-  name        String @unique
-  description String?
-
-  members     OrganizationMember[]
-  cases       CaseOrganization[]
-}
-
-model Officer {
-  id          String @id @default(cuid())
-
-  badgeNumber String @unique
-  name        String
-  rank        String
-  evidences   Evidence[]
-}
-
-model PoliceStation {
-  id          String @id @default(cuid())
-  name        String 
-  state       String
-  district    String
-
-  lat         Float
-  lng         Float
-  
-  cases       Case[]
-}
-
-// RELATIONSHIPS
-model CasePerson {
-  caseId      String
-  personId    String
-
-  role        PersonRole
-
-  case        Case @relation(fields: [caseId], references: [id])
-  person      Person @relation(fields: [personId], references: [id])
-
-  @@id([caseId, personId])
-}
-
-enum PersonRole {
-  SUSPECT
-  VICTIM
-  WITNESS
-  INFORMANT
-  UNKNOWN
-}
-
-model CaseVehicle {
-  caseId      String
-  vehicleId   String
-
-  case        Case @relation(fields: [caseId], references: [id])
-  vehicle     Vehicle @relation(fields: [vehicleId], references: [id])
-
-  @@id([caseId, vehicleId])
-}
-
-model CasePhone {
-  caseId      String
-  phoneId     String
-
-  case        Case @relation(fields: [caseId], references: [id])
-  phone       Phone @relation(fields: [phoneId], references: [id])
-
-  @@id([caseId, phoneId])
-}
-
-model CaseLocation {
-  caseId       String
-  locationId   String
-
-  case         Case @relation(fields: [caseId], references: [id])
-  location     Location @relation(fields: [locationId], references: [id])
-
-  @@id([caseId, locationId])
-}
-
-model CaseOrganization {
-  caseId         String
-  organizationId String
-
-  case          Case @relation(fields: [caseId], references: [id])
-  organization  Organization @relation(fields: [organizationId], references: [id])
-
-  @@id([caseId, organizationId])
-}
-
-model PersonRelationship {
-  id              String @id @default(cuid())
-
-  sourcePersonId  String
-  targetPersonId  String
-
-  sourcePerson    Person @relation("SourcePerson", fields: [sourcePersonId], references: [id])
-  targetPerson    Person @relation("TargetPerson", fields: [targetPersonId], references: [id])
-
-  relationType    RelationshipType
-
-  confidence      Float?
-
-  createdAt       DateTime @default(now())
-}
-
-model OrganizationMember {
-  personId       String
-  organizationId String
-
-  role           String?
-  confidence     Float?
-
-  person         Person @relation(fields: [personId], references: [id])
-  organization   Organization @relation(fields: [organizationId], references: [id])
-
-  @@id([personId, organizationId])
-}
-
 enum RelationshipType {
   ASSOCIATED_WITH
   FAMILY
@@ -304,14 +41,1056 @@ enum RelationshipType {
   CONTACTED
   ACCOMPLICE
   FINANCIAL_LINK
+  BUSINESS_PARTNER
+  FRIEND
+  COLLEAGUE
+  RELATIVE
+  OTHER
+}
+
+enum LocationType {
+  CRIME_SCENE
+  RELATED_PLACE
+  REPORTING_STATION
+  ARREST_LOCATION
+  RESIDENCE
+  WORKPLACE
+  COURT
+  HOSPITAL
+  OTHER
+  UNKNOWN
+}
+
+enum ArrestSurrenderType {
+  ARREST
+  SURRENDER
+}
+
+enum CaseCategoryCode {
+  FIR
+  UDR
+  PAR
+  ZERO_FIR
+  OTHER
+}
+
+enum ChargesheetType {
+  CHARGESHEET
+  FALSE_CASE
+  UNDETECTED
+  FINAL_REPORT
+  OTHER
+}
+
+enum OrganizationMemberRole {
+  MEMBER
+  OWNER
+  DIRECTOR
+  EMPLOYEE
+  PARTNER
+  ASSOCIATE
+  OTHER
+}
+
+enum EntityType {
+  CASE
+  PERSON
+  EVIDENCE
+  VEHICLE
+  PHONE
+  LOCATION
+  ORGANIZATION
+  MODUS_OPERANDI
+  COURT
+  POLICE_UNIT
+}
+
+enum InvestigationEventType {
+  ARREST
+  SURRENDER
+  SEARCH
+  SEIZURE
+  INTERROGATION
+  COURT_APPEARANCE
+  EVIDENCE_COLLECTION
+  STATEMENT
+  OTHER
+}
+
+model Case {
+  id         String @id @default(cuid())
+  caseNumber String @unique
+  crimeNo    String @unique
+  caseNo     String
+
+  title       String?
+  description String?
+
+  crimeRegisteredDate DateTime
+  incidentFromDate    DateTime?
+  incidentToDate      DateTime?
+  infoReceivedPSDate  DateTime?
+
+  caseCategoryId   Int
+  gravityOffenceId Int
+  crimeMajorHeadId Int
+  crimeMinorHeadId Int
+  caseStatusId     Int
+
+  // Police administration
+  registeringOfficerId Int?
+  policeUnitId         Int
+
+  // Court
+  courtId Int?
+
+  // Existing custom fields
+  riskScore        Float?
+  priorityScore    Float?
+  aiSummary        String?
+  aiClassification Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseCategory       CaseCategory     @relation(fields: [caseCategoryId], references: [id])
+  gravityOffence     GravityOffence   @relation(fields: [gravityOffenceId], references: [id])
+  crimeMajorHead     CrimeHead        @relation(fields: [crimeMajorHeadId], references: [id])
+  crimeMinorHead     CrimeSubHead     @relation(fields: [crimeMinorHeadId], references: [id])
+  caseStatus         CaseStatusMaster @relation(fields: [caseStatusId], references: [id])
+  registeringOfficer Employee?        @relation("CaseRegisteringOfficer", fields: [registeringOfficerId], references: [id])
+  policeUnit         PoliceUnit       @relation(fields: [policeUnitId], references: [id])
+  court              Court?           @relation(fields: [courtId], references: [id])
+
+  complainants     Complainant[]
+  persons          CasePerson[]
+  actSections      CaseActSection[]
+  arrestSurrenders ArrestSurrender[]
+  chargesheets     Chargesheet[]
+  evidences        Evidence[]
+  vehicles         CaseVehicle[]
+  phones           CasePhone[]
+  locations        CaseLocation[]
+  organizations    CaseOrganization[]
+
+  modusOperandiId      String?
+  modusOperandi        ModusOperandi?       @relation(fields: [modusOperandiId], references: [id])
+  investigationEvents  InvestigationEvent[]
+  embeddings           Embedding[]
+  faceRecords          FaceRecord[]
+  caseSimilaritiesFrom CaseSimilarity[]     @relation("SourceCase")
+  caseSimilaritiesTo   CaseSimilarity[]     @relation("TargetCase")
+
+  @@index([crimeRegisteredDate])
+  @@index([caseStatusId])
+  @@index([caseCategoryId])
+  @@index([crimeMajorHeadId])
+  @@index([crimeMinorHeadId])
+  @@index([policeUnitId])
+  @@index([courtId])
+}
+
+model CaseCategory {
+  id Int @id @default(autoincrement())
+
+  lookupValue String
+  code        CaseCategoryCode
+  description String?
+  active      Boolean          @default(true)
+
+  cases Case[]
+
+  @@unique([lookupValue])
+  @@unique([code])
+}
+
+model CaseStatusMaster {
+  id Int @id @default(autoincrement())
+
+  caseStatusName String
+  description    String?
+  active         Boolean @default(true)
+
+  cases Case[]
+
+  @@unique([caseStatusName])
+}
+
+model GravityOffence {
+  id Int @id @default(autoincrement())
+
+  lookupValue String
+  description String?
+  active      Boolean @default(true)
+
+  cases Case[]
+
+  @@unique([lookupValue])
+}
+
+model CrimeHead {
+  id Int @id @default(autoincrement())
+
+  crimeGroupName String
+  active         Boolean @default(true)
+
+  subHeads CrimeSubHead[]
+  cases    Case[]
+
+  actSections CrimeHeadActSection[]
+
+  @@unique([crimeGroupName])
+}
+
+model CrimeSubHead {
+  id Int @id @default(autoincrement())
+
+  crimeHeadId Int
+
+  crimeHeadName String
+  seqId         Int?
+  active        Boolean @default(true)
+
+  crimeHead CrimeHead @relation(fields: [crimeHeadId], references: [id])
+
+  cases Case[]
+
+  @@index([crimeHeadId])
+}
+
+model Act {
+  id Int @id @default(autoincrement())
+
+  actCode        String  @unique
+  actDescription String
+  shortName      String?
+  active         Boolean @default(true)
+
+  sections Section[]
+
+  caseSections CaseActSection[]
+
+  crimeHeadMappings CrimeHeadActSection[]
+}
+
+model Section {
+  actCode     String
+  sectionCode String
+
+  sectionDescription String?
+  active             Boolean @default(true)
+
+  act Act @relation(fields: [actCode], references: [actCode])
+
+  caseSections CaseActSection[]
+
+  crimeHeadMappings CrimeHeadActSection[]
+
+  @@id([actCode, sectionCode])
+  @@index([actCode])
+}
+
+model CaseActSection {
+  caseId String
+
+  actCode     String
+  sectionCode String
+
+  actOrder     Int?
+  sectionOrder Int?
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  act Act @relation(fields: [actCode], references: [actCode])
+
+  section Section @relation(fields: [actCode, sectionCode], references: [actCode, sectionCode])
+
+  @@id([caseId, actCode, sectionCode])
+  @@index([actCode, sectionCode])
+}
+
+model CrimeHeadActSection {
+  crimeHeadId Int
+
+  actCode     String
+  sectionCode String
+
+  crimeHead CrimeHead @relation(fields: [crimeHeadId], references: [id])
+
+  act Act @relation(fields: [actCode], references: [actCode])
+
+  section Section @relation(fields: [actCode, sectionCode], references: [actCode, sectionCode])
+
+  @@id([crimeHeadId, actCode, sectionCode])
+}
+
+model Complainant {
+  id String @id @default(cuid())
+
+  caseId String
+
+  name    String
+  ageYear Int?
+
+  occupationId Int?
+  religionId   Int?
+  casteId      Int?
+
+  gender Gender @default(UNKNOWN)
+
+  personId String?
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  person Person? @relation(fields: [personId], references: [id])
+
+  occupation OccupationMaster? @relation(fields: [occupationId], references: [id])
+
+  religion ReligionMaster? @relation(fields: [religionId], references: [id])
+
+  caste CasteMaster? @relation(fields: [casteId], references: [id])
+
+  @@index([caseId])
+  @@index([personId])
+}
+
+model Person {
+  id String @id @default(cuid())
+
+  name String?
+
+  age         Int?
+  dateOfBirth DateTime?
+
+  gender Gender @default(UNKNOWN)
+
+  aliases String[]
+
+  riskScore Float?
+
+  threatScore    Float?
+  influenceScore Float?
+  aiProfile      Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseRoles CasePerson[]
+
+  complainantRecords Complainant[]
+
+  phones        PhoneOwner[]
+  vehicles      VehicleOwner[]
+  addresses     PersonLocation[]
+  organizations OrganizationMember[]
+
+  outgoingRelationships PersonRelationship[] @relation("SourcePerson")
+  incomingRelationships PersonRelationship[] @relation("TargetPerson")
+
+  arrestEvents ArrestSurrenderAccused[]
+
+  investigationEvents InvestigationEvent[]
+
+  embeddings Embedding[]
+
+  faceRecords FaceRecord[]
+
+  @@index([name])
+}
+
+model CasePerson {
+  caseId   String
+  personId String
+
+  role PersonRole
+
+  notes String?
+
+  isPrimary Boolean @default(false)
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  person Person @relation(fields: [personId], references: [id])
+
+  @@id([caseId, personId, role])
+  @@index([personId])
+  @@index([role])
+}
+
+model Phone {
+  id String @id @default(cuid())
+
+  number String @unique
+
+  countryCode String?
+
+  isActive Boolean @default(true)
+
+  cases CasePhone[]
+
+  owners PhoneOwner[]
+
+  embeddings Embedding[]
+
+  @@index([number])
+}
+
+model PhoneOwner {
+  personId String
+  phoneId  String
+
+  ownershipType String?
+  confidence    Float?
+
+  person Person @relation(fields: [personId], references: [id])
+
+  phone Phone @relation(fields: [phoneId], references: [id])
+
+  @@id([personId, phoneId])
+}
+
+model CasePhone {
+  caseId  String
+  phoneId String
+
+  context    String?
+  confidence Float?
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  phone Phone @relation(fields: [phoneId], references: [id])
+
+  @@id([caseId, phoneId])
+}
+
+model Vehicle {
+  id String @id @default(cuid())
+
+  registrationNo String? @unique
+
+  make  String?
+  model String?
+  color String?
+
+  vehicleType String?
+
+  chassisNumber String?
+  engineNumber  String?
+
+  owners VehicleOwner[]
+  cases  CaseVehicle[]
+
+  embeddings Embedding[]
+}
+
+model VehicleOwner {
+  personId  String
+  vehicleId String
+
+  ownershipType String?
+  confidence    Float?
+
+  person Person @relation(fields: [personId], references: [id])
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+
+  @@id([personId, vehicleId])
+}
+
+model CaseVehicle {
+  caseId    String
+  vehicleId String
+
+  context    String?
+  confidence Float?
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+
+  @@id([caseId, vehicleId])
+}
+
+model State {
+  id Int @id @default(autoincrement())
+
+  stateName String
+  nationalityId Int?
+  active Boolean @default(true)
+
+  districts District[]
+  units PoliceUnit[]
+  courts Court[]
+  arrestEvents ArrestSurrender[]
+
+  locations Location[]
+
+  @@unique([stateName])
+}
+
+
+model District {
+  id Int @id @default(autoincrement())
+  districtName String
+  stateId Int
+  active Boolean @default(true)
+  state State @relation(fields: [stateId], references: [id])
+
+  units     PoliceUnit[]
+  employees Employee[]
+  courts    Court[]
+  arrestEvents ArrestSurrender[]
+
+  // ADD THIS
+  locations Location[]
+
+  @@unique([stateId, districtName])
+  @@index([stateId])
+}
+
+model PoliceUnit {
+  id Int @id @default(autoincrement())
+
+  unitName String
+  unitTypeId Int
+  parentUnitId Int?
+  stateId    Int
+  districtId Int?
+  nationalityId Int?
+  active Boolean @default(true)
+  unitType UnitType @relation(fields: [unitTypeId], references: [id])
+  parentUnit PoliceUnit? @relation("UnitHierarchy", fields: [parentUnitId], references: [id])
+  childUnits PoliceUnit[] @relation("UnitHierarchy")
+  state State @relation(fields: [stateId], references: [id])
+  district District? @relation(fields: [districtId], references: [id])
+  cases Case[]
+  employees Employee[]
+  arrestEvents ArrestSurrender[]
+  locations Location[]
+
+  @@index([stateId])
+  @@index([districtId])
+  @@index([parentUnitId])
+}
+
+model UnitType {
+  id Int @id @default(autoincrement())
+
+  unitTypeName String
+  cityDistState String?
+  hierarchy Int?
+  active Boolean @default(true)
+  units PoliceUnit[]
+
+  @@unique([unitTypeName])
+}
+
+model Rank {
+  id Int @id @default(autoincrement())
+
+  rankName String
+  hierarchy Int?
+  active Boolean @default(true)
+  employees Employee[]
+
+  @@unique([rankName])
+}
+
+model Designation {
+  id Int @id @default(autoincrement())
+
+  designationName String
+  sortOrder Int?
+  active Boolean @default(true)
+  employees Employee[]
+
+  @@unique([designationName])
+}
+
+model Employee {
+  id Int @id @default(autoincrement())
+
+  kgid String? @unique
+
+  badgeNumber String? @unique
+
+  firstName String
+  lastName  String?
+
+  employeeDOB DateTime?
+
+  gender Gender @default(UNKNOWN)
+  bloodGroupId Int?
+  physicallyChallenged Boolean @default(false)
+  appointmentDate DateTime?
+  districtId Int?
+  unitId     Int?
+
+  rankId        Int?
+  designationId Int?
+
+  active Boolean @default(true)
+  district District? @relation(fields: [districtId], references: [id])
+  unit PoliceUnit? @relation(fields: [unitId], references: [id])
+  rank Rank? @relation(fields: [rankId], references: [id])
+  designation Designation? @relation(fields: [designationId], references: [id])
+  registeredCases Case[] @relation("CaseRegisteringOfficer")
+  arrestEvents ArrestSurrender[]
+  evidence Evidence[]
+  chargesheets Chargesheet[]
+  investigationEvents InvestigationEvent[]
+
+  @@index([districtId])
+  @@index([unitId])
+  @@index([rankId])
+  @@index([designationId])
+}
+
+model Court {
+  id Int @id @default(autoincrement())
+
+  courtName String
+
+  districtId Int
+  stateId    Int
+
+  active Boolean @default(true)
+  district District @relation(fields: [districtId], references: [id])
+  state State @relation(fields: [stateId], references: [id])
+  cases Case[]
+
+  arrestEvents ArrestSurrender[]
+
+  @@index([districtId])
+  @@index([stateId])
+}
+
+model ArrestSurrender {
+  id String @id @default(cuid())
+
+  caseId String
+
+  type ArrestSurrenderType
+
+  eventDate DateTime
+
+  stateId      Int?
+  districtId   Int?
+  policeUnitId Int?
+  ioId         Int?
+  courtId      Int?
+
+  isAccused Boolean @default(true)
+  isComplainantAccused Boolean @default(false)
+  case Case @relation(fields: [caseId], references: [id])
+  state State? @relation(fields: [stateId], references: [id])
+  district District? @relation(fields: [districtId], references: [id])
+  policeUnit PoliceUnit? @relation(fields: [policeUnitId], references: [id])
+  io Employee? @relation(fields: [ioId], references: [id])
+  court Court? @relation(fields: [courtId], references: [id])
+  accused ArrestSurrenderAccused[]
+  investigationEvents InvestigationEvent[]
+
+  @@index([caseId])
+  @@index([eventDate])
+}
+
+model ArrestSurrenderAccused {
+  id String @id @default(cuid())
+
+  arrestSurrenderId String
+  personId          String
+  accusedSortId String?
+  isPrimary Boolean @default(false)
+  arrestSurrender ArrestSurrender @relation(fields: [arrestSurrenderId], references: [id])
+  person Person @relation(fields: [personId], references: [id])
+
+  @@unique([arrestSurrenderId, personId])
+  @@index([personId])
+  @@index([arrestSurrenderId])
+}
+
+// ============================================================
+// LOCATION
+// ============================================================
+
+model Location {
+  id String @id @default(cuid())
+
+  address String?
+
+  latitude  Decimal @db.Decimal(10, 7)
+  longitude Decimal @db.Decimal(10, 7)
+
+  districtId   Int?
+  stateId      Int?
+  policeUnitId Int?
+
+  districtName String?
+  stationName  String?
+  locationType LocationType?
+
+  accuracyMeters Float?
+  source         String?
+
+  createdAt DateTime @default(now())
+
+  district District? @relation(fields: [districtId], references: [id])
+  state State? @relation(fields: [stateId], references: [id])
+  policeUnit PoliceUnit? @relation(fields: [policeUnitId], references: [id])
+  investigateionEvents InvestigationEvent[]
+
+  cases CaseLocation[]
+  residents PersonLocation[]
+  embeddings Embedding[]
+
+  @@index([latitude, longitude])
+  @@index([districtId])
+  @@index([stateId])
+  @@index([policeUnitId])
+}
+
+
+model CaseLocation {
+  caseId     String
+  locationId String
+
+  locationType LocationType?
+  description String?
+  occurredAt DateTime?
+  case Case @relation(fields: [caseId], references: [id])
+  location Location @relation(fields: [locationId], references: [id])
+
+  @@id([caseId, locationId])
+  @@index([locationId])
+}
+
+model PersonLocation {
+  personId   String
+  locationId String
+
+  relationship String?
+  confidence   Float?
+
+  person Person @relation(fields: [personId], references: [id])
+
+  location Location @relation(fields: [locationId], references: [id])
+
+  @@id([personId, locationId])
+}
+
+model Organization {
+  id String @id @default(cuid())
+
+  name String @unique
+
+  description String?
+
+  organizationType String?
+
+  active Boolean @default(true)
+
+  members OrganizationMember[]
+
+  cases CaseOrganization[]
+
+  embeddings Embedding[]
+}
+
+model OrganizationMember {
+  personId       String
+  organizationId String
+
+  role OrganizationMemberRole @default(MEMBER)
+
+  customRole String?
+
+  confidence Float?
+
+  person Person @relation(fields: [personId], references: [id])
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@id([personId, organizationId])
+}
+
+model CaseOrganization {
+  caseId         String
+  organizationId String
+
+  context    String?
+  confidence Float?
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@id([caseId, organizationId])
+}
+
+model PersonRelationship {
+  id String @id @default(cuid())
+
+  sourcePersonId String
+  targetPersonId String
+
+  relationType RelationshipType
+
+  confidence Float?
+
+  source     String?
+  evidenceId String?
+
+  notes String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sourcePerson Person @relation("SourcePerson", fields: [sourcePersonId], references: [id])
+
+  targetPerson Person @relation("TargetPerson", fields: [targetPersonId], references: [id])
+
+  evidence Evidence? @relation(fields: [evidenceId], references: [id])
+
+  @@index([sourcePersonId])
+  @@index([targetPersonId])
+  @@index([relationType])
+}
+
+model Evidence {
+  id String @id @default(cuid())
+
+  caseId String
+
+  type EvidenceType
+
+  title       String?
+  description String?
+
+  fileUrl String
+
+  mimeType String?
+  fileName String?
+  fileSize Int?
+
+  fileHash String?
+
+  uploadedById     Int
+  extractedData    Json?
+  aiSummary        String?
+  aiClassification Json?
+  aiConfidence     Float?
+
+  processedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  case Case @relation(fields: [caseId], references: [id])
+
+  uploadedBy Employee @relation(fields: [uploadedById], references: [id])
+
+  relationships PersonRelationship[]
+
+  embeddings Embedding[]
+
+  investigationEvents InvestigationEvent[]
+
+  faceRecords FaceRecord[]
+
+  @@index([caseId])
+  @@index([type])
+  @@index([fileHash])
+}
+
+model ModusOperandi {
+  id String @id @default(cuid())
+
+  name String @unique
+
+  description String
+
+  targetType     String?
+  weaponType     String?
+  timePattern    String?
+  vehiclePattern String?
+
+  entryMethod         String?
+  escapeMethod        String?
+  communicationMethod String?
+
+  riskLevel Float?
+
+  // MO intelligence signals + confidence (used by intelligence filters)
+  confidence Float?
+  patterns   String[] @default([])
+
+  cases Case[]
+
+  embeddings Embedding[]
+}
+
+model InvestigationEvent {
+  id String @id @default(cuid())
+
+  caseId String
+  eventType InvestigationEventType
+  eventDate DateTime
+
+  officerId Int?
+  personId String?
+  evidenceId String?
+  arrestSurrenderId String?
+  locationId String?
+
+  description String?
+  metadata Json?
+
+  createdAt DateTime @default(now())
+
+  case Case @relation(fields: [caseId], references: [id])
+  officer Employee? @relation(fields: [officerId], references: [id])
+  person Person? @relation(fields: [personId], references: [id])
+  evidence Evidence? @relation(fields: [evidenceId], references: [id])
+  arrestSurrender ArrestSurrender? @relation(fields: [arrestSurrenderId], references: [id])
+
+  location Location? @relation(fields: [locationId], references: [id])
+
+  @@index([caseId])
+  @@index([personId])
+  @@index([eventDate])
+  @@index([locationId])
+}
+
+
+// ============================================================
+// CHARGESHEET
+// ============================================================
+
+model Chargesheet {
+  id String @id @default(cuid())
+
+  caseId String
+  csDate DateTime
+  csType ChargesheetType
+  policePersonId Int?
+  case Case @relation(fields: [caseId], references: [id])
+  policePerson Employee? @relation(fields: [policePersonId], references: [id])
+
+  @@index([caseId])
+  @@index([csDate])
 }
 
 model Embedding {
-  id          String @id @default(cuid())
+  id String @id @default(cuid())
 
-  entityType  String
-  entityId    String
-  vectorId    String
+  entityType EntityType
+  entityId   String
 
-  createdAt   DateTime @default(now())
+  vectorId String?
+
+  modelName   String?
+  contentHash String?
+
+  metadata Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseId          String?
+  personId        String?
+  evidenceId      String?
+  vehicleId       String?
+  phoneId         String?
+  locationId      String?
+  organizationId  String?
+  modusOperandiId String?
+
+  case          Case?          @relation(fields: [caseId], references: [id])
+  person        Person?        @relation(fields: [personId], references: [id])
+  evidence      Evidence?      @relation(fields: [evidenceId], references: [id])
+  vehicle       Vehicle?       @relation(fields: [vehicleId], references: [id])
+  phone         Phone?         @relation(fields: [phoneId], references: [id])
+  location      Location?      @relation(fields: [locationId], references: [id])
+  organization  Organization?  @relation(fields: [organizationId], references: [id])
+  modusOperandi ModusOperandi? @relation(fields: [modusOperandiId], references: [id])
+
+  @@index([entityType, entityId])
+  @@index([caseId])
+  @@index([personId])
+  @@index([evidenceId])
+}
+
+model CaseSimilarity {
+  id String @id @default(cuid())
+
+  sourceCaseId String
+  targetCaseId String
+
+  similarityScore Float
+  similarityType  String?
+  matchedFeatures Json?
+  createdAt       DateTime @default(now())
+  sourceCase      Case     @relation("SourceCase", fields: [sourceCaseId], references: [id])
+  targetCase      Case     @relation("TargetCase", fields: [targetCaseId], references: [id])
+
+  @@unique([sourceCaseId, targetCaseId])
+  @@index([similarityScore])
+}
+
+// ============================================================
+// FACE RECORDS (Luxand Cloud)
+// ============================================================
+//
+// Stores the Luxand face identifier/token along with the person/case it
+// belongs to and the original Stratus image reference. A person can have
+// multiple face records (multiple photos).
+model FaceRecord {
+  id String @id @default(cuid())
+
+  personId String
+  caseId   String?
+  evidenceId String?
+
+  // Luxand subject identifier / face token. This is an identifier, NOT a
+  // vector embedding, so it is stored here and never sent to Pinecone.
+  luxandSubjectId String?
+  luxandFaceId    String?
+
+  // Stratus image reference
+  imageKey String?
+  imageUrl String?
+
+  confidence Float?
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  person   Person?   @relation(fields: [personId], references: [id])
+  case     Case?     @relation(fields: [caseId], references: [id])
+  evidence Evidence? @relation(fields: [evidenceId], references: [id])
+
+  @@index([personId])
+  @@index([caseId])
+  @@index([evidenceId])
+  @@index([luxandSubjectId])
+}
+
+model CasteMaster {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  complainants Complainant[]
+}
+
+model ReligionMaster {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  complainants Complainant[]
+}
+
+model OccupationMaster {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  complainants Complainant[]
 }

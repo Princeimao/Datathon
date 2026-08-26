@@ -1,48 +1,60 @@
 import { Request, Response } from "express";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { env } from "../config/env";
-
-const s3 = new S3Client({
-  endpoint: env.awsEndpoint!,
-  region: "auto",
-  credentials: {
-    accessKeyId: env.awsAccessKeyId!,
-    secretAccessKey: env.awsSecretAccessKey!,
-  },
-});
+import {
+  createUploadUrl,
+  createDownloadUrl,
+} from "../services/catalyst.service.js";
 
 export async function generateSignedUrl(req: Request, res: Response) {
   try {
-    const { fileName, contentType } = req.body;
+    const { fileName, contentType, keyPrefix = "similarity-search" } =
+      req.body;
 
-    const bucketName = env.awsS3Bucket;
-
-    if (!bucketName) {
-      throw new Error("Bucket name is not defined");
+    if (!fileName) {
+      return res.status(400).json({
+        message: "fileName is required",
+      });
     }
 
-    const objectKey = `similarity-search/${Date.now()}-${fileName}`;
-
-    const command = new PutObjectCommand({
-      Bucket: bucketName,
-      Key: objectKey,
-      ContentType: contentType,
+    const result = await createUploadUrl({
+      keyPrefix,
+      fileName,
+      contentType,
+      req,
     });
 
-    const uploadUrl = await getSignedUrl(s3, command, {
-      expiresIn: 600,
-    });
-
-    return res.json({
-      uploadUrl,
-      objectKey,
-    });
+    return res.json(result);
   } catch (err) {
     console.error(err);
 
     return res.status(500).json({
       message: "Unable to generate upload URL",
+    });
+  }
+}
+
+export async function generateSignedGetUrl(req: Request, res: Response) {
+  try {
+    const { objectKey, key } = req.query;
+
+    const objectKeyValue = String(objectKey || key || "");
+
+    if (!objectKeyValue) {
+      return res.status(400).json({
+        message: "objectKey is required",
+      });
+    }
+
+    const result = await createDownloadUrl({
+      key: objectKeyValue,
+      req,
+    });
+
+    return res.json(result);
+  } catch (err) {
+    console.error(err);
+
+    return res.status(500).json({
+      message: "Unable to generate download URL",
     });
   }
 }

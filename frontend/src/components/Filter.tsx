@@ -1,13 +1,13 @@
 import { Filter, Loader2 } from "lucide-react";
 import { Select } from "../components/customUi";
-import { useEffect, useState, useCallback } from "react";
-
-const MAP_URL = "https://countriesnow.space/api/v0.1/countries";
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { api } from "../services/api";
 
 export interface MapFilters {
   state: string;
-  city: string;
+  district: string;
   policeStation: string;
+  policeUnitId: string;
   crimeType: string;
   heatmapLayer: string;
   timeOfDay: string;
@@ -17,30 +17,42 @@ export interface MapFilters {
   riskLevel: string;
   minCases: number;
   moConfidence: number;
+  moPatterns: string[];
   showActiveAlerts: boolean;
   showPulseZones: boolean;
   showAnimatedRings: boolean;
   showAlertBadges: boolean;
 }
 
-const DEFAULT_FILTERS: MapFilters = {
+export const DEFAULT_FILTERS: MapFilters = {
   state: "All States",
-  city: "All Cities",
+  district: "All Districts",
   policeStation: "All Stations",
+  policeUnitId: "",
   crimeType: "All Crime Types",
   heatmapLayer: "All Layers",
   timeOfDay: "All Day",
-  year: "2026",
+  year: "All Years",
   dateFrom: "",
   dateTo: "",
   riskLevel: "All Risk Levels",
   minCases: 0,
   moConfidence: 0,
+  moPatterns: [],
   showActiveAlerts: false,
   showPulseZones: false,
   showAnimatedRings: false,
   showAlertBadges: false,
 };
+
+const MO_PATTERN_OPTIONS: { key: string; label: string }[] = [
+  { key: "HELMET_MASKED_RIDERS", label: "Helmet-Masked Riders" },
+  { key: "NIGHT_OPERATIONS", label: "Night Operations" },
+  { key: "STOLEN_VEHICLE_USAGE", label: "Stolen Vehicle Usage" },
+  { key: "ATM_TARGET_SELECTION", label: "ATM Target Selection" },
+  { key: "TWO_PERSON_TEAM", label: "Two-Person Team" },
+  { key: "ESCAPE_ROUTE_SIMILARITY", label: "Escape Route Similarity" },
+];
 
 interface CrimeMapFiltersProps {
   onFilterChange?: (filters: MapFilters) => void;
@@ -57,47 +69,63 @@ export default function CrimeMapFilters({
 }: CrimeMapFiltersProps) {
   const [filters, setFilters] = useState<MapFilters>({ ...DEFAULT_FILTERS });
   const [states, setStates] = useState<string[]>(["All States"]);
-  const [cities, setCities] = useState<string[]>(["All Cities"]);
+  const [districts, setDistricts] = useState<string[]>(["All Districts"]);
   const [policeStationList, setPoliceStationList] = useState<string[]>([
     "All Stations",
   ]);
+  const [stationIds, setStationIds] = useState<Record<string, string>>({});
   const [loadingStates, setLoadingStates] = useState(false);
-  const [loadingCities, setLoadingCities] = useState(false);
+  const [loadingDistricts, setLoadingDistricts] = useState(false);
   const [loadingStations, setLoadingStations] = useState(false);
+
+  /* Backend-driven states (with DB ids) */
+  const [stateMap, setStateMap] = useState<Record<string, number>>({});
 
   const updateFilter = useCallback((key: keyof MapFilters, value: any) => {
     setFilters((prev) => {
       const next = { ...prev, [key]: value };
 
-      // Reset downstream filters when parent changes
+      // Reset downstream filters when a parent changes
       if (key === "state") {
-        next.city = "All Cities";
+        next.district = "All Districts";
         next.policeStation = "All Stations";
+        next.policeUnitId = "";
       }
-      if (key === "city") {
+      if (key === "district") {
         next.policeStation = "All Stations";
+        next.policeUnitId = "";
       }
 
       return next;
     });
   }, []);
 
-  /* Fetch Indian states */
+  const applyFilters = useCallback(
+    (next: MapFilters) => {
+      setFilters(next);
+      onFilterChange?.(next);
+    },
+    [onFilterChange],
+  );
+
+  /* Fetch states from the backend */
   useEffect(() => {
     const fetchStates = async () => {
       setLoadingStates(true);
       try {
-        const res = await fetch(`${MAP_URL}/states/q?country=India`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
+        const res: any = await api.states();
+        const list: { id: number; stateName: string }[] = res ?? [];
+        const map: Record<string, number> = {};
+
+        list.forEach((item) => {
+          map[item.stateName] = item.id;
         });
-        const data = await res.json();
-        if (!data.error) {
-          const stateNames = data?.data?.states?.map((s: any) => s.name) ?? [];
-          setStates(["All States", ...stateNames]);
-        }
+
+        setStateMap(map);
+        setStates(["All States", ...list.map((item) => item.stateName)]);
       } catch (err) {
         console.error("Failed to fetch states:", err);
+        setStates(["All States"]);
       } finally {
         setLoadingStates(false);
       }
@@ -105,82 +133,143 @@ export default function CrimeMapFilters({
     fetchStates();
   }, []);
 
-  /* Fetch cities when state changes */
+  /* Fetch all districts from the backend once and filter by selected state */
   useEffect(() => {
-    if (filters.state === "All States") {
-      setCities(["All Cities"]);
-      return;
-    }
-    const fetchCities = async () => {
-      setLoadingCities(true);
+    const fetchDistricts = async () => {
+      setLoadingDistricts(true);
       try {
-        const res = await fetch(`${MAP_URL}/state/cities`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            country: "India",
-            state: filters.state,
-          }),
-        });
-        const data = await res.json();
-        if (!data.error) {
-          const cityNames = data?.data ?? [];
-          setCities(["All Cities", ...cityNames]);
+        const res: any = await api.districts();
+        const list: {
+          id: number;
+          districtName: string;
+          stateId: number;
+        }[] = res ?? [];
+
+        if (filters.state === "All States") {
+          setDistricts(["All Districts"]);
+          return;
         }
+
+        const stateId = stateMap[filters.state];
+
+        const matching = list
+          .filter((district) => district.stateId === stateId)
+          .map((district) => district.districtName);
+
+        setDistricts(["All Districts", ...matching]);
       } catch (err) {
-        console.error("Failed to fetch cities:", err);
+        console.error("Failed to fetch districts:", err);
+        setDistricts(["All Districts"]);
       } finally {
-        setLoadingCities(false);
+        setLoadingDistricts(false);
       }
     };
-    fetchCities();
-  }, [filters.state]);
+    fetchDistricts();
+  }, [filters.state, stateMap]);
 
-  /* Fetch police stations when state or city changes */
+  /* Fetch police stations when state or district changes */
   useEffect(() => {
-    if (filters.state === "All States" && filters.city === "All Cities") {
+    if (filters.state === "All States" && filters.district === "All Districts") {
       setPoliceStationList(["All Stations"]);
+      setStationIds({});
       return;
     }
 
     const fetchStations = async () => {
       setLoadingStations(true);
       try {
-        let url = "";
-        if (filters.city !== "All Cities") {
-          url = `${import.meta.env.VITE_BACKEND_API}/police/city/${filters.city}`;
-        } else if (filters.state !== "All States") {
-          url = `${import.meta.env.VITE_BACKEND_API}/police/state/${filters.state}`;
-        }
-        if (!url) return;
-
-        const res = await fetch(url, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
+        const res: any = await api.policeStations({
+          state: filters.state === "All States" ? undefined : filters.state,
+          district:
+            filters.district === "All Districts" ? undefined : filters.district,
         });
-        const data = await res.json();
-        if (!data.error) {
-          const stationNames = data?.stations ?? [];
-          setPoliceStationList(["All Stations", ...stationNames]);
-        }
+
+        const stations: { id: number; name: string }[] = res?.stations ?? [];
+        const ids: Record<string, string> = {};
+
+        stations.forEach((station) => {
+          ids[station.name] = String(station.id);
+        });
+
+        setStationIds(ids);
+        setPoliceStationList(["All Stations", ...stations.map((s) => s.name)]);
       } catch (err) {
         console.error("Failed to fetch police stations:", err);
+        setPoliceStationList(["All Stations"]);
+        setStationIds({});
       } finally {
         setLoadingStations(false);
       }
     };
     fetchStations();
-  }, [filters.state, filters.city]);
+  }, [filters.state, filters.district]);
+
+  const handleStationChange = useCallback(
+    (value: string) => {
+      setFilters((prev) => ({
+        ...prev,
+        policeStation: value,
+        policeUnitId: value === "All Stations" ? "" : stationIds[value] || "",
+      }));
+    },
+    [stationIds],
+  );
 
   const handleApply = () => {
     onFilterChange?.(filters);
   };
 
   const handleReset = () => {
-    const reset = { ...DEFAULT_FILTERS };
-    setFilters(reset);
-    onFilterChange?.(reset);
+    applyFilters({ ...DEFAULT_FILTERS });
   };
+
+  /* Quick filters use the same central filter state + apply immediately */
+  const handleQuickFilter = useCallback(
+    (patch: Partial<MapFilters>) => {
+      setFilters((prev) => {
+        const next = { ...prev, ...patch };
+        onFilterChange?.(next);
+        return next;
+      });
+    },
+    [onFilterChange],
+  );
+
+  const quickLastNDays = (days: number) => {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+
+    handleQuickFilter({
+      dateFrom: start.toISOString().split("T")[0],
+      dateTo: end.toISOString().split("T")[0],
+      year: "All Years",
+    });
+  };
+
+  const toggleMoPattern = useCallback((pattern: string) => {
+    setFilters((prev) => {
+      const has = prev.moPatterns.includes(pattern);
+
+      return {
+        ...prev,
+        moPatterns: has
+          ? prev.moPatterns.filter((p) => p !== pattern)
+          : [...prev.moPatterns, pattern],
+      };
+    });
+  }, []);
+
+  /* District/station options memoized and always arrays */
+  const districtOptions = useMemo(
+    () => (Array.isArray(districts) ? districts : ["All Districts"]),
+    [districts],
+  );
+
+  const stationOptions = useMemo(
+    () => (Array.isArray(policeStationList) ? policeStationList : ["All Stations"]),
+    [policeStationList],
+  );
 
   return (
     <div>
@@ -209,14 +298,15 @@ export default function CrimeMapFilters({
         </FilterSelect>
 
         <FilterSelect
-          label="Cities"
-          value={filters.city}
-          onChange={(e) => updateFilter("city", e.target.value)}
-          loading={loadingCities}
+          label="District"
+          value={filters.district}
+          onChange={(e) => updateFilter("district", e.target.value)}
+          loading={loadingDistricts}
+          disabled={filters.state === "All States"}
         >
-          {cities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
+          {districtOptions.map((district, index) => (
+            <option key={index} value={district}>
+              {district}
             </option>
           ))}
         </FilterSelect>
@@ -224,10 +314,11 @@ export default function CrimeMapFilters({
         <FilterSelect
           label="Police Station"
           value={filters.policeStation}
-          onChange={(e) => updateFilter("policeStation", e.target.value)}
+          onChange={(e) => handleStationChange(e.target.value)}
           loading={loadingStations}
+          disabled={filters.state === "All States"}
         >
-          {policeStationList.map((station, index) => (
+          {stationOptions.map((station, index) => (
             <option key={index} value={station}>
               {station}
             </option>
@@ -284,6 +375,7 @@ export default function CrimeMapFilters({
             value={filters.year}
             onChange={(e) => updateFilter("year", e.target.value)}
           >
+            <option>All Years</option>
             <option>2026</option>
             <option>2025</option>
             <option>2024</option>
@@ -408,12 +500,14 @@ export default function CrimeMapFilters({
           </h3>
 
           <div className="space-y-2">
-            <Checkbox label="Helmet-Masked Riders" />
-            <Checkbox label="Night Operations" />
-            <Checkbox label="Stolen Vehicle Usage" />
-            <Checkbox label="ATM Target Selection" />
-            <Checkbox label="Two-Person Team" />
-            <Checkbox label="Escape Route Similarity" />
+            {MO_PATTERN_OPTIONS.map((option) => (
+              <Checkbox
+                key={option.key}
+                label={option.label}
+                checked={filters.moPatterns.includes(option.key)}
+                onChange={() => toggleMoPattern(option.key)}
+              />
+            ))}
           </div>
         </div>
 
@@ -425,38 +519,30 @@ export default function CrimeMapFilters({
 
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={() => {
-                const d = new Date();
-                d.setDate(d.getDate() - 7);
-                updateFilter("dateFrom", d.toISOString().split("T")[0]);
-                updateFilter("dateTo", new Date().toISOString().split("T")[0]);
-              }}
+              onClick={() => quickLastNDays(7)}
               className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 hover:bg-green-200"
             >
               Last 7 Days
             </button>
 
             <button
-              onClick={() => {
-                const d = new Date();
-                d.setDate(d.getDate() - 30);
-                updateFilter("dateFrom", d.toISOString().split("T")[0]);
-                updateFilter("dateTo", new Date().toISOString().split("T")[0]);
-              }}
+              onClick={() => quickLastNDays(30)}
               className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 hover:bg-green-200"
             >
               Last 30 Days
             </button>
 
             <button
-              onClick={() => updateFilter("riskLevel", "High")}
+              onClick={() => handleQuickFilter({ riskLevel: "High" })}
               className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 hover:bg-green-200"
             >
               High Risk
             </button>
 
             <button
-              onClick={() => updateFilter("heatmapLayer", "Crime Density")}
+              onClick={() =>
+                handleQuickFilter({ heatmapLayer: "Crime Density" })
+              }
               className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 hover:bg-green-200"
             >
               Hotspots

@@ -1,4 +1,5 @@
 import {
+    ClipboardPenLine,
     Clock,
     DatabaseZap,
     FileSearch,
@@ -13,5 +14,6 @@ export const tabs = [
     { id: "graph", label: "Case Board", icon: GitBranch, path: "/graph" },
     { id: "trend", label: "Trend Analysis", icon: Clock, path: "/trend" },
     { id: "similarity", label: "Similarity Lab", icon: FileSearch, path: "/similarity" },
+    { id: "insert", label: "New Case", icon: ClipboardPenLine, path: "/insert" },
     { id: "import", label: "Data Import", icon: DatabaseZap, path: "/import" },
 ];

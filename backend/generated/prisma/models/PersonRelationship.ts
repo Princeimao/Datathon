@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model PersonRelationship
@@ -40,7 +40,11 @@ export type PersonRelationshipMinAggregateOutputType = {
   targetPersonId: string | null
   relationType: $Enums.RelationshipType | null
   confidence: number | null
+  source: string | null
+  evidenceId: string | null
+  notes: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PersonRelationshipMaxAggregateOutputType = {
@@ -49,7 +53,11 @@ export type PersonRelationshipMaxAggregateOutputType = {
   targetPersonId: string | null
   relationType: $Enums.RelationshipType | null
   confidence: number | null
+  source: string | null
+  evidenceId: string | null
+  notes: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PersonRelationshipCountAggregateOutputType = {
@@ -58,7 +66,11 @@ export type PersonRelationshipCountAggregateOutputType = {
   targetPersonId: number
   relationType: number
   confidence: number
+  source: number
+  evidenceId: number
+  notes: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -77,7 +89,11 @@ export type PersonRelationshipMinAggregateInputType = {
   targetPersonId?: true
   relationType?: true
   confidence?: true
+  source?: true
+  evidenceId?: true
+  notes?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type PersonRelationshipMaxAggregateInputType = {
@@ -86,7 +102,11 @@ export type PersonRelationshipMaxAggregateInputType = {
   targetPersonId?: true
   relationType?: true
   confidence?: true
+  source?: true
+  evidenceId?: true
+  notes?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type PersonRelationshipCountAggregateInputType = {
@@ -95,7 +115,11 @@ export type PersonRelationshipCountAggregateInputType = {
   targetPersonId?: true
   relationType?: true
   confidence?: true
+  source?: true
+  evidenceId?: true
+  notes?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -191,7 +215,11 @@ export type PersonRelationshipGroupByOutputType = {
   targetPersonId: string
   relationType: $Enums.RelationshipType
   confidence: number | null
+  source: string | null
+  evidenceId: string | null
+  notes: string | null
   createdAt: Date
+  updatedAt: Date
   _count: PersonRelationshipCountAggregateOutputType | null
   _avg: PersonRelationshipAvgAggregateOutputType | null
   _sum: PersonRelationshipSumAggregateOutputType | null
@@ -223,9 +251,14 @@ export type PersonRelationshipWhereInput = {
   targetPersonId?: Prisma.StringFilter<"PersonRelationship"> | string
   relationType?: Prisma.EnumRelationshipTypeFilter<"PersonRelationship"> | $Enums.RelationshipType
   confidence?: Prisma.FloatNullableFilter<"PersonRelationship"> | number | null
+  source?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
+  evidenceId?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
+  notes?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
   createdAt?: Prisma.DateTimeFilter<"PersonRelationship"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PersonRelationship"> | Date | string
   sourcePerson?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   targetPerson?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
+  evidence?: Prisma.XOR<Prisma.EvidenceNullableScalarRelationFilter, Prisma.EvidenceWhereInput> | null
 }
 
 export type PersonRelationshipOrderByWithRelationInput = {
@@ -234,9 +267,14 @@ export type PersonRelationshipOrderByWithRelationInput = {
   targetPersonId?: Prisma.SortOrder
   relationType?: Prisma.SortOrder
   confidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  source?: Prisma.SortOrderInput | Prisma.SortOrder
+  evidenceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   sourcePerson?: Prisma.PersonOrderByWithRelationInput
   targetPerson?: Prisma.PersonOrderByWithRelationInput
+  evidence?: Prisma.EvidenceOrderByWithRelationInput
 }
 
 export type PersonRelationshipWhereUniqueInput = Prisma.AtLeast<{
@@ -248,9 +286,14 @@ export type PersonRelationshipWhereUniqueInput = Prisma.AtLeast<{
   targetPersonId?: Prisma.StringFilter<"PersonRelationship"> | string
   relationType?: Prisma.EnumRelationshipTypeFilter<"PersonRelationship"> | $Enums.RelationshipType
   confidence?: Prisma.FloatNullableFilter<"PersonRelationship"> | number | null
+  source?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
+  evidenceId?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
+  notes?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
   createdAt?: Prisma.DateTimeFilter<"PersonRelationship"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PersonRelationship"> | Date | string
   sourcePerson?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   targetPerson?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
+  evidence?: Prisma.XOR<Prisma.EvidenceNullableScalarRelationFilter, Prisma.EvidenceWhereInput> | null
 }, "id">
 
 export type PersonRelationshipOrderByWithAggregationInput = {
@@ -259,7 +302,11 @@ export type PersonRelationshipOrderByWithAggregationInput = {
   targetPersonId?: Prisma.SortOrder
   relationType?: Prisma.SortOrder
   confidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  source?: Prisma.SortOrderInput | Prisma.SortOrder
+  evidenceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.PersonRelationshipCountOrderByAggregateInput
   _avg?: Prisma.PersonRelationshipAvgOrderByAggregateInput
   _max?: Prisma.PersonRelationshipMaxOrderByAggregateInput
@@ -276,16 +323,24 @@ export type PersonRelationshipScalarWhereWithAggregatesInput = {
   targetPersonId?: Prisma.StringWithAggregatesFilter<"PersonRelationship"> | string
   relationType?: Prisma.EnumRelationshipTypeWithAggregatesFilter<"PersonRelationship"> | $Enums.RelationshipType
   confidence?: Prisma.FloatNullableWithAggregatesFilter<"PersonRelationship"> | number | null
+  source?: Prisma.StringNullableWithAggregatesFilter<"PersonRelationship"> | string | null
+  evidenceId?: Prisma.StringNullableWithAggregatesFilter<"PersonRelationship"> | string | null
+  notes?: Prisma.StringNullableWithAggregatesFilter<"PersonRelationship"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PersonRelationship"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PersonRelationship"> | Date | string
 }
 
 export type PersonRelationshipCreateInput = {
   id?: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   sourcePerson: Prisma.PersonCreateNestedOneWithoutOutgoingRelationshipsInput
   targetPerson: Prisma.PersonCreateNestedOneWithoutIncomingRelationshipsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutRelationshipsInput
 }
 
 export type PersonRelationshipUncheckedCreateInput = {
@@ -294,16 +349,24 @@ export type PersonRelationshipUncheckedCreateInput = {
   targetPersonId: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  evidenceId?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonRelationshipUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sourcePerson?: Prisma.PersonUpdateOneRequiredWithoutOutgoingRelationshipsNestedInput
   targetPerson?: Prisma.PersonUpdateOneRequiredWithoutIncomingRelationshipsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutRelationshipsNestedInput
 }
 
 export type PersonRelationshipUncheckedUpdateInput = {
@@ -312,7 +375,11 @@ export type PersonRelationshipUncheckedUpdateInput = {
   targetPersonId?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonRelationshipCreateManyInput = {
@@ -321,14 +388,21 @@ export type PersonRelationshipCreateManyInput = {
   targetPersonId: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  evidenceId?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonRelationshipUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonRelationshipUncheckedUpdateManyInput = {
@@ -337,7 +411,11 @@ export type PersonRelationshipUncheckedUpdateManyInput = {
   targetPersonId?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonRelationshipListRelationFilter = {
@@ -356,7 +434,11 @@ export type PersonRelationshipCountOrderByAggregateInput = {
   targetPersonId?: Prisma.SortOrder
   relationType?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
+  source?: Prisma.SortOrder
+  evidenceId?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PersonRelationshipAvgOrderByAggregateInput = {
@@ -369,7 +451,11 @@ export type PersonRelationshipMaxOrderByAggregateInput = {
   targetPersonId?: Prisma.SortOrder
   relationType?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
+  source?: Prisma.SortOrder
+  evidenceId?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PersonRelationshipMinOrderByAggregateInput = {
@@ -378,7 +464,11 @@ export type PersonRelationshipMinOrderByAggregateInput = {
   targetPersonId?: Prisma.SortOrder
   relationType?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
+  source?: Prisma.SortOrder
+  evidenceId?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PersonRelationshipSumOrderByAggregateInput = {
@@ -473,12 +563,58 @@ export type EnumRelationshipTypeFieldUpdateOperationsInput = {
   set?: $Enums.RelationshipType
 }
 
+export type PersonRelationshipCreateNestedManyWithoutEvidenceInput = {
+  create?: Prisma.XOR<Prisma.PersonRelationshipCreateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput> | Prisma.PersonRelationshipCreateWithoutEvidenceInput[] | Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput | Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput[]
+  createMany?: Prisma.PersonRelationshipCreateManyEvidenceInputEnvelope
+  connect?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+}
+
+export type PersonRelationshipUncheckedCreateNestedManyWithoutEvidenceInput = {
+  create?: Prisma.XOR<Prisma.PersonRelationshipCreateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput> | Prisma.PersonRelationshipCreateWithoutEvidenceInput[] | Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput | Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput[]
+  createMany?: Prisma.PersonRelationshipCreateManyEvidenceInputEnvelope
+  connect?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+}
+
+export type PersonRelationshipUpdateManyWithoutEvidenceNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonRelationshipCreateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput> | Prisma.PersonRelationshipCreateWithoutEvidenceInput[] | Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput | Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput[]
+  upsert?: Prisma.PersonRelationshipUpsertWithWhereUniqueWithoutEvidenceInput | Prisma.PersonRelationshipUpsertWithWhereUniqueWithoutEvidenceInput[]
+  createMany?: Prisma.PersonRelationshipCreateManyEvidenceInputEnvelope
+  set?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  disconnect?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  delete?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  connect?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  update?: Prisma.PersonRelationshipUpdateWithWhereUniqueWithoutEvidenceInput | Prisma.PersonRelationshipUpdateWithWhereUniqueWithoutEvidenceInput[]
+  updateMany?: Prisma.PersonRelationshipUpdateManyWithWhereWithoutEvidenceInput | Prisma.PersonRelationshipUpdateManyWithWhereWithoutEvidenceInput[]
+  deleteMany?: Prisma.PersonRelationshipScalarWhereInput | Prisma.PersonRelationshipScalarWhereInput[]
+}
+
+export type PersonRelationshipUncheckedUpdateManyWithoutEvidenceNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonRelationshipCreateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput> | Prisma.PersonRelationshipCreateWithoutEvidenceInput[] | Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput[]
+  connectOrCreate?: Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput | Prisma.PersonRelationshipCreateOrConnectWithoutEvidenceInput[]
+  upsert?: Prisma.PersonRelationshipUpsertWithWhereUniqueWithoutEvidenceInput | Prisma.PersonRelationshipUpsertWithWhereUniqueWithoutEvidenceInput[]
+  createMany?: Prisma.PersonRelationshipCreateManyEvidenceInputEnvelope
+  set?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  disconnect?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  delete?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  connect?: Prisma.PersonRelationshipWhereUniqueInput | Prisma.PersonRelationshipWhereUniqueInput[]
+  update?: Prisma.PersonRelationshipUpdateWithWhereUniqueWithoutEvidenceInput | Prisma.PersonRelationshipUpdateWithWhereUniqueWithoutEvidenceInput[]
+  updateMany?: Prisma.PersonRelationshipUpdateManyWithWhereWithoutEvidenceInput | Prisma.PersonRelationshipUpdateManyWithWhereWithoutEvidenceInput[]
+  deleteMany?: Prisma.PersonRelationshipScalarWhereInput | Prisma.PersonRelationshipScalarWhereInput[]
+}
+
 export type PersonRelationshipCreateWithoutSourcePersonInput = {
   id?: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   targetPerson: Prisma.PersonCreateNestedOneWithoutIncomingRelationshipsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutRelationshipsInput
 }
 
 export type PersonRelationshipUncheckedCreateWithoutSourcePersonInput = {
@@ -486,7 +622,11 @@ export type PersonRelationshipUncheckedCreateWithoutSourcePersonInput = {
   targetPersonId: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  evidenceId?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonRelationshipCreateOrConnectWithoutSourcePersonInput = {
@@ -503,8 +643,12 @@ export type PersonRelationshipCreateWithoutTargetPersonInput = {
   id?: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   sourcePerson: Prisma.PersonCreateNestedOneWithoutOutgoingRelationshipsInput
+  evidence?: Prisma.EvidenceCreateNestedOneWithoutRelationshipsInput
 }
 
 export type PersonRelationshipUncheckedCreateWithoutTargetPersonInput = {
@@ -512,7 +656,11 @@ export type PersonRelationshipUncheckedCreateWithoutTargetPersonInput = {
   sourcePersonId: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  evidenceId?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonRelationshipCreateOrConnectWithoutTargetPersonInput = {
@@ -550,7 +698,11 @@ export type PersonRelationshipScalarWhereInput = {
   targetPersonId?: Prisma.StringFilter<"PersonRelationship"> | string
   relationType?: Prisma.EnumRelationshipTypeFilter<"PersonRelationship"> | $Enums.RelationshipType
   confidence?: Prisma.FloatNullableFilter<"PersonRelationship"> | number | null
+  source?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
+  evidenceId?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
+  notes?: Prisma.StringNullableFilter<"PersonRelationship"> | string | null
   createdAt?: Prisma.DateTimeFilter<"PersonRelationship"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PersonRelationship"> | Date | string
 }
 
 export type PersonRelationshipUpsertWithWhereUniqueWithoutTargetPersonInput = {
@@ -569,12 +721,66 @@ export type PersonRelationshipUpdateManyWithWhereWithoutTargetPersonInput = {
   data: Prisma.XOR<Prisma.PersonRelationshipUpdateManyMutationInput, Prisma.PersonRelationshipUncheckedUpdateManyWithoutTargetPersonInput>
 }
 
+export type PersonRelationshipCreateWithoutEvidenceInput = {
+  id?: string
+  relationType: $Enums.RelationshipType
+  confidence?: number | null
+  source?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sourcePerson: Prisma.PersonCreateNestedOneWithoutOutgoingRelationshipsInput
+  targetPerson: Prisma.PersonCreateNestedOneWithoutIncomingRelationshipsInput
+}
+
+export type PersonRelationshipUncheckedCreateWithoutEvidenceInput = {
+  id?: string
+  sourcePersonId: string
+  targetPersonId: string
+  relationType: $Enums.RelationshipType
+  confidence?: number | null
+  source?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PersonRelationshipCreateOrConnectWithoutEvidenceInput = {
+  where: Prisma.PersonRelationshipWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonRelationshipCreateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput>
+}
+
+export type PersonRelationshipCreateManyEvidenceInputEnvelope = {
+  data: Prisma.PersonRelationshipCreateManyEvidenceInput | Prisma.PersonRelationshipCreateManyEvidenceInput[]
+  skipDuplicates?: boolean
+}
+
+export type PersonRelationshipUpsertWithWhereUniqueWithoutEvidenceInput = {
+  where: Prisma.PersonRelationshipWhereUniqueInput
+  update: Prisma.XOR<Prisma.PersonRelationshipUpdateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedUpdateWithoutEvidenceInput>
+  create: Prisma.XOR<Prisma.PersonRelationshipCreateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedCreateWithoutEvidenceInput>
+}
+
+export type PersonRelationshipUpdateWithWhereUniqueWithoutEvidenceInput = {
+  where: Prisma.PersonRelationshipWhereUniqueInput
+  data: Prisma.XOR<Prisma.PersonRelationshipUpdateWithoutEvidenceInput, Prisma.PersonRelationshipUncheckedUpdateWithoutEvidenceInput>
+}
+
+export type PersonRelationshipUpdateManyWithWhereWithoutEvidenceInput = {
+  where: Prisma.PersonRelationshipScalarWhereInput
+  data: Prisma.XOR<Prisma.PersonRelationshipUpdateManyMutationInput, Prisma.PersonRelationshipUncheckedUpdateManyWithoutEvidenceInput>
+}
+
 export type PersonRelationshipCreateManySourcePersonInput = {
   id?: string
   targetPersonId: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  evidenceId?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonRelationshipCreateManyTargetPersonInput = {
@@ -582,15 +788,23 @@ export type PersonRelationshipCreateManyTargetPersonInput = {
   sourcePersonId: string
   relationType: $Enums.RelationshipType
   confidence?: number | null
+  source?: string | null
+  evidenceId?: string | null
+  notes?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PersonRelationshipUpdateWithoutSourcePersonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   targetPerson?: Prisma.PersonUpdateOneRequiredWithoutIncomingRelationshipsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutRelationshipsNestedInput
 }
 
 export type PersonRelationshipUncheckedUpdateWithoutSourcePersonInput = {
@@ -598,7 +812,11 @@ export type PersonRelationshipUncheckedUpdateWithoutSourcePersonInput = {
   targetPersonId?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonRelationshipUncheckedUpdateManyWithoutSourcePersonInput = {
@@ -606,15 +824,23 @@ export type PersonRelationshipUncheckedUpdateManyWithoutSourcePersonInput = {
   targetPersonId?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonRelationshipUpdateWithoutTargetPersonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sourcePerson?: Prisma.PersonUpdateOneRequiredWithoutOutgoingRelationshipsNestedInput
+  evidence?: Prisma.EvidenceUpdateOneWithoutRelationshipsNestedInput
 }
 
 export type PersonRelationshipUncheckedUpdateWithoutTargetPersonInput = {
@@ -622,7 +848,11 @@ export type PersonRelationshipUncheckedUpdateWithoutTargetPersonInput = {
   sourcePersonId?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PersonRelationshipUncheckedUpdateManyWithoutTargetPersonInput = {
@@ -630,7 +860,59 @@ export type PersonRelationshipUncheckedUpdateManyWithoutTargetPersonInput = {
   sourcePersonId?: Prisma.StringFieldUpdateOperationsInput | string
   relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evidenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PersonRelationshipCreateManyEvidenceInput = {
+  id?: string
+  sourcePersonId: string
+  targetPersonId: string
+  relationType: $Enums.RelationshipType
+  confidence?: number | null
+  source?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PersonRelationshipUpdateWithoutEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourcePerson?: Prisma.PersonUpdateOneRequiredWithoutOutgoingRelationshipsNestedInput
+  targetPerson?: Prisma.PersonUpdateOneRequiredWithoutIncomingRelationshipsNestedInput
+}
+
+export type PersonRelationshipUncheckedUpdateWithoutEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sourcePersonId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetPersonId?: Prisma.StringFieldUpdateOperationsInput | string
+  relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PersonRelationshipUncheckedUpdateManyWithoutEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sourcePersonId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetPersonId?: Prisma.StringFieldUpdateOperationsInput | string
+  relationType?: Prisma.EnumRelationshipTypeFieldUpdateOperationsInput | $Enums.RelationshipType
+  confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -641,9 +923,14 @@ export type PersonRelationshipSelect<ExtArgs extends runtime.Types.Extensions.In
   targetPersonId?: boolean
   relationType?: boolean
   confidence?: boolean
+  source?: boolean
+  evidenceId?: boolean
+  notes?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   sourcePerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   targetPerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+  evidence?: boolean | Prisma.PersonRelationship$evidenceArgs<ExtArgs>
 }, ExtArgs["result"]["personRelationship"]>
 
 export type PersonRelationshipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -652,9 +939,14 @@ export type PersonRelationshipSelectCreateManyAndReturn<ExtArgs extends runtime.
   targetPersonId?: boolean
   relationType?: boolean
   confidence?: boolean
+  source?: boolean
+  evidenceId?: boolean
+  notes?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   sourcePerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   targetPerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+  evidence?: boolean | Prisma.PersonRelationship$evidenceArgs<ExtArgs>
 }, ExtArgs["result"]["personRelationship"]>
 
 export type PersonRelationshipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -663,9 +955,14 @@ export type PersonRelationshipSelectUpdateManyAndReturn<ExtArgs extends runtime.
   targetPersonId?: boolean
   relationType?: boolean
   confidence?: boolean
+  source?: boolean
+  evidenceId?: boolean
+  notes?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   sourcePerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   targetPerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+  evidence?: boolean | Prisma.PersonRelationship$evidenceArgs<ExtArgs>
 }, ExtArgs["result"]["personRelationship"]>
 
 export type PersonRelationshipSelectScalar = {
@@ -674,21 +971,28 @@ export type PersonRelationshipSelectScalar = {
   targetPersonId?: boolean
   relationType?: boolean
   confidence?: boolean
+  source?: boolean
+  evidenceId?: boolean
+  notes?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type PersonRelationshipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sourcePersonId" | "targetPersonId" | "relationType" | "confidence" | "createdAt", ExtArgs["result"]["personRelationship"]>
+export type PersonRelationshipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sourcePersonId" | "targetPersonId" | "relationType" | "confidence" | "source" | "evidenceId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["personRelationship"]>
 export type PersonRelationshipInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sourcePerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   targetPerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+  evidence?: boolean | Prisma.PersonRelationship$evidenceArgs<ExtArgs>
 }
 export type PersonRelationshipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sourcePerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   targetPerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+  evidence?: boolean | Prisma.PersonRelationship$evidenceArgs<ExtArgs>
 }
 export type PersonRelationshipIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sourcePerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   targetPerson?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+  evidence?: boolean | Prisma.PersonRelationship$evidenceArgs<ExtArgs>
 }
 
 export type $PersonRelationshipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -696,6 +1000,7 @@ export type $PersonRelationshipPayload<ExtArgs extends runtime.Types.Extensions.
   objects: {
     sourcePerson: Prisma.$PersonPayload<ExtArgs>
     targetPerson: Prisma.$PersonPayload<ExtArgs>
+    evidence: Prisma.$EvidencePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -703,7 +1008,11 @@ export type $PersonRelationshipPayload<ExtArgs extends runtime.Types.Extensions.
     targetPersonId: string
     relationType: $Enums.RelationshipType
     confidence: number | null
+    source: string | null
+    evidenceId: string | null
+    notes: string | null
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["personRelationship"]>
   composites: {}
 }
@@ -1100,6 +1409,7 @@ export interface Prisma__PersonRelationshipClient<T, Null = never, ExtArgs exten
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sourcePerson<T extends Prisma.PersonDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PersonDefaultArgs<ExtArgs>>): Prisma.Prisma__PersonClient<runtime.Types.Result.GetResult<Prisma.$PersonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   targetPerson<T extends Prisma.PersonDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PersonDefaultArgs<ExtArgs>>): Prisma.Prisma__PersonClient<runtime.Types.Result.GetResult<Prisma.$PersonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  evidence<T extends Prisma.PersonRelationship$evidenceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PersonRelationship$evidenceArgs<ExtArgs>>): Prisma.Prisma__EvidenceClient<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1134,7 +1444,11 @@ export interface PersonRelationshipFieldRefs {
   readonly targetPersonId: Prisma.FieldRef<"PersonRelationship", 'String'>
   readonly relationType: Prisma.FieldRef<"PersonRelationship", 'RelationshipType'>
   readonly confidence: Prisma.FieldRef<"PersonRelationship", 'Float'>
+  readonly source: Prisma.FieldRef<"PersonRelationship", 'String'>
+  readonly evidenceId: Prisma.FieldRef<"PersonRelationship", 'String'>
+  readonly notes: Prisma.FieldRef<"PersonRelationship", 'String'>
   readonly createdAt: Prisma.FieldRef<"PersonRelationship", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"PersonRelationship", 'DateTime'>
 }
     
 
@@ -1533,6 +1847,25 @@ export type PersonRelationshipDeleteManyArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many PersonRelationships to delete.
    */
   limit?: number
+}
+
+/**
+ * PersonRelationship.evidence
+ */
+export type PersonRelationship$evidenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evidence
+   */
+  select?: Prisma.EvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evidence
+   */
+  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvidenceInclude<ExtArgs> | null
+  where?: Prisma.EvidenceWhereInput
 }
 
 /**
