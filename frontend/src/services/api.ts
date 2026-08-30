@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const API_BASE = "http://localhost:3000/api/v1";
+const API_BASE = "https://tasc.development.catalystappsail.in/api/v1";
 
 const apiClient = axios.create({
   baseURL: API_BASE,
@@ -145,15 +145,11 @@ export const api = {
 
   policeStations: (params: { state?: string; district?: string }) => {
     if (params.district) {
-      return request(
-        `/police/city/${encodeURIComponent(params.district)}`,
-      );
+      return request(`/police/city/${encodeURIComponent(params.district)}`);
     }
 
     if (params.state) {
-      return request(
-        `/police/state/${encodeURIComponent(params.state)}`,
-      );
+      return request(`/police/state/${encodeURIComponent(params.state)}`);
     }
 
     return Promise.resolve({ stations: [] });
@@ -270,7 +266,11 @@ export const api = {
     }),
 
   // Case Board multi-perspective search
-  caseBoardSearch: (params: { q: string; types?: string[]; limit?: number }) => {
+  caseBoardSearch: (params: {
+    q: string;
+    types?: string[];
+    limit?: number;
+  }) => {
     const p = new URLSearchParams();
 
     p.set("q", params.q);
@@ -297,6 +297,5 @@ export const api = {
 
   facesSubjects: () => request("/faces/subjects"),
 
-  personFaces: (personId: string) =>
-    request(`/faces/person/${personId}`),
+  personFaces: (personId: string) => request(`/faces/person/${personId}`),
 };
