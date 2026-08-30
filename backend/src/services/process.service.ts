@@ -1,4 +1,4 @@
-import { CrimeExtractionResult } from "../types";
+import { CrimeExtractionResult } from "../types.js";
 import { processAgent } from "./agent.service.js";
 
 export const processService = async (

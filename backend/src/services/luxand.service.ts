@@ -256,7 +256,7 @@ export async function searchFaces(params: {
     },
   });
 
-  const matches = faceRecords.map((record) => ({
+  const matches = faceRecords.map((record: any) => ({
     faceRecord: {
       id: record.id,
       personId: record.personId,
@@ -272,7 +272,7 @@ export async function searchFaces(params: {
     probability: subjectScores.get(record.luxandSubjectId || "") || 0,
   }));
 
-  matches.sort((a, b) => b.probability - a.probability);
+  matches.sort((a: any, b: any) => b.probability - a.probability);
 
   return matches;
 }

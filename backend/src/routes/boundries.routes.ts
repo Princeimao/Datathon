@@ -4,7 +4,7 @@ import {
   getALlDistricts,
   getAllStates,
   stateBoundries,
-} from "../controllers/boundries.controller";
+} from "../controllers/boundries.controller.js";
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-# KSP Intel — Crime Intelligence Platform
+# TASC — Crime Intelligence Platform
 
 A full-stack crime intelligence platform for police investigations. It ingests
 FIR / case data, links people, phones, vehicles, locations, organizations and
@@ -15,7 +15,7 @@ Board**.
 | Vector search       | Pinecone (`llama-text-embed-v2`, namespace `case`)                      |
 | Embeddings / vision | Ollama (`nomic-embed-text`, `llava`)                                    |
 | Object storage      | Catalyst Stratus                                                        |
-
+| Face search         | Luxand Api (Face Search library)                                        |
 ---
 
 ## Table of Contents

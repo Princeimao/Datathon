@@ -79,7 +79,9 @@ async function matchCasesByImageHash(
     },
   });
 
-  const caseIds = [...new Set(evidences.map((evidence) => evidence.caseId))];
+  const caseIds = [
+    ...new Set(evidences.map((evidence: any) => evidence.caseId)),
+  ];
 
   if (!caseIds.length) {
     return [];
@@ -95,11 +97,7 @@ async function matchCasesByImageHash(
 
 async function enrichImageHits(hits: any[], limit: number) {
   const caseIds = [
-    ...new Set(
-      hits
-        .map((hit) => hit.caseId)
-        .filter(Boolean) as string[],
-    ),
+    ...new Set(hits.map((hit) => hit.caseId).filter(Boolean) as string[]),
   ];
 
   if (!caseIds.length) {
@@ -113,7 +111,7 @@ async function enrichImageHits(hits: any[], limit: number) {
     take: limit,
   });
 
-  return cases.map((caseItem) => {
+  return cases.map((caseItem: any) => {
     const matchingHits = hits.filter((hit) => hit.caseId === caseItem.id);
 
     const bestScore = Math.max(
@@ -139,9 +137,7 @@ async function enrichImageHits(hits: any[], limit: number) {
 async function enrichFaceMatches(matches: any[], limit: number) {
   const caseIds = [
     ...new Set(
-      matches
-        .map((match) => match.case?.id)
-        .filter(Boolean) as string[],
+      matches.map((match) => match.case?.id).filter(Boolean) as string[],
     ),
   ];
 
@@ -156,7 +152,7 @@ async function enrichFaceMatches(matches: any[], limit: number) {
     take: limit,
   });
 
-  return cases.map((caseItem) => {
+  return cases.map((caseItem: any) => {
     const caseMatches = matches.filter(
       (match) => match.case?.id === caseItem.id,
     );
@@ -193,7 +189,7 @@ function buildDatabaseFilters(
     ({
       contains: value,
       mode: "insensitive",
-    } as const);
+    }) as const;
 
   switch (type) {
     case "phone":

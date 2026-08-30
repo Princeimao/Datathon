@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { prisma } from "../config/prisma.config";
+import { prisma } from "../config/prisma.config.js";
 import fs from "fs";
 import path from "path";
 

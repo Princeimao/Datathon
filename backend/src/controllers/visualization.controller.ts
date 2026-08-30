@@ -341,8 +341,8 @@ export const getGeospatialPoints = async (req: Request, res: Response) => {
       },
     });
 
-    const points = cases.flatMap((c) =>
-      c.locations.map((cl) => ({
+    const points = cases.flatMap((c: any) =>
+      c.locations.map((cl: any) => ({
         caseId: c.id,
         caseNumber: c.caseNumber,
         title: c.title,
@@ -432,11 +432,11 @@ export const getDistrictStats = async (req: Request, res: Response) => {
     /**
      * Station / Police Unit level statistics
      */
-    const stationStats = policeUnits.map((unit) => {
+    const stationStats = policeUnits.map((unit: any) => {
       const totalCases = unit.cases.length;
 
       const typeBreakdown = unit.cases.reduce(
-        (acc, c) => {
+        (acc: any, c: any) => {
           const type =
             c.crimeMinorHead?.crimeHeadName ||
             c.crimeMajorHead?.crimeGroupName ||
@@ -450,7 +450,7 @@ export const getDistrictStats = async (req: Request, res: Response) => {
       );
 
       const statusBreakdown = unit.cases.reduce(
-        (acc, c) => {
+        (acc: any, c: any) => {
           const status = c.caseStatus?.caseStatusName || "Unknown";
 
           acc[status] = (acc[status] || 0) + 1;
@@ -478,7 +478,7 @@ export const getDistrictStats = async (req: Request, res: Response) => {
      * Group police units by district
      */
     const districtGroups = stationStats.reduce(
-      (acc, stat) => {
+      (acc: any, stat: any) => {
         const district = stat.district || "Unknown District";
 
         if (!acc[district]) {
@@ -634,7 +634,7 @@ export const getTrendAlerts = async (req: Request, res: Response) => {
 
     let totalHistorical = 0;
 
-    allCases.forEach((c) => {
+    allCases.forEach((c: any) => {
       const district =
         c.policeUnit?.district?.districtName || "Unknown District";
 
@@ -659,7 +659,7 @@ export const getTrendAlerts = async (req: Request, res: Response) => {
      */
     const recent: Record<string, Record<string, number>> = {};
 
-    recentCases.forEach((c) => {
+    recentCases.forEach((c: any) => {
       const district =
         c.policeUnit?.district?.districtName || "Unknown District";
 
@@ -894,7 +894,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
     const nodesMap: Record<string, any> = {};
     const edges: any[] = [];
 
-    persons.forEach((p) => {
+    persons.forEach((p: any) => {
       /**
        * PERSON
        */
@@ -930,7 +930,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
       /**
        * PERSON RELATIONSHIPS
        */
-      p.outgoingRelationships.forEach((rel) => {
+      p.outgoingRelationships.forEach((rel: any) => {
         edges.push({
           id: `relationship-${rel.id}`,
 
@@ -953,7 +953,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
       /**
        * PHONES
        */
-      p.phones.forEach((owner) => {
+      p.phones.forEach((owner: any) => {
         const phone = owner.phone;
 
         const phoneNodeId = `phone-${phone.id}`;
@@ -997,7 +997,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
       /**
        * VEHICLES
        */
-      p.vehicles.forEach((owner) => {
+      p.vehicles.forEach((owner: any) => {
         const vehicle = owner.vehicle;
 
         const vehicleNodeId = `vehicle-${vehicle.id}`;
@@ -1044,7 +1044,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
       /**
        * ADDRESSES / LOCATIONS
        */
-      p.addresses.forEach((personLocation) => {
+      p.addresses.forEach((personLocation: any) => {
         const location = personLocation.location;
 
         const locationNodeId = `location-${location.id}`;
@@ -1094,7 +1094,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
       /**
        * ORGANIZATIONS
        */
-      p.organizations.forEach((member) => {
+      p.organizations.forEach((member: any) => {
         const org = member.organization;
 
         const orgNodeId = `organization-${org.id}`;
@@ -1141,7 +1141,7 @@ export const getNetworkGraph = async (req: Request, res: Response) => {
       /**
        * CASES
        */
-      p.caseRoles.forEach((casePerson) => {
+      p.caseRoles.forEach((casePerson: any) => {
         const c = casePerson.case;
 
         const caseNodeId = `case-${c.id}`;
@@ -1257,11 +1257,11 @@ export const getRepeatOffenders = async (req: Request, res: Response) => {
     });
 
     const profiles = persons
-      .map((p) => {
+      .map((p: any) => {
         /**
          * Case involvement
          */
-        const caseInvolvements = p.caseRoles.map((cp) => {
+        const caseInvolvements = p.caseRoles.map((cp: any) => {
           const c = cp.case;
 
           return {
@@ -1295,7 +1295,7 @@ export const getRepeatOffenders = async (req: Request, res: Response) => {
          * heavily to the calculated risk score.
          */
         const suspectCases = caseInvolvements.filter(
-          (c) => c.role === "SUSPECT",
+          (c: any) => c.role === "SUSPECT",
         );
 
         /**
@@ -1310,7 +1310,7 @@ export const getRepeatOffenders = async (req: Request, res: Response) => {
          * Collect MO descriptions
          */
         const moPatterns = caseInvolvements
-          .map((c) => c.modusOperandi?.description)
+          .map((c: any) => c.modusOperandi?.description)
           .filter(Boolean) as string[];
 
         /**
@@ -1349,19 +1349,19 @@ export const getRepeatOffenders = async (req: Request, res: Response) => {
 
           moPatterns: uniqueMoPatterns,
 
-          phones: p.phones.map((owner) => owner.phone.number),
+          phones: p.phones.map((owner: any) => owner.phone.number),
 
           vehicles: p.vehicles
-            .map((owner) => owner.vehicle.registrationNo)
+            .map((owner: any) => owner.vehicle.registrationNo)
             .filter(Boolean),
 
           addresses: p.addresses
-            .map((address) => address.location.address)
+            .map((address: any) => address.location.address)
             .filter(Boolean),
         };
       })
-      .filter((profile) => profile.totalCases > 1)
-      .sort((a, b) => b.calculatedRiskScore - a.calculatedRiskScore);
+      .filter((profile: any) => profile.totalCases > 1)
+      .sort((a: any, b: any) => b.calculatedRiskScore - a.calculatedRiskScore);
 
     return res.status(200).json({
       success: true,
@@ -1448,11 +1448,11 @@ export const getAssociationNetworks = async (req: Request, res: Response) => {
          * SHARED PHONES
          * --------------------------------------------------------
          */
-        const sharedPhones = p1.phones.filter((p1Phone) =>
-          p2.phones.some((p2Phone) => p2Phone.phoneId === p1Phone.phoneId),
+        const sharedPhones = p1.phones.filter((p1Phone: any) =>
+          p2.phones.some((p2Phone: any) => p2Phone.phoneId === p1Phone.phoneId),
         );
 
-        sharedPhones.forEach((owner) => {
+        sharedPhones.forEach((owner: any) => {
           const phone = owner.phone;
 
           associations.push({
@@ -1478,13 +1478,13 @@ export const getAssociationNetworks = async (req: Request, res: Response) => {
          * SHARED VEHICLES
          * --------------------------------------------------------
          */
-        const sharedVehicles = p1.vehicles.filter((p1Vehicle) =>
+        const sharedVehicles = p1.vehicles.filter((p1Vehicle: any) =>
           p2.vehicles.some(
-            (p2Vehicle) => p2Vehicle.vehicleId === p1Vehicle.vehicleId,
+            (p2Vehicle: any) => p2Vehicle.vehicleId === p1Vehicle.vehicleId,
           ),
         );
 
-        sharedVehicles.forEach((owner) => {
+        sharedVehicles.forEach((owner: any) => {
           const vehicle = owner.vehicle;
 
           associations.push({
@@ -1510,13 +1510,14 @@ export const getAssociationNetworks = async (req: Request, res: Response) => {
          * SHARED LOCATIONS
          * --------------------------------------------------------
          */
-        const sharedLocations = p1.addresses.filter((p1Location) =>
+        const sharedLocations = p1.addresses.filter((p1Location: any) =>
           p2.addresses.some(
-            (p2Location) => p2Location.locationId === p1Location.locationId,
+            (p2Location: any) =>
+              p2Location.locationId === p1Location.locationId,
           ),
         );
 
-        sharedLocations.forEach((personLocation) => {
+        sharedLocations.forEach((personLocation: any) => {
           const location = personLocation.location;
 
           associations.push({
@@ -1551,14 +1552,15 @@ export const getAssociationNetworks = async (req: Request, res: Response) => {
          * SHARED ORGANIZATIONS
          * --------------------------------------------------------
          */
-        const sharedOrganizations = p1.organizations.filter((p1Organization) =>
-          p2.organizations.some(
-            (p2Organization) =>
-              p2Organization.organizationId === p1Organization.organizationId,
-          ),
+        const sharedOrganizations = p1.organizations.filter(
+          (p1Organization: any) =>
+            p2.organizations.some(
+              (p2Organization: any) =>
+                p2Organization.organizationId === p1Organization.organizationId,
+            ),
         );
 
-        sharedOrganizations.forEach((member) => {
+        sharedOrganizations.forEach((member: any) => {
           const organization = member.organization;
 
           associations.push({
@@ -1649,7 +1651,7 @@ export const getPredictiveStats = async (req: Request, res: Response) => {
       }
     > = {};
 
-    locations.forEach((location) => {
+    locations.forEach((location: any) => {
       const district = location.district?.districtName || "Unknown District";
 
       if (!districtCounts[district]) {
@@ -1796,7 +1798,7 @@ export const getAnomalies = async (req: Request, res: Response) => {
     });
 
     const anomalies = cases
-      .map((c) => {
+      .map((c: any) => {
         const incidentDate = c.incidentFromDate || c.crimeRegisteredDate;
 
         const hour = new Date(incidentDate).getHours();
@@ -1874,7 +1876,8 @@ export const getAnomalies = async (req: Request, res: Response) => {
         };
       })
       .filter(
-        (anomaly): anomaly is NonNullable<typeof anomaly> => anomaly !== null,
+        (anomaly: any): anomaly is NonNullable<typeof anomaly> =>
+          anomaly !== null,
       );
 
     return res.status(200).json({
@@ -2026,24 +2029,26 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
   /**
    * Target data
    */
-  const targetPhones = target.phones.map((owner) => owner.phone.number);
+  const targetPhones = target.phones.map((owner: any) => owner.phone.number);
 
   const targetVehicles = target.vehicles
-    .map((owner) => owner.vehicle.registrationNo)
+    .map((owner: any) => owner.vehicle.registrationNo)
     .filter(Boolean) as string[];
 
   /**
    * Use location IDs rather than
    * floating-point coordinates.
    */
-  const targetLocations = target.addresses.map((address) => address.locationId);
+  const targetLocations = target.addresses.map(
+    (address: any) => address.locationId,
+  );
 
-  const targetCases = target.caseRoles.map((caseRole) => caseRole.caseId);
+  const targetCases = target.caseRoles.map((caseRole: any) => caseRole.caseId);
 
   const targetAliases = target.aliases || [];
 
   const matches = others
-    .map((other) => {
+    .map((other: any) => {
       let confidence = 0;
 
       const reasons: string[] = [];
@@ -2087,7 +2092,7 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
        * ALIAS
        * --------------------------------------------------------
        */
-      const aliasOverlap = targetAliases.filter((alias) =>
+      const aliasOverlap = targetAliases.filter((alias: any) =>
         other.aliases.includes(alias),
       );
 
@@ -2102,9 +2107,9 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
        * PHONE
        * --------------------------------------------------------
        */
-      const otherPhones = other.phones.map((owner) => owner.phone.number);
+      const otherPhones = other.phones.map((owner: any) => owner.phone.number);
 
-      const sharedPhones = otherPhones.filter((number) =>
+      const sharedPhones = otherPhones.filter((number: any) =>
         targetPhones.includes(number),
       );
 
@@ -2120,7 +2125,7 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
        * --------------------------------------------------------
        */
       const otherVehicles = other.vehicles
-        .map((owner) => owner.vehicle.registrationNo)
+        .map((owner: any) => owner.vehicle.registrationNo)
         .filter(Boolean) as string[];
 
       const sharedVehicles = otherVehicles.filter((registrationNo) =>
@@ -2139,10 +2144,10 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
        * --------------------------------------------------------
        */
       const otherLocations = other.addresses.map(
-        (address) => address.locationId,
+        (address: any) => address.locationId,
       );
 
-      const sharedLocations = otherLocations.filter((locationId) =>
+      const sharedLocations = otherLocations.filter((locationId: any) =>
         targetLocations.includes(locationId),
       );
 
@@ -2159,9 +2164,11 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
        * CASE
        * --------------------------------------------------------
        */
-      const otherCases = other.caseRoles.map((caseRole) => caseRole.caseId);
+      const otherCases = other.caseRoles.map(
+        (caseRole: any) => caseRole.caseId,
+      );
 
-      const sharedCases = otherCases.filter((caseId) =>
+      const sharedCases = otherCases.filter((caseId: any) =>
         targetCases.includes(caseId),
       );
 
@@ -2202,11 +2209,13 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
 
           aliases: other.aliases,
 
-          phones: other.phones.map((owner) => owner.phone.number),
+          phones: other.phones.map((owner: any) => owner.phone.number),
 
-          vehicles: other.vehicles.map((owner) => owner.vehicle.registrationNo),
+          vehicles: other.vehicles.map(
+            (owner: any) => owner.vehicle.registrationNo,
+          ),
 
-          cases: other.caseRoles.map((caseRole) => ({
+          cases: other.caseRoles.map((caseRole: any) => ({
             caseId: caseRole.case.id,
 
             caseNumber: caseRole.case.caseNumber,
@@ -2222,8 +2231,8 @@ export async function calculatePersonSimilarity(targetPersonId: string) {
         reasons,
       };
     })
-    .filter((match) => match.confidence >= 25)
-    .sort((a, b) => b.confidence - a.confidence);
+    .filter((match: any) => match.confidence >= 25)
+    .sort((a: any, b: any) => b.confidence - a.confidence);
 
   return matches;
 }
@@ -2304,7 +2313,7 @@ export const getTimelineStats = async (req: Request, res: Response) => {
       }
     > = {};
 
-    cases.forEach((c) => {
+    cases.forEach((c: any) => {
       /**
        * Prefer actual incident date.
        * Fall back to registration date.
@@ -2393,7 +2402,7 @@ export const getTimelineStats = async (req: Request, res: Response) => {
        * LOCATION-BASED INCIDENTS
        * --------------------------------------------------------
        */
-      c.locations.forEach((caseLocation) => {
+      c.locations.forEach((caseLocation: any) => {
         const location = caseLocation.location;
 
         const district =
@@ -2787,7 +2796,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
     // 4. EVIDENCE
     // ---------------------------------------------------------
 
-    caseObj.evidences.forEach((ev) => {
+    caseObj.evidences.forEach((ev: any) => {
       addNode(ev.id, "EVIDENCE", ev.title || ev.type, {
         type: ev.type,
         title: ev.title,
@@ -2848,7 +2857,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       }
 
       // Phones
-      p.phones.forEach((phoneOwner) => {
+      p.phones.forEach((phoneOwner: any) => {
         const ph = phoneOwner.phone;
 
         addNode(ph.id, "PHONE", ph.number, {
@@ -2863,7 +2872,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       });
 
       // Vehicles
-      p.vehicles.forEach((vehicleOwner) => {
+      p.vehicles.forEach((vehicleOwner: any) => {
         const v = vehicleOwner.vehicle;
 
         addNode(v.id, "VEHICLE", v.registrationNo || "No Registration", {
@@ -2882,7 +2891,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       });
 
       // Addresses
-      p.addresses.forEach((personLocation) => {
+      p.addresses.forEach((personLocation: any) => {
         const loc = personLocation.location;
 
         addNode(loc.id, "LOCATION", loc.address || "Address", {
@@ -2900,7 +2909,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       });
 
       // Historical cases
-      p.caseRoles.forEach((otherCaseLink) => {
+      p.caseRoles.forEach((otherCaseLink: any) => {
         if (otherCaseLink.caseId === caseObj.id) {
           return;
         }
@@ -2923,7 +2932,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
     // 6. DIRECT VEHICLES
     // ---------------------------------------------------------
 
-    caseObj.vehicles.forEach((caseVehicle) => {
+    caseObj.vehicles.forEach((caseVehicle: any) => {
       const v = caseVehicle.vehicle;
 
       addNode(v.id, "VEHICLE", v.registrationNo || "No Registration", {
@@ -2941,7 +2950,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       addEdge(caseObj.id, v.id, "VEHICLE_SPOTTED");
 
       // Owners
-      v.owners.forEach((owner) => {
+      v.owners.forEach((owner: any) => {
         const person = owner.person;
 
         addNode(person.id, "PERSON", person.name || "Unknown Person", {
@@ -2956,7 +2965,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       });
 
       // Vehicle case history
-      v.cases.forEach((vehicleCase) => {
+      v.cases.forEach((vehicleCase: any) => {
         if (vehicleCase.caseId === caseObj.id) {
           return;
         }
@@ -2979,7 +2988,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
     // 7. DIRECT PHONES
     // ---------------------------------------------------------
 
-    caseObj.phones.forEach((casePhone) => {
+    caseObj.phones.forEach((casePhone: any) => {
       const ph = casePhone.phone;
 
       addNode(ph.id, "PHONE", ph.number, {
@@ -2993,7 +3002,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       addEdge(caseObj.id, ph.id, "PHONE_LINKED");
 
       // Owners
-      ph.owners.forEach((owner) => {
+      ph.owners.forEach((owner: any) => {
         const person = owner.person;
 
         addNode(person.id, "PERSON", person.name || "Unknown Person", {
@@ -3008,7 +3017,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       });
 
       // Phone case history
-      ph.cases.forEach((phoneCase) => {
+      ph.cases.forEach((phoneCase: any) => {
         if (phoneCase.caseId === caseObj.id) {
           return;
         }
@@ -3031,7 +3040,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
     // 8. CASE LOCATIONS
     // ---------------------------------------------------------
 
-    caseObj.locations.forEach((caseLocation) => {
+    caseObj.locations.forEach((caseLocation: any) => {
       const loc = caseLocation.location;
 
       addNode(loc.id, "LOCATION", loc.address || "Crime Location", {
@@ -3056,7 +3065,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
       );
 
       // Residents
-      loc.residents.forEach((resident) => {
+      loc.residents.forEach((resident: any) => {
         const person = resident.person;
 
         addNode(person.id, "PERSON", person.name || "Resident", {
@@ -3074,7 +3083,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
     // 9. ORGANIZATIONS
     // ---------------------------------------------------------
 
-    caseObj.organizations.forEach((caseOrganization) => {
+    caseObj.organizations.forEach((caseOrganization: any) => {
       const org = caseOrganization.organization;
 
       addNode(org.id, "ORGANIZATION", org.name, {
@@ -3086,7 +3095,7 @@ export const getCaseBoard = async (req: Request, res: Response) => {
 
       addEdge(caseObj.id, org.id, "ORGANIZATION_INVOLVED");
 
-      org.members.forEach((member) => {
+      org.members.forEach((member: any) => {
         const person = member.person;
 
         addNode(person.id, "PERSON", person.name || "Member", {
@@ -3274,14 +3283,14 @@ export const searchCaseBoard = async (req: Request, res: Response) => {
       });
 
       results.statements = [
-        ...roleNotes.map((roleNote) => ({
+        ...roleNotes.map((roleNote: any) => ({
           statement: roleNote.notes,
           person: roleNote.person,
           role: roleNote.role,
           caseId: roleNote.caseId,
           case: roleNote.case,
         })),
-        ...statementEvidence.map((evidence) => ({
+        ...statementEvidence.map((evidence: any) => ({
           statement: evidence.description,
           evidence,
           caseId: evidence.caseId,
@@ -3484,7 +3493,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
     const yearFilter = req.query.year as string | undefined;
 
     const timeFiltered = fetchedCases.filter(
-      (c) => matchesTimeOfDay(c, timeOfDay) && matchesYear(c, yearFilter),
+      (c: any) => matchesTimeOfDay(c, timeOfDay) && matchesYear(c, yearFilter),
     );
 
     let cases = timeFiltered;
@@ -3492,7 +3501,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
     if (activeAlerts) {
       const alertDistricts = computeAlertDistricts(timeFiltered);
 
-      cases = timeFiltered.filter((c) => {
+      cases = timeFiltered.filter((c: any) => {
         const district =
           c.policeUnit?.district?.districtName ||
           c.locations?.[0]?.location?.district?.districtName ||
@@ -3525,7 +3534,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
 
     const crimeTypeBreakdown: Record<string, number> = {};
 
-    cases.forEach((c) => {
+    cases.forEach((c: any) => {
       const crimeType = getCrimeType(c);
 
       crimeTypeBreakdown[crimeType] = (crimeTypeBreakdown[crimeType] || 0) + 1;
@@ -3552,7 +3561,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
       }
     > = {};
 
-    cases.forEach((c) => {
+    cases.forEach((c: any) => {
       const district = getDistrict(c);
       const state = getState(c);
       const crimeType = getCrimeType(c);
@@ -3582,7 +3591,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
 
     let anomalyCount = 0;
 
-    cases.forEach((c) => {
+    cases.forEach((c: any) => {
       const hour = new Date(getIncidentDate(c)).getHours();
 
       const crimeType = getCrimeType(c).toUpperCase();
@@ -3617,7 +3626,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
       }
     > = {};
 
-    cases.forEach((c) => {
+    cases.forEach((c: any) => {
       if (!c.modusOperandi) return;
 
       const moName = c.modusOperandi.name;
@@ -3632,7 +3641,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
 
       moMap[moName].incidents++;
 
-      c.persons.forEach((person) => {
+      c.persons.forEach((person: any) => {
         moMap[moName].suspects.add(person.personId);
       });
     });
@@ -3708,7 +3717,7 @@ export const getDashboardSummary = async (req: Request, res: Response) => {
       }
     > = {};
 
-    cases.forEach((c) => {
+    cases.forEach((c: any) => {
       const date = new Date(getIncidentDate(c));
 
       let label: string;
@@ -3866,7 +3875,7 @@ export const getMapData = async (req: Request, res: Response) => {
     const yearFilter = req.query.year as string | undefined;
 
     const timeFiltered = cases.filter(
-      (c) => matchesTimeOfDay(c, timeOfDay) && matchesYear(c, yearFilter),
+      (c: any) => matchesTimeOfDay(c, timeOfDay) && matchesYear(c, yearFilter),
     );
 
     let activeFiltered = timeFiltered;
@@ -3874,7 +3883,7 @@ export const getMapData = async (req: Request, res: Response) => {
     if (activeAlerts) {
       const alertDistricts = computeAlertDistricts(timeFiltered);
 
-      activeFiltered = timeFiltered.filter((c) => {
+      activeFiltered = timeFiltered.filter((c: any) => {
         const district =
           c.policeUnit?.district?.districtName ||
           c.locations?.[0]?.location?.district?.districtName ||
@@ -3896,8 +3905,8 @@ export const getMapData = async (req: Request, res: Response) => {
     // GEOSPATIAL POINTS
     // ---------------------------------------------------------
 
-    const points = activeFiltered.flatMap((c) =>
-      c.locations.map((caseLocation) => {
+    const points = activeFiltered.flatMap((c: any) =>
+      c.locations.map((caseLocation: any) => {
         const location = caseLocation.location;
 
         const district =
@@ -3960,7 +3969,7 @@ export const getMapData = async (req: Request, res: Response) => {
       }
     > = {};
 
-    points.forEach((point) => {
+    points.forEach((point: any) => {
       const state = point.state || "Unknown";
 
       if (!stateGroups[state]) {
@@ -4025,7 +4034,9 @@ export const getMapData = async (req: Request, res: Response) => {
     if (!stateSelected && !districtSelected) {
       const visibleStates = new Set(filteredStateStats.map((s) => s.state));
 
-      visiblePoints = points.filter((point) => visibleStates.has(point.state));
+      visiblePoints = points.filter((point: any) =>
+        visibleStates.has(point.state),
+      );
     }
 
     // ---------------------------------------------------------

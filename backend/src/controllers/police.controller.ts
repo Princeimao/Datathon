@@ -30,7 +30,7 @@ export const getPoliceStationsByCity = async (req: Request, res: Response) => {
       },
     });
 
-    const stations = policeStations.map((station) => ({
+    const stations = policeStations.map((station: any) => ({
       id: station.id,
       name: station.unitName,
     }));
@@ -76,7 +76,7 @@ export const getPoliceStationsByState = async (req: Request, res: Response) => {
       },
     });
 
-    const stations = policeStations.map((station) => ({
+    const stations = policeStations.map((station: any) => ({
       id: station.id,
       name: station.unitName,
     }));

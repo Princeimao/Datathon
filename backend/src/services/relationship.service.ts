@@ -1,8 +1,8 @@
 import {
-  CrimeExtractionResult,
-  LocationType,
-  RelationshipType,
-} from "../types";
+  type CrimeExtractionResult,
+  type LocationType,
+  type RelationshipType,
+} from "../types.js";
 import { prisma } from "../config/prisma.config.js";
 
 interface LocationResult {
@@ -146,7 +146,7 @@ export const relationshipService = async (data: CrimeExtractionResult) => {
       relationships = [],
     } = data;
 
-    const transactionResult = await prisma.$transaction(async (tx) => {
+    const transactionResult = await prisma.$transaction(async (tx: any) => {
       // ============================================================
       // 1. POLICE ADMINISTRATION
       // ============================================================
@@ -168,14 +168,14 @@ export const relationshipService = async (data: CrimeExtractionResult) => {
       let districtName = "Default District";
 
       const reportingStationLocation = locations.find(
-        (location) => location.locationType === "REPORTING_STATION",
+        (location: any) => location.locationType === "REPORTING_STATION",
       );
 
       if (reportingStationLocation?.district) {
         districtName = reportingStationLocation.district;
       } else {
         const locationWithDistrict = locations.find(
-          (location) => location.district,
+          (location: any) => location.district,
         );
 
         if (locationWithDistrict?.district) {
@@ -222,7 +222,7 @@ export const relationshipService = async (data: CrimeExtractionResult) => {
         stationName = reportingStationLocation.station;
       } else {
         const locationWithStation = locations.find(
-          (location) => location.station,
+          (location: any) => location.station,
         );
 
         if (locationWithStation?.station) {
