@@ -182,11 +182,34 @@ export default function Dashboard({
     }));
   }, [data]);
 
+  const CRIME_COLORS = [
+    "#2563EB", // blue
+    "#7C3AED", // violet
+    "#DB2777", // pink
+    "#DC2626", // red
+    "#EA580C", // orange
+    "#D97706", // amber
+    "#CA8A04", // yellow
+    "#16A34A", // green
+    "#059669", // emerald
+    "#0891B2", // cyan
+    "#0284C7", // sky
+    "#4F46E5", // indigo
+    "#9333EA", // purple
+    "#C026D3", // fuchsia
+    "#E11D48", // rose
+    "#0F766E", // teal
+    "#65A30D", // lime
+    "#475569", // slate
+    "#64748B",
+    "#334155",
+  ];
+
   const crimeMixColored = useMemo(() => {
     if (!data) return [];
-    return data.crimeMix.map((item) => ({
+    return data.crimeMix.map((item, index) => ({
       ...item,
-      color: pickColor(item.name),
+      color: CRIME_COLORS[index % CRIME_COLORS.length],
     }));
   }, [data]);
 
@@ -383,24 +406,46 @@ export default function Dashboard({
             </p>
           </div>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={crimeMixColored}
-                  dataKey="value"
-                  nameKey="name"
-                  innerRadius={62}
-                  outerRadius={112}
-                  paddingAngle={3}
-                >
-                  {crimeMixColored.map((item) => (
-                    <Cell key={item.name} fill={item.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
+            <div className="h-[320px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={crimeMixColored}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={70}
+                    outerRadius={115}
+                    paddingAngle={2}
+                    stroke="#ffffff"
+                    strokeWidth={2}
+                    isAnimationActive
+                  >
+                    {crimeMixColored.map((item, index) => (
+                      <Cell
+                        key={`cell-${item.name}-${index}`}
+                        fill={item.color}
+                      />
+                    ))}
+                  </Pie>
+
+                  <Tooltip
+                    formatter={(value: number, name: string) => [value, name]}
+                    contentStyle={{
+                      borderRadius: "10px",
+                      border: "1px solid #e2e8f0",
+                      backgroundColor: "#ffffff",
+                      boxShadow: "0 8px 24px rgba(15, 23, 42, 0.12)",
+                    }}
+                    labelStyle={{
+                      color: "#0f172a",
+                      fontWeight: 600,
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </Card>
       </div>

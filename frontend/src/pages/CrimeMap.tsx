@@ -93,6 +93,15 @@ function getRiskColor(riskLevel: string) {
   }
 }
 
+/* Border colors used for the selected boundary, driven by the risk level of
+   the selected area (green = low, yellow = medium, red = high). */
+const BOUNDARY_RISK_PALETTE: Record<string, string> = {
+  low: "#16a34a",
+  medium: "#f59e0b",
+  high: "#dc2626",
+  critical: "#991b1b",
+};
+
 /* ─── heatmap grid helpers ─── */
 interface HeatCell {
   id: string;
@@ -168,13 +177,27 @@ function MapController({
 
 /* ─── main component ─── */
 const CrimeMap = () => {
-  const [boundary, setBoundary] = useState<any>(null);
+  /* Boundary response together with the request id that produced it. Using the
+     request id as the <GeoJSON> key guarantees a fresh mount with the CURRENT
+     response (react-leaflet v5 ignores `data` changes on an existing layer),
+     so the boundary never lags one selection behind. */
+  const [boundaryState, setBoundaryState] = useState<{
+    id: number;
+    data: any;
+  }>({ id: 0, data: null });
   const [boundaryLoading, setBoundaryLoading] = useState(false);
   const [mapData, setMapData] = useState<MapDataResponse | null>(null);
   const [mapLoading, setMapLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<MapFilters>({ ...DEFAULT_FILTERS });
   const geoJsonRef = useRef<any>(null);
+
+  /* Guards against out-of-order async responses: only the latest request is
+     allowed to update state (prevents old boundaries/points from lingering). */
+  const mapReqRef = useRef(0);
+  const boundaryReqRef = useRef(0);
+  /* Selection (state›district) that the currently stored boundary belongs to. */
+  const boundarySelectionRef = useRef("");
 
   const [stateIdMap, setStateIdMap] = useState<Record<string, number>>({});
   const [districtIdMap, setDistrictIdMap] = useState<Record<string, number>>(
@@ -219,53 +242,71 @@ const CrimeMap = () => {
 
   /* Fetch map data from backend */
   const fetchMapData = useCallback(async (next?: MapFilters) => {
+    const reqId = ++mapReqRef.current;
     setMapLoading(true);
     setError(null);
     try {
       const res: any = await api.mapData(next || undefined);
 
-      setMapData(res?.data ?? null);
+      if (mapReqRef.current === reqId) {
+        setMapData(res?.data ?? null);
+      }
     } catch (err: any) {
-      console.error("Map data fetch failed:", err);
-      setError(err.message || "Failed to load crime data");
+      if (mapReqRef.current === reqId) {
+        console.error("Map data fetch failed:", err);
+        setError(err.message || "Failed to load crime data");
+      }
     } finally {
-      setMapLoading(false);
+      if (mapReqRef.current === reqId) {
+        setMapLoading(false);
+      }
     }
   }, []);
 
-  /* Fetch the correct boundary (state or district) for the current filter */
   const fetchBoundary = useCallback(
     async (next: MapFilters) => {
+      const reqId = ++boundaryReqRef.current;
+      const selectionKey = `${next.state}›${next.district}`;
+
+      /* If the geographic selection changed, drop the old boundary immediately
+         so the previous area is never left on the map while the new one loads. */
+      if (selectionKey !== boundarySelectionRef.current) {
+        boundarySelectionRef.current = selectionKey;
+        setBoundaryState({ id: reqId, data: null });
+      }
+
       setBoundaryLoading(true);
+
+      let nextBoundary: any = null;
+
       try {
-        if (next.state === "All States") {
-          setBoundary(null);
-          return;
-        }
+        if (next.state !== "All States") {
+          if (next.district && next.district !== "All Districts") {
+            const districtId = districtIdMap[next.district];
 
-        if (next.district && next.district !== "All Districts") {
-          const districtId = districtIdMap[next.district];
-
-          if (districtId) {
-            const res: any = await api.districtBoundary(districtId);
-            setBoundary(res ?? null);
-            return;
+            if (districtId) {
+              const res: any = await api.districtBoundary(districtId);
+              nextBoundary = res ?? null;
+            }
           }
-        }
 
-        const stateId = stateIdMap[next.state];
+          if (!nextBoundary) {
+            const stateId = stateIdMap[next.state];
 
-        if (stateId) {
-          const res: any = await api.stateBoundary(stateId);
-          setBoundary(res ?? null);
-        } else {
-          setBoundary(null);
+            if (stateId) {
+              const res: any = await api.stateBoundary(stateId);
+              nextBoundary = res ?? null;
+            }
+          }
         }
       } catch (err) {
         console.error("Boundary fetch failed:", err);
-        setBoundary(null);
+        nextBoundary = null;
       } finally {
-        setBoundaryLoading(false);
+        if (boundaryReqRef.current === reqId) {
+          setBoundaryState({ id: reqId, data: nextBoundary });
+          setBoundaryLoading(false);
+        }
       }
     },
     [stateIdMap, districtIdMap],
@@ -288,17 +329,17 @@ const CrimeMap = () => {
 
   /* Map bounds follow the selected boundary */
   const mapBounds = useMemo<LatLngBoundsExpression | undefined>(() => {
-    if (!boundary) return undefined;
+    if (!boundaryState.data) return undefined;
 
     try {
-      const layer = L.geoJSON(boundary);
+      const layer = L.geoJSON(boundaryState.data);
       const bounds = layer.getBounds();
       if (bounds.isValid()) return bounds;
     } catch {
       // fall through
     }
     return undefined;
-  }, [boundary]);
+  }, [boundaryState.data]);
 
   const points = useMemo(
     () => (Array.isArray(mapData?.points) ? mapData.points : []),
@@ -321,21 +362,58 @@ const CrimeMap = () => {
     [heatCells],
   );
 
-  /* Style for the selected boundary */
+  /* Risk level of the currently selected state/district, derived from the
+     backend map-data response (stateStats[].riskLevel). */
+  const selectedAreaRisk = useMemo(() => {
+    if (!mapData || filters.state === "All States") return null;
+
+    const stateStat = (mapData.stateStats ?? []).find(
+      (s) => s.state === filters.state,
+    );
+
+    return stateStat?.riskLevel ?? null;
+  }, [mapData, filters.state]);
+
+  /* Style for the selected boundary: a clear, risk-coloured border with a
+     transparent fill so the crime points underneath stay visible. */
   const boundaryStyle = useCallback(
-    (feature: any) => ({
-      color: "#15803d",
-      weight: 2.5,
-      fillColor: "#22c55e",
-      fillOpacity: 0.12,
-      dashArray: "4",
-    }),
-    [],
+    (feature: any) => {
+      const riskColor = selectedAreaRisk
+        ? BOUNDARY_RISK_PALETTE[selectedAreaRisk]
+        : undefined;
+
+      const color = riskColor ?? "#15803d";
+
+      return {
+        color,
+        weight: 3,
+        opacity: 1,
+        fillColor: color,
+        fillOpacity: 0.08,
+        dashArray: "6 4",
+      };
+    },
+    [selectedAreaRisk],
   );
 
-  const onEachBoundaryFeature = useCallback((_feature: any, layer: any) => {
-    layer.bindTooltip("Selected boundary", { sticky: true });
-  }, []);
+  const onEachBoundaryFeature = useCallback(
+    (feature: any, layer: any) => {
+      const props = feature?.properties ?? {};
+      const name =
+        props.districtName ||
+        props.stateName ||
+        (filters.district !== "All Districts"
+          ? filters.district
+          : filters.state);
+
+      const risk = selectedAreaRisk
+        ? ` · Risk: ${selectedAreaRisk.charAt(0).toUpperCase()}${selectedAreaRisk.slice(1)}`
+        : "";
+
+      layer.bindTooltip(`${name}${risk}`, { sticky: true });
+    },
+    [filters.state, filters.district, selectedAreaRisk],
+  );
 
   const pulseIcon = L.divIcon({
     className: "pulse-ring-marker",
@@ -423,13 +501,14 @@ const CrimeMap = () => {
             />
 
             {/* Selected state/district boundary (from the backend boundaries
-                controller). Stays visible even when the filtered dataset is
-                empty. */}
-            {boundary && (
+                controller). The key is the request id that produced the data,
+                so the layer is recreated from the CURRENT response whenever it
+                changes (react-leaflet v5 does not diff `data` on its own). */}
+            {boundaryState.data && (
               <GeoJSON
-                key={JSON.stringify(filters.state) + JSON.stringify(filters.district)}
+                key={boundaryState.id}
                 ref={geoJsonRef}
-                data={boundary}
+                data={boundaryState.data}
                 style={boundaryStyle}
                 onEachFeature={onEachBoundaryFeature}
               />

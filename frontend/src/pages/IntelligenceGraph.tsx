@@ -44,7 +44,6 @@ import {
   Textarea,
 } from "../components/customUi";
 import { cn } from "../lib/utils";
-import { getLayoutedElements } from "../lib/graphLib";
 import { getForceLayout } from "../lib/forceLayout";
 
 const redString = {
@@ -345,10 +344,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
   const [edges, setEdges] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
   const [draft, setDraft] = useState<Record<string, any>>({});
+
   const [caseId, setCaseId] = useState("");
   const [personId, setPersonId] = useState("");
   const [freeQuery, setFreeQuery] = useState("");
-  const [status, setStatus] = useState("Demo investigation loaded");
+
+  const [status, setStatus] = useState(
+    "Select a case or person to load the graph",
+  );
   const [loading, setLoading] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -357,104 +360,259 @@ export default function IntelligenceGraph({ filters = {} }: any) {
   const [searchResults, setSearchResults] = useState<any>(null);
   const [searchError, setSearchError] = useState<string | null>(null);
 
-  const loadGraph = useCallback(
-    async (opts?: { caseId?: string; personId?: string }) => {
-      const targetCaseId = opts?.caseId ?? caseId;
-      const targetPersonId = opts?.personId ?? personId;
+  /**
+   * Load graph from backend.
+   *
+   * IMPORTANT:
+   * This function does NOT depend on caseId/personId state.
+   * The selected ID is explicitly passed to it.
+   */
+  async function loadGraph(opts?: {
+    caseId?: string;
+    personId?: string;
+    query?: string;
+  }) {
+    const targetCaseId = opts?.caseId || "";
+    const targetPersonId = opts?.personId || "";
+    const targetQuery = opts?.query !== undefined ? opts.query : freeQuery;
 
-      if (!targetCaseId && !targetPersonId && !freeQuery) {
+    if (!targetCaseId && !targetPersonId && !targetQuery.trim()) {
+      setNodes([]);
+      setEdges([]);
+      setStatus("Select a case or person to load the graph");
+      return;
+    }
+
+    setLoading(true);
+    setStatus("Loading scoped graph");
+
+    try {
+      const graph: any = await api.graph({
+        ...(targetCaseId
+          ? {
+              incidentId: targetCaseId,
+            }
+          : {}),
+
+        ...(targetPersonId
+          ? {
+              personId: targetPersonId,
+            }
+          : {}),
+
+        ...(targetQuery.trim()
+          ? {
+              q: targetQuery.trim(),
+            }
+          : {}),
+
+        ...(filters.district
+          ? {
+              district: filters.district,
+            }
+          : {}),
+
+        ...(filters.category
+          ? {
+              category: filters.category,
+            }
+          : {}),
+
+        depth: 2,
+        limit: 140,
+      });
+
+      console.log("Graph API response:", graph);
+
+      const apiNodes = graph?.data?.nodes ?? [];
+      const apiEdges = graph?.data?.edges ?? [];
+
+      console.log("Graph API nodes:", apiNodes);
+      console.log("Graph API edges:", apiEdges);
+
+      if (!Array.isArray(apiNodes)) {
+        throw new Error("Graph API returned invalid nodes");
+      }
+
+      if (!Array.isArray(apiEdges)) {
+        throw new Error("Graph API returned invalid edges");
+      }
+
+      /**
+       * No demo fallback here.
+       *
+       * If backend returns no nodes, React Flow will simply
+       * display an empty graph.
+       */
+      if (apiNodes.length === 0) {
         setNodes([]);
         setEdges([]);
-        setStatus("Demo investigation loaded");
+        setStatus("No graph data found");
         return;
       }
 
-      setLoading(true);
-      setStatus("Loading scoped graph");
-      try {
-        const graph: any = await api.graph({
-          ...(targetCaseId ? { incidentId: targetCaseId } : {}),
-          ...(targetPersonId ? { personId: targetPersonId } : {}),
-          ...(freeQuery ? { q: freeQuery } : {}),
-          ...(filters.district ? { district: filters.district } : {}),
-          ...(filters.category ? { category: filters.category } : {}),
-          depth: 2,
-          limit: 140,
-        });
+      const normalizedEdges = normalizeEdges(apiEdges);
 
-        const sourceNodes =
-          graph.data.nodes && graph.data.nodes.length > 0
-            ? graph.data.nodes
-            : demoGraph.nodes;
+      console.log("Normalized edges:", normalizedEdges);
 
-        const sourceEdges =
-          graph.data.edges && graph.data.edges.length > 0
-            ? normalizeEdges(graph.data.edges)
-            : normalizeEdges(demoGraph.edges);
+      /**
+       * Make sure getForceLayout returns React Flow compatible nodes:
+       *
+       * {
+       *   id: "...",
+       *   position: { x: 100, y: 200 },
+       *   data: {...}
+       * }
+       */
+      const layoutedGraph = getForceLayout(apiNodes, normalizedEdges);
 
-        const layoutedGraph = getForceLayout(sourceNodes, sourceEdges);
+      console.log("Layouted nodes:", layoutedGraph.nodes);
 
-        setNodes(layoutedGraph.nodes);
-        setEdges(layoutedGraph.edges);
+      console.log("Layouted edges:", layoutedGraph.edges);
 
-        setStatus(`${layoutedGraph.nodes.length} nodes loaded`);
-      } catch (err: any) {
-        setStatus(err.message);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [caseId, personId, freeQuery, filters],
-  );
+      setNodes(layoutedGraph.nodes);
+      setEdges(layoutedGraph.edges);
 
+      setStatus(
+        `${layoutedGraph.nodes.length} nodes • ${layoutedGraph.edges.length} relationships`,
+      );
+    } catch (err: any) {
+      console.error("Failed to load graph:", err);
+
+      setNodes([]);
+      setEdges([]);
+
+      setStatus(err?.message || "Failed to load graph");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  /**
+   * Initial URL case.
+   *
+   * This deliberately runs only once.
+   *
+   * Do NOT add loadGraph to this dependency array,
+   * otherwise changes in functions/state can cause
+   * repeated backend calls.
+   */
   useEffect(() => {
     const initialCaseId = searchParams.get("caseId");
 
-    if (initialCaseId) {
-      setCaseId(initialCaseId);
-      loadGraph({ caseId: initialCaseId });
+    if (!initialCaseId) {
+      return;
     }
+
+    setCaseId(initialCaseId);
+    setPersonId("");
+
+    loadGraph({
+      caseId: initialCaseId,
+    });
+
+    // Initial URL load only.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onNodesChange = useCallback(
-    (changes: any) => setNodes((items) => applyNodeChanges(changes, items)),
-    [],
-  );
-  const onEdgesChange = useCallback(
-    (changes: any) => setEdges((items) => applyEdgeChanges(changes, items)),
-    [],
-  );
-  const onConnect = useCallback(
-    (params: any) =>
-      setEdges((items) =>
-        addEdge({ ...redString, ...params, label: "manual link" }, items),
-      ),
-    [],
-  );
+  /**
+   * React Flow node changes.
+   */
+  const onNodesChange = useCallback((changes: any) => {
+    setNodes((items) => applyNodeChanges(changes, items));
+  }, []);
 
+  /**
+   * React Flow edge changes.
+   */
+  const onEdgesChange = useCallback((changes: any) => {
+    setEdges((items) => applyEdgeChanges(changes, items));
+  }, []);
+
+  /**
+   * Manual connection between nodes.
+   */
+  const onConnect = useCallback((params: any) => {
+    setEdges((items) =>
+      addEdge(
+        {
+          ...redString,
+          ...params,
+          label: "manual link",
+        },
+        items,
+      ),
+    );
+  }, []);
+
+  /**
+   * Selected entity.
+   */
   const selectedEntity = useMemo(() => {
-    if (!selected) return null;
-    if (selected.source && selected.target)
-      return { kind: "edge", ...selected };
-    return { kind: "node", ...selected };
+    if (!selected) {
+      return null;
+    }
+
+    if (selected.source && selected.target) {
+      return {
+        kind: "edge",
+        ...selected,
+      };
+    }
+
+    return {
+      kind: "node",
+      ...selected,
+    };
   }, [selected]);
 
+  /**
+   * Save selected graph entity.
+   */
   async function saveSelected() {
-    if (!selectedEntity) return;
+    if (!selectedEntity) {
+      return;
+    }
+
     const entityType = selectedEntity.data?.entityType;
+
     const recordId = selectedEntity.data?.recordId;
+
+    if (!recordId) {
+      setStatus("Cannot save: missing record ID");
+      return;
+    }
+
     setStatus("Saving verified correction");
 
-    if (selectedEntity.kind === "edge" && entityType === "relationship")
-      await api.updateRelationship(recordId, draft);
-    if (entityType === "person") await api.updatePerson(recordId, draft);
-    if (entityType === "incident") await api.updateIncident(recordId, draft);
-    if (entityType === "location") await api.updateLocation(recordId, draft);
+    try {
+      if (selectedEntity.kind === "edge" && entityType === "relationship") {
+        await api.updateRelationship(recordId, draft);
+      }
 
-    setStatus("Saved");
+      if (entityType === "person") {
+        await api.updatePerson(recordId, draft);
+      }
+
+      if (entityType === "incident") {
+        await api.updateIncident(recordId, draft);
+      }
+
+      if (entityType === "location") {
+        await api.updateLocation(recordId, draft);
+      }
+
+      setStatus("Saved");
+    } catch (err: any) {
+      console.error("Failed to save:", err);
+
+      setStatus(err?.message || "Failed to save changes");
+    }
   }
 
+  /**
+   * Search field toggle.
+   */
   function toggleSearchType(type: string) {
     setSearchTypes((current) =>
       current.includes(type)
@@ -463,10 +621,15 @@ export default function IntelligenceGraph({ filters = {} }: any) {
     );
   }
 
+  /**
+   * Search backend.
+   */
   async function runSearch() {
     const q = searchQuery.trim();
 
-    if (!q) return;
+    if (!q) {
+      return;
+    }
 
     setSearching(true);
     setSearchError(null);
@@ -479,76 +642,152 @@ export default function IntelligenceGraph({ filters = {} }: any) {
         limit: 20,
       });
 
+      console.log("Search response:", res);
+
       setSearchResults(res);
     } catch (err: any) {
-      setSearchError(err.message || "Search failed");
+      console.error("Search failed:", err);
+
+      setSearchError(err?.message || "Search failed");
     } finally {
       setSearching(false);
     }
   }
 
+  /**
+   * Open case from search result.
+   */
   function openCase(id: string) {
+    if (!id) {
+      return;
+    }
+
     setCaseId(id);
     setPersonId("");
-    loadGraph({ caseId: id });
+    setSelected(null);
+
+    loadGraph({
+      caseId: id,
+    });
   }
 
+  /**
+   * Open person from search result.
+   */
   function openPerson(id: string) {
+    if (!id) {
+      return;
+    }
+
     setPersonId(id);
     setCaseId("");
-    loadGraph({ personId: id });
+    setSelected(null);
+
+    loadGraph({
+      personId: id,
+    });
+  }
+
+  /**
+   * Reload currently selected graph.
+   */
+  function reloadGraph() {
+    if (caseId) {
+      loadGraph({
+        caseId,
+      });
+
+      return;
+    }
+
+    if (personId) {
+      loadGraph({
+        personId,
+      });
+
+      return;
+    }
+
+    if (freeQuery.trim()) {
+      loadGraph({
+        query: freeQuery,
+      });
+
+      return;
+    }
+
+    setStatus("Select a case or person to load the graph");
   }
 
   const resultGroups = searchResults?.results || {};
 
   return (
     <div className="space-y-4">
+      {/* =========================================================
+          SEARCH BAR
+      ========================================================== */}
+
       <Card className="p-5">
         <div className="flex flex-wrap items-center gap-3">
           <Input
             className="min-w-[280px] flex-1"
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
-            onKeyDown={(event) => event.key === "Enter" && runSearch()}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                runSearch();
+              }
+            }}
             placeholder="Search cases, people, evidence, statements, phones…"
           />
-          <Button onClick={runSearch} disabled={searching || !searchQuery.trim()}>
+
+          <Button
+            onClick={runSearch}
+            disabled={searching || !searchQuery.trim()}
+          >
             {searching ? (
               <Loader2 className="animate-spin" size={16} />
             ) : (
               <Search size={16} />
-            )}{" "}
+            )}
             Search board
           </Button>
+
           <GhostButton
-            onClick={() => {
-              setNodes([]);
-              setEdges(normalizeEdges([]));
-              setStatus("Demo investigation loaded");
-            }}
+            onClick={reloadGraph}
+            disabled={loading || (!caseId && !personId && !freeQuery.trim())}
           >
-            <RefreshCw size={16} /> Demo graph
+            <RefreshCw size={16} />
+            Reload graph
           </GhostButton>
-          <Badge>{status}</Badge>
+
+          <Badge>{loading ? "Loading..." : status}</Badge>
         </div>
+
+        {/* Search fields */}
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="text-xs font-medium text-slate-500">Fields:</span>
+
           {SEARCH_TYPES.map((item) => {
             const Icon = item.icon;
+
             const active = searchTypes.includes(item.id);
+
             return (
               <button
                 key={item.id}
                 onClick={() => toggleSearchType(item.id)}
                 className={cn(
                   "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition",
+
                   active
                     ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                     : "border-slate-200 bg-white text-slate-600 hover:border-slate-400",
                 )}
               >
                 <Icon size={12} />
+
                 {item.label}
               </button>
             );
@@ -556,16 +795,23 @@ export default function IntelligenceGraph({ filters = {} }: any) {
         </div>
       </Card>
 
+      {/* =========================================================
+          SEARCH RESULTS
+      ========================================================== */}
+
       {searchResults && (
         <Card className="border-amber-200 bg-amber-50/40 p-5">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-slate-900">
               Search results for “{searchResults.query}”
             </h3>
+
             <div className="flex items-center gap-2">
               <Badge>{searchResults.total} matches</Badge>
+
               <GhostButton onClick={() => setSearchResults(null)}>
-                <X size={14} /> Clear
+                <X size={14} />
+                Clear
               </GhostButton>
             </div>
           </div>
@@ -577,11 +823,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
           )}
 
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            {/* CASES */}
+
             {resultGroups.cases?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Cases ({resultGroups.cases.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.cases.map((caseItem: any) => (
                     <button
@@ -592,11 +841,11 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {caseItem.title || caseItem.caseNumber}
                       </strong>
+
                       <span className="text-xs text-slate-500">
                         {caseItem.caseNumber} • {caseCrimeType(caseItem)} •{" "}
-                        {caseStatus(caseItem)} •{" "}
-                        {caseItem.persons?.length || 0} people •{" "}
-                        {caseItem.evidences?.length || 0} evidence
+                        {caseStatus(caseItem)} • {caseItem.persons?.length || 0}{" "}
+                        people • {caseItem.evidences?.length || 0} evidence
                       </span>
                     </button>
                   ))}
@@ -604,11 +853,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               </div>
             )}
 
+            {/* PEOPLE */}
+
             {resultGroups.persons?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   People ({resultGroups.persons.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.persons.map((person: any) => (
                     <button
@@ -619,8 +871,15 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {person.name || "Unknown Person"}
                       </strong>
+
                       <span className="text-xs text-slate-500">
-                        {[person.aliases?.length ? `Aliases: ${person.aliases.join(", ")}` : null, `${person.caseRoles?.length || 0} case links`]
+                        {[
+                          person.aliases?.length
+                            ? `Aliases: ${person.aliases.join(", ")}`
+                            : null,
+
+                          `${person.caseRoles?.length || 0} case links`,
+                        ]
                           .filter(Boolean)
                           .join(" • ")}
                       </span>
@@ -630,11 +889,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               </div>
             )}
 
+            {/* EVIDENCE */}
+
             {resultGroups.evidence?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Evidence / media ({resultGroups.evidence.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.evidence.map((evidence: any) => (
                     <button
@@ -645,6 +907,7 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {evidence.title || evidence.fileName || evidence.type}
                       </strong>
+
                       <span className="text-xs text-slate-500">
                         {evidence.type} • {evidence.case?.caseNumber}
                       </span>
@@ -654,35 +917,46 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               </div>
             )}
 
+            {/* STATEMENTS */}
+
             {resultGroups.statements?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Statements ({resultGroups.statements.length})
                 </h4>
+
                 <div className="grid gap-2">
-                  {resultGroups.statements.map((statement: any, index: number) => (
-                    <button
-                      key={index}
-                      onClick={() => openCase(statement.caseId)}
-                      className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
-                    >
-                      <p className="line-clamp-2 text-sm text-slate-800">
-                        {statement.statement}
-                      </p>
-                      <span className="mt-1 block text-xs text-slate-500">
-                        {statement.person?.name || statement.case?.caseNumber || "Statement"}
-                      </span>
-                    </button>
-                  ))}
+                  {resultGroups.statements.map(
+                    (statement: any, index: number) => (
+                      <button
+                        key={index}
+                        onClick={() => openCase(statement.caseId)}
+                        className="rounded-xl border border-slate-200 p-3 text-left transition hover:border-emerald-400 hover:bg-emerald-50"
+                      >
+                        <p className="line-clamp-2 text-sm text-slate-800">
+                          {statement.statement}
+                        </p>
+
+                        <span className="mt-1 block text-xs text-slate-500">
+                          {statement.person?.name ||
+                            statement.case?.caseNumber ||
+                            "Statement"}
+                        </span>
+                      </button>
+                    ),
+                  )}
                 </div>
               </div>
             )}
+
+            {/* PHONES */}
 
             {resultGroups.phones?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Phone numbers ({resultGroups.phones.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.phones.map((phone: any) => (
                     <button
@@ -693,8 +967,12 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {phone.number}
                       </strong>
+
                       <span className="text-xs text-slate-500">
-                        {phone.owners?.map((owner: any) => owner.person.name).filter(Boolean).join(", ") || "No registered owner"}
+                        {phone.owners
+                          ?.map((owner: any) => owner.person.name)
+                          .filter(Boolean)
+                          .join(", ") || "No registered owner"}
                       </span>
                     </button>
                   ))}
@@ -702,11 +980,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               </div>
             )}
 
+            {/* VEHICLES */}
+
             {resultGroups.vehicles?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Vehicles ({resultGroups.vehicles.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.vehicles.map((vehicle: any) => (
                     <button
@@ -717,8 +998,11 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {vehicle.registrationNo || "Vehicle"}
                       </strong>
+
                       <span className="text-xs text-slate-500">
-                        {[vehicle.make, vehicle.model, vehicle.color].filter(Boolean).join(" ")}
+                        {[vehicle.make, vehicle.model, vehicle.color]
+                          .filter(Boolean)
+                          .join(" ")}
                       </span>
                     </button>
                   ))}
@@ -726,11 +1010,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               </div>
             )}
 
+            {/* LOCATIONS */}
+
             {resultGroups.locations?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Locations ({resultGroups.locations.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.locations.map((location: any) => (
                     <button
@@ -741,8 +1028,15 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {location.address || "Location"}
                       </strong>
+
                       <span className="text-xs text-slate-500">
-                        {[location.district?.districtName, location.policeUnit?.unitName].filter(Boolean).join(" • ")}
+                        {[
+                          location.district?.districtName,
+
+                          location.policeUnit?.unitName,
+                        ]
+                          .filter(Boolean)
+                          .join(" • ")}
                       </span>
                     </button>
                   ))}
@@ -750,11 +1044,14 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               </div>
             )}
 
+            {/* ORGANIZATIONS */}
+
             {resultGroups.organizations?.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Organizations ({resultGroups.organizations.length})
                 </h4>
+
                 <div className="grid gap-2">
                   {resultGroups.organizations.map((organization: any) => (
                     <button
@@ -765,8 +1062,10 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                       <strong className="block text-sm text-slate-900">
                         {organization.name}
                       </strong>
+
                       <span className="text-xs text-slate-500">
-                        {organization.organizationType || `${organization.members?.length || 0} members`}
+                        {organization.organizationType ||
+                          `${organization.members?.length || 0} members`}
                       </span>
                     </button>
                   ))}
@@ -777,11 +1076,19 @@ export default function IntelligenceGraph({ filters = {} }: any) {
         </Card>
       )}
 
+      {/* =========================================================
+          SEARCH ERROR
+      ========================================================== */}
+
       {searchError && (
         <Card className="border-red-200 bg-red-50 p-4 text-sm text-red-700">
           {searchError}
         </Card>
       )}
+
+      {/* =========================================================
+          REACT FLOW
+      ========================================================== */}
 
       <Card className="h-[600px] overflow-hidden border-amber-200 bg-[#f3dfbb] case-board">
         <ReactFlow
@@ -807,10 +1114,16 @@ export default function IntelligenceGraph({ filters = {} }: any) {
           minZoom={0.05}
         >
           <Background color="#d4a373" gap={28} />
+
           <Controls />
+
           <MiniMap pannable zoomable />
         </ReactFlow>
       </Card>
+
+      {/* =========================================================
+          SELECTED ENTITY SHEET
+      ========================================================== */}
 
       <Sheet open={Boolean(selectedEntity)} onClose={() => setSelected(null)}>
         <div className="flex items-start justify-between gap-4">
@@ -818,6 +1131,7 @@ export default function IntelligenceGraph({ filters = {} }: any) {
             <p className="text-sm font-medium text-slate-500">
               Selected intelligence
             </p>
+
             <h3 className="mt-1 text-2xl font-semibold tracking-tight">
               {draft.label ||
                 draft.title ||
@@ -826,12 +1140,15 @@ export default function IntelligenceGraph({ filters = {} }: any) {
                 "Graph element"}
             </h3>
           </div>
+
           <GhostButton onClick={() => setSelected(null)}>
             <X size={18} />
           </GhostButton>
         </div>
 
         <div className="mt-6 grid gap-4">
+          {/* Entity type */}
+
           <label className="grid gap-2 text-sm text-slate-600">
             Entity type
             <Input
@@ -843,6 +1160,9 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               readOnly
             />
           </label>
+
+          {/* Label */}
+
           <label className="grid gap-2 text-sm text-slate-600">
             Label / title
             <Input
@@ -850,12 +1170,17 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               onChange={(event) =>
                 setDraft((current) => ({
                   ...current,
+
                   label: event.target.value,
+
                   title: event.target.value,
                 }))
               }
             />
           </label>
+
+          {/* Risk / confidence */}
+
           <label className="grid gap-2 text-sm text-slate-600">
             Risk / confidence
             <Input
@@ -864,12 +1189,17 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               onChange={(event) =>
                 setDraft((current) => ({
                   ...current,
+
                   confidence: Number(event.target.value),
+
                   riskScore: Number(event.target.value),
                 }))
               }
             />
           </label>
+
+          {/* Notes */}
+
           <label className="grid gap-2 text-sm text-slate-600">
             Verified notes
             <Textarea
@@ -882,15 +1212,20 @@ export default function IntelligenceGraph({ filters = {} }: any) {
               onChange={(event) =>
                 setDraft((current) => ({
                   ...current,
+
                   relationToCase: event.target.value,
+
                   relationshipSource: event.target.value,
+
                   notes: event.target.value,
                 }))
               }
             />
           </label>
+
           <Button onClick={saveSelected}>
-            <Save size={16} /> Save verified edit
+            <Save size={16} />
+            Save verified edit
           </Button>
         </div>
       </Sheet>

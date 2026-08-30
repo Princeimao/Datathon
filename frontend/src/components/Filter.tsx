@@ -1,6 +1,6 @@
 import { Filter, Loader2 } from "lucide-react";
 import { Select } from "../components/customUi";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { api } from "../services/api";
 
 export interface MapFilters {
@@ -68,6 +68,7 @@ export default function CrimeMapFilters({
   loading = false,
 }: CrimeMapFiltersProps) {
   const [filters, setFilters] = useState<MapFilters>({ ...DEFAULT_FILTERS });
+  const filtersRef = useRef<MapFilters>(filters);
   const [states, setStates] = useState<string[]>(["All States"]);
   const [districts, setDistricts] = useState<string[]>(["All Districts"]);
   const [policeStationList, setPoliceStationList] = useState<string[]>([
@@ -81,24 +82,38 @@ export default function CrimeMapFilters({
   /* Backend-driven states (with DB ids) */
   const [stateMap, setStateMap] = useState<Record<string, number>>({});
 
-  const updateFilter = useCallback((key: keyof MapFilters, value: any) => {
-    setFilters((prev) => {
+  /* Keep a live ref of the latest filters so callbacks don't go stale */
+  useEffect(() => {
+    filtersRef.current = filters;
+  }, [filters]);
+
+  const updateFilter = useCallback(
+    (key: keyof MapFilters, value: any) => {
+      const prev = filtersRef.current;
       const next = { ...prev, [key]: value };
 
-      // Reset downstream filters when a parent changes
       if (key === "state") {
         next.district = "All Districts";
         next.policeStation = "All Stations";
         next.policeUnitId = "";
       }
+
       if (key === "district") {
         next.policeStation = "All Stations";
         next.policeUnitId = "";
       }
 
-      return next;
-    });
-  }, []);
+      filtersRef.current = next;
+      setFilters(next);
+
+      /* Geographic changes are applied immediately (no "Apply" click) so the
+         map fetches + zooms to the matching boundary right away. */
+      if (key === "state" || key === "district") {
+        onFilterChange?.(next);
+      }
+    },
+    [onFilterChange],
+  );
 
   const applyFilters = useCallback(
     (next: MapFilters) => {
@@ -169,7 +184,10 @@ export default function CrimeMapFilters({
 
   /* Fetch police stations when state or district changes */
   useEffect(() => {
-    if (filters.state === "All States" && filters.district === "All Districts") {
+    if (
+      filters.state === "All States" &&
+      filters.district === "All Districts"
+    ) {
       setPoliceStationList(["All Stations"]);
       setStationIds({});
       return;
@@ -267,7 +285,8 @@ export default function CrimeMapFilters({
   );
 
   const stationOptions = useMemo(
-    () => (Array.isArray(policeStationList) ? policeStationList : ["All Stations"]),
+    () =>
+      Array.isArray(policeStationList) ? policeStationList : ["All Stations"],
     [policeStationList],
   );
 
