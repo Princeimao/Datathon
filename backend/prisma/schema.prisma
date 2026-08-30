@@ -528,7 +528,6 @@ model State {
   @@unique([stateName])
 }
 
-
 model District {
   id Int @id @default(autoincrement())
   districtName String
@@ -710,10 +709,6 @@ model ArrestSurrenderAccused {
   @@index([arrestSurrenderId])
 }
 
-// ============================================================
-// LOCATION
-// ============================================================
-
 model Location {
   id String @id @default(cuid())
 
@@ -749,7 +744,6 @@ model Location {
   @@index([stateId])
   @@index([policeUnitId])
 }
-
 
 model CaseLocation {
   caseId     String
@@ -859,11 +853,8 @@ model PersonRelationship {
 
 model Evidence {
   id String @id @default(cuid())
-
   caseId String
-
   type EvidenceType
-
   title       String?
   description String?
 
@@ -962,11 +953,6 @@ model InvestigationEvent {
   @@index([locationId])
 }
 
-
-// ============================================================
-// CHARGESHEET
-// ============================================================
-
 model Chargesheet {
   id String @id @default(cuid())
 
@@ -1038,13 +1024,6 @@ model CaseSimilarity {
   @@index([similarityScore])
 }
 
-// ============================================================
-// FACE RECORDS (Luxand Cloud)
-// ============================================================
-//
-// Stores the Luxand face identifier/token along with the person/case it
-// belongs to and the original Stratus image reference. A person can have
-// multiple face records (multiple photos).
 model FaceRecord {
   id String @id @default(cuid())
 

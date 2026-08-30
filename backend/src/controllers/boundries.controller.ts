@@ -35,9 +35,7 @@ function loadGeoJSON(filename: string): GeoJSON {
     throw new Error(`GeoJSON file not found: ${filePath}`);
   }
 
-  const parsed = JSON.parse(
-    fs.readFileSync(filePath, "utf-8"),
-  ) as GeoJSON;
+  const parsed = JSON.parse(fs.readFileSync(filePath, "utf-8")) as GeoJSON;
 
   geoJsonCache.set(filename, parsed);
 

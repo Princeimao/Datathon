@@ -1,12 +1,15 @@
 export const env = {
   port: Number(process.env.PORT || 3000),
 
-  // Pinecone (case text vector search only — no face vectors)
   pineconeApiKey: process.env.PINECONE_API_KEY,
 
-  // Luxand Cloud Face API token
   luxandToken: process.env.LUXAND_TOKEN,
 
-  // Zoho Catalyst Stratus storage
-  catalystStratusBucket: process.env.CATALYST_STRATUS_BUCKET || "datathon-1",
+  catalystStratusBucket: process.env.CATALYST_STRATUS_BUCKET || "datathoon",
+  catalystProjectId: process.env.CATALYST_PROJECT_ID,
+  catalystProjectKey: process.env.CATALYST_PROJECT_KEY,
+  catalystEnvironment: process.env.CATALYST_ENVIRONMENT,
+  catalystClientId: process.env.CATALYST_CLIENT_ID,
+  catalystClientSecret: process.env.CATALYST_CLIENT_SECRET,
+  catalystRefreshToken: process.env.CATALYST_REFRESH_TOKEN,
 };
